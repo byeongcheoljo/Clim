@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+ html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+            user-select: none;
+        }
+
+        #content {
+            width: 1080px;
+            height: 100%;
+        }
+
+        #bg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: rgba(35, 31, 32, .9);
+        }
+
+        #previewSection {
+            width: 100%;
+            height: 600px;
+            background-color: aliceblue;
+            position: fixed;
+            top: 50%;
+            margin-top: -300px;
+        }
+
+        #movieInformationWrap {
+            width: 30%;
+            height: 600px;
+            background: rgb(30, 30, 30) 95%;
+            float: left;
+            position: relative;
+            color: #FAFAFA;
+            z-index: 1;
+        }
+
+        #previewWrap {
+            width: 70%;
+            height: 600px;
+            position: absolute;
+            right: 0;
+        }
+
+        #movieTitle {
+            text-indent: 20px;
+            width: 100%;
+            height: 70px;
+            font-size: 30px;
+            line-height: 70px;
+            position: relative;
+            border-bottom: 1px solid rgba(80, 80, 80, 3);
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        #movieInformationBox {
+            width: 100%;
+            height: 530px;
+            font-size: 20px;
+            position: relative;
+        }
+
+        #movieInformationBox span {
+            font-size: 15px;
+
+        }
+
+        #movieInformationBox li {
+            width: 100%;
+            height: 10px;
+            position: relative;
+            padding: 20px;
+
+        }
+
+        #movieInformationBox li:nth-child(1){
+            width: 100%;
+            height: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        #movieInformationBox li:nth-child(1) span {
+            margin-left: 5px;
+        }
+
+        #movieInformationBox li:nth-child(2) span {
+            margin-left: 5px;
+        }
+
+        #movieInformationBox li:nth-child(3) a {
+            text-decoration: none;
+            color: #FAFAFA;
+        }
+
+        #movieInformationBox li:nth-child(3) span {
+            margin-right: 10px;
+        }
+
+        #movieInformationBox li:nth-child(3) {
+            width: 100%;
+            height: 30px;
+            color: #FAFAFA;
+            position: relative;
+        }
+
+        #director {
+            width: 85%;
+            height: 40px;
+            left: 20px;
+            position: absolute;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        #actor{
+            width: 85%;
+            height: 40px;
+            left: 20px;
+            position: absolute;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        #movieInformationBox li:nth-child(4){
+            width: 100%;
+            height: 30px;
+            position: relative;
+        }
+
+        #movieInformationBox li:nth-child(3){
+            width: 100%;
+            height: 30px;
+        }
+
+        #movieInformationBox li:nth-child(4) span {
+            margin-right: 10px;
+        }
+
+
+        #movieInformationBox li:nth-child(4) a {
+            text-decoration: none;
+            color: #FAFAFA;
+        }
+
+        #movieInformationBox li:nth-child(5) {
+            width: 90%;
+            height: 200px;
+            color: #FAFAFA;
+        }
+
+        #movieInformationBox li:nth-child(5) p {
+            width: 100%;
+            height: 70%;
+            color: #FAFAFA;
+            position: relative;
+            margin-top: 15px;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+        }
+
+        .preview_btn {
+            position: absolute;
+            border: none;
+            width: 32%;
+            height: 40px;
+            margin: 40px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .play {
+            left: 0;
+            bottom: 0;
+            background-color: #F9AC1A;
+            color: #fafafa;
+        }
+
+        .detail {
+            right: 20px;
+            bottom: 0;
+            background-color: rgb(220, 20, 60);
+            color: #fafafa;
+        }
+
+        #previewWrap video {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgb(30, 30, 30) 95%, rgb(30, 30, 30));
+        }
+
+        .play:hover {
+            background-color: rgb(249, 122, 26);
+        }
+
+        .detail:hover {
+            background-color: rgb(200, 0, 40);
+        }
+
+        #preview {
+            width: 100%;
+            height: 600px;
+        }
+
+        .fa-star {
+            color: #ff9900;
+        }
+
+        #age {
+            margin-left: 50px;
+        }

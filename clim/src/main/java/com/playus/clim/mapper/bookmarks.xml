@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookmarks">
+	
+	<select id="mybookmarkListForCliming" parameterType="int" resultType="Bookmark">
+		SELECT b.no, b.member_no memberNo, m.title, m.poster, m.runtime
+		FROM BOOKMARKS b, MOVIES m
+		WHERE b.movie_no = m.no
+		AND b.type = 'C'
+		AND b.member_no = #{memberNo}
+	</select>
+	
+</mapper>

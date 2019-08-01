@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	user-select: none;
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+}
+
+#content {
+	width: 1080px;
+	height: 900px;
+	background-color: #231F20;
+	margin: auto;
+}
+
+li {
+	list-style: none;
+}
+
+
+#headerNavMypage {
+	overflow: hidden;
+	height: 40px;
+	background-color: #231F20;
+	padding: 20px;
+}
+
+#headerNavMypage li {
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	color: #f9f9f9;
+	float: left;
+	margin-left: 50px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#headerNavMypage #nicknameHeaderMypage {
+	cursor: default;
+	pointer-events: none;
+}
+
+#content .header_myPage_tabbed {
+	border-bottom: 4px solid #F9AC1A;
+	color: #F9AC1A;
+}
+
+#myPageInformationWrap {
+	width: 600px;
+	height: 500px;
+	position: relative;
+}
+
+#information {
+	width: 600px;
+	height: 500px;
+	padding: 20px;
+	color: #FAFAFA;
+	margin-left: 70px;
+	border: 1px solid #F9AC1A;
+	position: relative;
+}
+
+#information p {
+	margin-top:50px;
+	font-size: 17px;
+}
+
+#information strong {
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+#information .pwd {
+	width: 300px;
+	height: 40px;
+	border-radius: 10px;
+	outline: none;
+	text-indent: 10px;
+}
+
+.check {
+	margin-left: 70px;
+}
+
+#information h2 {
+	font-size: 40px;
+}
+
+.information_btn {
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	border: none;
+	background-color: #F9AC1A;
+	color: #FAFAFA;
+	font-size: 15px;
+	cursor: pointer;
+	outline: none;
+	border-radius: 10px;
+}
+
+.change {
+	right: 220px;
+	bottom: 0;
+}
+
+.cancel {
+	right: 90px;
+	bottom: 0;
+}
+
+.msg {
+	width: 300px;
+	height: 30px;
+	position: absolute;
+}
+
+.pwd {
+	left: 220px;
+	bottom: 180px;
+}
+
+.pwd_check {
+	left: 230px;
+	bottom: 88px;
+}
+
+.msg.ok {
+	color: cornflowerblue;
+}
+
+.msg {
+	color: crimson;
+}

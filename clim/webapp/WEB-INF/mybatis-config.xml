@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+
+	<!-- 컬럼에 Null 추가 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	<!--  typeAlias
+	opg.jbp.guestbook.vo.Guest 너무 길어서 짧게 쓰려고 alias를 지정
+	 -->
+	<typeAliases>
+		<typeAlias alias="Actor" type="com.playus.clim.vo.Actor" />
+		<typeAlias alias="ActorMovie" type="com.playus.clim.vo.ActorMovie" />
+		<typeAlias alias="Board" type="com.playus.clim.vo.Board" />
+		<typeAlias alias="BoardTag" type="com.playus.clim.vo.BoardTag" />
+		<typeAlias alias="Bookmark" type="com.playus.clim.vo.Bookmark" />
+		<typeAlias alias="ClimingList" type="com.playus.clim.vo.ClimingList" />
+		<typeAlias alias="ClimingLog" type="com.playus.clim.vo.ClimingLog" />
+		<typeAlias alias="ClimingMovieList" type="com.playus.clim.vo.ClimingMovieList" />
+		<typeAlias alias="Comment" type="com.playus.clim.vo.Comment" />
+		<typeAlias alias="ContinueMovie" type="com.playus.clim.vo.ContinueMovie" />
+		<typeAlias alias="Country" type="com.playus.clim.vo.Country" />
+		<typeAlias alias="Director" type="com.playus.clim.vo.Director" />
+		<typeAlias alias="DirectorMovie" type="com.playus.clim.vo.DirectorMovie" />
+		<typeAlias alias="Event" type="com.playus.clim.vo.Event" />
+		<typeAlias alias="Genre" type="com.playus.clim.vo.Genre" />
+		<typeAlias alias="GenreMovie" type="com.playus.clim.vo.GenreMovie" />
+		<typeAlias alias="Like" type="com.playus.clim.vo.Like" />
+		<typeAlias alias="Member" type="com.playus.clim.vo.Member" />
+		<typeAlias alias="Movie" type="com.playus.clim.vo.Movie" />
+		<typeAlias alias="MovieCountry" type="com.playus.clim.vo.MovieCountry" />
+		<typeAlias alias="PageVO" type="com.playus.clim.vo.PageVO" />
+		<typeAlias alias="Payment" type="com.playus.clim.vo.Payment" />
+		<typeAlias alias="Report" type="com.playus.clim.vo.Report" />
+		<typeAlias alias="Review" type="com.playus.clim.vo.Review" />
+		<typeAlias alias="StealCut" type="com.playus.clim.vo.StealCut" />
+		<typeAlias alias="Subscribe" type="com.playus.clim.vo.Subscribe" />
+		<typeAlias alias="Survey" type="com.playus.clim.vo.Survey" />
+		<typeAlias alias="Tag" type="com.playus.clim.vo.Tag" />
+		<typeAlias alias="Trailer" type="com.playus.clim.vo.Trailer" />
+	</typeAliases>
+
+	<!-- mapper파일의 경로 -->
+	<mappers>
+	<!--  xml은 /으로 접근-->
+		<mapper resource="com/playus/clim/mapper/actorMovies.xml" />
+		<mapper resource="com/playus/clim/mapper/actors.xml" />
+		<mapper resource="com/playus/clim/mapper/boards.xml" />
+		<mapper resource="com/playus/clim/mapper/boardTags.xml" />
+		<mapper resource="com/playus/clim/mapper/bookmarks.xml" />
+		<mapper resource="com/playus/clim/mapper/climingLists.xml" />
+		<mapper resource="com/playus/clim/mapper/climingLogs.xml" />
+		<mapper resource="com/playus/clim/mapper/climingMovieLists.xml" />
+		<mapper resource="com/playus/clim/mapper/comments.xml" />
+		<mapper resource="com/playus/clim/mapper/continueMovies.xml" />
+		<mapper resource="com/playus/clim/mapper/countries.xml" />
+		<mapper resource="com/playus/clim/mapper/directorMovies.xml" />
+		<mapper resource="com/playus/clim/mapper/directors.xml" />
+		<mapper resource="com/playus/clim/mapper/events.xml" />
+		<mapper resource="com/playus/clim/mapper/genreMovies.xml" />
+		<mapper resource="com/playus/clim/mapper/genres.xml" />
+		<mapper resource="com/playus/clim/mapper/likes.xml" />
+		<mapper resource="com/playus/clim/mapper/members.xml" />
+		<mapper resource="com/playus/clim/mapper/movieCountries.xml" />
+		<mapper resource="com/playus/clim/mapper/movies.xml" />
+		<mapper resource="com/playus/clim/mapper/payments.xml" />
+		<mapper resource="com/playus/clim/mapper/reports.xml" />
+		<mapper resource="com/playus/clim/mapper/reviews.xml" />
+		<mapper resource="com/playus/clim/mapper/steelCuts.xml" />
+		<mapper resource="com/playus/clim/mapper/subscribes.xml" />
+		<mapper resource="com/playus/clim/mapper/surveys.xml" />
+		<mapper resource="com/playus/clim/mapper/tags.xml" />
+		<mapper resource="com/playus/clim/mapper/trailers.xml" />
+	</mappers>
+
+</configuration>

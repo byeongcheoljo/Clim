@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+<!--  중요한것은 name 속성, auth 속성이다.
+
+커넥션 풀을 만들도록 WAS에 시키는 설정이 바로 CONTEXT.XML이다. 
+
+name = 검색할 수 있도록 해주는 이름 속성
+maxIdle = 최대 20개의 connection pool 생성가능,
+maxTotal = 현재 최대 20개 connection pool 생성됨
+maxwaitMillis = 최대 접속 대기자수 >> -1일 경우 무한대를 뜻한다. -->
+<Resource
+		name="jdbc/oracle"  
+		auth="Container"
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="clim"
+		password="1111"
+		type="javax.sql.DataSource"
+		maxIdle="20"
+		maxTotal="20"
+		maxWaitMillis="-1"
+/>
+</Context>

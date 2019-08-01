@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	background-color: #eef0f3;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+#content {
+	width: 1080px;
+	position: relative;
+	margin: auto;
+	background-color: #fafafa;
+	padding-bottom: 20px;
+	/*border: 1px solid #424242;*/
+}
+
+#signupWrap {
+	/*background-color: silver;*/
+	margin: 50px 50px auto auto;
+	width: 730px;
+	/*border: 1px solid #eeeeee;*/
+}
+
+.label_signup {
+	display: block;
+	font-size: 25px;
+	color: #424242;
+}
+
+.input_signup {
+	width: 250px;
+	height: 45px;
+	margin-right: 5px;
+	margin-top: 5px;
+	font-size: 17px;
+}
+
+.signup_row {
+	margin-bottom: 42px;
+}
+
+.Btn {
+	font-family: "Noto Sans KR", sans-serif;
+	outline: none;
+	height: 40px;
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+.Btn:hover {
+	background-color: #F9AC1A;
+}
+
+#signupPwdInner {
+	/*background-color: #F16B6F;*/
+	display: inline-block;
+}
+
+#signupPwdConfirmInner {
+	/*background-color: red;*/
+	display: inline-block;
+}
+
+.msg_signup {
+	font-size: 18px;
+	margin-top: 10px;
+	color: #F16B6F;
+}
+
+.genderRadio_signup {
+	font-size: 25px;
+	margin-top: 20px;
+}
+
+.select {
+	width: 100px;
+	height: 50px;
+}
+
+#signupBtn {
+	margin: auto;
+	border: none;
+	border-radius: 10px;
+	height: 50px;
+	line-height: 50px;
+	background-color: #F9AC1A;
+	color: #f9f9f9;
+}
+
+#signupLogoImg {
+	width: 1080px;
+	height: 210px;
+	/*border: 1px solid #424242;*/
+}
+
+#signupLogoImg img {
+	width: 450px;
+	height: 130px;
+	position: relative;
+	left: 50%;
+	margin-left: -250px;
+	margin-top: 50px;
+}

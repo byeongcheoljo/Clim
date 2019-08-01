@@ -1,0 +1,475 @@
+@charset "UTF-8";
+
+
+body{
+	background:#231f20;
+}
+
+#content {
+    width: 1080px;
+    margin: auto;
+    background-color: #231F20;
+    font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+    font-size: 18px;
+    color: white;
+    user-select: none;
+    position:relative;
+    top:50px;
+}
+
+/****************************************영화정보****************************************/
+.movie_info_section {
+    width: 1080px;
+    height: 360px;
+    position: relative;
+    border-bottom: 1px solid #424242;
+}
+.movie_poster_wrap {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    left: 35px;
+    top: 30px;
+    background-color: red;
+}
+.movie_poster {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.movie_info_wrap {
+    width: 380px;
+    height: 270px;
+    position: absolute;
+    left: 330px;
+    top: 30px;
+}
+.movie_info_wrap div {
+    margin: 5px;
+}
+.movie_info_wrap a {
+    text-decoration: none;
+    color: white;
+}
+.movie_info_wrap a:hover {
+    color: #F9AC1A;
+}
+.movie_title {
+    font-size: 35px;
+}
+.movie_watching_rate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -5px;
+    left: 235px;
+    border-radius: 100px;
+    font-size: 18px;
+}
+.movie_avg_box {
+    height: 50px;
+    position: relative;
+    top: 20px;
+    line-height: 35px;
+}
+.movie_avg_box div {
+    width: 60px;
+    height: 50px;
+    top: -25px;
+    left: 120px;
+    text-align: center;
+    display: inline;
+}
+.movie_info_btn {
+    width: 100px;
+    height: 36px;
+    position: relative;
+    top: 46px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 18px;
+}
+.movie_info_btn.on {
+    background-color: rgb(220, 20, 60);
+}
+#moviePlayBtn {
+    background-color: #F9AC1A;
+}
+.movie_info_btn:hover {
+    transition: .1s ease;
+    transform: scale(1.05);
+}
+
+/****************************************play 버튼 클릭시 popup****************************************/
+.play_popup {
+    width: 300px;
+    height: 100px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -210px;
+    margin-top: -150px;
+    color: black;
+    text-align: center;
+    line-height: 50px;
+    z-index: 3;
+    display: none;
+    background-color: #fafafa;
+}
+
+.popup_btn {
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.popup_btn:hover {
+    background-color: #F9AC1A;
+    color: white;
+}
+
+/****************************************줄거리****************************************/
+.movie_plot_section {
+    width: 1080px;
+    min-height: 200px;
+    border-bottom: 1px solid #424242;
+
+    /*background-color: blueviolet;*/
+}
+
+.movie_plot_section h2 {
+    padding: 15px 30px 0 30px;
+    margin: 0;
+    font-size: 22px;
+}
+
+.movie_plot {
+    width: 1000px;
+    min-height: 110px;
+    margin: 12px 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    white-space: normal;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+/****************************************예고편/스틸컷****************************************/
+.movie_scene_section {
+    width: 1080px;
+    height: 780px;
+    border-bottom: 1px solid #424242;
+    /*background-color: brown;*/
+}
+.movie_scene_tab {
+    padding: 15px 0 10px 30px;
+    margin: 0;
+    font-size: 22px;
+    cursor: pointer;
+}
+#moviePreview {
+    color: #F9AC1A;
+}
+.movie_scene:hover {
+    color: #F9AC1A;
+}
+.preview_wrap {
+    width: 1000px;
+    height: 730px;
+    position: relative;
+    margin: auto;
+    /*display: none;*/
+}
+.steelcut_wrap {
+    width: 1000px;
+    height: 730px;
+    position: relative;
+    margin: auto;
+    display: none;
+}
+.scene_list_box {
+    height: 150px;
+    margin: 25px 50px;
+    overflow: hidden;
+    width: 900px;
+}
+.preview_list {
+    width: 1575px;
+    height: 150px;
+}
+.preview_list li {
+    width: 215px;
+    height: 140px;
+    border: 5px solid #231F20;
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+.preview_list li:hover {
+    border: 5px solid #F9AC1A;
+}
+.preview_list li img {
+    width: 100%;
+    height: 100%;
+}
+.preview_list li video {
+    width: 100%;
+    height: 100%;
+}
+.icon {
+    position: absolute;
+    top: 40px;
+    font-size: 70px;
+    cursor: pointer;
+}
+.icon:hover {
+    color: #F9AC1A;
+}
+.left_icon {
+    left: 2px;
+}
+.right_icon {
+    right: 2px;
+}
+.movie_preview video {
+    outline: none;
+}
+/***************************************리뷰****************************************/
+.movie_review_section {
+    width: 1080px;
+    min-height: 600px;
+    /*background-color: cornflowerblue;*/
+}
+.movie_review_section h2 {
+    padding-left: 30px;
+    padding-top: 15px;
+    margin: 0;
+    font-size: 22px;
+}
+.movie_review_section button {
+    width: 120px;
+    height: 40px;
+    font-size: 22px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background-color: #F9AC1A;
+    padding: 0;
+    border: none;
+}
+.movie_review_section button:active {
+    transition: .2s ease;
+    transform: scale(1.1);
+}
+.write_review_box {
+    width: 600px;
+    background-color: #fafafa;
+    color: #231F20;
+    position: absolute;
+    margin-left: 240px;
+    margin-top: -40px;
+    z-index: 5;
+    border: 1px solid #231F20;
+    display: none;
+}
+.review_title {
+    width: 600px;
+    height: 100px;
+    border-bottom: 1px solid #231F20;
+    text-align: center;
+    line-height: 100px;
+    font-size: 22px;
+}
+.review_avg_score {
+    border-bottom: 1px solid #231F20;
+}
+.review_content {
+    width: 560px;
+    height: 250px;
+    margin: 20px;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    resize: none;
+    border: none;
+    /*background-color: blue;*/
+    border-bottom: 1px solid #231F20;
+}
+#registerReviewBtn {
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    background-color: #F9AC1A;
+    padding: 0;
+    border: none;
+}
+.review_cancel_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.review_cancel_btn:hover {
+    color: red;
+}
+.review_list {
+    width: 780px;
+    margin: auto;
+    position: relative;
+    background-color: #231F20;
+}
+.review_list li {
+    width: 780px;
+    min-height: 250px;
+    margin: 5px;
+    border-bottom: 1px solid #424242;
+}
+.review_top_box {
+    width: 780px;
+    height: 40px;
+    position: relative;
+    /*background-color: #fafafa;*/
+}
+.nickname {
+    width: 130px;
+    height: 40px;
+    position: absolute;
+    margin-left: 20px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    /*background-color: red;*/
+}
+.nickname a {
+    text-decoration: none;
+    color: #fafafa;
+}
+.nickname a:hover {
+    color: #F9AC1A;
+}
+.review_list_avg_score {
+    width: 150px;
+    height: 30px;
+    position: absolute;
+    left: 150px;
+    top: 0;
+    text-align: center;
+    /*background-color: blue;*/
+}
+.review_spoiler {
+    width: 20px;
+    height: 20px;
+    font-size: 30px;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+.review_spoiler:hover {
+    color: #F9AC1A;
+}
+.review_list_content {
+    width: 700px;
+    min-height: 122px;
+    /*background-color: yellow;*/
+    margin: auto;
+    padding: 20px 20px 0 20px;
+    border: 1px solid #fafafa;
+    cursor: pointer;
+    display: -webkit-box;
+    white-space: normal;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: fade;
+}
+
+.review_bottom_box {
+    height: 40px;
+    margin-top: 10px;
+    position: relative;
+}
+.review_regdate {
+    position: absolute;
+    right: 100px;
+    bottom: 20px;
+    font-size: 14px;
+}
+.review_likes {
+    position: absolute;
+    bottom: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.review_likes:hover {
+    color: #F9AC1A;
+}
+.like {
+    position: absolute;
+    right: 55px;
+}
+.dislike {
+    position: absolute;
+    right: 20px;
+}
+/****************************************별점**************************************/
+.starR1{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR2{
+    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+    background-size: auto 100%;
+    width: 15px;
+    height: 30px;
+    float:left;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+.starR1.on{background-position:0 0;}
+.starR2.on{background-position:-15px 0;}
+.checkStarRev {
+    margin: 10px 20px;
+}
+/*유효성*/
+.msg {
+    width: 140px;
+    height: 20px;
+    font-size: 14px;
+    color: red;
+    background-color: ivory;
+    position: absolute;
+    left: 240px;
+    bottom: 150px;
+    display: none;
+}
+.no_review {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 22px;
+    border: 1px;
+}

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#footer {
+	border-top: 1px solid #fafafa;
+	width: 1080px;
+	height: 40px;
+	position: relative;
+	margin: auto;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+#footerPolicy ul li, address {
+	float: left;
+	padding-left: 10px;
+	padding-right: 30px;
+}
+
+#footerPolicy ul li a, address, address a {
+	text-decoration: none;
+	color: #fafafa;
+}
+
+#footerPolicy {
+	display: inline-block;
+}

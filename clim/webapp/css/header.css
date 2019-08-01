@@ -1,0 +1,863 @@
+@charset "UTF-8";
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#header {
+	width: 100%;
+	height: 50px;
+	background-color: #000;
+	padding-left: 80px;
+	position:fixed;
+	z-index:1;
+	top:0;
+}
+
+#headerMenuSection {
+	width: 1080px;
+	height: 40px;
+	/*background: #5BD974;*/
+	margin-top: -35px;
+	margin-left: 120px;
+	position: relative;
+}
+
+.header_menu_nav {
+	float: left;
+	color: #f9f9f9;
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 40px;
+	/*background-color: #00AAB4;*/
+	cursor: pointer;
+	/*background-color: red;*/
+}
+
+.header_index_nav {
+	width: 110px;
+	height: 34px;
+	padding-top: 5px;
+}
+
+.header_text_link {
+	text-decoration: none;
+	width: 110px;
+	height: 40px;
+	display: block;
+	color: #f9f9f9;
+	/*background-color: #0e8783;*/
+}
+
+.header_text_link:hover {
+	color: #F9AC1A;
+}
+
+#headerSearchBox {
+	width: 200px;
+	height: 20px;
+	/*background-color: #57e5dd;*/
+	/*background-color: #00AAB4;*/
+	position: fixed;
+	right: 110px;
+	top: 20px;
+}
+
+body.on #headerTotalSearchText {
+	left: -5px;
+	cursor: text;
+	opacity: 1;
+	color: #f9f9f9;
+}
+
+#headerTotalSearch {
+	position: absolute;
+	width: 150px;
+	height: 30px;
+	top: -15px;
+	right: 0;
+	user-select: none;
+	text-align: left;
+	color: #f9f9f9;
+}
+
+#headerTotalSearchText {
+	position: relative;
+	width: 120px;
+	height: 30px;
+	left: 0px;
+	bottom: -5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	border: none;
+	border-bottom: 2px solid #f9f9f9;
+	font-size: 16px;
+	user-select: none;
+	outline: none;
+	text-indent: 5px;
+	background-color: transparent;
+	transition: .3s ease;
+	cursor: default;
+	opacity: 0;
+	color: #f9f9f9;
+}
+
+#headerTotalSearch .fas {
+	position: absolute;
+	height: 30px;
+	font-size: 25px;
+	top: 0px;
+	right: 5px;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	transition: .2s ease;
+	color: #f9f9f9;
+}
+
+#headerSigninBtn {
+	position: fixed;
+	width: 80px;
+	height: 20px;
+	line-height: 20px;
+	border-style: none;
+	right: 20px;
+	top: 15px;
+	font-size: 14px;
+	background-color: #f9f9f9;
+	cursor: pointer;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+#headerSigninBtn:hover {
+	background-color: #F9AC1A;
+}
+
+#headerSigninPopupBg {
+	background-color: rgba(0, 0, 0, .7);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 50px;
+	z-index: 10;
+	display: none;
+}
+
+#header #headerSigninPopup {
+	width: 500px;
+	height: 360px;
+	background-color: #231F20;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	font-family: 'Jua', sans-serif;
+	margin: -75px 0px 0px -225px;
+	border: 1px solid #f9f9f9;
+}
+
+#headerSigninPopupWrap {
+	/*background-color: blue;*/
+	height: 90px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#headerSigninPopupCloseIcon {
+	font-size: 25px;
+	line-height: 80px;
+	position: absolute;
+	right: 7px;
+	top: -20px;
+	color: #f9f9f9;
+	cursor: pointer;
+}
+
+#headerSigninPopupCloseIcon:hover {
+	color: #F16B6F;
+}
+
+.login_Signin_img {
+	width: 240px;
+	height: 73px;
+	position: relative;
+	margin: 10px 0px 10px 130px;
+}
+
+#headerSigninPopupContentWrap {
+	/*background-color: red;*/
+	position: relative;
+	margin-top: 30px;
+	height: 300px;
+}
+
+.LoginLabel, #loginId, #loginPassword {
+	height: 30px;
+	position: absolute;
+}
+
+#idLabel {
+	font-size: 25px;
+	left: 145px;
+}
+
+#pwdLabel {
+	font-size: 25px;
+	left: 140px;
+	top: 40px;
+}
+
+#loginId {
+	left: 130px;
+	width: 240px;
+	height: 33px;
+	border: 1px solid silver;
+}
+
+#loginPassword {
+	left: 130px;
+	top: 50px;
+	width: 240px;
+	height: 32px;
+	border: 1px solid silver;
+}
+
+#loginBtn {
+	width: 240px;
+	font-family: "Noto Sans KR", sans-serif;
+	height: 40px;
+	top: 120px;
+	left: 130px;
+	position: absolute;
+	font-size: 20px;
+	background-color: #F9AC1A;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
+		rgba(0, 0, 0, 0.12);
+}
+
+#loginBtn:hover {
+	background-color: #F9AC1A;
+}
+
+#loginBtn:active {
+	transform: scale(0.9);
+}
+
+#headerSigninPopupContentBox {
+	/*background-color: aqua;*/
+	position: relative;
+	height: 150px;
+}
+
+#headerSigninPopupContentBoxSingup {
+	/*background-color: blueviolet;*/
+	position: relative;
+	height: 100px;
+	font-size: 20px;
+}
+
+#signupLink {
+	position: absolute;
+	font-size: 16px;
+	left: 90px;
+	height: 30px;
+	top: 20px;
+	width: 140px;
+	text-decoration: none;
+	text-align: center;
+	color: #f9f9f9;
+}
+
+#findPwdPopup {
+	position: absolute;
+	font-size: 16px;
+	left: 270px;
+	top: 20px;
+	text-decoration: none;
+	text-align: center;
+	color: #f9f9f9;
+}
+
+#signupMsg {
+	position: absolute;
+	left: 130px;
+	top: 95px;
+	color: #F16B6F;
+	display: none;
+}
+
+/*비밀번호 찾기*/
+#headerFindPwdPopupBg {
+	background-color: rgba(0, 0, 0, .7);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 50px;
+	z-index: 10;
+	display: none;
+}
+
+#header #headerFindPwdPopup {
+	width: 500px;
+	height: 360px;
+	background-color: #231F20;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	margin: -75px 0px 0px -225px;
+	border: 1px solid #f9f9f9;
+}
+
+#headerFindPwdPopupCloseIcon {
+	font-size: 40px;
+	line-height: 80px;
+	position: absolute;
+	right: 0px;
+	top: -20px;
+	color: #f9f9f9;
+}
+
+#headerFindPwdPopupCloseIcon:hover {
+	color: #F16B6F;
+}
+
+#headerFindPwdPopupContentWrap {
+	width: 400px;
+	background-color: #231F20;
+	margin: auto;
+	text-align: center;
+	padding-bottom: 10px;
+	color: #f9f9f9;
+}
+
+.header_find_text {
+	margin-bottom: 30px;
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+#headerFindPwdPopupContentWrap>p {
+	margin-bottom: 15px;
+}
+
+#findId {
+	width: 180px;
+	height: 20px;
+	display: block;
+	position: relative;
+	margin: auto;
+}
+
+#findCertificationBtn {
+	width: 170px;
+	height: 30px;
+	font-size: 16px;
+	margin-top: 10px;
+	outline: none;
+	background-color: #f9f9f9;
+	border-style: none;
+}
+
+#findCertificationBtn:hover {
+	background-color: #F9AC1A;
+}
+
+#findCertificationBtn:active {
+	transform: scale(0.9);
+}
+
+#findMsg {
+	left: 130px;
+	top: 95px;
+	color: #F16B6F;
+	display: none;
+}
+
+/*로그인했을떄 아이콘누르면*/
+#headerLoginInfo {
+	width: 100px;
+	/*background-color: #1E88E5;*/
+	position: fixed;
+	right: 90px;
+	top: 5px;
+}
+
+#headerStreamingImg {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	right: -20px;
+	cursor: pointer;
+}
+
+.header_userInfo_nav {
+	vertical-align: 5px;
+	font-size: 25px;
+	color: #f9f9f9;
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: -60px;
+}
+
+#headerUserInfoBox {
+	/*border: 1px solid #00AAB4;*/
+	position: absolute;
+	right: -60px;
+	top: 45px;
+	text-align: center;
+	display: none;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+#headerUserInfoBox li {
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	/*border: 1px solid #424242;*/
+	background-color: #f9f9f9;
+}
+
+#headerUserInfoBox a {
+	color: #424242;
+	display: block;
+	width: 100px;
+	height: 25px;
+	text-decoration: none;
+}
+
+#headerUserInfoBox li:hover {
+	background-color: #F9AC1A;
+}
+
+/*구독중인사람들목록*/
+#headerSubscribeSlideWrap {
+	width: 250px;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0, 0, 0, .8);
+	left: 0px;
+	display: none;
+	transition: 3s;
+}
+
+.header_subscribe_btn {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #424242;
+	left: 220px;
+	top: 5px;
+	position: absolute;
+	cursor: pointer;
+}
+
+#headerSubscribeTitle {
+	text-align: center;
+	color: #f9f9f9;
+	font-size: 40px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #f9f9f9;
+}
+
+#headerSubscribeWrap {
+	color: #f9f9f9;
+}
+
+.subscribe_list {
+	/*border: 1px solid #1E88E5;*/
+	margin-top: 10px;
+}
+
+.subscribe_list a {
+	text-decoration: none;
+	color: #f9f9f9;
+	margin-left: 5px;
+}
+
+.subscribe_list a:first-child {
+	width: 100px;
+	/*border: 1px solid #00CF35;*/
+	/*background-color: #1E88E5;*/
+	float: left;
+}
+
+.subscribe_list span {
+	color: red;
+	margin-left: 5px;
+}
+
+.subscribe_list form {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.subscribe_list form button {
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #f9f9f9;
+	outline: none;
+	border: none;
+}
+
+.subscribe_list form button:hover {
+	background-color: #F9AC1A;
+	cursor: pointer;
+}
+
+#headerSubscribeList {
+	width: 30px;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(0, 0, 0, .8);
+	left: 0px;
+}
+
+.look_subscribe_btn {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 20px;
+	text-align: center;
+	color: #424242;
+	border: 1px solid #424242;
+	border-radius: 200px;
+	background-color: #f9f9f9;
+	left: 13px;
+	top: 50%;
+	position: absolute;
+	cursor: pointer;
+}
+
+.look_subscribe_btn:hover {
+	background-color: #F9AC1A;
+}
+
+/*스트리밍 방만들기*/
+.streaming_popupBg {
+	background-color: rgba(0, 0, 0, .7);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 50px;
+	z-index: 10;
+	display: none;
+}
+
+#header .streaming_popup {
+	width: 500px;
+	height: 640px;
+	background-color: #231F20;
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: -75px 0px 0px -225px;
+	border: 1px solid #f9f9f9;
+}
+
+.streaming_popupWrap {
+	/*background-color: blue;*/
+	height: 50px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 25px;
+	text-align: center;
+	margin-top: 20px;
+	color: #f9f9f9;
+}
+
+.streaming_title input {
+	width: 250px;
+	height: 25px;
+}
+
+.streaming_start_btn {
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: #f9f9f9;
+	border-style: none;
+	position: absolute;
+	outline: none;
+	margin-left: -200px;
+	margin-top: 520px;
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.streaming_title button:hover {
+	background-color: #F9AC1A;
+}
+
+.streaming_room_title {
+	color: #f9f9f9;
+	margin-left: 80px;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+/* 스트리밍 팝업 영화 검색*/
+.streaming_movie_search {
+	color: #f9f9f9;
+	margin: 20px 0px 20px 60px;
+	font-size: 20px;
+	/*background-color: #00AAB4;*/
+}
+
+.streaming_movie_search input {
+	width: 250px;
+	height: 25px;
+	vertical-align: middle;
+}
+
+.movie_search_icon {
+	color: #424242;
+	position: absolute;
+	margin-left: -25px;
+	margin-top: 5px;
+}
+
+/* 스트리밍할 영상 목록*/
+.streaming_movie_wrap {
+	background-color: #EEEEEE;
+	width: 400px;
+	height: 400px;
+	margin: auto;
+	overflow-y: auto;
+	cursor: pointer;
+}
+
+.streaming_movie_wrap button {
+	cursor: pointer;
+}
+
+.streaming_movie_list {
+	height: 100px;
+	/*background-color: #1E88E5;*/
+	line-height: 100px;
+	list-style: none;
+}
+
+.streaming_movie_list:hover {
+	background-color: #F9AC1A;
+}
+
+.streaming_movie_list div {
+	float: left;
+}
+
+.streaming_card_icon {
+	width: 30px;
+	height: 100px;
+	/*background-color: #f9f9f9;*/
+	/*color: #97563e;*/
+	text-align: center;
+}
+
+.movie_order_upBtn {
+	position: relative;
+	top: -20px;
+	color: #424242;
+	background-color: transparent;
+	border-style: none;
+}
+
+.movie_order_downBtn {
+	position: relative;
+	top: -90px;
+	color: #424242;
+	background-color: transparent;
+	border-style: none;
+}
+
+.streaming_movie_img {
+	width: 80px;
+	height: 100px;
+	/*background-color: #00CF35;*/
+	text-align: center;
+}
+
+.streaming_movie_img img {
+	width: 80px;
+	height: 100px;
+}
+
+.streaming_movie_name {
+	width: 150px;
+	height: 100px;
+	padding-left: 10px;
+	position: relative;
+	/*background-color: #0e8783;*/
+}
+
+.streaming_movie_name span {
+	line-height: 1em;
+	position: absolute;
+	display: block;
+	width: 170px;
+	height: 40px;
+	top: 30px;
+}
+
+.streaming_movie_showTime {
+	width: 60px;
+	/*background-color: #03A9F4;*/
+	text-align: center;
+}
+
+.streaming_movie_delete {
+	width: 30px;
+	/*background-color: #f9f9f9;*/
+}
+
+.streaming_movieDelete_list {
+	text-align: center;
+	font-size: 30px;
+	vertical-align: middle;
+	border-style: none;
+	color: red;
+	background-color: transparent;
+}
+
+.streaming_close_icon {
+	position: absolute;
+	color: #f9f9f9;
+	right: 7px;
+	top: 7px;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.streaming_close_icon:hover {
+	color: #F16B6F;
+}
+
+/* 무비검색시나오는창*/
+.movie_search {
+	position: absolute;
+	left: 152px;
+	width: 255px;
+	height: 300px;
+	background-color: #c5c5c5;
+	z-index: 10;
+	color: #424242;
+	display: none;
+	overflow-y: auto;
+	overflow-x: hidden;
+	cursor: pointer;
+}
+
+.movie_search_list {
+	width: 255px;
+	min-height: 100px;
+	/*background-color: #00CF35;*/
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.movie_search_list:hover {
+	background-color: #F9AC1A;
+}
+
+.movie_search_list img {
+	width: 100px;
+	height: 100px;
+	vertical-align: middle;
+}
+
+.movie_search_list span {
+	width: 155px;
+	height: 100px;
+	/*background-color: #1E88E5;*/
+	font-size: 16px;
+	vertical-align: middle;
+}
+
+#headerCategoryWrap {
+	width: 510px;
+	height: 300px;
+	/*background-color: rgba(0,0,0,.7);*/
+	/*height: 342px;*/
+	text-align: left;
+	position: absolute;
+	left: 220px;
+	top: 50px;
+	display: none;
+}
+
+.category_list {
+	width: 60px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 18px;
+	color: #f9f9f9;
+	background-color: rgba(0, 0, 0, .7);
+	cursor: pointer;
+}
+
+.category_list:hover {
+	background-color: #F9AC1A;
+}
+
+.category_list_box {
+	position: absolute;
+	width: 450px;
+	min-height: 200px;
+	background-color: rgba(0, 0, 0, .7);
+	top: 0px;
+	left: 60px;
+	color: #f9f9f9;
+	font-size: 18px;
+}
+
+.category_list_box li {
+	/*background-color: rgba(0,0,0,.7);*/
+	width: 130px;
+	padding: 10px;
+	float: left;
+	cursor: pointer;
+}
+
+.category_list_box li:hover {
+	background-color: #F9AC1A;
+}
+
+.category_genre_tab {
+	display: block;
+}
+
+.category_country_tab {
+	display: none;
+}
+
+.category_characteristic_tab {
+	display: none;
+}
+
+.category_on {
+	color: #F9AC1A;
+}
+
+.logout_btn {
+	font-family: "Noto Sans KR", sans-serif;
+	background-color: transparent;
+	border-style: none;
+	outline: none;
+	cursor: pointer;
+	font-size: 16px;
+	width: 100px;
+	height: 25px;
+}

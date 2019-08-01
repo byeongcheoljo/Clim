@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+body{
+    font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;;
+    background:#231F20;
+    width: 100%;
+}
+#main{
+    width: 1080px;
+    min-height: 1000px;
+    margin: auto;
+    position: relative;
+}
+#communityTabWrap {
+    height: 100px;
+}
+#communityTabWrap ul{
+    height: 80px;
+}
+#communityTabWrap li{
+    float: left;
+    height: 60px;
+    font-size: 24px;
+    margin-left: 40px;
+    margin-top: 40px;
+    font-weight: 700;
+    cursor:pointer;
+    color: #EEEEEE;
+}
+#communityTabWrap .community_tab_on{
+    color: red;
+}
+
+#communityContentWrap{
+    height: 600px;
+}
+
+#mywriteContentBox{
+    width: 900px;
+    position: absolute;
+    display: none;
+}
+
+.mypage_community_card{
+    position: relative;
+    margin-top: 20px;
+    height: 20px;
+}
+.mypage_community_card div{
+    position: absolute;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+.mypage_community_card .content_num{
+    font-size: 15px;
+    line-height: 25px;
+    left: 8px;
+}
+.content_tit{
+    left: 40px;
+    cursor: pointer;
+}
+.content_date{
+    right: 30px;
+}
+
+#mywriteReplyBox{
+    width: 900px;
+    position: absolute;
+    display: none;
+}
+
+#mywriteCommentBox{
+    width: 900px;
+    position: absolute;
+}
+
+.contnet_movie{
+    right: 200px;
+}
+
+.paginate{
+    color: #fff;
+    width: 300px;
+    height: 50px;
+    margin: 50px auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.content_tit:hover{
+    color: red;
+}
+
+#communityTabWrap li:hover{
+    color:#F9AC1A;
+}
+
+
+
+/* 0801 추가 */
+#tabSectionUserPage {
+    position: relative;
+    background: lemonchiffon;
+    width: 1080px;
+    height: 80px;
+}
+
+/*지은*/
+li {
+    list-style: none;
+}
+
+#headerNavMypage {
+    overflow: hidden;
+    height: 40px;
+    background-color: #231F20;
+    padding: 20px;
+
+}
+
+#headerNavMypage li {
+    font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f9f9f9;
+    float: left;
+    margin-left: 50px;
+    cursor: pointer;
+    padding: 5px;
+
+}
+
+#headerNavMypage #nicknameHeaderMypage {
+    cursor: default;
+    pointer-events: none;
+
+}
+
+#content .header_myPage_tabbed {
+    border-bottom: 4px solid #F9AC1A;
+    color: #F9AC1A;
+}

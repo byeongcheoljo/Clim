@@ -1,0 +1,318 @@
+@charset "UTF-8";
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	user-select: none;
+}
+
+#content {
+	width: 1080px;
+	height: 900px;
+	background-color: #231F20;
+	margin: auto;
+}
+
+li {
+	list-style: none;
+}
+
+#headerNavMypage {
+	overflow: hidden;
+	height: 40px;
+	background-color: #231F20;
+	padding: 20px;
+}
+
+#headerNavMypage li {
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	color: #f9f9f9;
+	float: left;
+	margin-left: 50px;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#headerNavMypage #nicknameHeaderMypage {
+	cursor: default;
+	pointer-events: none;
+}
+
+#content .header_myPage_tabbed {
+	border-bottom: 4px solid #F9AC1A;
+	color: #F9AC1A;
+}
+
+#paymentWrap {
+	width: 600px;
+	height: 600px;
+	margin-left: 70px;
+	padding: 20px;
+	border: 1px solid #F9AC1A;
+}
+
+#paymentInformationBox {
+	width: 600px;
+	height: 200px;
+	margin-bottom: 20px;
+	position: relative;
+	color: #FAFAFA;
+	padding: 20px;
+}
+
+#membershipBox {
+	width: 600px;
+	height: 300px;
+}
+
+#membershipTable {
+	width: 600px;
+	border: 1px solid #424242;
+	border-collapse: collapse;
+	margin: auto;
+	text-align: center;
+}
+
+#membershipTable th {
+	background-color: #FAFAFA;
+	border: 1px solid #424242;
+	padding: 10px;
+}
+
+#membershipTable th:nth-child(1) {
+	width: 80px;
+}
+
+#membershipTable td {
+	border: 1px solid #424242;
+	font-size: 18px;
+	color: #FAFAFA;
+	padding: 0;
+	margin: 0;
+	height: 40px;
+}
+
+#membershipTable tr:nth-child(3) td {
+	height: 70px;
+}
+
+#membershipTable tr:nth-child(1) {
+	line-height: 40px;
+}
+
+#membershipTable tr:nth-child(2) {
+	line-height: 40px;
+}
+
+#membershipTable tr:nth-child(3) {
+	height: 50px;
+}
+
+#membershipTable tr:nth-child(3) td:nth-child(3) {
+	padding-top: 15px;
+}
+
+.payment_btn {
+	width: 100px;
+	height: 30px;
+	border: none;
+	margin: auto;
+	position: absolute;
+	background-color: #F9AC1A;
+	color: #FAFAFA;
+	cursor: pointer;
+	outline: none;
+	border-radius: 5px;
+	font-size: 15px;
+}
+
+.payment_btn:hover {
+	background-color: rgb(249, 122, 26);
+}
+
+.writer {
+	bottom: 10px;
+	left: 200px;
+}
+
+.update {
+	bottom: 10px;
+	left: 180px;
+}
+
+.terminate {
+	bottom: 10px;
+	left: 300px;
+}
+
+#paymentInformationBox p {
+	font-size: 15px;
+}
+
+#paymentInformationBox h4 {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+#paymentInformationBox h2 {
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+#bg {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background-color: rgba(35, 31, 32, .9);
+}
+
+#paymentForm {
+	width: 600px;
+	height: 750px;
+	padding: 30px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-top: -400px;
+	margin-left: -300px;
+	background-color: #FAFAFA;
+	border-radius: 15px;
+}
+
+#paymentForm h2 {
+	font-size: 25px;
+	margin-bottom: 20px;
+}
+
+#paymentFormTap {
+	width: 500px;
+	height: 50px;
+	list-style: none;
+	padding: 0;
+	text-align: center;
+	line-height: 50px;
+	margin-bottom: 20px;
+}
+
+.membership_tap {
+	width: 150px;
+	height: 50px;
+	float: left;
+	background-color: #231F20;
+	list-style: none;
+	border-radius: 10px;
+	margin-right: 15px;
+	cursor: pointer;
+	font-weight: 700;
+	color: #FAFAFA;
+	box-shadow: 1px 1px #424242;
+}
+
+.tap_on {
+	background-color: #F9AC1A;
+	color: #FAFAFA;
+}
+
+#paymentForm input {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.payment {
+	border-radius: 5px;
+	bottom: 20px;
+	left: 280px;
+}
+
+#membershipCard {
+	width: 600px;
+	height: 40px;
+	margin-bottom: 20px;
+}
+
+#membershipCardList {
+	display: none;
+	width: 600px;
+	height: 150px;
+	border-radius: 5px;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+	font-size: 15px;
+	position: relative;
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+#membershipCardList li {
+	width: 100px;
+	height: 50px;
+	cursor: pointer;
+	float: left;
+	text-align: center;
+	line-height: 50px;
+	font-weight: 700;
+}
+
+#membershipCardList li:hover {
+	background-color: #F9AC1A;
+}
+
+#membershipCardList li.on {
+	background-color: #F9AC1A;
+	color: #FAFAFA;
+}
+
+input[type="radio"] {
+	position: absolute;
+	visibility: hidden;
+}
+
+.select {
+	background-color: #231F20;
+	border-radius: 5px;
+	margin-left: 10px;
+	width: 100px;
+	height: 40px;
+	box-shadow: 1px 1px #424242;
+}
+
+.select:hover {
+	background-color: #F9AC1A;
+}
+
+#paymentForm span {
+	font-size: 15px;
+}
+
+#grade {
+	color: crimson;
+}
+
+#grade strong {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.fa-times-circle {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.fa-times-circle:hover {
+	color: red;
+}

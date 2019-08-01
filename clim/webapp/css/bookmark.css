@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+body{
+	background:#231f20;
+}
+
+#content {
+            width: 1080px;
+
+            background-color: #231F20;
+            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+            margin: auto;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #headerNavMypage {
+
+            overflow: hidden;
+            height: 40px;
+            background-color: #231F20;
+            padding: 20px;
+
+        }
+
+        #headerNavMypage li {
+
+            font-weight: bold;
+            font-size: 16px;
+            color: #f9f9f9;
+
+
+            float: left;
+            margin-left: 50px;
+            cursor: pointer;
+
+            padding: 5px;
+
+        }
+
+        #headerNavMypage #nicknameHeaderMypage {
+            cursor: default;
+            pointer-events: none;
+
+        }
+
+        #content .header_myPage_tabbed {
+            border-bottom: 4px solid #F9AC1A;
+            color: #F9AC1A;
+        }
+
+        /*
+        =======================header CSS=================================
+
+        */
+        #bookmarkMovieWrap {
+            overflow: auto;
+            position: relative;
+            min-height: 744px;
+        }
+
+        .movieTitle_bookmark_title {
+            color: #f9f9f9;
+
+
+        }
+
+
+        .bookmark_movie_card {
+            float: left;
+            height: 322px;
+            margin-right: 17px;
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
+        }
+
+        .cancle_bookmark_bg {
+            background: #F9AC1A;
+            width: 185px;
+            height: 60px;
+            position: absolute;
+            bottom: -70px;
+            text-align: center;
+            line-height: 60px;
+            background-color: rgba(35, 31, 32, 0.8);
+        }
+
+        .cancle_bookmark_Btn {
+            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+            background-color: #F9AC1A;
+            font-weight: bold;
+            color: #231F20;
+            font-size: 16px;
+
+        }
+
+        .btn {
+            border: none;
+            text-align: center;
+
+        }
+
+        .imgBox {
+            width: 185px;
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .title_hide_Box {
+            overflow: hidden;
+            margin-top: 15px;
+            width: 185px;
+            position: relative;
+        }
+
+        .imgBox:hover .cancle_bookmark_bg {
+            bottom: 0;
+            transition: .3s;
+        }
+        .imgBox:hover .movieTitle_bookmark_title{
+
+        }
+        .movieTitle_bookmark_title{
+            width: 185px;
+            white-space  : nowrap;
+        }
+        /*
+            ============글씨 이동 CSS
+        */
+
+         .marquee {
+            text-align: left;
+
+            overflow:hidden;
+            margin-bottom:10px;
+            position:relative;
+        }
+
+        .marquee p:after {
+            content:"";
+            white-space:nowrap;
+            padding-right:50px;
+        }
+
+        .bookmark_movie_card:hover .marquee p {
+            margin-top:15px;
+            padding-left:100%;
+            display:inline-block;
+            white-space:nowrap;
+            -webkit-animation-name:marquee;
+            -webkit-animation-timing-function:linear;
+            -webkit-animation-duration:10s;
+            -webkit-animation-iteration-count:infinite;
+            -moz-animation-name:marquee;
+            -moz-animation-timing-function:linear;
+            -moz-animation-duration:10s;
+            -moz-animation-iteration-count:infinite;
+            -ms-animation-name:marquee;
+            -ms-animation-timing-function:linear;
+            -ms-animation-duration:10s;
+            -ms-animation-iteration-count:infinite;
+            -o-animation-name:marquee;
+            -o-animation-timing-function:linear;
+            -o-animation-duration:10s;
+            -o-animation-iteration-count:infinite;
+            animation-name:marquee;
+            animation-timing-function:linear;
+            animation-duration:10s;
+            animation-iteration-count:infinite;
+        }
+        @-webkit-keyframes marquee {
+            from   { -webkit-transform: translate(0%);}
+            99%,to { -webkit-transform: translate(-100%);}
+        }
+        @-moz-keyframes marquee {
+            from   { -moz-transform: translate(0%);}
+            99%,to { -moz-transform: translate(-100%);}
+        }
+        @-ms-keyframes marquee {
+            from   { -ms-transform: translate(0%);}
+            99%,to { -ms-transform: translate(-100%);}
+        }
+        @-o-keyframes marquee {
+            from   { -o-transform: translate(0%);}
+            99%,to { -o-transform: translate(-100%);}
+        }
+        @keyframes marquee {
+            from   { transform: translate(0%);}
+            99%,to { transform: translate(-100%);}
+        }
+        /*============글씨 이동 CSS*/

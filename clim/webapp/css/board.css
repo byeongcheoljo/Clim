@@ -1,0 +1,674 @@
+@charset "UTF-8";
+
+/* >> --------board 에서 사용한 공통(common) css start --------<< */
+/*>>추가로 하다가 공통으로 사용을 안한것도 있습니다.참고!*/
+/*검색아이콘,닉네임,좋아요,댓글*/
+.pointer_common{
+    cursor: pointer;
+}
+/*닉네임,좋아요,댓글의 숫자 폰트사이즈  */
+.fontsize_common{
+    font-size: 12px;
+    user-select: none;
+}
+/* >> --------//board 에서 사용한 공통 css end ---------<< */
+
+body{
+    background: #eef0f3;
+    font-family: 'Noto sans KR',sans-serif;
+    font-weight: normal;
+}
+
+#boardPopupBg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.57);
+    display: none;
+}
+
+#boardBg{
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #eef0f3;
+}
+
+/* #searchWrap와 #boardWrap 감싸는 section */
+#boardSection {
+    width: 700px;
+    height: 100%;
+    background: #eef0f3;
+    margin: auto;
+    position: relative;
+}
+
+/*search를 감싸는 wrap*/
+#searchWrap{
+    width: 600px;
+    height:40px;
+    background: #fafafa;
+    margin:0 auto 15px auto;
+    top:7px;
+    position: relative;
+    box-shadow: 0 6px 4px -9px #424242;
+}
+/*search input 창 */
+.search_write_input{
+    width: 540px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px;
+}
+/*search button icon*/
+.search_write_btn{
+    font-size: 20px;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: #424242;
+}
+
+/*게시판 글쓰기 Wrap*/
+#boardWriteWrap{
+    width: 600px;
+    height: 40px;
+    background:rgb(249,172,26);
+    margin: 0 auto 10px auto;
+    position: relative;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0 6px 4px -8px #424242;
+}
+/*게시판 글쓰기 btn 을 hover 했을시*/
+#boardWriteWrap:hover{
+    background:rgba(249,172,26,.9);
+}
+/* 게시판 글쓰기 btn*/
+#boardWriteBtn{
+    width: 600px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: transparent;
+    line-height: 40px;
+    color: #fafafa;
+    cursor: pointer;
+    font-size: 16px;
+}
+/*게시글 모두를 감싸는 wrap*/
+#boardWrap{
+    width: 600px;
+    min-height: 100%;
+    margin: auto;
+}
+
+/*top button*/
+#topClickBox{
+    /*화면에 따라 조금씩 width 안맞을수 있음*/
+    right:28%;
+    bottom:5%;
+    width: 30px;
+    height: 30px;
+    background: #b9c1c7;
+    position: fixed;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    display: none;
+
+}
+/*top button 안에 화살표*/
+#topClickBox .arrow_click_btn{
+    line-height: 30px;
+    color: #fafafa;
+}
+
+/* >> -------------게시글 한 개의 box css 시작 --------------- <<*/
+/*게시글 한 개의 box*/
+.post_view_box{
+    width: 600px;
+    background: #ffffff;
+    position: relative;
+    box-shadow: 0 6px 4px -7px #424242;
+    margin-bottom: 5px;
+}
+/*게시글 box에서 top(닉네임,작성시간) 구역*/
+.post_view_top{
+    width: 600px;
+    height: 40px;
+    background: #fafafa;
+    position: relative;
+}
+/*닉네임*/
+.post_view_nickname{
+    color: #222222;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    text-decoration: none;
+
+}
+/*작성시간*/
+.post_view_data{
+    position: absolute;
+    right: 10px;
+    top:14px;
+    color:#999999;
+    font-size: 12px;
+}
+
+/*게시글 박스의 태그 구역*/
+.post_view_tags{
+    width: 480px;
+    min-height: 25px;
+    background: #fafafa;
+    position: relative;
+    padding: 0 60px 0 60px;
+}
+/*게시글 박스의 태그(li)*/
+.post_view_tag{
+    font-weight: bold;
+    margin:5px;
+    font-size: 14px;
+    float: left;
+}
+/*게시글 박스의 태그(#단어) */
+.post_view_tag a{
+    text-decoration: none;
+    color: rgb(54,80,140);
+}
+/*게시글 박스의 태그(#단어) 호버시*/
+.post_view_tag a:hover{
+    color: #1A237E;
+}
+
+
+/*게시글 box 에서 중간(내용) 구역*/
+.post_view_contents{
+    width: 480px;
+    min-height: 60px;
+    color:#222222;
+    font-size: 14px;
+    background: #fafafa;
+    position: relative;
+    padding: 0 60px;
+    cursor: pointer;
+    /*1em은 한 글자 높이*/
+    line-height: 1.5em;
+}
+/*게시글 box에서 bottom(좋아요,댓글,조회수) 구역*/
+.post_view_bottom{
+    width: 600px;
+    height: 40px;
+    position: relative;
+    background: #fafafa;
+}
+/*좋아요*/
+.post_view_like{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+}
+/*댓글*/
+.post_view_comments{
+    position: absolute;
+    right: 70px;
+    padding: 10px;
+}
+/*조회수*/
+.post_view_click{
+    position: absolute;
+    right: 0;
+    padding: 10px;
+}
+/*>> -------------- //게시글 한 개의 box css 끝 ----------------- <<*/
+
+/*>> -------------- //게시글 팝업 box css 시작 ----------------- <<*/
+/*팝업 Wrap*/
+#boardPopupBox{
+    width: 660px;
+    min-height: 340px;
+    background: #b9c1c7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -330px;
+    margin-top:-380px;
+    box-shadow: 0 6px 6px -6px #424242;
+    display: none;
+}
+.post_popup_top{
+    width: 660px;
+    height: 85px;
+    background: #fafafa;
+    position: relative;
+}
+.post_popup_nickname{
+    color: #222222;
+    font-weight: bold;
+    position: absolute;
+    top:25px;
+    left:25px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.post_popup_siren_icon{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 5px;
+    top:5px;
+    cursor: pointer;
+}
+
+/*팝업의 본문 좋아요*/
+.post_popup_icon_on{
+    font-size: 15px;
+    color:rgba(249,172,26,.6);
+
+}
+
+.post_popup_data{
+    position: absolute;
+    top:50px;
+    left: 25px;
+    color:#999999;
+    font-size: 12px;
+}
+.post_popup_click{
+    left: 140px;
+    position: absolute;
+    top: 50px;
+    font-size: 12px;
+    color: #999;
+}
+
+/*팝업의 태그 구역*/
+.post_popup_tags{
+    width: 580px;
+    min-height: 25px;
+    background: #fafafa;
+    position: relative;
+    padding: 0 40px 0 40px;
+}
+/*팝업의 태그(li)*/
+.post_popup_tag{
+    font-weight: bold;
+    margin:5px;
+    font-size: 14px;
+    float: left;
+}
+/*팝업의 태그(#단어) */
+.post_popup_tag a{
+    text-decoration: none;
+    color: rgb(54,80,140);
+}
+/*팝업의 태그(#단어) 호버시*/
+.post_popup_tag a:hover{
+    color: #1A237E;
+}
+
+.post_popup_contents{
+    width: 580px;
+    min-height:130px;
+    background: #fafafa;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5em;
+    padding: 5px 40px 0 40px;
+}
+
+.post_popup_bottom{
+    width: 660px;
+    height: 35px;
+    background: #fafafa;
+    position: relative;
+    text-align: center;
+
+}
+.post_popup_like{
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -20px;
+    margin-top: -9px;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.post_update_btn{
+    font-family: 'Noto sans KR', sans-serif;
+    width: 60px;
+    height: 28px;
+    background-color: #fbfbfb;
+    color:#222222;
+    font-size: 12px;
+    position: absolute;
+    outline: none;
+    border: 1px solid #dedede;
+    box-sizing: content-box;
+    padding: 0;
+    line-height: 28px;
+    top:33px;
+    right: 105px;
+    cursor: pointer;
+}
+.post_delete_btn{
+    font-family: 'Noto sans KR', sans-serif;
+    width: 60px;
+    height: 28px;
+    background-color: #fbfbfb;
+    color:#222222;
+    font-size: 12px;
+    position: absolute;
+    outline: none;
+    border: 1px solid #dedede;
+    box-sizing: content-box;
+    padding: 0;
+    line-height: 28px;
+    top:33px;
+    right: 40px;
+    cursor: pointer;
+    /*
+      모든 div 박사의 기본은 content-box(a요소 포함)
+      btn 요소는 boarder-box 와 padding 기본이 들어가기 때문에
+      box-sizing 을 content-box 로 바꿔야합니다.
+    */
+}
+.post_update_btn:hover,.post_delete_btn:hover{
+    background: rgba(0,0,0,.015);
+
+}
+
+
+.post_popup_write_form{
+    width: 660px;
+    min-height: 70px;
+    background: #fafafa;
+    position: relative;
+    border-bottom: 1px solid rgb(222,222,222);
+
+}
+
+.comment_write_btn{
+    font-family: 'Noto sans KR', sans-serif;
+    width: 60px;
+    height: 36px;
+    background-color: rgb(249,172,26);
+    color:#fafafa;
+    font-size: 12px;
+    position: absolute;
+    line-height: 28px;
+    outline: none;
+    border: 1px solid #dedede;
+    box-sizing: content-box;
+    padding: 0;
+    right:40px;
+    cursor: pointer;
+}
+.comment_write_btn:hover{
+    background-color: rgba(249,172,26,.9);
+}
+
+#commentWriteInputForm{
+    width:510px;
+    height: 35px;
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #dedede;
+    left: 40px;
+    top:0;
+
+}
+.comment_write_input{
+    width:500px;
+    height: 25px;
+    padding:0;
+    border: none;
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    margin-top: -12.5px;
+    border-radius: 2px;
+    outline: none;
+
+
+}
+
+/*댓글 전체 div*/
+.post_popup_comments{
+    width: 660px;
+    min-height: 30px;
+    background: #fafafa;
+    position: relative;
+
+}
+/*댓글 1개의 div*/
+.post_popup_comment{
+    min-height: 115px;
+    background: darkcyan;
+    position: relative;
+}
+/*댓글 1개의 상단 부분(이름,작성시간)*/
+.comment_popup_top{
+    width: 660px;
+    height: 30px;
+    background: #ffffff;
+    position: relative;
+}
+/*댓글 1개의 중간 부분(댓글내용)*/
+.comment_popup_content{
+    width: 560px;
+    min-height: 60px;
+    background: #ffffff;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5em;
+    padding: 10px 50px 0 50px;
+}
+/*댓글 1개의 하단 부분(좋아요)*/
+.comment_popup_bottom{
+    width: 660px;
+    height: 30px;
+    background: #ffffff;
+    position: relative;
+    border-bottom: 1px solid rgb(222,222,222);
+}
+/*댓글 좋아요*/
+.comment_popup_like{
+    width: 50px;
+    height: 20px;
+    position: absolute;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    right: 30px;
+    top: 0;
+    font-size: 12px;
+
+}
+/*댓글 닉네임*/
+.comment_popup_nickname{
+    font-size: 15px;
+    color: #222222;
+    font-weight: bold;
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+/*댓글 조회수*/
+.comment_popup_data{
+    position: absolute;
+    right: 45px;
+    bottom: 0;
+    color:#999999;
+    font-size: 11px;
+}
+
+
+
+
+/*Paginate 공간*/
+.comment_paginate_box{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    text-align: center;
+    background: #FAFAFA;
+
+}
+
+/*>> -------------- //게시글 팝업 box css 끝 ----------------- <<*/
+
+/*>> -------------- //신고 팝업 box css 시작(게시판 tmp 안에 있습니다) ----------------- <<*/
+
+#reportPopupWrap{
+    width: 500px;
+    min-height: 380px;
+    background: #FAFAFA;
+    position: fixed;
+    left: 50%;
+    top:50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    box-shadow: 0 6px 6px -6px #424242;
+    border: 2px solid #424242;
+    display: none;
+
+}
+/*신고하기 팝업 상단 부분*/
+.report_popup_top{
+    width:460px;
+    height: 48px;
+    background: #fafafa;
+    position: relative;
+    left: 20px;
+    border-bottom: 2px solid #212121;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 50px;
+    text-indent: 20px;
+}
+
+/*신고하기 팝업 중간 부분*/
+.report_popup_content{
+    width: 500px;
+    min-height: 245px;
+    background: #fafafa;
+    position: relative;
+}
+
+/*3번째 li*/
+.faq_write_content>ul>li:nth-child(3){
+    /*li끼리 height 값이 다르니 나중에 지우기*/
+    width: 500px;
+    height: 270px;
+    background: #fafafa;
+    border-bottom: 1px solid #dedede;
+}
+
+/*li안에서 공통적으로 사용*/
+.content_report_common{
+    font-size: 13px;
+    color: #222222;;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 40px;
+    background: #FAFAFA;
+    display: inline-block;
+}
+/*textarea */
+#reportContentInput{
+    font-size: 13px;
+    color: #222222;
+    border: 1px solid #dedede;
+    outline: none;
+    margin-left: 112px;
+    margin-top:-36px;
+    width: 341px;
+    height: 250px;
+    font-family: 'Noto sans KR', sans-serif;
+    resize: none;
+    padding: 5px 5px 0 5px;
+}
+/*글자수 카운터*/
+#reportContentCounter{
+    font-size: 12px;
+    color: #999999;
+    width: 110px;
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+}
+
+
+/*신고하기 팝업 하단 부분*/
+.report_popup_bottom{
+    width: 460px;
+    height: 50px;
+    background: #fafafa;
+    position: relative;
+    left: 20px;
+    text-align: center;
+}
+/*신고접수 btn*/
+.report_write_btn{
+    outline: none;
+    border: none;
+    box-sizing: content-box;
+    font-family: 'Noto sans KR', sans-serif;
+    width: 100px;
+    height: 30px;
+    background: rgb(249, 172, 26);
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    line-height: 30px;
+    color: #fafafa;
+    font-size: 11px;
+    border-radius: 2px;
+    box-shadow: 0 6px 4px -8px #424242;
+    cursor: pointer;
+}
+.report_write_btn:hover{
+    background: rgba(249, 172, 26,.9);
+}
+
+
+
+/*>> -------------- //신고 팝업 box css 끝 ----------------- <<*/
+
+
+/*무한스크롤을 위한 로더 이미지*/
+.board_loader{
+    width: 600px;
+    height: 40px;
+    background-color: #FAFAFA;
+    background-image: url("/img/loader.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    margin-top:5px;
+    margin-bottom: 5px;
+    box-shadow: 0 6px 4px -9px #424242;
+}

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#passwordUpdateBox {
+	width: 400px;
+	height: 300px;
+	/*background-color: #62ab66;*/
+	position: absolute;
+	margin-left: -200px;
+	margin-top: -150px;
+	left: 50%;
+	top: 50%;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+#passwordUpdateBox h1 {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	position: absolute;
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+	background-color: #f9f9f9;
+	left: -70px;
+	top: -20px;
+	z-index: 20;
+}
+
+#passwordUpdateBox button {
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 100px;
+	height: 30px;
+	margin-left: 150px;
+	margin-top: 50px;
+	cursor: pointer;
+	border-radius: 10px;
+	border-style: none;
+}
+
+#passwordUpdateBox button:hover {
+	background-color: #F9AC1A;
+}
+
+.input_signup {
+	width: 200px;
+	height: 30px;
+	display: block;
+	position: relative;
+	margin: auto;
+}
+
+#pwdUpdate {
+	margin-bottom: 30px;
+	margin-top: 60px;
+}
+
+.confirm {
+	text-align: center;
+}
