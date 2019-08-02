@@ -6,4 +6,6 @@ public interface BoardsService {
 	
 	public Map<String, Object> getMyBoards(int memberNo, int page);
 
+	public Map<String, Object> getBoardList(int page);
+	
 }

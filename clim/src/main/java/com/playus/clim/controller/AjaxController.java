@@ -51,5 +51,12 @@ public class AjaxController {
 		
 		return moviesService.getSearchResultForcliming(title);
 	}
+	
+	//게시판목록불러오기
+	@RequestMapping(value="/boardList/{page}", method=RequestMethod.GET)
+	public Map<String, Object> getBoardList(@PathVariable int page){
+		
+		return boardsService.getBoardList(page);
+	}
 
 }

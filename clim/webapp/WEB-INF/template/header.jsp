@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header id="header">
     <a href=""><img class="header_index_nav" src="/img/clim.png"/></a></div>
     <div id="headerMenuSection">
         <!--상단메뉴 목록 -->
             <div class="header_menu_nav header_category_wrap">카테고리</div>
             <div class="header_menu_nav"><a class="header_text_link" href="123">끌리밍</a></div>
-            <div class="header_menu_nav"><a class="header_text_link" href="456">커뮤니티</a></div>
+            <div class="header_menu_nav"><a class="header_text_link" href="/board">커뮤니티</a></div>
     </div><!--//headerMenuSection-->
     <div id="headerCategoryWrap">
         <div id="categoryGenreTab" class="category_list category_on">장르</div>

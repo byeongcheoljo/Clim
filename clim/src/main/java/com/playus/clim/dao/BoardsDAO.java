@@ -10,5 +10,8 @@ public interface BoardsDAO {
 	public List<Board> myWriteBoardsList(PageVO pageVO);
 	public int myWriteBoardsTotal(int memberNo);
 	
+	//
+	public List<Board> boardList(PageVO pageVO);
+	
 
 }

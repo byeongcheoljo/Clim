@@ -24,5 +24,13 @@ public class BoardsDAOImpl implements BoardsDAO{
 	public int myWriteBoardsTotal(int memberNo) {
 		return session.selectOne("boards.myWriteBoardsTotal", memberNo);
 	}
+	
+	@Override
+	public List<Board> boardList(PageVO pageVO) {
+		// TODO Auto-generated method stub
+		return session.selectList("boards.boardList", pageVO);
+	}
+	
+	
 
 }

@@ -42,38 +42,42 @@
 <c:import url="/WEB-INF/template/footer.jsp"/>
 <!--boardTmp (보드 리스트 불러오기)-->
 <script type="text/template" id="boardTmp">
-    <@ _.each(board,function(post){ @>
+    <@ _.each(boards,function(board){ @>
     <div class="post_view_box">
 
         <div class="post_view_top">
-            <a class="post_view_nickname pointer_common" href=""><@=post.nickname@></a>
-            <span class="post_view_data"><@=post.data@></span>
+            <a class="post_view_nickname pointer_common" href=""><@=board.nickname@></a>
+            <span class="post_view_data"><@=board.view@></span>
         </div>
 
         <div class="post_view_tags">
             <ul>
+				<%--
                 <@ _.each(post.tags,function(tag){@>
                 <li class="post_view_tag"><a href="">#<@=tag@></a></li>
                 <@})@>
+                --%>
             </ul>
         </div>
 
-        <div class="post_view_contents"><@=post.contents@></div>
+        <div class="post_view_contents"><@=board.contents@></div>
 
         <div class="post_view_bottom">
             <button class="post_view_like">
                 <div class="like_view_icon far fa-thumbs-up pointer_common"></div>
-                <span class="like_view_count fontsize_common"><@=post.like@></span>
+                <span class="like_view_count fontsize_common"><@=board.like@></span>
             </button>
 
             <div class="post_view_comments">
                 <div class="comment_view_icon far fa-comments pointer_common"></div>
-                <span class="comment_view_count fontsize_common"><@=post.comment@></span>
+                <span class="comment_view_count fontsize_common"><@=board.comment@></span>
             </div>
 
             <div class="post_view_click">
                 <div class="click_view_icon fas fa-eye"></div>
-                <span class="click_view_count fontsize_common"><@=post.click@></span>
+				<%-- 좋아요
+                <span class="click_view_count fontsize_common"><@=board.click@></span>
+                --%>
             </div>
         </div>
     </div><!--//post_view_box-->
@@ -195,7 +199,7 @@
     const commentTmp = _.template($("#commentTmp").html());
 
 
-    let pageNo =1;
+    let page =1;
 
     //ajax를 여러번 호출하는 것을 막는 변수
     let flag = true;
@@ -207,23 +211,15 @@
             const $boardLoader = $("<div class='board_loader'>");
             $("#boardWrap").append($boardLoader);
             $.ajax({
-                url:"/ajax/boardList.json",
+                url:"/ajax/boardList/"+page,
                 dataType:"json",
-                data:{
-                    //0521수업내용 참고
-                    //한 페이지에 보여질 변수를 아직 안했기 때문에 무한스크롤링을 못하고 있습니다.
-                    //ex) 변수:5 (한 페이지에 보여질 게시판 개수)
-                    //ex) 변수:pageNo++ (스크롤 내릴 때마다 증가)
-                },
                 error:function(){
                     alert("board ajax 에러, board ajax를 확인하세요.");
                 },
                 success:function (json) {
                     console.log(json);
                     $boardLoader.remove();
-
-                    $("#boardWrap").append(boardTmp({"board":json}));
-
+                    $("#boardWrap").append(boardTmp({"boards":json}));
                     //완료후 다시 flag를 true로
                     flag = true;
                 }//success end
@@ -248,6 +244,7 @@
     }
 
     //게시글 디테일 불러오기
+    /*
     $("#boardWrap").on("click",".post_view_box",function () {
         $("#boardPopupBg").fadeIn(100);
         $.ajax({
@@ -261,14 +258,14 @@
                 console.log(json.contents);
                 $("#boardPopupBox").html(boardDetailTmp({"boardDetail":json}));
             }
-        })
-
-    })
+        });
+    });
+    */
 
 
     //최초 한 번 호출
     getBoardList();
-    getCommentList();
+    //getCommentList();
 
 
     /*무한스크롤링*/

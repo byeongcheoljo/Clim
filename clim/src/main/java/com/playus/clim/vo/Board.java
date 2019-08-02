@@ -5,13 +5,49 @@ import java.sql.Timestamp;
 
 public class Board {
 
-	private int no, memberNo, views;
-	private Clob contents;
+	private int no, memberNo, views, likeCount, commentCount;
+	private String contents;
 	private Timestamp regdate;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+
+
+	public String getContents() {
+		return contents;
+	}
+
+
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+
 
 	public int getNo() {
 		return no;
@@ -37,13 +73,7 @@ public class Board {
 		this.views = views;
 	}
 
-	public Clob getContents() {
-		return contents;
-	}
 
-	public void setContents(Clob contents) {
-		this.contents = contents;
-	}
 
 	public Timestamp getRegdate() {
 		return regdate;

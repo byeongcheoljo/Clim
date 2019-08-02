@@ -19,4 +19,19 @@
 		WHERE member_no = #{memberNo}
 	</select>
 	
+	
+	<select id="boardList" resultType="Board" parameterType="PageVO">
+	select no, contents, memberNo, nickname, views, regdate, likeCount, commentCount
+	from (select b.no, b.contents, m.no memberNo, m.nickname, views, b.regdate regdate, NVL(l.likeCount,0) likeCount, NVL(c.commentCount,0) commentCount
+	from boards b, members m, 
+	(select post_no, count(*) likeCount
+	from likes
+	where type = 'B'
+	group by post_no) l,
+	(select board_no, count(*) commentCount
+	from comments
+	group by board_no) c
+	where m.no = b.member_no AND l.post_no = c.board_no(+) AND b.no = l.post_no(+))
+	</select>
+	
 </mapper>

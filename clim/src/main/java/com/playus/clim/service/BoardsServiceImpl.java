@@ -32,4 +32,20 @@ public class BoardsServiceImpl implements BoardsService{
 		return map;
 	}
 	
+	
+	//게시판 목록 불러오기
+	@Override
+	public Map<String, Object> getBoardList(int page) {
+		
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+		PageVO pageVO = new PageVO(page, 15);
+		
+		map.put("boards", boardsDAO.boardList(pageVO));
+		
+		return map;
+	}
+	
+	
+	
+	
 }
