@@ -1,24 +1,17 @@
 package com.playus.clim.service;
 
-<<<<<<< HEAD
 import java.util.HashMap;
-import java.util.Map;
-=======
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpSession;
->>>>>>> master
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAO;
-<<<<<<< HEAD
-=======
 import com.playus.clim.vo.Member;
->>>>>>> master
 
 @Service
 public class MembersServiceImpl implements MembersService{
@@ -26,7 +19,6 @@ public class MembersServiceImpl implements MembersService{
 	@Autowired
 	private MembersDAO membersDAO;
 	
-<<<<<<< HEAD
 	
 	@Override
 	public Map<String, Object> myPageMember(int memberNo) {
@@ -34,7 +26,6 @@ public class MembersServiceImpl implements MembersService{
 		map.put("member",membersDAO.myPageMemberSelectOne(memberNo));
 	return map;
 	}
-=======
 	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {
@@ -89,6 +80,5 @@ public class MembersServiceImpl implements MembersService{
 		return map;
 	}
 	
->>>>>>> master
 }
 
