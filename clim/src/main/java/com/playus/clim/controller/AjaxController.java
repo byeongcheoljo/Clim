@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.CommentsService;
+import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
 
 @RestController
@@ -27,6 +29,8 @@ public class AjaxController {
 	private ReviewsService reviewsService;
 	@Autowired
 	private MoviesService moviesService;
+	@Autowired
+	private EventsService eventsService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -50,6 +54,11 @@ public class AjaxController {
 	public List<Movie> getSearchResultForcliming(@PathVariable String title){
 		
 		return moviesService.getSearchResultForcliming(title);
+	}
+	
+	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
+	public List<Event> eventsList(int memberNo) {
+		return eventsService.getList(memberNo);
 	}
 
 }

@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
-	
+	<select id="myPageMemberSelectOne" parameterType="int"
+		resultType="Member">
+		select no, email,
+		(select count(*) from subscribes where follower = #{memberNo}) followerCnt,
+		(select count(*) from c_logs c where member_no = #{memberNo} AND type = 'I') climgCnt,
+		nickname, gender, birth_date birthDate, pwd, regdate
+		from members
+		where no = #{memberNo}
+	</select>
 </mapper>

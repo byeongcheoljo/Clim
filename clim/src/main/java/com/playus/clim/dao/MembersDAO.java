@@ -1,5 +1,7 @@
 package com.playus.clim.dao;
 
-public interface MembersDAO {
+import com.playus.clim.vo.Member;
 
+public interface MembersDAO {
+	public Member myPageMemberSelectOne(int memberNo);
 }

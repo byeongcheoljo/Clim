@@ -28,7 +28,5 @@ tranjection도 이곳에 p:으로  설정한다-->
 
 	<bean id="sqlSession" c:sqlSessionFactory-ref="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionTemplate" />	
-	
-	
 
 </beans>

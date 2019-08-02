@@ -1,5 +1,7 @@
 package com.playus.clim.service;
 
-public interface MembersService {
+import java.util.Map;
 
+public interface MembersService {
+	public Map<String, Object> myPageMember(int memberNo);
 }
