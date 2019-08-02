@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.CommentsService;
+import com.playus.clim.service.MembersService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReviewsService;
 import com.playus.clim.vo.Movie;
@@ -27,6 +28,9 @@ public class AjaxController {
 	private ReviewsService reviewsService;
 	@Autowired
 	private MoviesService moviesService;
+	
+	@Autowired
+	private MembersService membersService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -52,4 +56,17 @@ public class AjaxController {
 		return moviesService.getSearchResultForcliming(title);
 	}
 
+	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
+	public int getCheckId(String email) {
+		
+		
+		return membersService.getCheckId(email);
+	}
+	
+	@RequestMapping(value="/getCheckNickname/nickname", method=RequestMethod.GET)
+	public int getCheckNickname(String nickname) {
+		
+		return membersService.getCheckNickname(nickname);
+	}
+	
 }

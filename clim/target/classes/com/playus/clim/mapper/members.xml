@@ -3,4 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
 	
+	<select id="checkId" parameterType="string" resultType="int">
+	select count(*)
+	from members
+	where email = #{email}
+	
+	</select>
+	
+	
+	<select id="checkNickname" parameterType="string" resultType="int">
+	select count(*)
+	from members
+	where nickname = #{nickname}
+	
+	</select>
+	
+	
+	<insert id="insertMember" parameterType="Member">
+	
+	insert into members(no, email, nickname, gender, birth_date, pwd, regdate)
+	values(members_seq.nextval,#{email}, #{nickname}, #{gender}, #{birthDate}, #{pwd}, systimestamp)
+	</insert>
+	
 </mapper>

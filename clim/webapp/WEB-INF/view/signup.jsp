@@ -16,12 +16,12 @@
         <a href="index.html"><img src="/img/clim.png"/></a>
     </div>
     <div id="signupWrap">
-        <form method="post" action="">
+        <form method="post" action="/join">
             <fieldset>
                 <legend class="screen_out">회원가입폼</legend>
                 <div class="signup_row">
-                    <label class="label_signup " for="id">이메일</label>
-                    <input class="input_signup" id="id" name="id"
+                    <label class="label_signup " for="email">이메일</label>
+                    <input class="input_signup" id="id" name="email"
                            autocomplete="off"
                            placeholder="이메일를 입력하세요"
                            title="영어,숫자로 4~20자 입력"
@@ -91,6 +91,9 @@
 </main><!--main-->
 
 <script src="/js/moment-with-locales.js"></script>
+<script src="/js/underscore-min.js"></script>
+<script src="/js/jquery.js"></script>
+
 
 <script>
     let $id = $("#id"); //input 요소
@@ -169,14 +172,33 @@
     //아이디 중복검사 버튼 눌렀을때 실행되는 이벤트
     $("#signupIdOverlapBtn").click(function () {
         //정규표현식에 맞을 경우에만 실행
+        const email = $("#id").val();
+        console.log(email)
         if(idFlag){
             //멤버json가져오기
             $.ajax({
-                url:"json/member.json",
+                url:"/ajax/getCheckId/email",
                 dataType:"json",
+                data:{"email":email},
                 type:"GET",
-                success : function(json) {
-                    let idValue="";
+                error:function(){
+                	alert("이메일 중복 xx")
+                },
+                success : function(email) {
+                	console.log(email);
+                	//email 이 DB에 1개 이상 있으면 중복 된 이메일 0개 있으면 사용 가능
+                	if(email > 0){
+                		 $(".id").text("중복된 이메일입니다. :(").css("color","#F16B6F");
+                         $id.val('');
+                         $id.focus();
+                         return false;
+                		
+                	}
+                	else{
+                		$(".id").text("사용 가능한 이메일입니다. :)").css("color","#AACD6E");
+                	}
+                	
+                   /*  let idValue="";
                     //입력한 아이디가 멤버에 존재할 경우
                     _.each(json,function (info) {
                         if($id.val()==info.id){
@@ -191,11 +213,11 @@
                     }
                     else if(idValue==""){
                         $(".id").text("사용 가능한 이메일입니다. :)").css("color","#AACD6E");
-                    }
+                    } */
                 },
-                error : function() {
+                /* error : function() {
                     alert("서버점검중");
-                }
+                } */
             });
         }
     });
@@ -266,14 +288,27 @@
     });
     $("#signupNicknameOverlap").click(function (e) {
         let $nickname = $("#nickname");
+        const nickname = $("#nickname").val();
         if(nickNameFlag){
 
             $.ajax({
-                url:"json/member.json",
+                url:"/ajax/getCheckNickname/nickname",
                 dataType:"json",
                 type:"GET",
-                success : function(json) {
-                    let nickFlag="";
+                data:{nickname : nickname},
+                success : function(nickname) {
+                	console.log(nickname);
+                	if(nickname > 0){
+                		
+                		$(".nickname").text("중복된 닉네임입니다. :(").css("color","#F16B6F");
+                        $nickname.val('');
+                        $nickname.focus();
+                	}
+                	else{
+                		$(".nickname").text("사용 가능한 닉네임입니다. :)").css("color","#AACD6E");
+                	}
+                	
+                    /* let nickFlag="";
                     _.each(json,function (info) {
                         if($nickname.val()==info.nickName){
                             nickFlag=$nickname.val();
@@ -286,7 +321,7 @@
                     }
                     else if(nickFlag==""){
                         $(".nickname").text("사용 가능한 닉네임입니다. :)").css("color","#AACD6E");
-                    }
+                    } */
                 },
                 error : function() {
                     alert("서버점검중");
