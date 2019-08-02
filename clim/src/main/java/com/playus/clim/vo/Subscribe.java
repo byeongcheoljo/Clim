@@ -6,9 +6,18 @@ public class Subscribe {
 
 	private int no, following, follower;
 	private Timestamp regdate;
-	
+	private boolean LiveCheck;
+
 	public Subscribe() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public boolean isLiveCheck() {
+		return LiveCheck;
+	}
+
+	public void setLiveCheck(boolean liveCheck) {
+		LiveCheck = liveCheck;
 	}
 
 	public int getNo() {
@@ -42,7 +51,5 @@ public class Subscribe {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
-	
-	
+
 }

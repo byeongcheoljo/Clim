@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="subscribes">
-	
+	<select id="subscribesList" resultType="Subscribe"
+		parameterType="int">
+		SELECT s.no no, following, follower, nickname
+		FROM members m, subscribes s
+		WHERE follower = m.no AND following = #{memberNo}
+	</select>
 </mapper>
