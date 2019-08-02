@@ -219,7 +219,7 @@
                 <button class="movie_order_upBtn"><i class="fas fa-chevron-up"></i></button>
                 <button class="movie_order_downBtn"><i class="fas fa-chevron-down"></i></i></button>
             </div>
-            <div class="streaming_movie_img"><img src="<@=movie.poster@>"/></div>
+            <div class="streaming_movie_img"><img src="/posters<@=movie.poster@>"/></div>
             <div class="streaming_movie_name">
                 <span><@=movie.title@></span></div>
             <div class="streaming_movie_showTime"><@=movie.runtime@>분</div>
@@ -235,13 +235,16 @@
 <!--영화검색 템플릿-->
 <script type="text/template" id="movieSearchTmp">
     <ul>
-		<@ console.log(searchs.length==0)@>
-    	<@ _.each(searchs,function(movie){@>
-        	<li class="movie_search_list" data-movieno = "<@=movie.no@>">
-        	    <img src="<@=movie.poster@>"/>
-         		<span><@=movie.title@></span>
-       		</li>
-    	<@})@>
+		<@ if(searchs.length!=0){@>
+    		<@ _.each(searchs,function(movie){@>
+        		<li class="movie_search_list" data-movieno = "<@=movie.no@>">
+        	   		<img src="/posters<@=movie.poster@>"/>
+         			<span><@=movie.title@></span>
+       			</li>
+    		<@})@>
+		<@ }else{ @>
+			<li class="movie_search_list"><div class="search_no_result">등록되지 않은 영화입니다.</div></li>
+		<@ } @>
     </ul>
 
 </script>
@@ -510,7 +513,6 @@
     let $streamingMovieWrap = $(".streaming_movie_wrap");
     // 영화 목록에 아래 버튼을 클릭시 스왑
     $streamingMovieWrap.on("click",".movie_order_downBtn",function () {
-        alert("down button");
         let lastIndex = $streamingMovieWrap[0].childElementCount - 1;
         let temp = $(this).parents("li");
         console.log(temp);
@@ -526,7 +528,6 @@
 
     // 영화 목록에서 윗 버튼을 클릭하면 스왑
     $streamingMovieWrap.on("click",".movie_order_upBtn",function () {
-        alert("up button");
         let zeroIndex = 0;
         let temp = $(this).parents("li");
         console.log(temp);

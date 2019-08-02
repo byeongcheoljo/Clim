@@ -705,7 +705,7 @@ body.on #headerTotalSearchText {
 	line-height: 1em;
 	position: absolute;
 	display: block;
-	width: 170px;
+	width: 150px;
 	height: 40px;
 	top: 30px;
 }
@@ -861,4 +861,10 @@ body.on #headerTotalSearchText {
 	font-size: 16px;
 	width: 100px;
 	height: 25px;
+}
+
+.search_no_result {
+    position: absolute;
+    top: 40px;
+    left: 10px;
 }
