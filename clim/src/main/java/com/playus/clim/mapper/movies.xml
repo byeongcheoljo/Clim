@@ -6,7 +6,7 @@
 	<select id="searchMovieListForCliming" resultType="Movie" parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
-		WHERE title = #{title}
+		WHERE title LIKE #{title}
 	</select>
 	
 </mapper>

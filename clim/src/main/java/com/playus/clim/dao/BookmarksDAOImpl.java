@@ -18,5 +18,19 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 	public List<Bookmark> mybookmarkListForCliming(int memberNo) {
 		return session.selectList("bookmarks.mybookmarkListForCliming", memberNo);
 	}
+	@Override
+	public int bookmarkInsertForCliming(Bookmark bookmark) {
+		return session.insert("bookmarks.bookmarkInsertForCliming", bookmark);
+	}
+	
+	@Override
+	public int bookmarkDeleteForCliming(int no) {
+		return session.delete("bookmarks.bookmarkDeleteForCliming", no);
+	}
+	
+	@Override
+	public Bookmark checkBookmarkOneForCliming(Bookmark bookmark) {
+		return session.selectOne("bookmarks.checkBookmarkOneForCliming", bookmark);
+	}
 
 }

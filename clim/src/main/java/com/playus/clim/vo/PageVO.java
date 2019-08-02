@@ -2,7 +2,7 @@ package com.playus.clim.vo;
 
 public class PageVO {
 	
-	private int start, end, no;
+	private int start, end, no, memberNo;
 	
 	public PageVO() {
 		// TODO Auto-generated constructor stub
@@ -14,12 +14,18 @@ public class PageVO {
 		this.start = end-numPage+1;
 	}
 
-	public PageVO(int page, int numPage, int no) {
+	public PageVO(int page, int numPage, int memberNo) {
 		this.end = page * numPage;
 		this.start = end-numPage+1;
-		this.no = no;
+		this.memberNo = memberNo;
 	}
 	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
 	public int getNo() {
 		return no;
 	}

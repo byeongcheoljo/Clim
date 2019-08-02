@@ -8,16 +8,17 @@
     <title>커뮤니티탭</title>
 	<c:import url="/WEB-INF/template/link.jsp"/>
     <link rel="stylesheet" href="/css/mypageCommunity.css"/>
+    <link rel="stylesheet" href="/css/mypage_home_tab.css"/>
 </head>
 <body>
 <c:import url="/WEB-INF/template/header.jsp"/>
 <main id="main">
 	<div id="tabSectionUserPage">
         <ul id="headerNavMypage">
-            <li id="nicknameHeaderMypage">닉네임</li>
-            <li class="header_myPage_tabbed">홈</li>
+            <li id="nicknameHeaderMypage">${member.nickname }</li>
+            <li>홈</li>
             <li>찜</li>
-            <li>커뮤니티</li>
+            <li class="header_myPage_tabbed">커뮤니티</li>
             <li>정보수정</li>
             <li>FAQ</li>
         </ul>
@@ -43,43 +44,64 @@
 <c:import url="/WEB-INF/template/footer.jsp"/>
 </main>
 <script type="text/template" id="contentBoxTmp">
-    <@ _.each(contents, function(content){@>
+<@if(!empty){@>
+    <@ _.each(contents, function(content){
+	let contentContent = content.contents;
+	console.log(contentContent.length);
+    if(contentContent.length>33){
+        contentContent = contentContent.substring(0,32)+"…";
+    }
+	@>
     <li class="mypage_community_card">
         <div class="content_num"><@=content.no@></div>
-        <div class="content_tit"><@=content.tit@></div>
-        <div class="content_date"><@=content.date@></div>
+        <div class="content_tit"><@=contentContent@></div>
+        <div class="time content_date"><@=content.regdate@></div>
     </li>
+
     <@ }) @>
-    <div class="paginate">페 이 지 네 이 트</div>
+    <@=paginate@>
+<@}else {@>
+<div id="communityEmpty">아직 등록한 게시물이 없습니다.</div>
+<@}@>
 </script>
 <script type="text/template" id="replyBoxTmp">
+<@if(!empty){@>
     <@ _.each(replies, function(reply){
-    let replyContent = reply.tit;
+    let replyContent = reply.contents;
     if(replyContent.length>33){
         replyContent = reply.tit.substring(0,32)+"…";
     }
     @>
     <li class="mypage_community_card">
         <div class="content_tit"><@=replyContent@></div>
-        <div class="content_date"><@=reply.date@></div>
+        <div class="time content_date"><@=reply.regdate@></div>
     </li>
     <@ }) @>
-    <div class="paginate">페 이 지 네 이 트</div>
+    <@=paginate@>
+<@}else {@>
+<div id="communityEmpty">아직 등록한 게시물이 없습니다.</div>
+<@}@>
 </script>
 <script type="text/template" id="commentBoxTmp">
+
+<@if(!empty){@>
     <@ _.each(comments, function(comment){
-    let commentContent = comment.tit;
+    let commentContent = comment.contents;
     if(commentContent.length>33){
     commentContent = comment.tit.substring(0,32)+"…";
     }@>
     <li class="mypage_community_card">
         <div class="content_tit"><@=commentContent@></div>
-        <div class="contnet_movie"><@=comment.movie@></div>
-        <div class="content_date"><@=comment.date@></div>
+        <div class="contnet_movie"><@=comment.title@></div>
+        <div class="time content_date"><@=comment.regdate@></div>
     </li>
     <@ }) @>
-    <div class="paginate">페 이 지 네 이 트</div>
+    <@=paginate@>
+<@}else {@>
+	<div id="communityEmpty">아직 등록한 게시물이 없습니다.</div>
+<@}@>
 </script>
+<script src="/js/moment-with-locales.js"></script>
 <script>
     _.templateSettings = {
         interpolate : /\<\@\=(.+?)\@\>/gim,
@@ -108,12 +130,54 @@
     
     function mywriteContent() {
         $.ajax({
-            url: "ajax/member/{memberNo}/boards/page/"+page,
+            url: "/ajax/member/${member.no}/boards/page/"+page,
             error: function () {
                 alert("에러!");
             },
             success: function (json) {
-                $mywriteContentBox.html(contentBoxTmp({"contents": json}));
+                $mywriteContentBox.html(contentBoxTmp({"contents": json.boards, "paginate":json.paginate, "empty":json.boards.length==0}));
+                setTimeout(function timeChange(){
+					
+					$(".time").each(function() {
+						
+						let rTime = $(this).text(); // 댓글들 각 시간구하기
+						
+						let urTime = rTime.substring(0,10);
+						
+						let raDate = moment.unix(urTime).format("YYYY-MM-DD HH:mm:ss"); // 댓글시간 모멘트화 하기
+						
+						let cTime = ""; // 바뀔 시간
+
+						let nowDate = moment(); // 현재시간
+
+						let diffHours = nowDate.diff(raDate, "hours"); // 지금으로부터 시간
+						let diffMinutes = nowDate.diff(raDate, "minutes"); // 지금으로부터 분
+						let diffSeconds = nowDate.diff(raDate, "Seconds"); // 지금으로부터 초
+
+						if (diffHours > 24) {
+
+							cTime = raDate;
+							console.log(cTime);
+
+						} else if (diffHours > 0) {
+
+							cTime = diffHours + "시간전";
+
+						} else if (diffMinutes > 0) {
+
+							cTime = diffMinutes + "분 전";
+
+						} else if (diffSeconds >= 0) {
+
+							cTime = "방금 전";
+
+						}
+						
+						$(this).text(cTime);
+					});
+						
+						
+					},0);
             }//success() end
         });//$.ajax() end
     }
@@ -121,6 +185,9 @@
     
     $mywriteContentTab.on("click",function(){
     	
+    	$mywriteContentBox.css("display", "block");
+        $mywriteReplyBox.css("display", "none");
+        $mywriteCommentBox.css("display", "none");
     	page = 1;
     	
         $communityTabWrapLi.removeClass("community_tab_on");
@@ -139,12 +206,54 @@
         $mywriteReplyBox.css("display", "block");
         $mywriteCommentBox.css("display", "none");
         $.ajax({
-            url:"ajax/member/{memberNo}/boards/page/"+page,
+            url:"/ajax/member/${member.no}/comments/page/"+page,
             error:function(){
                 alert("에러!");
             },
             success:function(json){
-                $mywriteReplyBox.html(replyBoxTmp({"replies":json}));
+            	console.log(json);
+                $mywriteReplyBox.html(replyBoxTmp({"replies":json.comments, "paginate":json.paginate, "empty":json.comments.length==0}));
+                setTimeout(function timeChange(){
+                $(".time").each(function() {
+					
+					let rTime = $(this).text(); // 댓글들 각 시간구하기
+					
+					let urTime = rTime.substring(0,10);
+					
+					let raDate = moment.unix(urTime).format("YYYY-MM-DD HH:mm:ss"); // 댓글시간 모멘트화 하기
+					
+					let cTime = ""; // 바뀔 시간
+
+					let nowDate = moment(); // 현재시간
+
+					let diffHours = nowDate.diff(raDate, "hours"); // 지금으로부터 시간
+					let diffMinutes = nowDate.diff(raDate, "minutes"); // 지금으로부터 분
+					let diffSeconds = nowDate.diff(raDate, "Seconds"); // 지금으로부터 초
+
+					if (diffHours > 24) {
+
+						cTime = raDate;
+						console.log(cTime);
+
+					} else if (diffHours > 0) {
+
+						cTime = diffHours + "시간전";
+
+					} else if (diffMinutes > 0) {
+
+						cTime = diffMinutes + "분 전";
+
+					} else if (diffSeconds >= 0) {
+
+						cTime = "방금 전";
+
+					}
+					
+					$(this).text(cTime);
+				});
+					
+					
+				},0);
             }//success() end
         });//$.ajax() end
     });//$mywriteReplyTab.click() end
@@ -160,12 +269,54 @@
         $mywriteReplyBox.css("display", "none");
         $mywriteCommentBox.css("display", "block");
         $.ajax({
-            url:"ajax/member/{memberNo}/boards/page/"+page,
+            url:"/ajax/member/${member.no}/reviews/page/"+page,
             error:function(){
                 alert("에러!");
             },
             success:function(json){
-                $mywriteCommentBox.html(commentBoxTmp({"comments":json}));
+            	console.log(json);
+                $mywriteCommentBox.html(commentBoxTmp({"comments":json.reviews, "paginate":json.paginate, "empty":json.reviews.length==0}));
+                setTimeout(function timeChange(){
+                $(".time").each(function() {
+					
+					let rTime = $(this).text(); // 댓글들 각 시간구하기
+					
+					let urTime = rTime.substring(0,10);
+					
+					let raDate = moment.unix(urTime).format("YYYY-MM-DD HH:mm:ss"); // 댓글시간 모멘트화 하기
+					
+					let cTime = ""; // 바뀔 시간
+
+					let nowDate = moment(); // 현재시간
+
+					let diffHours = nowDate.diff(raDate, "hours"); // 지금으로부터 시간
+					let diffMinutes = nowDate.diff(raDate, "minutes"); // 지금으로부터 분
+					let diffSeconds = nowDate.diff(raDate, "Seconds"); // 지금으로부터 초
+
+					if (diffHours > 24) {
+
+						cTime = raDate;
+						console.log(cTime);
+
+					} else if (diffHours > 0) {
+
+						cTime = diffHours + "시간전";
+
+					} else if (diffMinutes > 0) {
+
+						cTime = diffMinutes + "분 전";
+
+					} else if (diffSeconds >= 0) {
+
+						cTime = "방금 전";
+
+					}
+					
+					$(this).text(cTime);
+				});
+					
+					
+				},0);
             }//success() end
         });//$.ajax() end
     });//$mywriteCommentTab.click() end
