@@ -6,13 +6,10 @@ import java.sql.Timestamp;
 public class Movie {
 	
 	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed;
-	private String title, contents, src, titleEng, poster,repGenre;
+	private String title, contents, src, titleEng, poster, repGenre;
 	private Date opendate;
 	private char movieRating;
 	private Timestamp regdate;
-	
-	
-	
 	
 	public Movie() {
 		// TODO Auto-generated constructor stub

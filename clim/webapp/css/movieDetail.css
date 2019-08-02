@@ -42,9 +42,10 @@ body{
     height: 270px;
     position: absolute;
     left: 330px;
-    top: 30px;
+    top: 5px;
 }
 .movie_info_wrap div {
+	width: 600px;
     margin: 5px;
 }
 .movie_info_wrap a {
@@ -55,14 +56,15 @@ body{
     color: #F9AC1A;
 }
 .movie_title {
-    font-size: 35px;
+	width: 500px;
+    font-size: 30px;
 }
 .movie_watching_rate {
     width: 50px;
     height: 50px;
-    position: absolute;
-    top: -5px;
-    left: 235px;
+    position: relative;
+    top: 15px;
+    left: 0;
     border-radius: 100px;
     font-size: 18px;
 }
@@ -285,7 +287,7 @@ body{
 }
 .review_title {
     width: 600px;
-    height: 100px;
+    height: 80px;
     border-bottom: 1px solid #231F20;
     text-align: center;
     line-height: 100px;
@@ -296,7 +298,7 @@ body{
 }
 .review_content {
     width: 560px;
-    height: 250px;
+    height: 240px;
     margin: 20px;
     padding: 0;
     outline: none;
@@ -472,4 +474,9 @@ body{
     margin-top: 50px;
     font-size: 22px;
     border: 1px;
+}
+
+.movie_preview iframe {
+	width: 1000px !important;
+	height: 700px !important;
 }

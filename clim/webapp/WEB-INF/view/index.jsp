@@ -702,7 +702,6 @@
     })
 
     /* continueScript */
-
     function mainContinue(){
         $.ajax({
             url:"ajax/continue.json",

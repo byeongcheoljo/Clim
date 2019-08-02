@@ -14,13 +14,13 @@
 <main id="content">
     <div class="movie_info_section">
         <div class="movie_poster_wrap">
-            <img class="movie_poster" src="/img/poster.jpg" alt="포스터">
+            <img id="moviePoster" class="movie_poster" src="/poster/aladin.jpg" alt="포스터">
         </div>
         <div class="movie_info_wrap">
-            <div class="movie_title"><strong>나는 전설이다</strong></div>
-            <div><img class="movie_watching_rate" src="/img/12세.png"></div>
+        	
+            <div id="movieTitle" class="movie_title"><strong>${movie.title} <span><img id="watchingRate" class="movie_watching_rate" src="/img/12세.png"></span></strong></div>
             <div class="movie_avg_box">
-                <span>예상평점: 4.5</span>
+                <!-- <span>예상평점: 4.5</span> -->
                 <span class="avg_score">평점: 5</span>
                 <div class="starRev">
                     <span class="starR1 on">별1_왼쪽</span>
@@ -45,11 +45,30 @@
                 <@}} @>
                 -->
             </div>
-            <div class="movie_pub_date">개봉일: 2007.12.12</div>
-            <div><a href="">감독: 프란시스로렌스</a></div>
-            <div><a href="">출연진: 윌스미스</a></div>
-            <div><a href="">장르: SF, 드라마, 스릴러 / 127분</a></div>
-            <div>누적관객: 2명 / 끌밍지수: 3명</div>
+            <div id="pubDate" class="movie_pub_date">개봉일: ${movie.opendate}</div>
+            <div id="director">
+	            <a href="">감독:
+		            <c:forEach var="director" items="${directors}">
+		            	${director.name},
+		            </c:forEach>
+	            </a>
+           	</div>
+            <div id="actor">
+            	<a href="">출연진:
+	            	<c:forEach var="actor" items="${actors}">
+	            		${actor.name},
+	            	</c:forEach>
+            	</a>
+            </div>
+            <div id="genre">
+	            <a href="">장르:
+	            	<c:forEach var="genre" items="${genres}">
+	            		${genre.genre},
+	            	</c:forEach>
+	            </a>
+            </div>
+            <div id="runtime">상영시간: ${movie.runtime}분</div>
+            <div id="climAcc">끌림수: 3명</div>
             <button id="moviePlayBtn" class="movie_info_btn" title="영화재생"><i class="far fa-play-circle"></i> Play</button>
             <button id="movieAddBtn" class="movie_info_btn" title="찜하기"><i class="fas fa-plus"></i> Add</button>
             <button id="addStreamingList" class="movie_info_btn" title="스트리밍 목록추가"><i class="fas fa-plus"></i> Clim</button>
@@ -65,27 +84,7 @@
     <div class="movie_plot_section">
         <h2>줄거리</h2>
         <p class="movie_plot">
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하z
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
-            가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
+            ${movie.contents}
         </p>
     </div><!--//movie_plot_section-->
 
@@ -96,27 +95,9 @@
         </div>
         <!--예고편-->
         <div class="preview_wrap">
-            <div class="scene_list_box">
-                <ul class="preview_list video">
-                    <li>
-                        <video none src="/video/BandVideo.mp4"></video>
-                    </li>
-                    <li>
-                        <video none src="/video/k.mp4"></video>
-                    </li>
-                    <li>
-                        <video none src="/video/g.mp4"></video>
-                    </li>
-                    <li><img src="/img/capture.PNG"></li>
-                    <li><img src="/img/sdi1.jpg"></li>
-                    <li><img src="/img/sdi.jpg"></li>
-                    <li><img src="/img/sdi1.jpg"></li>
-                </ul>
-            </div>
-            <div class="icon left_icon"><i class="fas fa-angle-left"></i></div>
-            <div class="icon right_icon"><i class="fas fa-angle-right"></i></div>
             <div id="playPreview" class="movie_preview">
-                <video autoplay="none" src="/video/BandVideo.mp4" width="1000" height="500"></video>
+                <!-- <iframe autoplay="none" src="https://youtu.be/yHIZFeKWd1I" width="1000" height="700" gesture="media"></iframe> -->
+                <iframe width="1000" height="800" src="https://www.youtube.com/embed/yNQE9Gm54EQ" gesture="media"></iframe>
             </div>
         </div>
         <!--스틸컷-->
@@ -342,7 +323,7 @@
        ++likeCount;
        $(this).text(""+likeCount).css("color", "#F9AC1A");
     });
-
+    
 </script>
 </body>
 </html>

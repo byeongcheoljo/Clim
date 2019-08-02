@@ -9,4 +9,12 @@
 		WHERE title = #{title}
 	</select>
 	
+	<select id="movieSelectOne" parameterType="int" resultType="Movie">
+		SELECT no, title, openDate, runtime, contents, src, 
+			cookieTime, movie_rating movieRating, regdate, title_eng titleEng, 
+			poster, rep_genre repGenre, ending_credit_time endingCreditTime, climed
+		FROM movies 
+		WHERE no = #{no}
+	</select>
+	
 </mapper>

@@ -7,5 +7,7 @@ import com.playus.clim.vo.Movie;
 public interface MoviesDAO {
 	
 	public List<Movie> searchMovieListForCliming(String title);
+	
+	public Movie movieSelectOne(int no);
 
 }

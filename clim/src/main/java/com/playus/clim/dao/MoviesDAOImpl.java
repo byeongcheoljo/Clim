@@ -19,4 +19,9 @@ public class MoviesDAOImpl implements MoviesDAO{
 		return session.selectList("movies.searchMovieListForCliming", "%"+title+"%");
 	}
 	
+	@Override
+	public Movie movieSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("movies.movieSelectOne", no);
+	}
 }
