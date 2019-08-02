@@ -3,9 +3,8 @@ package com.playus.clim.dao;
 import com.playus.clim.vo.Member;
 
 public interface MembersDAO {
-<<<<<<< HEAD
+	//myPage
 	public Member myPageMemberSelectOne(int memberNo);
-=======
 	//로그인
 	public Member selectLogin(Member member);
 	
@@ -16,5 +15,4 @@ public interface MembersDAO {
 	//이메일 링크를 클릭하여 비밀번호 변경 홈페이지 띄우기
 	public int pwdUpdate(Member member);
 	
->>>>>>> master
 }

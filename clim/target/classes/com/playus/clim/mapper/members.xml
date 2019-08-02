@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
-<<<<<<< HEAD
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
 		select no, email,
@@ -12,7 +11,6 @@
 		from members
 		where no = #{memberNo}
 	</select>
-=======
 
 	<select id="selectLogin" parameterType="Member" resultType="Member">
 		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
@@ -38,5 +36,4 @@
 	where no = #{no}
 	</update>
 	
->>>>>>> master
 </mapper>
