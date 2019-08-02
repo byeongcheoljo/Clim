@@ -2,5 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
+
+	<select id="selectLogin" parameterType="Member" resultType="Member">
+		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
+		FROM members
+		WHERE email = #{email}
+		AND pwd = #{pwd}
+	</select>
+	
+	<update id="UUIDUpdate" parameterType="Member">
+		<selectKey keyProperty="no" order="BEFORE" resultType="int">
+			SELECT no
+			FROM members
+			WHERE email=#{email}
+		</selectKey>
+		update members
+		set UUID = #{uuid}
+		where email = #{email}
+	</update>
+	
+	<update id="pwdUpdate" parameterType="Member">
+	update members
+	set UUID = #{uuid}, pwd = #{pwd}
+	where no = #{no}
+	</update>
 	
 </mapper>
