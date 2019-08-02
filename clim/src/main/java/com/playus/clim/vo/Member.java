@@ -2,6 +2,7 @@ package com.playus.clim.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class Member {
 

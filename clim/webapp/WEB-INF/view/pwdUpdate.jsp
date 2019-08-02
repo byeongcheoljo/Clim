@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 변경</title>
-    <c:import url="/WEB-INF/template/link.jsp"/>
     <link rel="stylesheet" href="/css/pwdUpdate.css">
 </head>
 <body>
@@ -14,15 +13,16 @@
 
 <div id="passwordUpdateBox">
     <h1>비밀번호 변경</h1>
-    <form method="">
-        <input id="pwdUpdate" class="input_signup" type="password"
+    <form method="post" action="/pwdUpdate/reset">
+        <input id="pwd" class="input_pwdFind" type="password"
                placeholder="영어,숫자로 8,12자 입력"
                title="영어,숫자로 8~12자 입력"
                name="pwd"
                maxlength="12"
                required/>
+               <input type="hidden" name="no" value="${no}">
 
-        <input id="pwdConfirm" class="input_signup" type="password"
+        <input id="pwdConfirm" class="input_pwdFind" type="password"
                title="비밀번호 확인"
                placeholder="이전 비밀번호와 동일하게 작성하세요"
                maxlength="12"
@@ -34,9 +34,10 @@
     </form>
 </div>
 
+<script src="/js/jquery.js"></script>
 
 <script>
-    let $pwdUpdate = $("#pwdUpdate");
+    let $pwdUpdate = $("#pwd");
     //pwdUpdateExp 정규표현식
     let pwdUpdateExp = /^[A-Za-z0-9+]{8,12}$/;
 
@@ -61,7 +62,7 @@
     //비밀번호 확인
     $(function(){
         $('#confirm').blur(function(){
-            if($('#pwdUpdate').val() != $('#pwdConfirm').val()){
+            if($('#pwd').val() != $('#pwdConfirm').val()){
                 if($('#pwdConfirm').val()!=''){
                     $(".confirm").text("비밀번호가 일치하지 않습니다. :(").css("color","#F16B6F");
                     $('#pwdConfirm').val('');
@@ -80,9 +81,7 @@
         });
     });
 
-    $("#passwordUpdateBtn").click(function () {
-       location.href="www.naver.com";
-    });
+
 
 
 </script>
