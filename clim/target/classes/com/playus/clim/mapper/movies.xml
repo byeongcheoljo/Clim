@@ -8,5 +8,14 @@
 		FROM movies
 		WHERE title = #{title}
 	</select>
+	<select id="getClimingMovieList" parameterType="int" resultType="Movie">
+	select no,title,runtime,src,poster
+	from movies
+	where no in(select movie_no
+	from bookmarks,
+	(select no,member_no,title 
+	from c_lists) clist
+	where bookmarks.member_no=clist.member_no and clist.no=#{no} and type='C')
+	</select>
 	
 </mapper>
