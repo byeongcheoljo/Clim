@@ -29,4 +29,9 @@ public class SubscribesServiceImpl implements SubscribesService {
 
 		return subscribes;
 	}
+	
+	@Override
+	public boolean subscribes(int memberNo, int userNo) {
+		return true;
+	}
 }

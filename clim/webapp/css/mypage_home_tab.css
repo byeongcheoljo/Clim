@@ -334,11 +334,13 @@ body{
         }
 
         #chartSection #latestPlayList .latest_playlist_box {
-            position: absolute;
+            position: relative;
+            width:0;
             left: 0;
             transition: .3s ease;
             height: 275px;
             background: #231F20;
+            overflow: hidden;
         }
 
         #chartSection #latestPlayList .latest_playlist_card {

@@ -4,12 +4,28 @@ import java.sql.Timestamp;
 
 public class ClimingMovieList {
 
-	
-	private int no, climingNo, movieNo;
+	private int no, climingNo, movieNo, memberNo;
+	private String poster;
 	private Timestamp regdate;
-	
+
 	public ClimingMovieList() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public int getNo() {

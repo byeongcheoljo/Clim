@@ -1,5 +1,8 @@
 package com.playus.clim.service;
 
-public interface ClimingMovieListsService {
+import java.util.List;
+import com.playus.clim.vo.ClimingMovieList;
 
+public interface ClimingMovieListsService {
+	public List<ClimingMovieList> myPageClimingList(int memberNo);
 }

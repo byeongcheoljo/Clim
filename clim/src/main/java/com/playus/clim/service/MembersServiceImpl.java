@@ -1,6 +1,7 @@
 package com.playus.clim.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,21 +12,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAO;
+import com.playus.clim.dao.SubscribesDAO;
 import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Subscribe;
 
 @Service
 public class MembersServiceImpl implements MembersService{
 	
 	@Autowired
 	private MembersDAO membersDAO;
-	
+	@Autowired
+	private SubscribesDAO subscribesDAO;
 	
 	@Override
-	public Map<String, Object> myPageMember(int memberNo) {
+	public Map<String, Object> myPageMember(int memberNo,int loginMember) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member",membersDAO.myPageMemberSelectOne(memberNo));
+		
+		Member member = membersDAO.myPageMemberSelectOne(memberNo);
+		Subscribe subscribe = new Subscribe();
+		subscribe.setFollowing(loginMember);
+		subscribe.setFollower(memberNo);
+			member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
+		System.out.println(member.isSubscribeCheck());
+		map.put("member",member);
 	return map;
 	}
+	
 	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {
