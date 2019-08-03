@@ -12,7 +12,7 @@
 	<select id="subscribesCheck" parameterType="Subscribe" resultType="int">
 		SELECT count(*)
 		FROM subscribes
-		WHERE follower = #{follower} AND following = #{following}
+		WHERE  following = #{following} AND follower = #{follower}
 	</select>
 	
 	<insert id="insert" parameterType="Subscribe">

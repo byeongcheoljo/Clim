@@ -22,7 +22,7 @@ public class SubscribesDAOImpl implements SubscribesDAO {
 
 	@Override
 	public int subscribesCheck(Subscribe subscribe) {
-		return session.selectOne("subscribes.subscribesCheck");
+		return session.selectOne("subscribes.subscribesCheck",subscribe);
 	}
 	
 	@Override

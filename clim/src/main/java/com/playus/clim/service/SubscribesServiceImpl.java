@@ -31,7 +31,22 @@ public class SubscribesServiceImpl implements SubscribesService {
 	}
 	
 	@Override
-	public boolean subscribes(int memberNo, int userNo) {
-		return true;
+	public int subscribes(int memberNo, int userNo) {
+		Subscribe subscribe = new Subscribe();
+		subscribe.setFollowing(memberNo);
+		subscribe.setFollower(userNo);
+		System.out.println(memberNo);
+		System.out.println(userNo);
+		int count = subscribesDAO.subscribesCheck(subscribe);
+		
+		if(count==1) {
+			int result = subscribesDAO.delete(subscribe);
+			System.out.println("delete:"+result);
+		}else {
+			int result = subscribesDAO.insert(subscribe);
+			System.out.println("insert: "+result);
+		}
+		
+		return count;
 	}
 }

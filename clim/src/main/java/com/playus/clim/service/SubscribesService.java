@@ -6,5 +6,5 @@ import com.playus.clim.vo.Subscribe;
 
 public interface SubscribesService {
 	public List<Subscribe> getList(int memberNo);
-	public boolean subscribes(int memberNo,int userNo);
+	public int subscribes(int memberNo,int userNo);
 }

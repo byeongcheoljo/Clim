@@ -1,7 +1,5 @@
 package com.playus.clim.service;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,17 +23,13 @@ public class MembersServiceImpl implements MembersService{
 	private SubscribesDAO subscribesDAO;
 	
 	@Override
-	public Map<String, Object> myPageMember(int memberNo,int loginMember) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
+	public Member myPageMember(int memberNo,int loginMember) {
 		Member member = membersDAO.myPageMemberSelectOne(memberNo);
 		Subscribe subscribe = new Subscribe();
 		subscribe.setFollowing(loginMember);
 		subscribe.setFollower(memberNo);
 			member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
-		System.out.println(member.isSubscribeCheck());
-		map.put("member",member);
-	return map;
+	return member;
 	}
 	
 	//로그인

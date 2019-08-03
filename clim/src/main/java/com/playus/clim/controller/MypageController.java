@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.MembersService;
+import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.ClimingMovieList;
 import com.playus.clim.vo.Member;
 
@@ -24,14 +25,15 @@ public class MypageController {
 	private MembersService membersService;
 	@Autowired
 	private ClimingMovieListsService climingMovieListsService;
+	@Autowired
+	private SubscribesService subscribesService; 
 	
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
 	public String myPage(Model model,@PathVariable int memberNo,HttpSession session) {
 		
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		int loginMemberNo = loginMember.getNo();
-		
-		model.addAllAttributes(membersService.myPageMember(memberNo,loginMemberNo));
+		model.addAttribute("member",membersService.myPageMember(memberNo, loginMemberNo));
 		return "mypage";
 	}
 	
@@ -39,5 +41,14 @@ public class MypageController {
 	@ResponseBody
 	public List<ClimingMovieList> myPageClimingMovieList(@PathVariable int memberNo){
 		return climingMovieListsService.myPageClimingList(memberNo);
+	}
+	
+	@RequestMapping(value="/ajax/user/following/{loginMember}/follower/{memberNo}",method= {RequestMethod.POST,RequestMethod.DELETE})
+	@ResponseBody
+	public String subscribes(@PathVariable int loginMember,@PathVariable int memberNo) {
+		int count = subscribesService.subscribes(loginMember, memberNo); 
+		return "{\"count\":"+(count == 0)+"}";
+		
+		
 	}
 }

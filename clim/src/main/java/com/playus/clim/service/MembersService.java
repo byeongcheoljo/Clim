@@ -18,5 +18,5 @@ public interface MembersService {
 	public Map<String, Object> pwdUpdate(Member member);
 	
 	//myPage
-	public Map<String, Object> myPageMember(int memberNo,int loginMember);
+	public Member myPageMember(int memberNo,int loginMember);
 }

@@ -12,7 +12,6 @@
 <link href='/css/calendar/packages/daygrid/main.css' rel='stylesheet' />
 <link href='/css/calendar/packages/core/main.css' rel='stylesheet' />
 </head>
-
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
 	<main id="content">
@@ -38,10 +37,10 @@
 			</div>
 			<div class="userInfo_inner">누적 시청자 수 : ${member.climgCnt }명</div>
 			<c:if test="${member.no!=loginMember.no }">
-				<button id="subscribeBtn"
+				<button data-no="${member.no}" id="subscribeBtn"
 					class="userInfo_inner small_card ${member.subscribeCheck?'selected_btn':' '}">
 					<span>${member.subscribeCheck?"구독중":"구독" }</span> <i
-						class="far fa-bell"></i>
+						class="${member.subscribeCheck?"fas":"far" } fa-bell"></i>
 				</button>
 			</c:if>
 		</div>
@@ -135,7 +134,7 @@
 
 	<ul id="chartSection">
 		<li id="latestPlayList">
-			<ul class="latest_playlist_box">	
+			<ul class="latest_playlist_box">
 
 			</ul> <!-- //recommend_box -->
 			<div class="move_btn latest_playlist_move_prev">
@@ -219,8 +218,6 @@
 		let endDay = null;
 		let title = null;
 		let today = moment().format("YYYY-MM-DD");
-
-		let subscribeFlag = 0;
 
 		let $title_card = $(".title_card");
 		let $contentCard = $(".content_card");
@@ -344,24 +341,44 @@
 			});
 			$(".detail_form").fadeIn(500);
 		});//돌아가기 버튼
-
-		$("#subscribeBtn").on("click", function() {
-			//alert("선택");
-			const $i = $(this).find("i");
+		let $subscribeBtn = $("#subscribeBtn span");
+		let subscribeFlag = 0;
+		
+		$("#subscribeBtn").on("click",function() {
+		let name = $(this).text().trim();
+		console.log(name);
+		let no = this.dataset.no;
+		const $i = $(this).find("i");
+		
+		let type = "POST";
+		if (name == "구독중") {
+			type = "DELETE";
+		}
+		console.log(type);
+	$.ajax({
+		url : "/ajax/user/following/${loginMember.no}/follower/${member.no}",
+		type : type,
+		dataType : "json",
+		error : function() {
+			alert("에러");
+		},
+		success : function(json) {
 			if (subscribeFlag == 0) {
 				$i.removeClass("far");
 				$i.addClass("fas");
-				$(this).find('span').text("구독중");
-				$(this).addClass('selected_btn');
+				$subscribeBtn.text("구독중");
+				$("#subscribeBtn").addClass('selected_btn');
 				subscribeFlag = 1;
 			} else if (subscribeFlag == 1) {
 				$i.removeClass("fas");
 				$i.addClass("far");
-				$(this).find('span').text("구독");
-				$(this).removeClass('selected_btn');
+				$subscribeBtn.text("구독");
+				$("#subscribeBtn").removeClass('selected_btn');
 				subscribeFlag = 0;
 			}
-		})//구독버튼 클릭하기
+			}//success end
+		});//ajax end		
+	});//구독버튼 클릭하기
 
 		/* 공지사항 윤달 계산 */
 		let $startYear = $("#startYear");
@@ -454,20 +471,22 @@
 		let splitLength = 0;
 		let $latest_playlist_card = $(".latest_playlist_card");
 		const climingListTmp = _.template($("#climingListTmp").html());
-		let data = [];		
-		
+		let data = [];
+
 		$.ajax({
-			url:"/ajax/user/${member.no}/climing",
-			type:"GET",
-			dataType:"json",
-			error:function(){
+			url : "/ajax/user/${member.no}/climing",
+			type : "GET",
+			dataType : "json",
+			error : function() {
 				alert("climingMovieList 에러");
 			},
-			success:function(json){
+			success : function(json) {
 				console.log(json);
 				data = json;
-				
-				$latest_playlist_box.append(climingListTmp({"movies":json}));
+
+				$latest_playlist_box.append(climingListTmp({
+					"movies" : json
+				}));
 				resizeBox();
 				console.log(data);
 			}
@@ -478,7 +497,6 @@
 			$latest_playlist_box.css("width", width + "px");
 			console.log(width);
 		}
-
 
 		// const $latest_playlist_card = $(".latest_playlist_card");
 		const $latest_playlist_move_prev = $(".latest_playlist_move_prev");
@@ -534,6 +552,7 @@
 				let length = data.length;
 				let splitWord = 0;
 				let comparePx = 0;
+				console.log(length);
 
 				if (length <= 5) {
 					// 자주보는 영화가 5개 이하일때
