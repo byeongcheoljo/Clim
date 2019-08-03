@@ -75,7 +75,7 @@
                                 <div><img src="/poster${climing_movie.poster}">
                                     <span>${climing_movie.title}</span>
                                     <source type="video/mp4" src="/video/loop.mp4" />
-                                    <div class="garbage"><i class="fas fa-trash-alt"></i></div>
+                                    <div class="garbage"><input hidden value="${climing_movie.no}"><i class="fas fa-trash-alt"></i></div>
                                 </div>
                                 <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
                                 <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
@@ -311,12 +311,20 @@
             });
 
             $(".streamingDetail_movie .fa-trash-alt").click(function() {
+            	const movie_no=$(this).parent().find('input').val();
+            	/*$.ajax({
+            		url:"/ajax/delete/ClimingList",
+            		data:{}
+            	});*/
                 $(this).parents("li").remove();
             });
 
             // 쓰레기통 클릭하면 영화 삭제
             $streamingDetailMovieList.on("click", ".streamingDetail_movie .fa-trash-alt", function() {
-                $(this).parents("li").remove();
+            	const movie_no=$(this).parent().find('input').val();
+            	alert("하이");
+            	$(this).parents("li").remove();
+            	return false;
             });
 
             // 영화 목록에 아래 버튼을 클릭시 스왑
@@ -477,6 +485,9 @@
             	var room_no =  decodeURIComponent(location.href);
 				room_no=room_no.split('room/');
 				room_no= room_no[1];
+				const title=$(this).text();
+				const img = $(this).find('img').attr("src");
+				const source = $(this).find('#source').val();
 				const movie_no=$(this).find('#no').val();
             $.ajax({
             	url:"/ajax/addClimingList",
@@ -486,10 +497,10 @@
             	},
             	success:function(){
             		$streamingDetailMovieList.append(movieAddPlayListTmp({
-                        "title": $(this).text(),
-                        "img": $(this).find('img').attr("src"),
-                        "source":$(this).find('#source').val(),
-                        "no":$(this).find('#no').val()
+                        "title": title,
+                        "img": img,
+                        "source":source,
+                        "no":movie_no
                     }));
 
                     $("#streamingDetailTitleList").hide();

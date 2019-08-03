@@ -5,6 +5,6 @@
 	
 	<insert id="climer" parameterType="Report">
 	insert into reports
-	values(reports_seq.nextval,'C', #{reporterNo},(select member_no from c_list where no= #{postNo}), #{postNo}, #{contents},systimestamp,null);
+	values(reports_seq.nextval,'C', #{reporterNo},(select member_no from c_lists where no= #{postNo}), #{postNo}, #{contents},systimestamp,null)
 	</insert>
 </mapper>
