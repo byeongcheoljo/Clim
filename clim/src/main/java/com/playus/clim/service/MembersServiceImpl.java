@@ -29,4 +29,11 @@ public class MembersServiceImpl implements MembersService{
 		// TODO Auto-generated method stub
 		return memberDaoImpl.insertMember(member);
 	}
+	
+	
+	@Override
+	public int updateInfo(Member member) {
+		// TODO Auto-generated method stub
+		return memberDaoImpl.updateInfo(member);
+	}
 }

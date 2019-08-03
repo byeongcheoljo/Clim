@@ -24,13 +24,14 @@
 	<div id="myPageInformationWrap">
 
 
-		<form id="information" action="">
+		<form id="information" action="/user" method="post">
+		<input type="hidden" name="no" value="${member.no}">
 			<h2>개인정보 수정</h2>
 			<p>
-				<strong>e-mail</strong> gildong123@gmail.com
+				<strong>e-mail</strong> ${member.email}
 			</p>
 			<p>
-				<strong>닉네임</strong> 쾌걸 홍길동
+				<strong>닉네임</strong> ${member.nickname}
 			</p>
 			<p>
 				<strong>비밀번호</strong> <input id="newPwd" type="password"
@@ -42,9 +43,11 @@
 					class="pwd" name="pwdCheck" placeholder="위와 동일한 비밀번호를 입력해주세요." />
 			</p>
 			<div class="pwd_check msg"></div>
+		
+		<button class="information_btn change" type="submit">변경</button>
+		<button class="information_btn cancel" type="reset">취소</button>
 		</form>
-		<button class="information_btn change">변경</button>
-		<button class="information_btn cancel">취소</button>
+
 	</div>
 	<script>
 		$("#headerNavMypage li").click(function() {
@@ -64,12 +67,17 @@
 		const pwdExp = /^[\w]{8,}$/;
 
 		$information.submit(function() {
-			if (!testPw()) {
+		 	if (!testPw()) {
+		 		//console.log(!testPw())
 				return false;
 			}
 			if (!testPwCheck()) {
+				console.log(!testPwCheck())
 				return false;
 			}
+			
+			
+			
 		});
 
 		function testPw() {
@@ -96,11 +104,16 @@
 				$newPwdCheckMsg.removeClass("ok").text("비밀번호가 일치하지않습니다.");
 			} else {
 				$newPwdCheckMsg.addClass("ok").text("비밀번호가 일치합니다");
+				
+				
 			}
 		}
 
 		$newPwd.keyup(testPw);
 		$newPwdCheck.keyup(testPwCheck);
+		
+	
+		
 	</script>
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class Member {
 
-	
+
 	private int no;
 	private String email, nickname, pwd, uuid;
 	private char gender;

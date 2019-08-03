@@ -8,4 +8,6 @@ public interface MembersService {
 	public int getCheckNickname(String nickname);
 	public int insertMember(Member member);
 	
+	public int updateInfo(Member member);
+	
 }

@@ -9,4 +9,6 @@ public interface MembersDAO {
 	
 	public int insertMember(Member member);
 	
+	public int updateInfo(Member member);
+	
 }

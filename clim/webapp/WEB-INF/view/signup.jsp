@@ -16,7 +16,7 @@
         <a href="index.html"><img src="/img/clim.png"/></a>
     </div>
     <div id="signupWrap">
-        <form method="post" action="/join">
+        <form method="post" action="/join" id="signUpForm">
             <fieldset>
                 <legend class="screen_out">회원가입폼</legend>
                 <div class="signup_row">
@@ -26,7 +26,7 @@
                            placeholder="이메일를 입력하세요"
                            title="영어,숫자로 4~20자 입력"
                            required/>
-                    <button class="Btn" id="signupIdOverlapBtn">중복확인</button>
+                    <button class="Btn" id="signupIdOverlapBtn" type="button">중복확인</button>
                     <div class="msg_signup id">이메일을 입력해주세요</div>
                 </div><!--//row-->
 
@@ -57,7 +57,7 @@
                            placeholder="6자 내로 한글,영어,숫자 입력"
                            title="6자 내로 한글,영어,숫자 입력"
                            name="nickname" maxlength="6"/>
-                    <button class="Btn" id="signupNicknameOverlap">중복확인</button>
+                    <button class="Btn" id="signupNicknameOverlap" type="button">중복확인</button>
                     <div class="msg_signup nickname ok"></div>
                 </div><!--//row-->
 
@@ -83,11 +83,14 @@
                     <select name="date"id="signupDate" class="input_signup select">
                     </select>
                 </div>
-
+				<button class="label_signup " id="signupBtn" type="submit">가입하기</button>
             </fieldset>
+            
         </form>
+        
+        
     </div><!--signupWrap-->
-    <button class="label_signup " id="signupBtn">가입하기</button>
+    
 </main><!--main-->
 
 <script src="/js/moment-with-locales.js"></script>
@@ -331,7 +334,7 @@
         e.preventDefault();
     });
 
-
+	
 
 </script>
 

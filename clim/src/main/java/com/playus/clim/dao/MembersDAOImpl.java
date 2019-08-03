@@ -28,6 +28,12 @@ public class MembersDAOImpl implements MembersDAO{
 	@Override
 	public int insertMember(Member member) {
 		// TODO Auto-generated method stub
-		return session.insert("members.insert",member);
+		return session.insert("members.insertMember",member);
+	}
+	
+	@Override
+	public int updateInfo(Member member) {
+		// TODO Auto-generated method stub
+		return session.delete("members.updateInfo", member);
 	}
 }
