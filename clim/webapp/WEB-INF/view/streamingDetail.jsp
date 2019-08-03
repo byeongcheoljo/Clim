@@ -22,12 +22,12 @@
                 <div id="streamingReportName">${leader.nickname } 신고하기</div>
                 <button id="streamingCloseBtn"><i class="fas fa-times-circle"></i></button>
 
-                <form id="reportForm" action="tet.do" method="post">
-                    <fieldset>
+                <div id="reportForm">
+                    
                     <textarea id="streamingReportContent"></textarea>
                     <button id="streamingReportBtn">신고</button>
-                    </fieldset>
-                </form>
+                    
+                </div>
             </div>
         </div>
         <div id="streamingDetailSlideBar">
@@ -180,15 +180,16 @@
 
 <script type="text/template" id="movieAddPlayListTmp">
 
-        <li class="streamingDetail_movie">
-        <div><img src="/</@=img@>">
-            <span><@=title@></span>
-            <div class="garbage"> <i class="fas fa-trash-alt"></i> </div>
-        </div>
-        <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
-        <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
-        </li>
-
+     
+<li class="streamingDetail_movie">
+                                <div><img src="/poster<@=img@>">
+                                    <span><@=title@></span>
+                                    <source type="video/mp4" src="/video/loop.mp4" />
+                                    <div class="garbage"><i class="fas fa-trash-alt"></i></div>
+                                </div>
+                                <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
+                                <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
+                            </li>
 
 </script>
 
@@ -217,7 +218,11 @@
 <script type="text/template" id="SearchListTmp">
     <@ _.each(json, function(data){ @>
 
-    <li class="movie_title"><img src="/<@=data.img@>"><@=data.title@></li>
+    <li class="movie_title"><img src="/<@=data.poster@>"><span><@=data.title@></span>
+	<input id="source" hidden value="<@=data.src@>">
+	<input id="no" hidden value="<@=data.no@>">
+	
+</li>
     <@})@>
 
 
@@ -306,7 +311,6 @@
             });
 
             $(".streamingDetail_movie .fa-trash-alt").click(function() {
-                alert("delete 구현해야해")
                 $(this).parents("li").remove();
             });
 
@@ -369,6 +373,23 @@
             });
 
             $("#streamingReportBtn").click(function (e) {
+            	var room_no =  decodeURIComponent(location.href);
+				room_no=room_no.split('room/');
+				room_no= room_no[1];
+            	var content=$("#streamingReportContent").val()
+            	$.ajax({
+            		url:'/ajax/report/climer',
+            		data:{roomNo:room_no,userNo:2,content:content},
+            		
+            		error:function(){
+            			
+            		},
+            		success:function(){
+            			alert("신고되었습니다.");
+            		}
+
+            	});
+            	
                 e.stopPropagation();
             });
 
@@ -411,19 +432,21 @@
 
                 if (searchTitle.length == 0) {
                     $("#streamingDetailTitleList").hide();
+                    $("#streamingDetailTitleList ul").empty();
                     return false;
                 }
                 $("#streamingDetailTitleList").show();
 
                 $.ajax({
-                    url: "/ajax/movieList.json",
+                    url: "/ajax/climingSearch/"+searchTitle,
                     dataType: "json",
                     error: function() {
                         alert("movieList 서버 점검.")
                     },
                     success: function(json) {
                         console.log(json);
-                        console.log(json[0].title)
+                        console.log(json[0].title);
+                        
                        $("#streamingDetailTitleList ul").empty();
 
                         $("#streamingDetailTitleList ul").append(SearchListTmp({
@@ -451,15 +474,29 @@
 
             //영화 제목을 검색 후 영화 제목을 클릭하면 리스트에 영화가 자동으로 뜸
             $("#streamingDetailTitleList ul").on("click", ".movie_title", function() {
-                console.log($(this).text());
-                console.log($(this).find('img').attr("src"));
-                $streamingDetailMovieList.append(movieAddPlayListTmp({
-                    "title": $(this).text(),
-                    "img": $(this).find('img').attr("src")
-                }));
+            	var room_no =  decodeURIComponent(location.href);
+				room_no=room_no.split('room/');
+				room_no= room_no[1];
+				const movie_no=$(this).find('#no').val();
+            $.ajax({
+            	url:"/ajax/addClimingList",
+            	data:{roomNo:room_no,movieNo:movie_no},
+            	error:function(){
+            		alert("서버점검중");
+            	},
+            	success:function(){
+            		$streamingDetailMovieList.append(movieAddPlayListTmp({
+                        "title": $(this).text(),
+                        "img": $(this).find('img').attr("src"),
+                        "source":$(this).find('#source').val(),
+                        "no":$(this).find('#no').val()
+                    }));
 
-                $("#streamingDetailTitleList").hide();
-                $("#streamingDetailTitleSearch").val(" ").focus();
+                    $("#streamingDetailTitleList").hide();
+                    $("#streamingDetailTitleSearch").val(" ").focus();
+                    
+            	}
+            });
                 
             });
 

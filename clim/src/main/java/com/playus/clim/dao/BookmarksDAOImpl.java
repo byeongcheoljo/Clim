@@ -18,5 +18,10 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 	public List<Bookmark> mybookmarkListForCliming(int memberNo) {
 		return session.selectList("bookmarks.mybookmarkListForCliming", memberNo);
 	}
+	@Override
+	public void insertClimingList(Bookmark bookmark) {
+		// TODO Auto-generated method stub
+		session.insert("bookmarks.insertClimingList", bookmark);
+	}
 
 }

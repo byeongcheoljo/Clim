@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
+import com.playus.clim.service.BookmarksService;
+import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.MoviesService;
+import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
 import com.playus.clim.vo.Movie;
 
@@ -27,6 +30,10 @@ public class AjaxController {
 	private ReviewsService reviewsService;
 	@Autowired
 	private MoviesService moviesService;
+	@Autowired
+	private ReportsService reportService;
+	@Autowired
+	private BookmarksService bookmarkService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -50,6 +57,16 @@ public class AjaxController {
 	public List<Movie> getSearchResultForcliming(@PathVariable String title){
 		
 		return moviesService.getSearchResultForcliming(title);
+	}
+	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
+	public void reportClimer(int roomNo,int userNo,String content){
+		
+		reportService.reportClimer(roomNo,userNo,content);
+	}
+	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
+	public void addClimingList(int roomNo,int movieNo){
+		
+		bookmarkService.addClimingList(roomNo,movieNo);
 	}
 
 }

@@ -11,4 +11,9 @@
 		AND b.member_no = #{memberNo}
 	</select>
 	
+	<insert id="insertClimingList" parameterType="Bookmark">
+	insert into bookmarks
+	values(bookmarks_seq.nextval,(select member_no from c_list where no= #{memberNo}), #{movieNo},systimestamp,'C');
+	
+	</insert>
 </mapper>
