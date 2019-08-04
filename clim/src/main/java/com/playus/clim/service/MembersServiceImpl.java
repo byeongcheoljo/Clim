@@ -1,12 +1,15 @@
 package com.playus.clim.service;
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAOImpl;
 =======
 import java.util.HashMap;
+>>>>>>> master
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,22 +20,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAO;
+<<<<<<< HEAD
+import com.playus.clim.dao.SubscribesDAO;
+=======
+>>>>>>> master
 >>>>>>> master
 import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Subscribe;
 
 @Service
 public class MembersServiceImpl implements MembersService{
 	
 	@Autowired
 	private MembersDAO membersDAO;
-	
+	@Autowired
+	private SubscribesDAO subscribesDAO;
 	
 	@Override
-	public Map<String, Object> myPageMember(int memberNo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member",membersDAO.myPageMemberSelectOne(memberNo));
-	return map;
+	public Member myPageMember(int memberNo,int loginMember) {
+		Member member = membersDAO.myPageMemberSelectOne(memberNo);
+		Subscribe subscribe = new Subscribe();
+		subscribe.setFollowing(loginMember);
+		subscribe.setFollower(memberNo);
+		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
+	return member;
 	}
+	
 	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {

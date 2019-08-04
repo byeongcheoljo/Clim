@@ -29,6 +29,10 @@ public interface MembersService {
 	public Map<String, Object> pwdUpdate(Member member);
 	
 	//myPage
+<<<<<<< HEAD
+	public Member myPageMember(int memberNo,int loginMember);
+=======
 	public Map<String, Object> myPageMember(int memberNo);
+>>>>>>> master
 >>>>>>> master
 }

@@ -8,6 +8,8 @@ import com.playus.clim.vo.Bookmark;
 
 @Service
 public class BookmarksServiceImpl implements BookmarksService{
+<<<<<<< HEAD
+=======
 	@Autowired
 	private BookmarksDAO bookmarksDAO;
 	
@@ -21,5 +23,6 @@ public class BookmarksServiceImpl implements BookmarksService{
 		bookmarksDAO.insertClimingList(bookmark);
 		
 	}
+>>>>>>> master
 
 }

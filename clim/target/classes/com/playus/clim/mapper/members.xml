@@ -22,8 +22,8 @@
 		resultType="Member">
 		select no, email,
 		(select count(*) from subscribes where follower = #{memberNo}) followerCnt,
-		(select count(*) from c_logs c where member_no = #{memberNo} AND type = 'I') climgCnt,
-		nickname, gender, birth_date birthDate, pwd, regdate
+		(select count(*) from c_logs c where member_no = #{memberNo} AND open_time is not null) climgCnt,
+		nickname, regdate
 		from members
 		where no = #{memberNo}
 	</select>
