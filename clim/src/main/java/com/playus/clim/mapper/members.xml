@@ -35,22 +35,18 @@
 		AND pwd = #{pwd}
 	</select>
 	
-<<<<<<< HEAD
 	<select id="checkId" parameterType="string" resultType="int">
 	select count(*)
 	from members
 	where email = #{email}
 	
 	</select>
-	
-	
 	<select id="checkNickname" parameterType="string" resultType="int">
 	select count(*)
 	from members
 	where nickname = #{nickname}
 	
 	</select>
-	
 	
 	<insert id="insertMember" parameterType="Member">
 	<selectKey order="BEFORE" keyProperty="no" resultType="int">
@@ -70,8 +66,6 @@
 	
 	</update>
 	
-	
-=======
 	<update id="UUIDUpdate" parameterType="Member">
 		<selectKey keyProperty="no" order="BEFORE" resultType="int">
 			SELECT no
@@ -88,5 +82,4 @@
 	set UUID = #{uuid}, pwd = #{pwd}
 	where no = #{no}
 	</update>
->>>>>>> master
 </mapper>

@@ -1,30 +1,18 @@
 package com.playus.clim.service;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAOImpl;
-=======
 import java.util.HashMap;
->>>>>>> master
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.playus.clim.dao.MembersDAO;
-<<<<<<< HEAD
 import com.playus.clim.dao.SubscribesDAO;
-=======
->>>>>>> master
->>>>>>> master
 import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Subscribe;
 
@@ -35,16 +23,10 @@ public class MembersServiceImpl implements MembersService{
 	private MembersDAO membersDAO;
 	@Autowired
 	private SubscribesDAO subscribesDAO;
+	@Autowired
+	private MembersDAOImpl memberDaoImpl;
 	
-	@Override
-	public Member myPageMember(int memberNo,int loginMember) {
-		Member member = membersDAO.myPageMemberSelectOne(memberNo);
-		Subscribe subscribe = new Subscribe();
-		subscribe.setFollowing(loginMember);
-		subscribe.setFollower(memberNo);
-		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
-	return member;
-	}
+	
 	
 	//로그인
 	@Override
@@ -55,27 +37,6 @@ public class MembersServiceImpl implements MembersService{
 
 		System.out.println("서비스" + loginMember);
 
-<<<<<<< HEAD
-	@Autowired
-	private MembersDAOImpl memberDaoImpl;
-	
-	@Override
-	public int getCheckId(String email) {
-		// TODO Auto-generated method stub
-		return memberDaoImpl.checkId(email);
-	}
-	
-	@Override
-	public int getCheckNickname(String nickname) {
-		// TODO Auto-generated method stub
-		return memberDaoImpl.checkNickname(nickname);
-	}
-	
-	@Override
-	public int insertMember(Member member) {
-		// TODO Auto-generated method stub
-		return memberDaoImpl.insertMember(member);
-=======
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
 		if (loginMember != null && loginMember.getUuid()==null) {
@@ -88,8 +49,17 @@ public class MembersServiceImpl implements MembersService{
 	}
 	
 	@Override
+	public int getCheckNickname(String nickname) {
+		return memberDaoImpl.checkNickname(nickname);
+	}
+	
+	@Override
+	public int insertMember(Member member) {
+		return memberDaoImpl.insertMember(member);
+	}
+	
+	@Override
 	public Map<String, Object> UUIDUpdate(Member member) {
-
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
 		UUID uuid = UUID.randomUUID();
@@ -102,17 +72,14 @@ public class MembersServiceImpl implements MembersService{
 		map.put("member",member);
 		
 		return map;
->>>>>>> master
 	}
 	
 	
 	@Override
-<<<<<<< HEAD
 	public int updateInfo(Member member) {
 		// TODO Auto-generated method stub
 		return memberDaoImpl.updateInfo(member);
 	}
-=======
 	public Map<String, Object> pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
@@ -127,7 +94,19 @@ public class MembersServiceImpl implements MembersService{
 		
 		return map;
 	}
+	@Override
+	public int getCheckId(String email) {
+		return membersDAO.checkId(email);
+	}
 	
->>>>>>> master
+	@Override
+	public Member myPageMember(int memberNo,int loginMember) {
+		Member member = membersDAO.myPageMemberSelectOne(memberNo);
+		Subscribe subscribe = new Subscribe();
+		subscribe.setFollowing(loginMember);
+		subscribe.setFollower(memberNo);
+		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
+	return member;
+	}
 }
 
