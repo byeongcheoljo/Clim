@@ -33,13 +33,11 @@ public class AjaxController {
 	@Autowired
 	private MoviesService moviesService;
 	@Autowired
-<<<<<<< HEAD
 	private ReportsService reportService;
 	@Autowired
 	private BookmarksService bookmarkService;
-=======
+	@Autowired
 	private EventsService eventsService;
->>>>>>> master
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -64,7 +62,7 @@ public class AjaxController {
 		
 		return moviesService.getSearchResultForcliming(title);
 	}
-<<<<<<< HEAD
+
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
@@ -74,12 +72,12 @@ public class AjaxController {
 	public void addClimingList(int roomNo,int movieNo){
 		
 		bookmarkService.addClimingList(roomNo,movieNo);
-=======
-	
+
+	}
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
 	public List<Event> eventsList(int memberNo) {
 		return eventsService.getList(memberNo);
->>>>>>> master
+
 	}
 
 }
