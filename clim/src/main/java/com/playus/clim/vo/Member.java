@@ -6,7 +6,12 @@ import java.util.UUID;
 
 public class Member {
 
+<<<<<<< HEAD
 	private int no, followerCnt, climgCnt;
+=======
+
+	private int no;
+>>>>>>> master
 	private String email, nickname, pwd, uuid;
 	private char gender;
 	private Date birthDate;
