@@ -13,9 +13,11 @@ import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
+import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
 
 @RestController
@@ -31,9 +33,13 @@ public class AjaxController {
 	@Autowired
 	private MoviesService moviesService;
 	@Autowired
+<<<<<<< HEAD
 	private ReportsService reportService;
 	@Autowired
 	private BookmarksService bookmarkService;
+=======
+	private EventsService eventsService;
+>>>>>>> master
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -58,6 +64,7 @@ public class AjaxController {
 		
 		return moviesService.getSearchResultForcliming(title);
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
@@ -67,6 +74,12 @@ public class AjaxController {
 	public void addClimingList(int roomNo,int movieNo){
 		
 		bookmarkService.addClimingList(roomNo,movieNo);
+=======
+	
+	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
+	public List<Event> eventsList(int memberNo) {
+		return eventsService.getList(memberNo);
+>>>>>>> master
 	}
 
 }

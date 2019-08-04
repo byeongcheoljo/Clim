@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: 최지은
+=======
+Built-By: user
+>>>>>>> master
 Build-Jdk: 1.8.0_201-1-ojdkbuild
 Created-By: Maven Integration for Eclipse
 

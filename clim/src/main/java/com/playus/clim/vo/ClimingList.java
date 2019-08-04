@@ -6,10 +6,26 @@ public class ClimingList {
 
 	private int no, memberNo;
 	private String title;
-	private Timestamp regdate;
+	private Timestamp openTime, closeTime;
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Timestamp getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(Timestamp openTime) {
+		this.openTime = openTime;
+	}
+
+	public Timestamp getCloseTime() {
+		return closeTime;
+	}
+
+	public void setCloseTime(Timestamp closeTime) {
+		this.closeTime = closeTime;
 	}
 
 	public int getNo() {
@@ -34,14 +50,6 @@ public class ClimingList {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public Timestamp getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.playus.clim.service;
 
-public interface EventsService {
+import java.util.List;
 
+import com.playus.clim.vo.Event;
+
+public interface EventsService {
+	public List<Event> getList(int memberNo);
 }
