@@ -8,7 +8,7 @@ import com.playus.clim.vo.Member;
 
 @Repository
 public class MembersDAOImpl implements MembersDAO{
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private SqlSession session;
 	

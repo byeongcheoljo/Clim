@@ -14,6 +14,7 @@ import com.playus.clim.vo.Member;
 @Service
 public class BookmarksServiceImpl implements BookmarksService{
 	
+	/* 0802 홍성표 */
 	@Autowired
 	private BookmarksDAO bookmarksDAO;
 

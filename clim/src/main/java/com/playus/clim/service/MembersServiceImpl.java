@@ -8,7 +8,7 @@ import com.playus.clim.vo.Member;
 
 @Service
 public class MembersServiceImpl implements MembersService{
-	
+	/* 0802 홍성표 */
 	@Autowired
 	private MembersDAO membersDAO;
 	

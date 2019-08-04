@@ -366,8 +366,6 @@
         $(this).addClass("category_on")
     });
 
-
-
     //비밀번호 찾기 클릭시 팝업 출력
     $("#findPwdPopup").click(function () {
        $("#headerSigninPopupBg").css("display","none");

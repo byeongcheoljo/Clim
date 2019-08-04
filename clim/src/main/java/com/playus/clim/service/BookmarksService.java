@@ -8,6 +8,7 @@ import com.playus.clim.vo.Bookmark;
 
 public interface BookmarksService {
 	
+	/* 0802 홍성표 */
 	public List<Bookmark> getmyBookmarkListForCliming(HttpSession session);
 	public int addBookmarkOfCliming(Bookmark bookmark);
 	public int removeBookmarkOfCliming(int no);

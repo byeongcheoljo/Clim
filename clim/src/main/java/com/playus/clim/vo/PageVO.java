@@ -1,7 +1,7 @@
 package com.playus.clim.vo;
 
 public class PageVO {
-	
+	/* 0803 홍성표 memberNo 추가 */
 	private int start, end, no, memberNo;
 	
 	public PageVO() {

@@ -329,7 +329,6 @@
     	
 		mywriteContent();
     });
-    
     $mywriteReplyBox.on("click",".paginate a",function(e) {
 		e.preventDefault();
 		

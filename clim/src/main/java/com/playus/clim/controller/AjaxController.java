@@ -22,7 +22,7 @@ import com.playus.clim.vo.Movie;
 @RestController
 @RequestMapping(value = "/ajax")
 public class AjaxController {
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private BoardsService boardsService;
 	@Autowired
@@ -73,7 +73,6 @@ public class AjaxController {
 		}
 		
 	}
-	
 	@RequestMapping(value="/bookmarkForCliming/{bookNo}", method=RequestMethod.DELETE)
 	public String removeBookmarkOfCliming(@PathVariable int bookNo) {
 		int result = bookmarksService.removeBookmarkOfCliming(bookNo);

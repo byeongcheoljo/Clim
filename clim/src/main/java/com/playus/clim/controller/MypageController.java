@@ -11,7 +11,7 @@ import com.playus.clim.service.MembersService;
 
 @Controller
 public class MypageController {
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private MembersService membersService;
 	
