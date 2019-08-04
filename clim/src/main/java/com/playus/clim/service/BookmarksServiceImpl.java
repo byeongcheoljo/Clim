@@ -8,11 +8,8 @@ import com.playus.clim.vo.Bookmark;
 
 @Service
 public class BookmarksServiceImpl implements BookmarksService{
-<<<<<<< HEAD
-=======
 	@Autowired
 	private BookmarksDAO bookmarksDAO;
-	
 	
 	@Override
 	public void addClimingList(int roomNo, int movieNo) {
@@ -23,6 +20,5 @@ public class BookmarksServiceImpl implements BookmarksService{
 		bookmarksDAO.insertClimingList(bookmark);
 		
 	}
->>>>>>> master
 
 }

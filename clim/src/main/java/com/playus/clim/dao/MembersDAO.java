@@ -1,17 +1,6 @@
 package com.playus.clim.dao;
 
 import com.playus.clim.vo.Member;
-<<<<<<< HEAD
-
-public interface MembersDAO {
-
-	public int checkId(String email);
-	public int checkNickname(String nickname);
-	
-	public int insertMember(Member member);
-	
-	public int updateInfo(Member member);
-=======
 
 public interface MembersDAO {
 	//myPage
@@ -25,6 +14,11 @@ public interface MembersDAO {
 	
 	//이메일 링크를 클릭하여 비밀번호 변경 홈페이지 띄우기
 	public int pwdUpdate(Member member);
->>>>>>> master
 	
+	public int checkId(String email);
+	public int checkNickname(String nickname);
+	
+	public int insertMember(Member member);
+	
+	public int updateInfo(Member member);
 }

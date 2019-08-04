@@ -1,6 +1,6 @@
 package com.playus.clim.controller;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,8 @@ import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
-<<<<<<< HEAD
 import com.playus.clim.service.MembersService;
-=======
 import com.playus.clim.service.EventsService;
->>>>>>> master
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
@@ -70,7 +67,6 @@ public class AjaxController {
 		return moviesService.getSearchResultForcliming(title);
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
 	public int getCheckId(String email) {
 		
@@ -83,8 +79,6 @@ public class AjaxController {
 		
 		return membersService.getCheckNickname(nickname);
 	}
-	
-=======
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
@@ -102,5 +96,4 @@ public class AjaxController {
 
 	}
 
->>>>>>> master
 }

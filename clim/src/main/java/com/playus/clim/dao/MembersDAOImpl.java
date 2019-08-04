@@ -1,6 +1,6 @@
 package com.playus.clim.dao;
 
-import org.apache.ibatis.session.SqlSession;  
+import org.apache.ibatis.session.SqlSession;   
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +11,6 @@ public class MembersDAOImpl implements MembersDAO{
 	
 	@Autowired
 	private SqlSession session;
-<<<<<<< HEAD
-
 	
 	@Override
 	public int checkId(String email) {
@@ -36,7 +34,7 @@ public class MembersDAOImpl implements MembersDAO{
 	public int updateInfo(Member member) {
 		// TODO Auto-generated method stub
 		return session.delete("members.updateInfo", member);
-=======
+	}
 	@Override
 	public Member myPageMemberSelectOne(int memberNo) {
 		return session.selectOne("members.myPageMemberSelectOne",memberNo);
@@ -57,6 +55,5 @@ public class MembersDAOImpl implements MembersDAO{
 	public int pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		return session.update("members.pwdUpdate", member);
->>>>>>> master
 	}
 }
