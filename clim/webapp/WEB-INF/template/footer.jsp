@@ -21,6 +21,14 @@
             <li><a href="">고객센터</a></li>
         </ul>
     </div><!--//footerPolicy -->
-    <address>&copy; 2019 <a href="">jbp.com</a></address>
+    <address>&copy; 2019 <a href="">clim.com</a></address>
 </footer><!--// footer -->
-    
+<script src="/js/sockjs.min.js"></script>
+<script src="/js/stomp.min.js"></script>
+<script>
+	let stompClient = null;
+	function connect(callback){
+		let scoket = new SockJS('/clim');
+		stompClient = Stomp.over(socket);
+	}
+</script>
