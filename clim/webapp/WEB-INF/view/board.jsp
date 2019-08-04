@@ -354,10 +354,6 @@
             $("#reportContentCounter").html("(300 / 최대 300자)");
         }
     });
-
-
-
-
 </script>
 </body>
 </html>

@@ -4,18 +4,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>Clim |</title>
 <c:import url="/WEB-INF/template/link.jsp" />
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/preview.css">
-=======
-    <meta charset="UTF-8">
-    <title>Clim | </title>
-	<%-- <c:import url="/WEB-INF/template/link.jsp"/> --%>
-    <link rel="stylesheet" href="/css/index.css"/>
->>>>>>> master
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
@@ -477,8 +470,11 @@
 		<div class="bg_close_btn">
 			<i class="far fa-times-circle"></i>
 		</div>
-		<div id="previewSection">
-			<div id="movieInformationWrap">
+		<div id="previewSection"></div>
+	</div>
+	<c:import url="/WEB-INF/template/footer.jsp" />
+	<script type="text/template" id="trailerTmp">
+	<div id="movieInformationWrap">
 				<div id="movieTitle">
 					<strong>${movie.title }(${movie.opendate })</strong>
 				</div>
@@ -508,12 +504,9 @@
 					<button class="preview_btn detail">Detail</button>
 				</ul>
 			</div>
-			<div id="previewWrap">${movie.src }</div>			
-		</div>
-	</div>
+			<div id="previewWrap">${movie.src }</div>
+	</script>
 
-
-	<c:import url="/WEB-INF/template/footer.jsp" />
 	<script type="text/template" id="userStreamTmp">
     <@_.each(streams,function(stream){@>
     <li class="user_streaming_card">
@@ -593,7 +586,22 @@
 		const $userstreamMovePrev = $(".userstream_move_prev");
 		const $userstreamMoveNext = $(".userstream_move_next");
 		let userStreamMove = 0;
-
+		const $previewSection = $("#previewSection");
+		const $trailerTmp = _.template($("#trailerTmp").html());
+		function trailer() {
+			$.ajax({
+				url:"/ajax/movie/${movie.no}/trailer",
+				dataType:"json",
+				type:"GET",
+				error:function(){
+					alert("에러");
+				},//error end
+				success:function(json){
+					$previewSection.append($trailerTmp({"movie":json.movie,"directors":json.directors,"actors":json.actors})));
+				}//success end
+			});// ajax end
+		}
+		
 		/* heroScript */
 		$heroContentNum.on("click", function() {
 			$heroContentNum.removeClass("hero_on");
