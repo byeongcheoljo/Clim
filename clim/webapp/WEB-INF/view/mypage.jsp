@@ -64,7 +64,7 @@
 						<form class="notice_form " action="" method="post">
 							<div class="notice_card">
 								<label for="noticeTitle" class="margin_lbl">제목</label> <input
-									type="text" id="noticeTitle" name="noticeTitle" value="" />
+									type="text" id="noticeTitle" name="noticeTitle"/>
 								<div id="titleBlur"></div>
 								<div id="noticeTitleConfirm" class="validation_text">제목을
 									입력해주세요!</div>
@@ -224,36 +224,45 @@
 		let $plan_card = $(".plan_card");
 		let eventObject;
 		/*calendar 객체 선언*/
-		let calendar = new FullCalendar.Calendar(calendarEl, {
-			locale : 'ko',
-			plugins : [ 'interaction', 'dayGrid' ],
-			defaultDate : today,
-			editable : true,
-			displayEventTime : false,
-			eventLimit : true, // allow "more" link when too many events
-			events : [ {
-				title : '구글로 가즈아',
-				url : 'http://google.com/',
-				content : '흐미 ㅁㄴ아리마;넝람ㄴㅇㄹ',
-				start : '2019-07-28',
-				end : '2019-07-30T00:00:01'
-			} ],
-			eventClick : function(info) {
-				eventObject = info.event;
-				//console.log(info.event);
-				//alert(info.event.content);
-				info.jsEvent.preventDefault(); // don't let the browser navigate
-				//console.log(info.event._def.extendedProps.content);
-				startDay = moment(info.event.start).format("YYYY.MM.DD");
-				endDay = moment(info.event.end).format("YYYY.MM.DD");
-				contentText = info.event._def.extendedProps.content;
-				title = info.event.title;
-
-			}
-		});
+		
 		/*calendar 실행*/
-		calendar.render();
-
+		events();
+		/* events ajax */
+		
+		function events() {
+			$.ajax({
+				url:"/ajax/user/${member.no}/events",
+				dataType:"json",
+				type:"GET",
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log(json);
+					let calendar = new FullCalendar.Calendar(calendarEl, {
+						locale : 'ko',
+						plugins : [ 'interaction', 'dayGrid' ],
+						defaultDate : today,
+						editable : true,
+						displayEventTime : false,
+						eventLimit : true, // allow "more" link when too many events
+						events : json,
+						eventClick : function(info) {
+							console.log(info);
+							eventObject = info.event;
+							info.jsEvent.preventDefault(); // don't let the browser navigate
+							startDay = moment(info.event.start).format("YYYY.MM.DD");
+							endDay = moment(info.event.end).format("YYYY.MM.DD");
+							contentText = info.event._def.extendedProps.contentText;
+							title = info.event.title;
+						}
+					});
+					calendar.render();
+				}
+			});//ajax end
+			/* events ajax */
+		}
+		
 		/*탭 목록*/
 		$("#headerNavMypage li").click(function() {
 			//4px solid #F9AC1A
@@ -297,28 +306,40 @@
 
 			const endYear = $("#endYear").val();
 			const endMonth = $("#endMonth").val();
-			const endDate = $("#endDate").val();
+			const endDate = $("#endDate").val()+1;
 			const endDay = endYear + "-" + endMonth + "-" + endDate;
 
 			const end = new Date(endDay);
-
-			//console.log(start);
-			//console.log(end);
-
-			calendar.addEvent({
-				title : title,
-				content : content,
-				start : start,
-				end : end,
-				fullDay : false
-			});
+			let noticeTitle = $("#noticeTitle").val();
+			let noticeContent = $("#noticeContent").val();
+			
+			$.ajax({
+				url:"/ajax/user/${loginMember.no}/events",
+				type:"POST",
+				dataType:"json",
+				data:{
+					fullDay : false,
+					title:noticeTitle,
+					contents:noticeContent,
+					startDate:startDay,
+					endDate:endDay
+				},
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log("insert: "+json);
+					calendar.addEvent(json);
+// 					$(".fc-event-container").attr({"data-index":$}});
+				}
+				
+			});//ajax end
+			events();
 		});//이벤트 등록
 
 		/*공지 클릭시 해당 공지 상세 보여줌*/
 		$notice_box.on("click", ".fc-content", function(e) {
-			//alert(contentText);
 			$plan_card.text(startDay + " ~ " + endDay);
-			//console.log(startDay + " ~ " + endDay);
 			$title_card.text(title);
 			$contentCard.text(contentText);
 			$(".detail_form").css({
@@ -328,11 +349,25 @@
 		});
 
 		$notice_box.on("click", "#planCancelBtn", function() {
-			$(".detail_info_inner").css({
-				"display" : "none"
-			});
-			eventObject.remove();
-			$(".detail_form").fadeIn(500);
+			$.ajax({
+				url:"/ajax/user/${loginMember.no}/events",
+				dataType:"json",
+				type:"DELETE",
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log("delete :"+json);
+					$(".detail_info_inner").css({
+						"display" : "none"
+					});
+					eventObject.remove();
+					$(".detail_form").fadeIn(500);
+				}
+			
+			})
+			
+			
 		});//공지 삭제하기
 
 		$("#backBtn").on("click", function() {
@@ -472,7 +507,7 @@
 		let $latest_playlist_card = $(".latest_playlist_card");
 		const climingListTmp = _.template($("#climingListTmp").html());
 		let data = [];
-
+		
 		$.ajax({
 			url : "/ajax/user/${member.no}/climing",
 			type : "GET",
@@ -481,21 +516,17 @@
 				alert("climingMovieList 에러");
 			},
 			success : function(json) {
-				console.log(json);
 				data = json;
-
 				$latest_playlist_box.append(climingListTmp({
 					"movies" : json
 				}));
 				resizeBox();
-				console.log(data);
 			}
 		});//ajax end	
 		/*박스 크기 재설정*/
 		function resizeBox() {
 			width = (data.length) * 209;
 			$latest_playlist_box.css("width", width + "px");
-			console.log(width);
 		}
 
 		// const $latest_playlist_card = $(".latest_playlist_card");
@@ -800,8 +831,6 @@
 					// 차트 나타날 때 애니메이션
 					},//options
 				});//시간대별 시청자 평균 바
-
-		console.log(writeAvgViewerNumberPerTimeChart);
 
 		let $viewersNumberPerTime = $("#viewersNumberPerTime");
 		let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {

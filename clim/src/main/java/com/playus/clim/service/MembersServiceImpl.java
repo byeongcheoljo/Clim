@@ -28,7 +28,7 @@ public class MembersServiceImpl implements MembersService{
 		Subscribe subscribe = new Subscribe();
 		subscribe.setFollowing(loginMember);
 		subscribe.setFollower(memberNo);
-			member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
+		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
 	return member;
 	}
 	
