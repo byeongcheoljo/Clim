@@ -2,8 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
-<<<<<<< HEAD
-
 	<select id="selectClimingLeader" resultType="Leader"
 		parameterType="int">
 		select
@@ -19,7 +17,7 @@
 		where clim_no=#{no} and close_time is not null)accPeople
 		where clists.member_no=members.no and clists.no=#{no}
 	</select>
-=======
+
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
 		select no, email,
@@ -53,6 +51,4 @@
 	set UUID = #{uuid}, pwd = #{pwd}
 	where no = #{no}
 	</update>
-	
->>>>>>> master
 </mapper>
