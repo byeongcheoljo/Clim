@@ -240,7 +240,7 @@ body{
     width: 660px;
     min-height: 340px;
     background: #b9c1c7;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -330px;
@@ -528,7 +528,7 @@ body{
 
 
 /*Paginate 공간*/
-.comment_paginate_box{
+.comment_paginate_box span{
     height: 30px;
     line-height: 30px;
     font-size: 12px;

@@ -461,7 +461,7 @@
 				console.log(xhr.responseText);
 			}, // error end
             success : function(json) {
-				if (json.loginMember == 0) {
+				if (json.loginMember == null && json.loginMember.uuid !=null) {
 					 $("#signupMsg").css("display","block");
 					 e.preventDefault();
 				}
@@ -498,7 +498,7 @@
     getStreamingMovieList();
     function getStreamingMovieList(){
         $.ajax({
-            url:"json/movie.json",
+            url:"",
             dataType:"json",
             type:"get",
             error:function () {
@@ -561,7 +561,7 @@
         } //if~else end
 
         $.ajax({
-            url:"json/movie.json",
+            url:"",
             dataType:"json",
             error:function () {
                 alert("에렁");
@@ -597,7 +597,7 @@
     getSubscribeList();
     function getSubscribeList(){
         $.ajax({
-            url:"json/member.json",
+            url:"",
             dataType:"json",
             type:"get",
             error:function () {

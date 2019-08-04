@@ -4,12 +4,28 @@ import java.sql.Timestamp;
 
 public class Comment {
 
-	private int no, memberNo, boardNo;
-	private String contents;
+	private int no, memberNo, boardNo, commentLikeCount;
+	private String contents, nickname;
 	private Timestamp regdate;
 
 	public Comment() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public int getCommentLikeCount() {
+		return commentLikeCount;
+	}
+
+	public void setCommentLikeCount(int commentLikeCount) {
+		this.commentLikeCount = commentLikeCount;
 	}
 
 	public int getNo() {

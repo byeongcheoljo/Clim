@@ -31,6 +31,24 @@ public class BoardsDAOImpl implements BoardsDAO{
 		return session.selectList("boards.boardList", pageVO);
 	}
 	
+	@Override
+	public int boardTotal() {
+		// TODO Auto-generated method stub
+		return session.selectOne("boards.boardTotal");
+	}
+	
+	@Override
+	public Board selectBoardDetail(int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("boards.boardDetail", no);
+	}
+	
+	@Override
+	public int deleteBoard(int no) {
+		// TODO Auto-generated method stub
+		return session.delete("boards.deleteBoard", no);
+	}
+	
 	
 
 }

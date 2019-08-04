@@ -5,14 +5,39 @@ import java.sql.Timestamp;
 
 public class Board {
 
-	private int no, memberNo, views, likeCount, commentCount;
-	private String contents;
+	private int no, memberNo, views, likeCount, commentCount, boardCount;
+	private String contents, nickname;
 	private Timestamp regdate;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Board(int no) {
+		// TODO Auto-generated constructor stub
+		this.no=no;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+
+	public int getBoardCount() {
+		return boardCount;
+	}
+
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
 	public int getLikeCount() {
 		return likeCount;
 	}

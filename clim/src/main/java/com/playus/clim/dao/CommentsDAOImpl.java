@@ -24,5 +24,17 @@ public class CommentsDAOImpl implements CommentsDAO{
 	public int myWriteCommentsTotal(int memberNo) {
 		return session.selectOne("comments.myWriteCommentsTotal",memberNo);
 	}
+	
+	@Override
+	public List<Comment> selectCommentList(int no) {
+		// TODO Auto-generated method stub
+		return session.selectList("comments.boardCommentList", no);
+	}
+	
+	@Override
+	public int insertComment(Comment comment) {
+		// TODO Auto-generated method stub
+		return session.insert("comments.insertComment", comment);
+	}
 
 }

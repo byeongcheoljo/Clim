@@ -32,10 +32,15 @@
                 </div>
                 </div><!--//boardBg-->
             </div><!--//boardSection-->
-        <div id="boardPopupBg"></div>
+        <div id="boardPopupBg">
+        </div>
 
 
         <div id="boardPopupBox">
+        <!-- 여기에 템플릿 들어감 -->
+        
+        	
+
         </div><!--//boardPopupBox-->
 
     </main>
@@ -43,11 +48,11 @@
 <!--boardTmp (보드 리스트 불러오기)-->
 <script type="text/template" id="boardTmp">
     <@ _.each(boards,function(board){ @>
-    <div class="post_view_box">
 
+    <div data-boardno = "<@=board.no@>" class="post_view_box">
         <div class="post_view_top">
             <a class="post_view_nickname pointer_common" href=""><@=board.nickname@></a>
-            <span class="post_view_data"><@=board.view@></span>
+            <span class="post_view_data"><@=board.regdate@></span>
         </div>
 
         <div class="post_view_tags">
@@ -59,22 +64,18 @@
                 --%>
             </ul>
         </div>
-
         <div class="post_view_contents"><@=board.contents@></div>
-
         <div class="post_view_bottom">
             <button class="post_view_like">
                 <div class="like_view_icon far fa-thumbs-up pointer_common"></div>
-                <span class="like_view_count fontsize_common"><@=board.like@></span>
+                <span class="like_view_count fontsize_common"><@=board.likeCount@></span>
             </button>
-
             <div class="post_view_comments">
                 <div class="comment_view_icon far fa-comments pointer_common"></div>
-                <span class="comment_view_count fontsize_common"><@=board.comment@></span>
+                <span class="comment_view_count fontsize_common"><@=board.commentCount@></span>
             </div>
-
             <div class="post_view_click">
-                <div class="click_view_icon fas fa-eye"></div>
+                <div class="click_view_icon fas fa-eye"><@=board.views@></div>
 				<%-- 좋아요
                 <span class="click_view_count fontsize_common"><@=board.click@></span>
                 --%>
@@ -86,34 +87,29 @@
 
 <!--boardDetailTmp 게시글 하나 누르면 뜨는 템플릿-->
 <script type="text/template" id="boardDetailTmp">
-
         <div class="post_popup_top">
             <a class="post_popup_nickname pointer_common" href=""><@=boardDetail.nickname@></a>
-            <sapn class="post_popup_data"><@=boardDetail.data@></sapn>
-
+            <sapn class="post_popup_data"><@=boardDetail.regdate@></sapn>
             <form action="" method="">
                 <button class="post_update_btn">수정</button>
             </form>
-
-            <form action="" method="">
-                <button class="post_delete_btn">삭제</button>
+            <form id="deleteBoard" method="post">
+				<input type="hidden" name="_method" value="DELETE">
+                <button form="deleteBoard" class="post_delete_btn">삭제</button>
             </form>
-
-
-
             <div class="post_popup_click">
-                <span class="click_popup_count fontsize_common">· 조회수 <@=boardDetail.click@></span>
+                <span class="click_popup_count fontsize_common">· 조회수 <@=boardDetail.views@></span>
             </div>
-
             <img data-postno="1" class="post_popup_siren_icon" src="/img/siren_icon.png">
         </div>
-
         <div class="post_popup_tags">
+			<%--
             <ul>
                 <@ _.each(boardDetail.tags,function(tag){ @>
                 <li class="post_popup_tag"><a href="">#<@=tag@></a></li>
                 <@})@>
             </ul>
+            --%>
         </div>
 
         <div class="post_popup_contents"><@=boardDetail.contents@>
@@ -122,12 +118,12 @@
         <div class="post_popup_bottom">
             <button class="post_popup_like">
                 <div class="post_popup_icon far fa-thumbs-up pointer_common"></div>
-                <span class="post_popup_count"><@=boardDetail.like@></span>
+                <span class="post_popup_count"><@=boardDetail.likeCount@></span>
             </button>
 
         </div>
         <div class="post_popup_write_form">
-            <form action="" method="">
+            <form id="boardReplyWeiteForm">
                 <div id="commentWriteInputForm">
                     <input class="comment_write_input" name="" type="text" placeholder="댓글을 남겨주세요.">
                 </div>
@@ -135,17 +131,31 @@
             </form>
         </div>
 
-
         <div class="post_popup_comments">
-            <ul>
+            <ul><%-- 댓글템플릿 --%>
+        	<@_.each(comments,function(comment){ @>
+        	<li class="post_popup_comment">
+           		<div class="comment_popup_top">
+             	   <a class="comment_popup_nickname" href=""><@=comment.nickname@></a>
+              	  <span class="comment_popup_data"><@=comment.regdate@></span>
+            	</div>
+            <div class="comment_popup_content"><@=comment.contents@></div>
+            <div class="comment_popup_bottom">
+                <button class="comment_popup_like">
+                    <div class="comment_popup_icon far fa-thumbs-up pointer_common"></div>
+                    <span class="comment_popup_count"><@=comment.commentLikeCount@></span>
+                </button>
+            </div>
+        	</li>
+        	<@})@>
             </ul>
             <div class="comment_paginate_box">
-                <span>Paginate 자리</span>
+				<span>Paginate 자리</span>
             </div>
         </div>
 
         <div id="reportPopupWrap">
-            <form id="reportForm" action="" method="">
+            <form id="reportForm">
                 <div class="report_popup_top">신고하기</div>
                 <div class="report_popup_content">
                     <ul>
@@ -168,39 +178,18 @@
 
 
 
-<!--commentTmp 댓글 템플릿-->
-<script type="text/template" id="commentTmp">
-        <@_.each(comments,function(comment){ @>
-        <li class="post_popup_comment">
-            <div class="comment_popup_top">
-                <a class="comment_popup_nickname" href=""><@=comment.nickname@></a>
-                <span class="comment_popup_data"><@=comment.data@></span>
-
-            </div>
-            <div class="comment_popup_content"><@=comment.contents@></div>
-            <div class="comment_popup_bottom">
-                <button class="comment_popup_like">
-                    <div class="comment_popup_icon far fa-thumbs-up pointer_common"></div>
-                    <span class="comment_popup_count"><@=comment.like@></span>
-                </button>
-            </div>
-        </li>
-        <@})@>
-</script>
 
 
 <script>
     _.templateSettings = {interpolate: /\<\@\=(.+?)\@\>/gim,evaluate: /\<\@([\s\S]+?)\@\>/gim,escape: /\<\@\-(.+?)\@\>/gim};
     //게시판 글
     const boardTmp = _.template($("#boardTmp").html());
-    //게시글 디테일
+    //게시글 댓글 데티일
     const boardDetailTmp = _.template($("#boardDetailTmp").html());
-    //댓글
-    const commentTmp = _.template($("#commentTmp").html());
 
 
-    let page =1;
-
+    let page = 1;
+	let numPage = 5;
     //ajax를 여러번 호출하는 것을 막는 변수
     let flag = true;
 
@@ -211,66 +200,128 @@
             const $boardLoader = $("<div class='board_loader'>");
             $("#boardWrap").append($boardLoader);
             $.ajax({
-                url:"/ajax/boardList/"+page,
+                url:"/ajax/boardList/"+page++,
                 dataType:"json",
                 error:function(){
                     alert("board ajax 에러, board ajax를 확인하세요.");
                 },
                 success:function (json) {
-                    console.log(json);
+                    //console.log(json.boards);
+                    //console.log(json.boards.no);
+                    //console.log(json);
                     $boardLoader.remove();
-                    $("#boardWrap").append(boardTmp({"boards":json}));
+                    $("#boardWrap").append(boardTmp({"boards":json.boards}));
                     //완료후 다시 flag를 true로
                     flag = true;
                 }//success end
             });//$.ajax() end
         }//if end
     }//getBoardList() end
-
-    //댓글 불러오기
-    function getCommentList() {
-        let $postPopupCommentsUl= $(".post_popup_comments ul");
-        $.ajax({
-            url:"/ajax/comment.json",
-            dataType:"json",
-            error:function () {
-              alert("comment ajax 오류입니다.");
-            },
-            success:function (json) {
-                console.log(json);
-                $postPopupCommentsUl.append(commentTmp({"comments":json}));
-            }
-        })//$.ajax end
-    }
-
+    
+   	 let boardNo;
     //게시글 디테일 불러오기
-    /*
     $("#boardWrap").on("click",".post_view_box",function () {
-        $("#boardPopupBg").fadeIn(100);
-        $.ajax({
-            url:"/ajax/board.json",
-            dataType:"json",
-            error:function(){
-
-            },
-            success:function(json){
-                console.log(json);
-                console.log(json.contents);
-                $("#boardPopupBox").html(boardDetailTmp({"boardDetail":json}));
-            }
-        });
-    });
-    */
-
-
+    	boardNo = this.dataset.boardno;
+    	$("#boardPopupBg").fadeIn(100);
+    	boardDetail();
+    });	
+    
+    function boardDetail() {
+            $.ajax({
+                url:"/ajax/boardDetail/"+boardNo,
+                dataType:"json",
+                error:function(){
+    				alert("디테일에러");
+                },
+                success:function(json){
+                    console.log(json);
+                    $("#boardPopupBox").html(boardDetailTmp({"boardDetail":json.boardDetail, "comments":json.comments}));
+                }
+            });
+        
+	}//boardDetail() end
+	
+	$("#boardPopupBox").on("submit","#boardReplyWeiteForm",function(e){
+		e.preventDefault();
+		const commentContent = $(".comment_write_input").val();
+		$.ajax({
+	    	url:"/ajax/commentWrite",
+	    	type:"post",
+	    	data:{
+	    		memberNo:${loginMember.no},
+				contents : commentContent,
+				boardNo : boardNo
+	    	},
+	    	error:function(){
+	    		alert("댓글추가 에러");
+	    	},
+	    	success:function(){
+	    		boardDetail();
+	    	}
+	    });	//ajax() end
+	});// boardReplyWeiteForm.submit() end
+    
+	
+	//게시판 신고하기
+	$("#boardPopupBox").on("submit","#reportForm", function(e){
+		e.preventDefault();
+		//const = $("").val();
+		$.ajax({
+			url:"/ajax/boardDetail/reportWrite",
+			type:"post",
+			data:{
+				
+			},
+			error:function(){
+				alert("자유게시판 신고하기 에러");
+			},
+			success:function(){
+				
+		        $("#reportPopupWrap").css("display","none");
+		        
+			}
+		})//ajax end
+	});
+	
+	
+	//게시판 신고하기
+	
+		//게시글 삭제하기
+	/*
+	$("#boardPopupBox").on("submit","#deleteBoard",function(e){
+		e.preventDefault();
+		//const commentContent = $(".comment_write_input").val();
+		$.ajax({
+	    	url:"/ajax/deleteBoard",
+	    	data:{
+	    		no:boardNo
+	    	},
+	    	type:"post",
+	    	error:function(){
+	    		alert("댓글삭제 에러");
+	    	},
+	    	success:function(){
+	            $("#boardPopupBox").fadeOut(100);
+	            $("#boardPopupBg").fadeOut(100);
+	            getBoardList();
+	    	}
+	    });	//ajax() end
+	});// boardReplyWeiteForm.submit() end
+	*/
+	
+	
+	
+	
+	
+	
     //최초 한 번 호출
     getBoardList();
-    //getCommentList();
-
+    boardDetail();
 
     /*무한스크롤링*/
     let $window = $(window);
     let $document = $(document);
+
 
     $(window).scroll(function () {
         let sTop = $window.scrollTop();
@@ -278,8 +329,7 @@
         let $wHeight = $window.height();
 
         if($dHeight<=$wHeight+sTop+30){
-
-            //getBoardList();
+            getBoardList();
         }//if end
     });//scroll() end
 
@@ -298,7 +348,7 @@
     })
 
     //내용 클릭시 팝업창(게시글) 켜기
-    $("#boardWrap").on("click",".post_view_contents",function(){
+    $("#boardWrap").on("click",".post_view_box",function(){
         $("#boardPopupBg").fadeIn(100);
         $("#boardPopupBox").fadeIn(100);
     })

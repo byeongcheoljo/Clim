@@ -21,17 +21,47 @@
 	
 	
 	<select id="boardList" resultType="Board" parameterType="PageVO">
-	select no, contents, memberNo, nickname, views, regdate, likeCount, commentCount
-	from (select b.no, b.contents, m.no memberNo, m.nickname, views, b.regdate regdate, NVL(l.likeCount,0) likeCount, NVL(c.commentCount,0) commentCount
-	from boards b, members m, 
-	(select post_no, count(*) likeCount
-	from likes
-	where type = 'B'
-	group by post_no) l,
-	(select board_no, count(*) commentCount
-	from comments
-	group by board_no) c
-	where m.no = b.member_no AND l.post_no = c.board_no(+) AND b.no = l.post_no(+))
+		SELECT no, contents, nickname ,memberNo, views, regdate, commentCount, likeCount, r
+		FROM(SELECT no, contents, nickname, member_no memberNo, views, regdate, commentCount, likeCount, rownum r
+			 FROM(SELECT b.no, contents, nickname, b.member_no, views, b.regdate, NVL(c.cnt,0) commentCount, NVL(l.cnt,0) likeCount
+			 	 FROM boards b, members m, 
+			 	 	 (SELECT board_no, COUNT(board_no) cnt
+			 	  	  FROM comments
+			 	 	  GROUP BY board_no) c,
+			 	 	 (SELECT post_no, COUNT(post_no) cnt
+			 		  FROM likes
+			 		  WHERE type = 'B'
+			 		  GROUP BY post_no) l
+			 	 WHERE b.member_no = m.no
+			 	 AND c.board_no(+) = b.no
+			 	 AND l.post_no(+) = b.no
+			 	 ORDER BY regdate DESC))
+		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	
+	<select id="boardTotal" resultType="int">
+		select count(*) boardCount
+		from boards
+	</select>
+	
+	<select id="boardDetail" parameterType="int" resultType="Board">
+		select no, contents, memberNo, nickname, views, regdate, likeCount, commentCount
+		from (select b.no, b.contents, m.no memberNo, m.nickname, views, b.regdate regdate, NVL(l.likeCount,0) likeCount, NVL(c.commentCount,0) commentCount
+		from boards b, members m, 
+		(select post_no, count(*) likeCount
+		from likes
+		where type = 'B'
+		group by post_no) l,
+		(select board_no, count(*) commentCount
+		from comments
+		group by board_no) c
+		where m.no = b.member_no AND l.post_no = c.board_no(+) AND b.no = l.post_no(+))
+		where no = #{no}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="int">
+	delete 
+	from boards
+	where no = #{no}
+	</delete>
 </mapper>

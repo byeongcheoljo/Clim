@@ -13,6 +13,8 @@ import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.Board;
+import com.playus.clim.vo.Comment;
 import com.playus.clim.vo.Movie;
 
 @RestController
@@ -55,8 +57,40 @@ public class AjaxController {
 	//게시판목록불러오기
 	@RequestMapping(value="/boardList/{page}", method=RequestMethod.GET)
 	public Map<String, Object> getBoardList(@PathVariable int page){
-		
 		return boardsService.getBoardList(page);
 	}
+	
+	@RequestMapping(value="/boardDetail/{no}", method=RequestMethod.GET)
+	public Map<String, Object> getBoardDetail(@PathVariable int no){
+		
+		return boardsService.getBoardDetail(no);
+	}
+	
+	//댓글 작성하기
+	@RequestMapping(value="/commentWrite", method=RequestMethod.POST)
+	public void commentWrite(Comment comment) {
+		
+		System.out.println(comment.getMemberNo());
+		System.out.println(comment.getContents());
+		System.out.println(comment.getBoardNo());
+		
+		commentsService.insertComment(comment);
+	}
+	
+	//자유게시판 신고하기
+	
+	@RequestMapping(value="/ajax/boardDetail/reportWrite", method=RequestMethod.POST)
+	public void boardReport() {
+		
+		
+	}
+	
+	//게시글 삭제하기
+	@RequestMapping(value="/deleteBoard", method=RequestMethod.POST)
+	public void deleteBoard(int no) {
+		System.out.println("헤헿?");
+		boardsService.deleteBoard(no);
+	}
+	
 
 }
