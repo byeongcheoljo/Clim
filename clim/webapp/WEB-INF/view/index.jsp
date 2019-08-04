@@ -597,7 +597,7 @@
 					alert("에러");
 				},//error end
 				success:function(json){
-					$previewSection.append($trailerTmp({"movie":json.movie,"directors":json.directors,"actors":json.actors})));
+					$previewSection.append($trailerTmp({"movie":json.movie,"directors":json.directors,"actors":json.actors}));
 				}//success end
 			});// ajax end
 		}
