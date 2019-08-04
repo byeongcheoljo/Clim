@@ -26,7 +26,6 @@
 		</ul>
 	</div>
 	<!-- //tabSectionUserPage -->
-
 	<div class="home_section_userpage">
 		<div id="userInfoWrap">
 			<div class="userInfo_inner right_margin small_card">구독자 수 :
@@ -644,7 +643,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 배우",
+					text : "${member.nickname} 님이 좋아하는 배우",
 					fontSize : 25,
 					fontColor : '#231F20',
 
@@ -678,7 +677,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 감독",
+					text : "${member.nickname} 님이 좋아하는 감독",
 					fontSize : 25,
 					fontColor : '#231F20',
 				},
@@ -715,7 +714,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 장르",
+					text : "${member.nickname} 님이 좋아하는 장르",
 					fontSize : 25,
 					fontColor : '#231F20',
 				},
