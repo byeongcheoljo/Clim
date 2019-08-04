@@ -13,13 +13,28 @@ public class BookmarksServiceImpl implements BookmarksService{
 	
 	
 	@Override
-	public void addClimingList(int roomNo, int movieNo) {
+	public String addClimingList(int roomNo, int movieNo) {
 		// TODO Auto-generated method stub
 		Bookmark bookmark = new Bookmark();
 		bookmark.setMovieNo(movieNo);
 		bookmark.setMemberNo(roomNo);
-		bookmarksDAO.insertClimingList(bookmark);
+		if(bookmarksDAO.checkClimingList(bookmark)!=null) {
+			return "{\"result\":" + false + "}";
+		}
+		else {
+			bookmarksDAO.insertClimingList(bookmark);
+			return "{\"result\":" + true + "}";
+		}
 		
+		
+	}
+	@Override
+	public void deleteClimingList(int roomNo, int movieNo) {
+		// TODO Auto-generated method stub
+		Bookmark bookmark = new Bookmark();
+		bookmark.setMovieNo(movieNo);
+		bookmark.setMemberNo(roomNo);
+		bookmarksDAO.deleteClimingList(bookmark);
 	}
 
 }

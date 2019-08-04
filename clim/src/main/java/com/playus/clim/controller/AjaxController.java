@@ -69,14 +69,21 @@ public class AjaxController {
 		reportService.reportClimer(roomNo,userNo,content);
 	}
 	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
-	public void addClimingList(int roomNo,int movieNo){
+	public String addClimingList(int roomNo,int movieNo){
 		
-		bookmarkService.addClimingList(roomNo,movieNo);
+		return bookmarkService.addClimingList(roomNo,movieNo);
 
 	}
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
 	public List<Event> eventsList(int memberNo) {
 		return eventsService.getList(memberNo);
+
+	}
+	
+	@RequestMapping(value = "/delete/ClimingList", method = RequestMethod.GET)
+	public void deleteClimingList(int roomNo,int movieNo){
+		
+		bookmarkService.deleteClimingList(roomNo,movieNo);
 
 	}
 

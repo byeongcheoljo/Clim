@@ -24,6 +24,7 @@ public class StreamingDetailServiceImpl implements StreamingDetailService{
 		
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 		
+		map.put("roomNo",no);
 		map.put("leader", streamingDetaildao.selectLeader(no));
 
 		map.put("movieLists",streamingDetaildao.selectMovieLists(no));

@@ -2,7 +2,9 @@ package com.playus.clim.service;
 
 public interface BookmarksService {
 
-	void addClimingList(int roomNo, int movieNo);
+	String addClimingList(int roomNo, int movieNo);
+
+	void deleteClimingList(int roomNo, int movieNo);
 	
 
 }
