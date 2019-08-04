@@ -8,4 +8,6 @@ public interface BookmarksDAO {
 	
 	public List<Bookmark> mybookmarkListForCliming(int memberNo);
 
+	public void insertClimingList(Bookmark bookmark);
+
 }

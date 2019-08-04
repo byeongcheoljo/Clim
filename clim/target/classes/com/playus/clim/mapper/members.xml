@@ -2,6 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
+<<<<<<< HEAD
+
+	<select id="selectClimingLeader" resultType="Leader"
+		parameterType="int">
+		select
+		members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+		from members,
+		(select no,member_no,title
+		from c_lists)clists,
+		(select count(*) currCount
+		from c_logs
+		where clim_no=#{no} and close_time is null)currentPeople,
+		(select count(*) accCount
+		from c_logs
+		where clim_no=#{no} and close_time is not null)accPeople
+		where clists.member_no=members.no and clists.no=#{no}
+	</select>
+=======
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
 		select no, email,
@@ -36,4 +54,5 @@
 	where no = #{no}
 	</update>
 	
+>>>>>>> master
 </mapper>
