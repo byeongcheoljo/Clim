@@ -18,5 +18,33 @@ public class MoviesDAOImpl implements MoviesDAO{
 	public List<Movie> searchMovieListForCliming(String title) {
 		return session.selectList("movies.searchMovieListForCliming", "%"+title+"%");
 	}
+
+/*김근경 시작*/
+	
+	//index에서 끌림작 1위~6위
+	@Override
+	public List<Movie> indexClimedListOne() {
+		return session.selectList("movies.indexClimedListOne");
+	}
+	
+	//index에서 추천1
+	@Override
+	public List<Movie> indexRecommandationListOne() {
+		return session.selectList("movies.indexRecommandationListOne");
+	}
+	
+	//index에서 추천2
+	@Override
+	public List<Movie> indexRecommandationListTwo() {
+		return session.selectList("movies.indexRecommandationListTwo");
+	}
+	
+	//index에서 추천3
+	@Override
+	public List<Movie> indexRecommandationListThree() {
+		return session.selectList("movies.indexRecommandationListThree");
+	}
+	
+/*김근경 끝*/
 	
 }

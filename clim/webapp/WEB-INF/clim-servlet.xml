@@ -42,20 +42,23 @@
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/poster/" mapping="/poster/**" />
-	<mvc:resources location="/stealCut/"
-		mapping="/stealCut/**" />
+	<mvc:resources location="/stealCut/" mapping="/stealCut/**" />
 	<mvc:resources location="/video/" mapping="/video/**" />
 	<mvc:resources location="/vtt/" mapping="/vtt/**" />
-	
-	<websocket:message-broker application-destination-prefix="/app">
+	<mvc:resources location="/climimg/" mapping="/climimg/**" />
+
+
+	<websocket:message-broker
+		application-destination-prefix="/app">
 		<websocket:stomp-endpoint path="/clim">
-			<websocket:sockjs/>
+			<websocket:sockjs />
 		</websocket:stomp-endpoint>
-		<websocket:simple-broker prefix="/topic,/queue"/>
+		<websocket:simple-broker
+			prefix="/topic,/queue" />
 	</websocket:message-broker>
 
 	<!-- handshake, disconnect를 감지하는 리스너 -->
-	 <bean class="com.playus.clim.stomp.listener.StompListener"/>
+	<bean class="com.playus.clim.stomp.listener.StompListener" />
 
 </beans>
 

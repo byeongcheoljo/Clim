@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Clim | </title>
+    <title>Clim | Main</title>
 	<c:import url="/WEB-INF/template/link.jsp"/>
     <link rel="stylesheet" href="/css/index.css"/>
 </head>
@@ -143,49 +143,24 @@
         <ul id="climBox">
             <li>
                 <ul>
+                	
+                	<!-- //끌림작 1~6위 -->
+                	<c:forEach items="${climedOne }" var="one">
+                	
                     <li class="clim_card">
-                        <img src="/climimg/aladin.jpg"/>
+                        <img src="/stealCut${one.recSteal }"/>
+                        <div class="recommend_special_name">${one.title}(2019)</div>
                         <div class="top_border border_box"></div>
                         <div class="right_border border_box"></div>
                         <div class="bottom_border border_box"></div>
                         <div class="left_border border_box"></div>
                     </li>
-                    <li class="clim_card">
-                        <img src="/climimg/lionking.jpg"/>
-                        <div class="top_border border_box"></div>
-                        <div class="right_border border_box"></div>
-                        <div class="bottom_border border_box"></div>
-                        <div class="left_border border_box"></div>
-                    </li>
-                    <li class="clim_card">
-                        <img src="/climimg/dumbo.jpg"/>
-                        <div class="top_border border_box"></div>
-                        <div class="right_border border_box"></div>
-                        <div class="bottom_border border_box"></div>
-                        <div class="left_border border_box"></div>
-                    </li>
-                    <li class="clim_card">
-                        <img src="/climimg/hobbit.jpg"/>
-                        <div class="top_border border_box"></div>
-                        <div class="right_border border_box"></div>
-                        <div class="bottom_border border_box"></div>
-                        <div class="left_border border_box"></div>
-                    </li>
-                    <li class="clim_card">
-                        <img src="/climimg/ralp.jpg"/>
-                        <div class="top_border border_box"></div>
-                        <div class="right_border border_box"></div>
-                        <div class="bottom_border border_box"></div>
-                        <div class="left_border border_box"></div>
-                    </li>
-                    <li class="clim_card">
-                        <img src="/climimg/spiderman.jpg"/>
-                        <div class="top_border border_box"></div>
-                        <div class="right_border border_box"></div>
-                        <div class="bottom_border border_box"></div>
-                        <div class="left_border border_box"></div>
-                    </li>
+                   
+                    </c:forEach><!-- //끌림작 1~6위 끝 -->
+                     
                 </ul>
+                
+                
             </li>
             <li>
                 <ul>
@@ -371,61 +346,79 @@
                     </li>
                 </ul>
             </li>
+         
         </ul><!-- //climBox end -->
         <div class="move_btn clim_move_prev"><i class="fas fa-angle-left"></i> </div>
         <div class="move_btn clim_move_next"><i class="fas fa-angle-right"></i> </div>
     </div><!-- //climContentSection end -->
+    
+    
     <div class="recommend_section index_section">
         <span>추천작1</span>
         <ul class="recommend_box">
+ 
+ 			
+		<c:forEach items="${recOne}" var="one">
+ 			
             <li class="recommend_card">
-                <img src="/poster/lionking.jpg"/>
+                <img src="/poster${one.poster }"/>
                 <div class="top_border border_box"></div>
                 <div class="right_border border_box"></div>
                 <div class="bottom_border border_box"></div>
                 <div class="left_border border_box"></div>
             </li>
-            <li class="recommend_card">
-                <img src="/poster/realbumin.jpg"/>
-                <div class="top_border border_box"></div>
-                <div class="right_border border_box"></div>
-                <div class="bottom_border border_box"></div>
-                <div class="left_border border_box"></div>
-            </li>
-            <li class="recommend_card">
-                <img src="/poster/aladin.jpg"/>
-                <div class="top_border border_box"></div>
-                <div class="right_border border_box"></div>
-                <div class="bottom_border border_box"></div>
-                <div class="left_border border_box"></div>
-            </li>
-            <li class="recommend_card">
-                <img src="/poster/aenabel.jpg"/>
-                <div class="top_border border_box"></div>
-                <div class="right_border border_box"></div>
-                <div class="bottom_border border_box"></div>
-                <div class="left_border border_box"></div>
-            </li>
-            <li class="recommend_card">
-                <img src="/poster/spiderman.jpg"/>
-                <div class="top_border border_box"></div>
-                <div class="right_border border_box"></div>
-                <div class="bottom_border border_box"></div>
-                <div class="left_border border_box"></div>
-            </li>
-            <li class="recommend_card">
-                <img src="/poster/toystory.jpg"/>
-                <div class="top_border border_box"></div>
-                <div class="right_border border_box"></div>
-                <div class="bottom_border border_box"></div>
-                <div class="left_border border_box"></div>
-            </li>
+            
+        </c:forEach>
+         
+            
         </ul><!-- //recommend_box -->
         <div class="move_btn recommend_move_prev"><i class="fas fa-angle-left"></i> </div>
         <div class="move_btn recommend_move_next"><i class="fas fa-angle-right"></i> </div>
     </div><!-- //recommend_section end -->
-    <div class="recommend_special_section index_section">
+    
+       <div class="recommend_section index_section">
         <span>추천작2</span>
+        <ul class="recommend_box">
+        <c:forEach items="${recTwo}" var="two">
+ 			
+            <li class="recommend_card">
+                <img src="/poster${two.poster }"/>
+                <div class="top_border border_box"></div>
+                <div class="right_border border_box"></div>
+                <div class="bottom_border border_box"></div>
+                <div class="left_border border_box"></div>
+            </li>
+            
+        </c:forEach>
+        </ul>
+        <div class="move_btn recommend_move_prev"><i class="fas fa-angle-left"></i> </div>
+        <div class="move_btn recommend_move_next"><i class="fas fa-angle-right"></i> </div>
+    </div>
+    
+           <div class="recommend_section index_section">
+        <span>추천작3</span>
+        <ul class="recommend_box">
+        <c:forEach items="${recThree}" var="three">
+ 			
+            <li class="recommend_card">
+                <img src="/poster${three.poster }"/>
+                <div class="top_border border_box"></div>
+                <div class="right_border border_box"></div>
+                <div class="bottom_border border_box"></div>
+                <div class="left_border border_box"></div>
+            </li>
+            
+        </c:forEach>
+        </ul>
+        <div class="move_btn recommend_move_prev"><i class="fas fa-angle-left"></i> </div>
+        <div class="move_btn recommend_move_next"><i class="fas fa-angle-right"></i> </div>
+    </div>
+    
+    
+    
+    
+    <div class="recommend_special_section index_section">
+        <span>추천작4</span>
         <ul class="recommend_special_box">
             <li class="recommend_special_card recommend_card_rank1">
                 <img src="/stealCut/lioonking.jpg"/>
@@ -485,12 +478,11 @@
             </li>
         </ul>
     </div>
-    <div class="recommend_section index_section">
-        <span>추천작3</span>
-        <ul class="recommend_box"></ul>
-        <div class="move_btn recommend_move_prev"><i class="fas fa-angle-left"></i> </div>
-        <div class="move_btn recommend_move_next"><i class="fas fa-angle-right"></i> </div>
-    </div>
+    
+    
+ 
+    
+    
 </main>
 <div class="trailer_bg">
     <div class="bg_close_btn"><i class="far fa-times-circle"></i></div>
