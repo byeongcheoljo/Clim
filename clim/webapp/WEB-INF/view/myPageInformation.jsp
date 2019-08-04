@@ -67,27 +67,35 @@
 		const pwdExp = /^[\w]{8,}$/;
 
 		$information.submit(function() {
-		 	if (!testPw()) {
-		 		//console.log(!testPw())
-				return false;
-			}
-			if (!testPwCheck()) {
-				console.log(!testPwCheck())
-				return false;
-			}
 			
+// 			if (!testPwCheck()) {
+// 				console.log(!testPwCheck())
+// 				console.log("zz2");
+				
+// 			}
+			
+// 		 	if (!testPw()) {
+// 		 		//console.log(!testPw())
+// 		 		console.log("zz1");
+// 				return false;
+// 			}
+		 	testPwCheck();
+		 	testPw();
+			console.log("abc");
 			
 			
 		});
 
 		function testPw() {
 			let pw1 = $newPwd.val().trim();
-			if (pw1 == '' | pw1 == ' ') {
+			if (pw1 == ''  | pw1 == ' ') {
 				$newPwdMsg.removeClass("ok")
 						.text("비밀번호에 공백 또는 빈칸은 들어갈 수 없습니다.");
+				return false;
 			}
 			if (!pwdExp.test(pw1)) {
 				$newPwdMsg.removeClass("ok").text("비밀번호를 다시 설정해주세요.");
+				return false;
 			} else {
 				$newPwdMsg.addClass("ok").text("좋은 비밀번호네요!");
 			}
@@ -98,14 +106,13 @@
 			let pw2 = $newPwdCheck.val().trim();
 			if (!pwdExp.test(pw2)) {
 				$newPwdCheckMsg.removeClass("ok").text("비밀번호를 다시 설정해주세요.");
+				return false;
 			}
-
 			if (pw1 != pw2) {
 				$newPwdCheckMsg.removeClass("ok").text("비밀번호가 일치하지않습니다.");
+				return false;
 			} else {
 				$newPwdCheckMsg.addClass("ok").text("비밀번호가 일치합니다");
-				
-				
 			}
 		}
 

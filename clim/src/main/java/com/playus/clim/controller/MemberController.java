@@ -66,7 +66,7 @@ public class MemberController {
 		member.setBirthDate(Date.valueOf("2019-01-01"));
 		member.setEmail("test@gmail.net");
 		member.setGender('M');
-		member.setNickname("Â¯¾Æ");		
+		member.setNickname("ì§±ì•„");		
 		member.setPwd("123123123");
 		HttpSession session = request.getSession();
 		session.setAttribute("member", member);
@@ -77,12 +77,9 @@ public class MemberController {
 	
 	@RequestMapping(value="/user", method=RequestMethod.POST)
 	public String pwdUpdate(Member member) {
-		
-		
-		
+	
 		membersService.updateInfo(member);
 		System.out.println(member.getPwd());
-		
 		
 		
 		return "redirect:index";
