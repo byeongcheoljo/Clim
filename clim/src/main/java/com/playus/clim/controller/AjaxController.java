@@ -17,9 +17,11 @@ import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.service.SurveysService;
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
+import com.playus.clim.vo.Survey;
 
 @RestController
 @RequestMapping(value = "/ajax")
@@ -42,6 +44,10 @@ public class AjaxController {
 	
 	@Autowired
 	private MembersService membersService;
+	
+	@Autowired
+	private SurveysService surveysService;
+	
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -97,11 +103,18 @@ public class AjaxController {
 
 	}
 	
-	@RequestMapping(value="/user/bookmark/{no}", method=RequestMethod.GET)
-	public List<Bookmark> getMovieBookmarkList(@PathVariable int no){
+	@RequestMapping(value="/user/{memberNo}/bookmark", method=RequestMethod.GET)
+	public List<Bookmark> getMovieBookmarkList(@PathVariable int memberNo){
 		
+		return  bookmarkService.getMyMovieList(memberNo);
 		
-		return bookmarkService.getMyMovieList(no);
 	}
-
+	
+	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
+	public List<Survey> selectSurveyList(int page){
+		
+		
+		return surveysService.selectSurveyList(page);
+	}
+	
 }

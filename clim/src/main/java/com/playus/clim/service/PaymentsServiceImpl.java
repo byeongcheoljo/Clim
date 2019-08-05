@@ -32,4 +32,9 @@ public class PaymentsServiceImpl implements PaymentsService{
 		// TODO Auto-generated method stub
 		return paymentsDAO.deletePaymentInfo(no);
 	}
+	@Override
+	public int defaultPaymentInfo(int no) {
+		// TODO Auto-generated method stub
+		return paymentsDAO.defaultPaymentInfo(no);
+	}
 }

@@ -33,15 +33,18 @@
   <@if(movies.length>0){@>
 <@_.each(movies,function(movie){ @>
  <li class="bookmark_movie_card">
-                <div class="imgBox"><img src="/img/c_56iUd018svc1ubg44kzwydgf_fiodb6.jpg"/>
+                <div class="imgBox"><img src="/poster/<@=movie.poster@>"/>
                     <div class="cancle_bookmark_bg">
-                        <button class="cancle_bookmark_Btn btn">찜 취소</button>
+						
+                        <button form="delectMovie"  class="cancle_bookmark_Btn btn">찜 취소</button>
+						<form id="delectMovie" action="/user/<@=movie.memberNo@>/bookmark/<@=movie.no@>" method="post">
+						<input type="hidden" name="_method" value="DELETE"/></form>
                     </div>
                 </div>
             <div class="title_hide_Box">
-            <@var text =movie.movieNm @>
+            <@var text =movie.title @>
 
-                <div class="movieTitle_bookmark_title <@if(text.length>13){@>marquee<@}@>"><p><@=movie.movieNm@></p></div>
+                <div class="movieTitle_bookmark_title <@if(movie.title.length>13){@>marquee<@}@>"><p><@=movie.title@></p></div>
                 </div>
         </li>
         <@});@>
@@ -64,20 +67,24 @@
         $(this).addClass('header_myPage_tabbed');
     });
 
-    $("#bookmarkMovieWrap").on("click",".cancle_bookmark_Btn",function () {
+   /*  $("#bookmarkMovieWrap").on("click",".cancle_bookmark_Btn",function () {
          $(this).parents(".bookmark_movie_card").remove();
-    });
+    }); */
+    
+    
     $.ajax({
-        url: "/ajax/user/bookmark/${loginMember.no}",
+        url: "/ajax/user/${loginMember.no}/bookmark",
         dataType: "json",
         type: "get",
         error: function () {
             alert("서버 점검중");
         },//error end
         success: function (json) {
-            $bookmarkMovieWrap.append($bookmarkMovieTmp({
-                "movies": json.boxOfficeResult.dailyBoxOfficeList
-            }));
+   			console.log(json)
+        	
+        	 $bookmarkMovieWrap.append($bookmarkMovieTmp({
+                "movies": json
+            }))
 
 
         }//success end

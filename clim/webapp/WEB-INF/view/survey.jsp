@@ -17,6 +17,8 @@
 </head>
 <body>
 <main id="content">
+<input type="hidden" name="memberNo">
+
     <div class="header_logo_survey">
         <img src="/img/clim%20logo.png"><br>
         <span id="currentCheeckedMovieNum">0/15</span><br>
@@ -39,9 +41,9 @@
     <script type="text/tempate" id="surveyMovieTmp">
     <@_.each(movies,function(movie){ @>
          <li class="survey_movie_li">
-                <div class="survey_movie_img"><img src="/img/c_86iUd018svcu2mbqiag7a4k_fiodb6.jpg"></div>
+                <div class="survey_movie_img"><img src="/poster/<@=movie.poster@>"></div>
 
-                <div class="survey_movie_info"><strong class="movie_title_survey"><@=movie.movieNm@></strong>
+                <div class="survey_movie_info"><strong class="movie_title_survey"><@=movie.title@></strong>
                     <p>
                         <span class="movie_title_openDay">2019</span>
                     <p>
@@ -79,7 +81,15 @@
         evaluate: /\<\@([\s\S]+?)\@\>/gim,
         escape: /\<\@\-(.+?)\@\>/gim
     };
-
+    
+    const url = window.location.href;
+    
+    let array = url.split("/");
+    
+    console.log(array);
+    console.log(array[4]);
+    
+    let memberNo = array[4];
 
     //////////////////movie List json///////////////////////
     const $surveyMovieTmp = _.template($("#surveyMovieTmp").html());
@@ -90,21 +100,23 @@
     function getMovieList(){
         if(flag){
             flag = false;
-
+		
         $.ajax({
-            url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
+            url: "/ajax/user/survey",
             dataType: "json",
             type: "get",
-            data:{key: "430156241533f1d058c603178cc3ca0e",itemPerPage: 5,curPage: pageNo++},
+            data:{page: pageNo++},
             error: function () {
                 alert("서버 점검중");
             },//error end
             success: function (json) {
                 console.log(json)
-                const movies = json.movieListResult.movieList;
+                
+                
+               
                 $movieListUlSurvey.append($surveyMovieTmp({
-                    "movies": movies
-                }));
+                    "movies": json
+                })); 
                 flag = true;
 
             }//success end

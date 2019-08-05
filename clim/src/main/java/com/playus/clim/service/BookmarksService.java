@@ -10,5 +10,6 @@ public interface BookmarksService {
 
 	public List<Bookmark> getMyMovieList(int memberNo);
 	
+	public int deletMybookmarkMovie(int no);
 
 }

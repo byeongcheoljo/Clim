@@ -26,7 +26,14 @@ public class BookmarksServiceImpl implements BookmarksService{
 	@Override
 	public List<Bookmark> getMyMovieList(int memberNo) {
 		// TODO Auto-generated method stub
+		
 		return bookmarksDAO.mybookmarkListForMovies(memberNo);
 	}
 
+@Override
+	public int deletMybookmarkMovie(int no) {
+		// TODO Auto-generated method stub
+		return bookmarksDAO.deletMybookmarkMovie(no);
+	}
+	
 }

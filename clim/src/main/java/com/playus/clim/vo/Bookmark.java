@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 
 public class Bookmark {
 
-	
 	private int no, memberNo, movieNo;
+	private String title, poster;
 	private Timestamp regdate;
 	
 	private char type;
@@ -13,6 +13,26 @@ public class Bookmark {
 	
 	public Bookmark() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getPoster() {
+		return poster;
+	}
+
+
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 
 

@@ -19,11 +19,17 @@
 	
 	
 	<select id="mybookmarkListForMovies" parameterType="int" resultType="Bookmark">
-	select m.no, m.title,m.poster, b.regdate
-	from movies m, bookmarks b
-	where b.movie_no = #{no}
-	order by 'b.regdate' 
+	select m.no no, mem.no memberNo, m.title, m.poster, b.regdate
+	from movies m, bookmarks b, members mem
+	where b.member_no = #{mem.no} and b.movie_no = m.no and mem.no = b.member_no
+	
 	
 	</select>
+	
+	<delete id="deleteMybookmarkMovie" parameterType="int">
+	delete bookmarks
+	where no = #{no}
+	</delete>
+	
 	
 </mapper>

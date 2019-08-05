@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.MembersService;
 import com.playus.clim.service.PaymentsService;
 import com.playus.clim.vo.Payment;
@@ -18,6 +19,9 @@ public class MypageController {
 	private MembersService membersService;
 	@Autowired
 	private PaymentsService paymentsService;
+	@Autowired
+	private BookmarksService bookmarksService;
+	
 
 	@RequestMapping(value = "/user/{memberNo}", method = RequestMethod.GET)
 	public String myPage(Model model, @PathVariable int memberNo) {
@@ -78,11 +82,26 @@ public class MypageController {
 		return "redirect:/user/payment/{memberNo}";
 	}
 
-	@RequestMapping(value="/user/bookmark/{memberNo}",method=RequestMethod.GET)
+	@RequestMapping(value="/user/{memberNo}/bookmark",method=RequestMethod.GET)
 	public String addList() {
 		
 		return "bookmark";
 		
+		
 	}
+	
+	@RequestMapping(value="/user/{memberNo}/bookmark/{no}",method=RequestMethod.DELETE)
+	public String deleteList(@PathVariable int memberNo, @PathVariable int no) {
+		
+		System.out.println(memberNo);
+		System.out.println(no);
+		bookmarksService.deletMybookmarkMovie(no);
+		
+		return "redirect:/user/{memberNo}/bookmark";
+		
+	}
+	
+	
+	
 	
 }

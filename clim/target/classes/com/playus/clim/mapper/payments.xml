@@ -29,5 +29,10 @@
 	
 	</update>
 	
+	<insert id="defaultPayment" parameterType="int">
+
+	insert into payments(no, grade, member_no, card_name, card_no, card_validate, card_pw, card_cvc, regdate)
+	values (payments_seq.nextval, 'F', #{no}, '0','000000000000','0000','00','000', systimestamp)
+	</insert>
 	
 </mapper>

@@ -29,13 +29,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playus.clim.service.MembersService;
+import com.playus.clim.service.PaymentsService;
 import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Payment;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MembersService membersService;
+	@Autowired
+	private PaymentsService paymentsService;
 	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String signUp() {
@@ -43,7 +47,7 @@ public class MemberController {
 		return "signup";
 	}
 	
-	@RequestMapping(value="/survey", method=RequestMethod.GET)
+	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
 	public String survey() {
 		
 		
@@ -57,15 +61,18 @@ public class MemberController {
 		System.out.println(member.getGender());
 		System.out.println(member.getNickname());
 		
+		
+		
 		Date birthdate = Date.valueOf(year+"-"+month+"-"+date);
 		
 		member.setBirthDate(birthdate);
 		
-		membersService.insertMember(member);
+		membersService.insertMember(member);	
+		System.out.println(member.getNo());
+		paymentsService.defaultPaymentInfo(member.getNo());
+		int memberNo = member.getNo();
 		
-		
-		
-		return "redirect:survey";
+		return "redirect:/user/"+memberNo+"/survey";
 	}
 	
 	@RequestMapping(value="/user/info/{no}", method=RequestMethod.GET)
@@ -181,5 +188,7 @@ public class MemberController {
 		return "redirect:/index";
 	}
 
+	
+	
 }
 

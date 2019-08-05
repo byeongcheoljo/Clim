@@ -44,9 +44,13 @@
 	
 	
 	<insert id="insertMember" parameterType="Member">
-	
+	<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT members_seq.nextval
+			FROM dual
+	</selectKey>
 	insert into members(no, email, nickname, gender, birth_date, pwd, regdate)
-	values(members_seq.nextval,#{email}, #{nickname}, #{gender}, #{birthDate}, #{pwd}, systimestamp)
+	values(#{no},#{email}, #{nickname}, #{gender}, #{birthDate}, #{pwd}, systimestamp)
+	
 	</insert>
 	
 	<update id="updateInfo" parameterType="Member">

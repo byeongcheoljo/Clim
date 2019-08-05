@@ -12,4 +12,6 @@ public interface PaymentsService {
 	
 	public int deletePaymentInfo(int no);
 	
+	public int defaultPaymentInfo(int no);
+	
 }

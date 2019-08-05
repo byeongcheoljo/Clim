@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Clim | </title>
-	<%-- <c:import url="/WEB-INF/template/link.jsp"/> --%>
+	<c:import url="/WEB-INF/template/link.jsp"/>
     <link rel="stylesheet" href="/css/index.css"/>
 </head>
 <body>

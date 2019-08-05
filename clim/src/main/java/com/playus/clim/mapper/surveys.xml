@@ -3,4 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="surveys">
 	
+	
+	<select id="selectSurveyList" resultType="Survey" parameterType="PageVO">
+	
+	SELECT no, title, poster, nameKor, opendate, r
+FROM(SELECT no, title, poster, nameKor, opendate, rownum r
+	 FROM(SELECT m.no, m.title, poster, c.name_kor nameKor, m.opendate
+		  FROM movies m, m_countries mc, Countries c
+	 	  WHERE m.no = mc.movie_no
+	 	  AND mc.contry_no = c.no))
+WHERE r BETWEEN #{start} AND #{end}
+
+
+	</select>
+	
 </mapper>

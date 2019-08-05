@@ -11,4 +11,6 @@ public interface PaymentsDAO {
 	public int updatePaymentInfo(Payment payment);
 	public int deletePaymentInfo(int no);
 	
+	public int defaultPaymentInfo(int no);
+	
 }

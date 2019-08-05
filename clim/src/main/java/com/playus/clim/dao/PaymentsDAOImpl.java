@@ -32,4 +32,10 @@ public class PaymentsDAOImpl implements PaymentsDAO{
 		// TODO Auto-generated method stub
 		return session.delete("payments.deletePayment", no);
 	}
+
+@Override
+public int defaultPaymentInfo(int no) {
+	// TODO Auto-generated method stub
+	return session.insert("payments.defaultPayment",no);
+}
 }
