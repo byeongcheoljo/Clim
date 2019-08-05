@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
+import com.playus.clim.service.ClimingLogsService;
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.EventsService;
@@ -38,6 +39,8 @@ public class AjaxController {
 	private BookmarksService bookmarkService;
 	@Autowired
 	private EventsService eventsService;
+	@Autowired
+	private ClimingLogsService climingLogsService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -86,5 +89,6 @@ public class AjaxController {
 		bookmarkService.deleteClimingList(roomNo,movieNo);
 
 	}
+	
 
 }

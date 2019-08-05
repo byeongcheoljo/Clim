@@ -14,7 +14,12 @@
 		where clim_no=#{no} and close_time is null)currentPeople,
 		(select count(*) accCount
 		from c_logs
-		where clim_no=#{no} and close_time is not null)accPeople
+		where clim_no in(select no
+		from c_lists
+		where member_no=(select member_no
+		from c_lists
+		where no=#{no}))
+		and close_time is not null)accPeople
 		where clists.member_no=members.no and clists.no=#{no}
 	</select>
 

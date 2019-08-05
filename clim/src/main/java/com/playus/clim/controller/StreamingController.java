@@ -1,7 +1,13 @@
 package com.playus.clim.controller;
 
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -11,12 +17,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.playus.clim.service.ClimingListsService;
+import com.playus.clim.service.ClimingLogsService;
 import com.playus.clim.service.StreamingDetailService;
+import com.playus.clim.vo.ClimingList;
+import com.playus.clim.vo.ClimingLog;
+import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Movie;
 
 @Controller
 public class StreamingController {
 	@Autowired
 	private StreamingDetailService streamingDetailService;
+	@Autowired
+	private ClimingLogsService climingLogsService;
+	@Autowired
+	private ClimingListsService climingListsService;
 	
 	
 	@RequestMapping(value="/room/{no}", method=RequestMethod.GET)
@@ -56,8 +72,16 @@ public class StreamingController {
 	//방에서 현재 시간을 얻어옴
 		@MessageMapping("/room/{no}/get/time")
 		@SendTo("/topic/room/{no}/get/time")
-		public int afdasdf(SimpMessageHeaderAccessor accessor) {
+		public int afdasdf(@DestinationVariable int no, int memberNo , SimpMessageHeaderAccessor accessor) {
 			System.out.println("/room/{no}/get/time");
+			System.out.println(memberNo);
+			
+			
+			ClimingLog log = new ClimingLog();
+			log.setClimingNo(no);
+			log.setMemberNo(memberNo);
+			log.setSessionId(accessor.getSessionId());
+			climingLogsService.joinCliming(log);
 			
 			//아무값이나 리턴하지 않으면 응답이 가지 않음
 			return 1;
@@ -66,20 +90,34 @@ public class StreamingController {
 		//방에서 현재 시간을 세팅함
 		@MessageMapping("/room/{no}/set/time")
 		@SendTo("/topic/room/{no}/set/time")
-		public double afdasdf(Double time, SimpMessageHeaderAccessor accessor) {
+		public Movie afdasdf(Movie movie, SimpMessageHeaderAccessor accessor) {
 			System.out.println("/room/{no}/set/time");
-			System.out.println(time);
-			return time;
+			
+			return movie;
 		}
+		
+		@MessageMapping("/room/{no}/get/climee")
+		@SendTo("/topic/room/{no}/get/climee")
+		public Map<String, Object> getClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/"+no+"/get/climee");
+			
+			
+			
+			return climingLogsService.getClimeeList(no);
+		}
+		
+		
+		
+		
 		@MessageMapping("/room/{no}/put/sessionId")
 		public void sfasds(int no,SimpMessageHeaderAccessor accessor) {
 			System.out.println("방장이 처음 들어옴!");
 			
 			System.out.println("sessionId:"+accessor.getSessionId());
 			
-//			Clim clim = new Clim(no,accessor.getSessionId());
-//			
-//			climListService.updateSessionId(clim);
+			ClimingList clim = new ClimingList(no,accessor.getSessionId());
+			
+			climingListsService.updateSessionId(clim);
 		}
 		
 		

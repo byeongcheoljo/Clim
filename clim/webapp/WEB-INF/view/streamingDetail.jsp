@@ -1,171 +1,202 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>스트리밍 디테일</title>
-	<c:import url="/WEB-INF/template/link.jsp"/>
-    <link rel="stylesheet" href="https://releases.flowplayer.org/5.4.6/skin/functional.css">
-    <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet" />
-    <script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
-   	<link rel="stylesheet" href="/css/streamingDetail.css"/>
+<meta charset="UTF-8">
+<title>스트리밍 디테일</title>
+<c:import url="/WEB-INF/template/link.jsp" />
+<link rel="stylesheet"
+	href="https://releases.flowplayer.org/5.4.6/skin/functional.css">
+<link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet" />
+<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
+<link rel="stylesheet" href="/css/streamingDetail.css" />
 </head>
 
 
 <body>
 
+<button id="test">테스트</button>
 
+	<div id="streamingDetailVideoSection">
+		<div id="streamingBg">
+			<div id="streamingReportPopup">
+				<div id="streamingReportName">${leader.nickname }신고하기</div>
+				<button id="streamingCloseBtn">
+					<i class="fas fa-times-circle"></i>
+				</button>
 
-    <div id="streamingDetailVideoSection">
-        <div id="streamingBg">
-            <div id="streamingReportPopup">
-                <div id="streamingReportName">${leader.nickname } 신고하기</div>
-                <button id="streamingCloseBtn"><i class="fas fa-times-circle"></i></button>
+				<div id="reportForm">
 
-                <div id="reportForm">
-                    
-                    <textarea id="streamingReportContent"></textarea>
-                    <button id="streamingReportBtn">신고</button>
-                    
-                </div>
-            </div>
-        </div>
-        <div id="streamingDetailSlideBar">
-            <div>
-                <ul id="streamingDetailTopTab">
-                    <li class="streamingDetail_tab on">
-                        <h3>정보</h3>
-                    </li>
-                    <li class="streamingDetail_tab">
-                        <h3>채팅</h3>
-                    </li>
-                    <li class="streamingDetail_tab">
-                        <h3>끌림들</h3>
-                    </li>
-                </ul>
+					<textarea id="streamingReportContent"></textarea>
+					<button id="streamingReportBtn">신고</button>
 
-            </div>
+				</div>
+			</div>
+		</div>
+		<div id="streamingDetailSlideBar">
+			<div>
+				<ul id="streamingDetailTopTab">
+					<li class="streamingDetail_tab on">
+						<h3>정보</h3>
+					</li>
+					<li class="streamingDetail_tab">
+						<h3>채팅</h3>
+					</li>
+					<li class="streamingDetail_tab">
+						<h3>끌림들</h3>
+					</li>
+				</ul>
 
-            <div id="streamingDetailTopWarp">
+			</div>
 
-                <div id="streamingDetailInfo" class="streamingDetail_tab_contents on">
-                    <div id="streamingDetailStreamerName"><i class="fas fa-crown"></i>${leader.nickname }</div>
-                    <button class="streamingDetail_info_btn" id="streamingDetailSubscribeBtn"><i class="far fa-lightbulb"></i></button>
-                    <button class="streamingDetail_info_btn" id="streamingDetailReportBtn"><i class="fas fa-exclamation"></i></button>
-                    <div class="streamingDetail_index" id="streamingDetailCumulativeIndex">누적 끌림 지수 : ${leader.acccount }명</div>
-                    <div class="streamingDetail_index" id="streamingDetailCurrentIndex">현재 끌림 지수 : ${leader.currcount }명</div>
-                    <div id="streamingDetailSubscribeContent">${leader.nickname }님을 구독하셨습니다.</div>
+			<div id="streamingDetailTopWarp">
 
-                    <div id="streamingDetailRoomTitle">${leader.title }</div>
-                    <c:if test="${leader.no == loginMember.no}">
-                    <input id="streamingDetailTitleSearch" placeholder="입력하는 곳입니당ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ">
+				<div id="streamingDetailInfo"
+					class="streamingDetail_tab_contents on">
+					<div id="streamingDetailStreamerName">
+						<i class="fas fa-crown"></i>${leader.nickname }</div>
+					<button class="streamingDetail_info_btn"
+						id="streamingDetailSubscribeBtn">
+						<i class="far fa-lightbulb"></i>
+					</button>
+					<button class="streamingDetail_info_btn"
+						id="streamingDetailReportBtn">
+						<i class="fas fa-exclamation"></i>
+					</button>
+					<div class="streamingDetail_index"
+						id="streamingDetailCumulativeIndex">누적 끌림 지수 :
+						${leader.acccount }명</div>
+					<div class="streamingDetail_index" id="streamingDetailCurrentIndex">현재
+						끌림 지수 : ${leader.currcount }명</div>
+					<div id="streamingDetailSubscribeContent">${leader.nickname }님을
+						구독하셨습니다.</div>
+
+					<div id="streamingDetailRoomTitle">${leader.title }</div>
+					<c:if test="${leader.no == loginMember.no}">
+						<input id="streamingDetailTitleSearch"
+							placeholder="입력하는 곳입니당ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ">
 					</c:if>
-                    <div id="streamingDetailTitleList">
-                        <ul>
-                            <!--  <li><img src="img/movie_image.jpg"> gggg</li>-->
+					<div id="streamingDetailTitleList">
+						<ul>
+							<!--  <li><img src="img/movie_image.jpg"> gggg</li>-->
 
-                        </ul>
+						</ul>
 
-                    </div>
+					</div>
 
-                    <div id="streamingDetailMovieListContents">
-                        <ul id="streamingDetailMovieList">
+					<div id="streamingDetailMovieListContents">
+						<ul id="streamingDetailMovieList">
 
- 						<c:forEach items="${movieLists}" var="climing_movie">
-                           <li class="streamingDetail_movie">
-                                <div><img src="/poster${climing_movie.poster}">
-                                    <span>${climing_movie.title}</span>
-                                    <source type="video/mp4" src="/video/loop.mp4" />
-                                     <c:if test="${leader.no == loginMember.no}">
-                                    <div class="garbage"><input hidden value="${climing_movie.no}"><i class="fas fa-trash-alt"></i></div>
-                                </c:if>
-                                </div>
-                                
-                                <c:if test="${leader.no == loginMember.no}">
-                                <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
-                                <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
-                            	</c:if>
-                            </li>
-  						 </c:forEach>
-		
-                            
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-
-                <div id="streamingDetailChat" class="streamingDetail_tab_contents">
-                    <div id="streamingDetailChatWrap">
-                        <div id="streamingDetailChatList">
-                            <ul>
-                                
-                            </ul>
-                        </div>
-                        <!--streamingDetailChatList -->
-                    </div>
-                    <!--streamingDetailChatWrap -->
-
-
-                    <div id="streamingDetailInputChatBox">
-                        <form id="msgForm">
-                            <fieldset>
-                                <div id="vote"><i class="fas fa-archive"></i></div>
-                                <input id="msgInput" placeholder="내용을 입력해주세요">
-                                <div id="emotionBox"> <i class="far fa-times-circle"></i></div>
-                                <div id="emotion"><i class="far fa-grin"></i></div>
-                                <button id="msgBtn">보내기</button>
-                            </fieldset>
-
-                        </form>
-
-                    </div>
-                    <!--streamingDetailInputChatBox -->
-
-
-                </div> <!-- streamingDetailChat -->
-
-                <div id="streamingDetailClim" class="streamingDetail_tab_contents">
-                    <div id="streamingDetailClimList">
-                        <ul>
-
-                        </ul>
-                    </div>
-                    <!--streamingDetailClimList -->
-                </div> <!-- streamingDetailClim -->
-
-            </div>
+							<c:forEach items="${movieLists}" var="climing_movie">
+								<li class="streamingDetail_movie">
+									<div>
+										<img src="/poster${climing_movie.poster}"> <span>${climing_movie.title}</span>
+										<source type="video/mp4" src="/video/loop.mp4" />
+										<c:if test="${leader.no == loginMember.no}">
+											<div class="garbage">
+												<input hidden value="${climing_movie.no}"><i
+													class="fas fa-trash-alt"></i>
+											</div>
+										</c:if>
+									</div> <c:if test="${leader.no == loginMember.no}">
+										<button
+											class="streamingDetail_switch_btn streamingDetail_up_btn">
+											<i class="fas fa-angle-up"></i>
+										</button>
+										<button
+											class="streamingDetail_switch_btn streamingDetail_down_btn">
+											<i class="fas fa-angle-down"></i>
+										</button>
+									</c:if>
+								</li>
+							</c:forEach>
 
 
 
-            <div class="inequality_btn" id="toggleCloseBtn"> > </div>
-        </div>
-        <div class="inequality_btn" id="toggleOpenBtn">< </div>
+						</ul>
 
-       <video id="my-player" class="video-js"
-       poster="img/c_86iUd018svcu2mbqiag7a4k_fiodb6.jpg" width="1080" height="600"
-       
-       <c:if test="${leader.no == loginMember.no}">
+					</div>
 
-        controls </c:if>  autoplay="true"
-		
-       data-setup='{"example_option":true}'>
-    <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+				</div>
 
 
-    <track kind="subtitles" src="vtt/pacman-ko.vtt" srclang="ko" label="한글" default>
-    <track kind="subtitles" src="vtt/pacman-en.vtt" srclang="en" label="영어" >
-</video>
+				<div id="streamingDetailChat" class="streamingDetail_tab_contents">
+					<div id="streamingDetailChatWrap">
+						<div id="streamingDetailChatList">
+							<ul>
 
-        </div>
+							</ul>
+						</div>
+						<!--streamingDetailChatList -->
+					</div>
+					<!--streamingDetailChatWrap -->
+
+
+					<div id="streamingDetailInputChatBox">
+						<form id="msgForm">
+							<fieldset>
+								<div id="vote">
+									<i class="fas fa-archive"></i>
+								</div>
+								<input id="msgInput" placeholder="내용을 입력해주세요">
+								<div id="emotionBox">
+									<i class="far fa-times-circle"></i>
+								</div>
+								<div id="emotion">
+									<i class="far fa-grin"></i>
+								</div>
+								<button id="msgBtn">보내기</button>
+							</fieldset>
+
+						</form>
+
+					</div>
+					<!--streamingDetailInputChatBox -->
+
+
+				</div>
+				<!-- streamingDetailChat -->
+
+				<div id="streamingDetailClim" class="streamingDetail_tab_contents">
+					<div id="streamingDetailClimList">
+						<ul>
+
+						</ul>
+					</div>
+					<!--streamingDetailClimList -->
+				</div>
+				<!-- streamingDetailClim -->
+
+			</div>
 
 
 
-<script type="text/template" id="movieAddPlayListTmp">
+			<div class="inequality_btn" id="toggleCloseBtn">></div>
+		</div>
+		<div class="inequality_btn" id="toggleOpenBtn"><</div>
+
+		<video id="my-player" class="video-js" autoplay muted
+			poster="img/c_86iUd018svcu2mbqiag7a4k_fiodb6.jpg" width="1080"
+			height="600"
+			<c:if test="${leader.no == loginMember.no}">
+
+        controls </c:if>
+			 data-setup='{"example_option":true}'>
+			<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+
+
+			<track kind="subtitles" src="vtt/pacman-ko.vtt" srclang="ko"
+				label="한글" default> <track kind="subtitles"
+				src="vtt/pacman-en.vtt" srclang="en" label="영어">
+		</video>
+
+	</div>
+
+
+
+	<script type="text/template" id="movieAddPlayListTmp">
 
      
 							<li class="streamingDetail_movie">
@@ -184,7 +215,7 @@
 
 </script>
 
-<script type="text/template" id="streamingChatTmp">
+	<script type="text/template" id="streamingChatTmp">
 
             <li class="mine">
         <div class="card_user">
@@ -197,7 +228,7 @@
 
 </script>
 
-<script type="text/template" id="banChatTmp">
+	<script type="text/template" id="banChatTmp">
 
             <li class="cmd">
         <span><@=name@>님 강퇴닼ㅋㅋㅋㅋ</span>
@@ -206,7 +237,7 @@
 
 </script>
 
-<script type="text/template" id="SearchListTmp">
+	<script type="text/template" id="SearchListTmp">
     <@ _.each(json, function(data){ @>
 
     <li class="movie_title"><img src="/<@=data.poster@>"><span><@=data.title@></span>
@@ -219,18 +250,19 @@
 
 </script>
 
-<script type="text/template" id="climListTmp">
-    <@ _.each(json, function(name){@>
-    <li><@=name.name@> <i class="fas fa-bomb climListDelete"></i></li>
+	<script type="text/template" id="climListTmp">
+    <@ _.each(json, function(member){@>
+    <li><@=member.nickname@> <i class="fas fa-bomb climListDelete"></i>
+	<input hidden id="memberNo" value="<@=member.no@>"></li>
     <@});@>
 </script>
 
 
 
-<script src="/js/moment-with-locales.js"></script>
-<script src="/js/sockjs.min.js"></script>
-<script src="/js/stomp.min.js"></script>
-        <script>
+	<script src="/js/moment-with-locales.js"></script>
+	<script src="/js/sockjs.min.js"></script>
+	<script src="/js/stomp.min.js"></script>
+	<script>
             moment.locale("ko");
             _.templateSettings = {
                 interpolate: /\<\@\=(.+?)\@\>/gim,
@@ -331,7 +363,41 @@
             	
                 e.stopPropagation();
             });
+            
+            //var myPlayer = videojs('my-player_html5_api');
+            
+            $("#test").click(function() {
+            	
+            	playMovie("/video/SampleVideo_1280x720_10mb.mp4",10);
+            	
+            });
 
+            function playMovie(src,time,title){
+            	
+            	console.log("1) test");
+            	console.log(title)
+            	
+            	player.src({type: 'video/mp4', src: src});
+            	$(".vjs-title-bar").text(title);
+            	player.load();
+            	
+            	player.currentTime(time);
+            	
+            	player.play();
+            	
+            	
+            	/*player.ready(function() {
+            		console.log("2) test");
+     			   // tech() will error with no argument
+     			   //var tech = player.tech({IWillNotUseThisInPlugins: true});
+     			   
+     			  console.log("3) test");
+     			  
+     			  if(time)  {player.currentTime(time);}
+     			   
+     			  player.play();
+     			});*/
+            }
 
 
             //채팅 하기
@@ -475,7 +541,7 @@
             const Component = videojs.getComponent('Component');
  			                  const button = videojs.getComponent('Button');
  			                  //MoveButton
- 			                  const MoveButton = videojs.extend(button,{
+ 			                 /* const MoveButton = videojs.extend(button,{
  			                      createEl: function() {
  			                          return videojs.createEl('button', {
  			                              className: 'vjs-move-btn',
@@ -485,7 +551,7 @@
  			                      handleClick: function(){
  			                          this.player().currentTime(15);
  			                      }
- 			                  });//MyButton() end
+ 			                  });//MyButton() end*/
 
  			                  //TitleBar
  			                  const TitleBar = videojs.extend(Component, {
@@ -510,7 +576,7 @@
 
 
 
- 			                  const PrevBtn = videojs.extend(button, {
+ 			                 /* const PrevBtn = videojs.extend(button, {
  			                      createEl: function() {
  			                          return videojs.createEl('button', {
  			                              className: 'vjs-control vjs-menu-button vjs-button',
@@ -533,13 +599,13 @@
  			                          const time = this.player().currentTime();
  			                          this.player().currentTime(time+10);
  			                      }
- 			                  });
+ 			                  });*/
 
  			                  //videojs에 컴포넌트 등록
- 			                  videojs.registerComponent('PrevBtn', PrevBtn);
- 			                  videojs.registerComponent('NextBtn', NextBtn);
+ 			                 // videojs.registerComponent('PrevBtn', PrevBtn);
+ 			                 // videojs.registerComponent('NextBtn', NextBtn);
  			                  videojs.registerComponent('TitleBar', TitleBar);
- 			                  videojs.registerComponent('MoveButton', MoveButton);
+ 			                 // videojs.registerComponent('MoveButton', MoveButton);
 
  			                 
 
@@ -551,18 +617,15 @@
  			                  const player = videojs('my-player');
 
  			                  //컴포넌트를 자식으로 추가
- 			                  player.addChild('TitleBar', {text: '라이온킹'});
+ 			                  player.addChild('TitleBar', {text: ''});
 
  			                  //컴포넌트를 자식으로 추가
  			                //  const moveButton = player.addChild('MoveButton');
  			                   videojs.getComponent('ControlBar').prototype.options_ = {
  			                          loadEvent: 'play',
  			                          children: [
- 			                              'playToggle',
  			                              'muteToggle',
  			                              'volumeControl',
- 			                              'PrevBtn',
- 			                              'NextBtn',
  			                              'progressControl',
  			                              'subsCapsButton',
  			                              'pictureInPictureToggle',
@@ -574,7 +637,7 @@
             //끌리미들 목록
             /*function climList() {
                 $.ajax({
-                    url: "/ajax/climList.json",
+                    url: "/ajax/room/${roomNo}/climee",
                     dataType: "json",
                     error: function() {
                         alert("ㅇㅇㅇ 서버 점검.")
@@ -588,36 +651,37 @@
                     }
                 });
             }
-            climList();*/
-            
+            climList();
+            */
             
             $("#streamingReportBtn").submit(function(){
                 alert("Test");
                 
-            })
+            });
+            let stompClient = null;
+            
+    		function connect(callback) {
+        	
+        	let socket = new SockJS('/clim');
+        	stompClient = Stomp.over(socket);
+        	
+        	// SockJS와 stomp client를 통해 연결을 시도.
+        	stompClient.connect({},function() {
+        		
+        		console.log("2) 연결!");
+        	
+        		//인자로 받은 함수를 여기서 호출
+        		if(callback) callback();
+        		
+        	});
+    		};
             
             
            
-            let stompClient = null;
-            
- 			function connect(callback) {
-            	
-            	let socket = new SockJS('/clim');
-            	stompClient = Stomp.over(socket);
-            	
-            	// SockJS와 stomp client를 통해 연결을 시도.
-            	stompClient.connect({},function() {
-            		
-            		console.log("2) 연결!");
-            	
-            		//인자로 받은 함수를 여기서 호출
-            		if(callback) callback();
-            		
-            	});
- 			};
+           
             	
             
- 			const video = $("video").get(0); 	
+ 							//const video = $("video").get(0); 	
  			            	connect(function() {
  			            		
  			            		//채팅
@@ -644,9 +708,28 @@
  			                         moveScroll();
  			            			
  			            		});
+ 			            		
+ 			            		//클리미들 구독해서 리스트 가져오기!
+ 			            		stompClient.subscribe("/topic/room/${roomNo}/get/climee",function(protocol) {
+			            				
+			            				
+			            				
+			            				const json = JSON.parse(protocol.body);
+			            				console.log("/topic/room/${roomNo}/get/climee");
+			            				$("#streamingDetailClimList ul").append(climListTmp({
+			                                json: json.climees
+			                            }))
+			            				
+			            				const climeesCnt = json.climeesCnt;
+			            				const climeedCnt = json.climeedCnt;
+			            				
+			            				$("#streamingDetailCumulativeIndex").text("누적 끌림 지수 :"+climeedCnt+"명");
+			            				$("#streamingDetailCurrentIndex").text("현재 끌림 지수 : "+climeesCnt+"명");
+			            				
+			            			});
 
 
- 				<c:choose>
+ 								<c:choose>
  			            		<c:when test="${leader.no!= loginMember.no}">
  			            			stompClient.subscribe("/topic/room/${roomNo}/close",function(protocol) {
  			        				console.log(protocol.body);
@@ -656,98 +739,123 @@
  			        			});
  			            			//방장이 시간을 보내는 주소를 구독해야 함
  			            			stompClient.subscribe("/topic/room/${roomNo}/set/time",function(protocol) {
- 			            				const time = protocol.body;
- 			            				console.log(protocol.body);
+ 			            				
+ 			            				
+ 			            				
+ 			            				const json = JSON.parse(protocol.body);
+ 			            				console.log("/topic/room/${roomNo}/set/time");
+ 			            				const time = json.audiAcc;
+ 			            				const src = json.src;
+ 			            				const title = json.title
  			            				//방장이 현재 보는 시간으로 동기화
- 			            				video.currentTime = time;
+ 			            				playMovie(src,time,title);
+ 			            				//player.currentTime(time);
  			            			});
  			            			
  			            			//들어오자마자 현재 방장이 보고 있는 현재 시간을 요청해야 함
- 			            			stompClient.send("/app/room/${roomNo}/get/time",{});
+ 			            			stompClient.send("/app/room/${roomNo}/get/time",{},${loginMember.no});
  			            			
  			            			
  			                    </c:when>
  			                    <c:otherwise>
  			                   ////방장
  			                     $(".streamingDetail_movie .fa-trash-alt").click(function() {
-            	const movie_no=$(this).parent().find('input').val();
-            	
-            	$.ajax({
-            		url:"/ajax/delete/ClimingList",
-            		data:{roomNo:${roomNo},movieNo:movie_no},
-            		error:function(){
-            			alert("서버점검중");
-            		},
-            		success:function(){
-            			$li.remove();
-            		}
-            	});
-               
-            });
-
-            // 쓰레기통 클릭하면 영화 삭제
-            $streamingDetailMovieList.on("click", ".streamingDetail_movie .fa-trash-alt", function() {
-            	const movie_no=$(this).parent().find('input').val();
-            	
-				const $li = $(this).parents("li");
-				
-            	$.ajax({
-            		url:"/ajax/delete/ClimingList",
-            		data:{roomNo:${roomNo},movieNo:movie_no},
-            		error:function(){
-            			alert("서버점검중");
-            		},
-            		success:function(){
-            			$li.remove();
-            		}
-            	});
-            	return false;
-            });
-
-            // 영화 목록에 아래 버튼을 클릭시 스왑
-            $streamingDetailMovieList.on("click", ".streamingDetail_down_btn", function() {
-                // alert("down button");
-                let lastIndex = $streamingDetailMovieList[0].childElementCount - 1;
-                let temp = $(this).parents("li");
-                console.log(temp);
-                let index = $(this).parents("li").index();
-                console.log(index);
-                if (index == lastIndex) {
-                    return false;
-                }
-                $(this).parents("li").remove();
-                $streamingDetailMovieList.children("li").eq(index).after(temp);
-                console.log($(this).parents("li").index());
-            });
-
-            // 영화 목록에서 윗 버튼을 클릭하면 스왑
-            $streamingDetailMovieList.on("click", ".streamingDetail_up_btn", function() {
-                // alert("up button");
-                let zeroIndex = 0;
-                let temp = $(this).parents("li");
-                let index = $(this).parents("li").index();
-
-                if (index == zeroIndex) {
-                    return false;
-                }
-
-                $(this).parents("li").remove();
-                $streamingDetailMovieList.children("li").eq(index - 1).before(temp);
-                console.log($(this).parents("li").index());
-
-            });
-            // 관리자가 스트리밍 무비 리스트를 클릭하면 
-            // 클릭 된 영화 재생
-            $("#streamingDetailMovieList").on("click"," .streamingDetail_movie div",function(){
-             	const src = $(this).find("source").attr('src');
-             	console.log(src);
-     			console.log();
-     			
-     			$('video source').attr("src",src);
-                //video.find('source').attr("src",$(this).find("#source").attr("src"));
-                //$("#my-player_html5_api").attr("src","/video/loop.mp4");
-                                                 
-             });
+					            	const movie_no=$(this).parent().find('input').val();
+					            	
+					            	$.ajax({
+					            		url:"/ajax/delete/ClimingList",
+					            		data:{roomNo:${roomNo},movieNo:movie_no},
+					            		error:function(){
+					            			alert("서버점검중");
+					            		},
+					            		success:function(){
+					            			$li.remove();
+					            		}
+					            	});
+					               
+					            });//방장이 들어오자마자 클리미들 호출!
+ 			                   stompClient.send("/app/room/${roomNo}/get/climee",{});
+ 			                   
+							
+							            // 쓰레기통 클릭하면 영화 삭제
+							            $streamingDetailMovieList.on("click", ".streamingDetail_movie .fa-trash-alt", function() {
+							            	const movie_no=$(this).parent().find('input').val();
+							            	
+											const $li = $(this).parents("li");
+											
+							            	$.ajax({
+							            		url:"/ajax/delete/ClimingList",
+							            		data:{roomNo:${roomNo},movieNo:movie_no},
+							            		error:function(){
+							            			alert("서버점검중");
+							            		},
+							            		success:function(){
+							            			$li.remove();
+							            		}
+							            	});
+							            	return false;
+							            });
+							
+							            // 영화 목록에 아래 버튼을 클릭시 스왑
+							            $streamingDetailMovieList.on("click", ".streamingDetail_down_btn", function() {
+							                // alert("down button");
+							                let lastIndex = $streamingDetailMovieList[0].childElementCount - 1;
+							                let temp = $(this).parents("li");
+							                console.log(temp);
+							                let index = $(this).parents("li").index();
+							                console.log(index);
+							                if (index == lastIndex) {
+							                    return false;
+							                }
+							                $(this).parents("li").remove();
+							                $streamingDetailMovieList.children("li").eq(index).after(temp);
+							                console.log($(this).parents("li").index());
+							            });
+							
+							            // 영화 목록에서 윗 버튼을 클릭하면 스왑
+							            $streamingDetailMovieList.on("click", ".streamingDetail_up_btn", function() {
+							                // alert("up button");
+							                let zeroIndex = 0;
+							                let temp = $(this).parents("li");
+							                let index = $(this).parents("li").index();
+							
+							                if (index == zeroIndex) {
+							                    return false;
+							                }
+							
+							                $(this).parents("li").remove();
+							                $streamingDetailMovieList.children("li").eq(index - 1).before(temp);
+							                console.log($(this).parents("li").index());
+							
+							            });
+							            // 관리자가 스트리밍 무비 리스트를 클릭하면 
+							            // 클릭 된 영화 재생
+							            $("#streamingDetailMovieList").on("click"," .streamingDetail_movie div",function(){
+							             	const src = $(this).find("source").attr('src');
+							             	console.log(src);
+							     			console.log();
+							     			
+							     			//player.currentTime(10);
+							     			
+							     			const time = player.currentTime();
+							     			
+							     			console.log("time:" + time);
+							     			const title = $(this).find("span").text();
+							     			
+							     			const data = JSON.stringify({"src":src,"audiAcc":0,"title":title});
+							     			$(".vjs-title-bar").text(title);
+							     			stompClient.send("/app/room/${roomNo}/set/time",{},data);
+							     			
+							     			playMovie(src,0,title);
+							     			
+							     			//$('video source').attr("src",src);
+							     			
+							                //video.find('source').attr("src",$(this).find("#source").attr("src"));
+							                //$("#my-player_html5_api").attr("src","/video/loop.mp4");
+							                                                 
+							             });
+							            
+            
             
 
 			                       
@@ -762,7 +870,11 @@
  					        				//alert(video.currentTime);
  					        				
  					        				//방장이 현재 보고 있는 시간을 다른 유저들에게 보냄
- 					        				stompClient.send("/app/room/${roomNo}/set/time",{},video.currentTime);
+ 					        				let src = $("video source").attr('src');
+ 					        				console.log(src);
+ 					        				const title = $('.vjs-title-bar').text();
+ 					        				const data = JSON.stringify({src:src,audiAcc:player.currentTime(),title:title});
+ 					        				stompClient.send("/app/room/${roomNo}/set/time",{},data);
  					        			});
  					        			
  					        			//방장이 문을 닫을때 호출됨
@@ -782,7 +894,7 @@
             		
             	
         </script>
-        
-        
+
+
 </body>
 </html>

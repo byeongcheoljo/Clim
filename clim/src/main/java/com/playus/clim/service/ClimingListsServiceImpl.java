@@ -10,5 +10,12 @@ import com.playus.clim.vo.ClimingList;
 
 @Service
 public class ClimingListsServiceImpl implements ClimingListsService{
+	@Autowired
+	private ClimingListsDAO climingListsDAO;
 	
+	@Override
+	public void updateSessionId(ClimingList clim) {
+		// TODO Auto-generated method stub
+		climingListsDAO.updateSessionId(clim);
+	}
 }

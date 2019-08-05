@@ -6,6 +6,8 @@ public class ClimingLog {
 
 	private int no, climingNo, memberNo;
 	private char type;
+	private String sessionId;
+	private Timestamp openDate,closeDate;
 	
 	private Timestamp regdate;
 	
@@ -62,6 +64,36 @@ public class ClimingLog {
 
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
+	}
+
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+
+	public Timestamp getOpenDate() {
+		return openDate;
+	}
+
+
+	public void setOpenDate(Timestamp openDate) {
+		this.openDate = openDate;
+	}
+
+
+	public Timestamp getCloseDate() {
+		return closeDate;
+	}
+
+
+	public void setCloseDate(Timestamp closeDate) {
+		this.closeDate = closeDate;
 	}
 	
 	

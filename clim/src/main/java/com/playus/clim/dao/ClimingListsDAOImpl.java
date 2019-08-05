@@ -18,5 +18,11 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	public int subscribesLiveCheck(int memberNo) {
 		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
 	}
+	@Override
+	public void updateSessionId(ClimingList clim) {
+		// TODO Auto-generated method stub
+		session.update("climingLists.updateSessionId",clim);
+		
+	}
 	
 }

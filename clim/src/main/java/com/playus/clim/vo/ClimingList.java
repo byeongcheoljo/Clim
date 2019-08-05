@@ -5,11 +5,25 @@ import java.sql.Timestamp;
 public class ClimingList {
 
 	private int no, memberNo;
-	private String title;
+	private String title,sessionId;
 	private Timestamp openTime, closeTime;
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public ClimingList(int no, String sessionId) {
+		// TODO Auto-generated constructor stub
+		this.no= no;
+		this.sessionId = sessionId;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	public Timestamp getOpenTime() {

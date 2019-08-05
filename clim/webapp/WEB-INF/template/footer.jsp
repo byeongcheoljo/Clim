@@ -22,5 +22,8 @@
         </ul>
     </div><!--//footerPolicy -->
     <address>&copy; 2019 <a href="">jbp.com</a></address>
+    <script >
+  
+    </script>
 </footer><!--// footer -->
     
