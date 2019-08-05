@@ -11,7 +11,6 @@ public class MembersDAOImpl implements MembersDAO{
 	
 	@Autowired
 	private SqlSession session;
-<<<<<<< HEAD
 
 	
 	@Override
@@ -36,7 +35,7 @@ public class MembersDAOImpl implements MembersDAO{
 	public int updateInfo(Member member) {
 		// TODO Auto-generated method stub
 		return session.delete("members.updateInfo", member);
-=======
+	}
 	@Override
 	public Member myPageMemberSelectOne(int memberNo) {
 		return session.selectOne("members.myPageMemberSelectOne",memberNo);
@@ -57,6 +56,5 @@ public class MembersDAOImpl implements MembersDAO{
 	public int pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		return session.update("members.pwdUpdate", member);
->>>>>>> master
 	}
 }

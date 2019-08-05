@@ -7,4 +7,13 @@
 	insert into reports
 	values(reports_seq.nextval,'C', #{reporterNo},(select member_no from c_lists where no= #{postNo}), #{postNo}, #{contents},systimestamp,null)
 	</insert>
+	
+	
+	<insert id="faq" parameterType="Report" >
+	
+	insert into reports(no,type, reporter_no, contents, regdate, title)
+	values (reports_seq.nextval, 'Q', #{reporterNo}, #{contents}, systimestamp, #{title})
+	
+	</insert>
+	
 </mapper>

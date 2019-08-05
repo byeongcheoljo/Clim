@@ -12,7 +12,6 @@
 <body>
 <c:import url="/WEB-INF/template/header.jsp"/>
 <main id="content">
-
     <ul id="headerNavMypage">
         <li id="nicknameHeaderMypage">닉네임</li>
         <li class="header_myPage_tabbed">홈</li>
@@ -69,7 +68,7 @@
          $(this).parents(".bookmark_movie_card").remove();
     });
     $.ajax({
-        url: "/json/movie.json",
+        url: "/ajax/user/bookmark/${loginMember.no}",
         dataType: "json",
         type: "get",
         error: function () {

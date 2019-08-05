@@ -10,4 +10,6 @@ public interface BookmarksDAO {
 
 	public void insertClimingList(Bookmark bookmark);
 
+	
+	public List<Bookmark> mybookmarkListForMovies(int no);
 }

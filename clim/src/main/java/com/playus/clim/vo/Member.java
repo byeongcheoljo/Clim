@@ -9,7 +9,7 @@ public class Member {
 
 	private int no;
 	private String email, nickname, pwd, uuid;
-	private char gender;
+	private char gender,grade;
 	private Date birthDate;
 	private Timestamp regdate;
 	
@@ -17,6 +17,19 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+
+	public char getGrade() {
+		return grade;
+	}
+
+
+
+	public void setGrade(char grade) {
+		this.grade = grade;
+	}
+
 
 
 	public int getNo() {

@@ -1,5 +1,6 @@
 package com.playus.clim.service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -7,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.BoardsDAO;
+import com.playus.clim.dao.BookmarksDAO;
 import com.playus.clim.util.PaginateUtil;
+import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.PageVO;
 
 @Service
@@ -17,6 +20,8 @@ public class BoardsServiceImpl implements BoardsService{
 	private BoardsDAO boardsDAO;
 	@Autowired
 	private PaginateUtil paginateUtil;
+	@Autowired
+	private BookmarksDAO bookmarksDAO;
 	
 	@Override
 	public Map<String, Object> getMyBoards(int memberNo, int page) {
@@ -32,4 +37,10 @@ public class BoardsServiceImpl implements BoardsService{
 		return map;
 	}
 	
+	
+	@Override
+	public List<Bookmark> getMyMovieList(int no) {
+		// TODO Auto-generated method stub
+		return bookmarksDAO.mybookmarkListForMovies(no);
+	}
 }

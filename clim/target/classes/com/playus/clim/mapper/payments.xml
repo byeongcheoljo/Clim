@@ -3,4 +3,31 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="payments">
 	
+	
+	<select id="selectOne" resultType="Member" parameterType="int">
+	
+	select m.no, email, nickname, grade, p.regdate
+	from members m, payments p
+	where m.no = #{p.member_no}
+	
+	</select>
+	
+	
+	<update id="updatePayment" parameterType="Payment">
+	
+	update payments
+	set  grade = #{grade}, card_name = #{cardName}, card_no = #{cardNo}, card_validate = #{cardVaildate},
+	card_pw = #{cardPW}, card_cvc = #{cardCVC}
+	where member_no = #{memberNo}
+	
+	</update>
+	
+	<update id="deletePayment" parameterType="int">
+	update payments
+	set grade= 'F'
+	where member_no = #{memberNo}
+	
+	</update>
+	
+	
 </mapper>

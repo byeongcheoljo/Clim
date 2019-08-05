@@ -1,6 +1,6 @@
 package com.playus.clim.controller;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
-import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
-<<<<<<< HEAD
 import com.playus.clim.service.MembersService;
-=======
 import com.playus.clim.service.EventsService;
->>>>>>> master
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
 
@@ -70,7 +67,6 @@ public class AjaxController {
 		return moviesService.getSearchResultForcliming(title);
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
 	public int getCheckId(String email) {
 		
@@ -84,7 +80,6 @@ public class AjaxController {
 		return membersService.getCheckNickname(nickname);
 	}
 	
-=======
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
@@ -101,6 +96,12 @@ public class AjaxController {
 		return eventsService.getList(memberNo);
 
 	}
+	
+	@RequestMapping(value="/user/bookmark/{no}", method=RequestMethod.GET)
+	public List<Bookmark> getMovieBookmarkList(@PathVariable int no){
+		
+		
+		return bookmarkService.getMyMovieList(no);
+	}
 
->>>>>>> master
 }

@@ -1,5 +1,7 @@
 package com.playus.clim.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class BookmarksServiceImpl implements BookmarksService{
 		bookmark.setMemberNo(roomNo);
 		bookmarksDAO.insertClimingList(bookmark);
 		
+	}
+	@Override
+	public List<Bookmark> getMyMovieList(int memberNo) {
+		// TODO Auto-generated method stub
+		return bookmarksDAO.mybookmarkListForMovies(memberNo);
 	}
 
 }
