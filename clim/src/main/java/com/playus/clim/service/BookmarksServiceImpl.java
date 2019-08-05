@@ -24,10 +24,10 @@ public class BookmarksServiceImpl implements BookmarksService{
 		
 	}
 	@Override
-	public List<Bookmark> getMyMovieList(int memberNo) {
+	public List<Bookmark> getMyMovieList(int no) {
 		// TODO Auto-generated method stub
 		
-		return bookmarksDAO.mybookmarkListForMovies(memberNo);
+		return bookmarksDAO.mybookmarkListForMovies(no);
 	}
 
 @Override

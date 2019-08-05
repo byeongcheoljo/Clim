@@ -8,7 +8,7 @@ public interface BookmarksService {
 
 	void addClimingList(int roomNo, int movieNo);
 
-	public List<Bookmark> getMyMovieList(int memberNo);
+	public List<Bookmark> getMyMovieList(int no);
 	
 	public int deletMybookmarkMovie(int no);
 

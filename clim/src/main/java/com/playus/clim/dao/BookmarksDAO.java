@@ -10,7 +10,7 @@ public interface BookmarksDAO {
 
 	public void insertClimingList(Bookmark bookmark);
 
-	public List<Bookmark> mybookmarkListForMovies(int memberNo);
+	public List<Bookmark> mybookmarkListForMovies(int no);
 	
 	public int deletMybookmarkMovie(int no);
 	

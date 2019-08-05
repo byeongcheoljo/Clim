@@ -19,7 +19,7 @@
 	
 	
 	<select id="mybookmarkListForMovies" parameterType="int" resultType="Bookmark">
-	select m.no no, mem.no memberNo, m.title, m.poster, b.regdate
+	select b.no no,m.no movieNo, mem.no memberNo, m.title, m.poster, b.regdate
 	from movies m, bookmarks b, members mem
 	where b.member_no = #{mem.no} and b.movie_no = m.no and mem.no = b.member_no
 	

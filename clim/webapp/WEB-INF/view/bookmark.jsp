@@ -34,11 +34,9 @@
 <@_.each(movies,function(movie){ @>
  <li class="bookmark_movie_card">
                 <div class="imgBox"><img src="/poster/<@=movie.poster@>"/>
+				<input type="hidden" name="no" value="<@=movie.no@>">
                     <div class="cancle_bookmark_bg">
-						
-                        <button form="delectMovie"  class="cancle_bookmark_Btn btn">찜 취소</button>
-						<form id="delectMovie" action="/user/<@=movie.memberNo@>/bookmark/<@=movie.no@>" method="post">
-						<input type="hidden" name="_method" value="DELETE"/></form>
+                        <button class="cancle_bookmark_Btn btn">찜 취소</button>
                     </div>
                 </div>
             <div class="title_hide_Box">
@@ -67,11 +65,25 @@
         $(this).addClass('header_myPage_tabbed');
     });
 
-   /*  $("#bookmarkMovieWrap").on("click",".cancle_bookmark_Btn",function () {
-         $(this).parents(".bookmark_movie_card").remove();
-    }); */
-    
-    
+     $("#bookmarkMovieWrap").on("click",".cancle_bookmark_Btn",function () {
+     	let no = $(this).parents(".bookmark_movie_card").find("input").val();
+    	 $(this).parents(".bookmark_movie_card").remove();
+         $.ajax({
+             url: "/ajax/user/${loginMember.no}/bookmark/"+no,
+             dataType: "json",
+             type: "DELETE",
+             error: function () {
+                 //alert("서버 점검중gggggg");
+             },//error end
+             success: function (json) {
+        		console.log(json)
+        		bookmark();
+             }//success end
+         });
+         
+    }); 
+     bookmark();
+    function bookmark() {
     $.ajax({
         url: "/ajax/user/${loginMember.no}/bookmark",
         dataType: "json",
@@ -81,15 +93,10 @@
         },//error end
         success: function (json) {
    			console.log(json)
-        	
-        	 $bookmarkMovieWrap.append($bookmarkMovieTmp({
-                "movies": json
-            }))
-
-
+        	$bookmarkMovieWrap.append($bookmarkMovieTmp({"movies": json}));
         }//success end
     });
-
+    }
     // $(".imgBox").hover(function () {
     //     $(this).find(".cancle_bookmark_bg").css('bottom','0');
     //
