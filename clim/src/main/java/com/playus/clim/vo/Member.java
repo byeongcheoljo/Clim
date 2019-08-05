@@ -7,7 +7,7 @@ public class Member {
 
 	
 	private int no;
-	private String email, nickname, pwd, uuid;
+	private String email, nickname, pwd, uuid, title;
 	private char gender;
 	private Date birthDate;
 	private Timestamp regdate;
@@ -65,6 +65,18 @@ public class Member {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+	
+	
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 

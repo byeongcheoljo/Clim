@@ -1,5 +1,9 @@
 package com.playus.clim.dao;
 
-public interface ClimingListsDAO {
+import java.util.List;
 
+import com.playus.clim.vo.Movie;
+
+public interface ClimingListsDAO {
+	public List<Movie> selectList(int memberNo);
 }

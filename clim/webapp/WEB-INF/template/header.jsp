@@ -277,11 +277,12 @@
     let $body = $("body");//body요소객체
     let SearchTextFlag = true;
     /* 검색인풋 열기 */
-    $("#totalSearchBtn").on("click", function () {
+    $("#totalSearchBtn").on("click", function (e) {
         if (SearchTextFlag) {
             SearchTextFlag = false;
 
             if ($("body").hasClass("on")) {
+            	e.preventDefault();
                 $("#headerTotalSearch").submit();
             } else {
                 $("body").addClass("on");
@@ -571,7 +572,8 @@
         }) //ajax end
     });
     //영화 검색시 나오는 리스트 클릭시
-    $(".movie_search").on("click", ".movie_search_list", function () {
+    $(".movie_search").on("click", ".movie_search_list", function (e) {
+    	
         console.log($(this).text());
         console.log($(this).find("img").attr("src"));
         alert("asdasjdhasjkdh");

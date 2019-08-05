@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="climingLists">
-	
+
+	<!-- climingList 출력( 방제, 방장닉네임) -->
+	<select id="selectList" resultType="Member" parameterType="int">
+		SELECT cl.no, title, nickname
+		FROM c_Lists cl, members m
+		WHERE cl.member_no = m.no
+	</select>
+
 </mapper>

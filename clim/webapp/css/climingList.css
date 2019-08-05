@@ -1,85 +1,124 @@
 @charset "UTF-8";
+/*
+#html{
+	width:100%;
+	height:100%;
+	background-color: #000;
+}
+*/
+html{
+	height:100%;
+}
+body{
+	background: #231F20;
+}
 
-  #content {
-            width: 1080px;
-            margin: auto;
-            background-color: #231F20;
-            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
-        }
-        .index_section{
-            position: relative;
-        }
-        #hotSection{
+#content {
+	width:100%;
+	height:100%;
+	background:#231F20;
+	position:relative;
+}
+#contentWrap{
+	position:absolute;
+	width: 1080px;
+	background-color: #231F20;
+	
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+}
 
-            overflow: hidden;
-        }
-        #streamBox{
-            width: 3500px;
-            position: relative;
-            left: 0;
-            transition: .3s ease;
-        }
-        .user_streaming_card{
-            width: 504px;
-            list-style: none;
-            height: 300px;
-            float: left;
-            cursor: pointer;
-            position: relative;
-            margin: 18px;
-        }
-        .user_streaming_card .streaming_info{
-            position: relative;
-            color: #fafafa;
-        }
-        .streaming_img{
-            width: 504px;
-            height: 300px;
-            position: relative;
-        }
-        .streaming_img .streaming_poster{
-            width: 140px;
-            height: 230px;
-            position: absolute;
-        }
-        .streaming_img .streaming_thumbnail{
-            position: absolute;
-            width: 364px;
-            height: 230px;
-            right: 0;
-        }
-        .streaming_info div{
-            float: left;
-            position: absolute;
-            bottom: 45px;
-            font-weight: 700;
-            font-size: 13px;
-        }
-        .streaming_user{
-            right: 55px;
-        }
-        .streaming_cnt{
-            right: 10px;
-        }
-        .streaming_tit{
-            left: 10px;
-        }
-        .streaming_icon{
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            color: #fff;
-            line-height: 30px;
-            background: red;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            text-align: center;
-            border-radius: 6px;
-        }
-        #userStreamBox{
-            position: relative;
-            left: 0;
-            transition: .3s ease;
-            padding: 0;
-        }
+.index_section {
+	width:1080px;
+	min-height:500px;
+	position: relative;
+	margin:50px auto 0 auto;
+	overflow:hidden;
+}
+
+#hotSection {
+	
+}
+
+#streamBox {
+	width: 3500px;
+	position: relative;
+	left: 0;
+	transition: .3s ease;
+}
+
+.user_streaming_card {
+	width: 494px;
+	list-style: none;
+	height: 300px;
+	left:20px;
+	float: left;
+	cursor: pointer;
+	position: relative;
+	margin: 18px;
+	background: #424242;
+}
+
+.user_streaming_card .streaming_info {
+	position: relative;
+	color: #fafafa;
+}
+
+.streaming_img {
+	width: 504px;
+	height: 300px;
+	position: relative;
+}
+
+.streaming_img .streaming_poster {
+	width: 140px;
+	height: 230px;
+	position: absolute;
+}
+
+.streaming_img .streaming_thumbnail {
+	position: absolute;
+	width: 354px;
+	height: 230px;
+	right: 10px;
+}
+
+.streaming_info div {
+	float: left;
+	position: absolute;
+	bottom: 45px;
+	font-weight: 700;
+	font-size: 13px;
+}
+
+.streaming_user {
+	right: 55px;
+}
+
+.streaming_cnt {
+	right: 10px;
+}
+
+.streaming_tit {
+	left: 10px;
+}
+
+.streaming_icon {
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	color: #fff;
+	line-height: 30px;
+	background: red;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	text-align: center;
+	border-radius: 6px;
+}
+
+#userStreamBox {
+	position: relative;
+	left: 0;
+	transition: .3s ease;
+	padding: 0;
+}
