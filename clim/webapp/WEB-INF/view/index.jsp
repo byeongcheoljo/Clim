@@ -1,24 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< HEAD
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-=======
->>>>>>> master
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <title>Clim | Main</title>
 <c:import url="/WEB-INF/template/link.jsp" />
 <link rel="stylesheet" href="/css/index.css" />
-=======
-<title>Clim |</title>
-<c:import url="/WEB-INF/template/link.jsp" />
-<link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/preview.css">
->>>>>>> master
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
@@ -156,15 +147,11 @@
 		</div>
 	</div>
 	<!-- //hotSection end -->
-<<<<<<< HEAD
+	
 	<c:if test="${loginMember!=null }">
 	<!-- 구독중인 끌리머의 스트리밍 -->
 	<div id="userStreamSection" class="index_section">
 		<span>${loginMember.nickname}님의 클리머</span>
-=======
-	<div id="userStreamSection" class="index_section">
-		<span>ㅇㅇ님의 클리머</span>
->>>>>>> master
 		<ul id="userStreamBox">
 		</ul>
 		<!-- //userStreamBox end -->
@@ -175,14 +162,11 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-<<<<<<< HEAD
 	<!-- //userStreamSection(구독중인 끌리머 방송 구역 끝) end -->
 	
 
 	<!-- 이어보기 구역 -->
-=======
 	<!-- //userStreamSection end -->
->>>>>>> master
 	<div id="continueSection" class="index_section">
 		<span>이어보기</span>
 		<ul id="continueBox">
@@ -195,23 +179,21 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-<<<<<<< HEAD
 	<!-- //continueSection(이어보기 구역 끝) -->
 	</c:if>
 
-=======
 	<!-- //continueSection end -->
+	<!--  
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
-	</div>
->>>>>>> master
+	</div>-->
+	
 	<div id="climContentSection" class="index_section">
 		<span>끌림작</span>
 		<ul id="climBox">
+			<!-- //끌림작 1~6위 -->
 			<li>
 				<ul>
-<<<<<<< HEAD
-					<!-- //끌림작 1~6위 -->
 					<c:forEach items="${climedList}" var="climed" begin="0" end="5">
 						<li class="clim_card" data-movieNo="${climed.no }">
 							<img src="/stealCut${climed.recSteal }" />
@@ -224,13 +206,13 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					<!-- //끌림작 1~6위 끝 -->
+				
 				</ul>
-
 			</li>
+			<!-- //끌림작 1~6위 끝 -->
+			<!-- //끌림작 7위~12위 -->
 			<li>
 				<ul>
-					<!-- //끌림작 7위~12위 -->
 					<c:forEach items="${climedList }" var="climed" begin="6" end="11">
 						<li class="clim_card" data-movieNo="${climed.no }">
 						<img src="/stealCut${climed.recSteal }" />
@@ -243,79 +225,13 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					<!-- //끌림작 7~12위 끝 -->
-=======
-					<li class="clim_card"><img src="/climimg/aladin.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/lionking.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/dumbo.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/hobbit.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/ralp.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/spiderman.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
+					
 				</ul>
 			</li>
+			<!-- //끌림작 7~12위 끝 -->
+			<!-- //끌림작 13위~18위 -->
 			<li>
 				<ul>
-					<li class="clim_card"><img src="/climimg/aladin.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/lionking.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/dumbo.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/hobbit.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/ralp.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/spiderman.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
->>>>>>> master
-				</ul>
-			</li>
-			<li>
-				<ul>
-<<<<<<< HEAD
-					<!-- //끌림작 13위~18위 -->
 					<c:forEach items="${climedList }" var="climed" begin="12" end="17">
 						<li class="clim_card" data-movieNo="${climed.no }">
 						<img src="/stealCut${climed.recSteal }" />
@@ -328,15 +244,12 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					<!-- //끌림작 13~18위 끝 -->
 				</ul>
 			</li>
-
-
-
+			<!-- //끌림작 13~18위 끝 -->
+			<!-- //끌림작 19위~24위 -->
 			<li>
 				<ul>
-					<!-- //끌림작 19위~24위 -->
 					<c:forEach items="${climedList }" var="climed" begin="18" end="23">
 						<li class="clim_card" data-movieNo="${climed.no }">
 						<img src="/stealCut${climed.recSteal }" />
@@ -349,15 +262,12 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					<!-- //끌림작 18~24위 끝 -->
 				</ul>
 			</li>
-
-
-
+			<!-- //끌림작 18~24위 끝 -->
+			<!-- //끌림작 25위~30위 -->
 			<li>
 				<ul>
-					<!-- //끌림작 25위~30위 -->
 					<c:forEach items="${climedList }" var="climed" begin="24" end="29">
 						<li class="clim_card" data-movieNo="${climed.no }">
 						<img src="/stealCut${climed.recSteal }" />
@@ -370,187 +280,37 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					<!-- //끌림작 25~30위 끝 -->
 				</ul>
 			</li>
-
-		</ul>
-		<!-- //climBox end -->
-
-=======
-					<li class="clim_card"><img src="/climimg/aladin.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/lionking.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/dumbo.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/hobbit.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/ralp.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/spiderman.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-				</ul>
-			</li>
-			<li>
-				<ul>
-					<li class="clim_card"><img src="/climimg/aladin.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/lionking.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/dumbo.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/hobbit.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/ralp.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/spiderman.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-				</ul>
-			</li>
-			<li>
-				<ul>
-					<li class="clim_card"><img src="/climimg/aladin.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/lionking.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/dumbo.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/hobbit.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/ralp.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-					<li class="clim_card"><img src="/climimg/spiderman.jpg" />
-						<div class="top_border border_box"></div>
-						<div class="right_border border_box"></div>
-						<div class="bottom_border border_box"></div>
-						<div class="left_border border_box"></div></li>
-				</ul>
-			</li>
-		</ul>
-		<!-- //climBox end -->
->>>>>>> master
+			<!-- //끌림작 25~30위 끝 -->
+		</ul>	<!-- //climBox end -->
 		<div class="move_btn clim_move_prev">
 			<i class="fas fa-angle-left"></i>
 		</div>
 		<div class="move_btn clim_move_next">
 			<i class="fas fa-angle-right"></i>
 		</div>
-	</div>
-<<<<<<< HEAD
-	<!-- //climContentSection end --> 
-     
+	</div><!-- //climContentSection end --> 
+	
     <!-- 중간 히어로이미지 구역 --> 
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
 	</div>
 	<!-- //중간 히어로이미지 구역 끝 --> 
 	
-	<!-- 추천작1~3 구역 -->
+	<!-- 추천작1 -->
 	<div class="recommend_section index_section">
 		<span>추천작1</span>
 		<ul class="recommend_box">
-
-
 			<c:forEach items="${recOne}" var="one">
-
 				<li class="recommend_card" data-movieNo="${one.no }"><img
 					src="/poster${one.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div></li>
-
+					<div class="left_border border_box"></div>
+				</li>
 			</c:forEach>
-
-
-=======
-	<!-- //climContentSection end -->
-	<div class="recommend_section index_section">
-		<span>추천작1</span>
-		<ul class="recommend_box">
-			<li class="recommend_card"><img src="/poster/lionking.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_card"><img src="/poster/realbumin.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_card"><img src="/poster/aladin.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_card"><img src="/poster/aenabel.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_card"><img src="/poster/spiderman.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_card"><img src="/poster/toystory.jpg" />
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
->>>>>>> master
 		</ul>
 		<!-- //recommend_box -->
 		<div class="move_btn recommend_move_prev">
@@ -561,8 +321,9 @@
 		</div>
 	</div>
 	<!-- //recommend_section end -->
-<<<<<<< HEAD
-
+	<!-- 추천작1 끝 -->
+	
+	<!-- 추천작 2 -->
 	<div class="recommend_section index_section">
 		<span>추천작2</span>
 		<ul class="recommend_box">
@@ -573,8 +334,8 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div></li>
-
+					<div class="left_border border_box"></div>
+				</li>
 			</c:forEach>
 		</ul>
 		<div class="move_btn recommend_move_prev">
@@ -584,7 +345,9 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
+	<!-- 추천작 2 끝 -->
 
+	<!-- 추천착3 -->
 	<div class="recommend_section index_section">
 		<span>추천작3</span>
 		<ul class="recommend_box">
@@ -606,16 +369,11 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-
-	<!--// 추천작1~3 구역 끝-->
+	<!--추천작3 끝-->
 
 	<!-- 추천작4 구역 -->
 	<div class="recommend_special_section index_section">
 		<span>추천작4</span>
-=======
-	<div class="recommend_special_section index_section">
-		<span>추천작2</span>
->>>>>>> master
 		<ul class="recommend_special_box">
 			<li class="recommend_special_card recommend_card_rank1"><img
 				src="/stealCut/lioonking.jpg" />
@@ -668,15 +426,12 @@
 				<div class="left_border border_box"></div></li>
 		</ul>
 	</div>
-<<<<<<< HEAD
 	<!-- //추천작4 구역 끝 -->
 	
-	<!-- 추천작5~8 구역 -->
+	<!-- 장르 1 -->
 	<div class="recommend_section index_section">
 		<span>장르1</span>
 		<ul class="recommend_box">
-
-
 			<c:forEach items="${recOne}" var="one">
 
 				<li class="recommend_card" data-movieNo="${one.no }"><img
@@ -684,11 +439,9 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div></li>
-
+					<div class="left_border border_box"></div>
+				</li>
 			</c:forEach>
-
-
 		</ul>
 		<!-- //recommend_box -->
 		<div class="move_btn recommend_move_prev">
@@ -699,7 +452,9 @@
 		</div>
 	</div>
 	<!-- //recommend_section end -->
-
+	<!-- 장르 1 끝 -->
+	
+	<!-- 장르 2 -->
 	<div class="recommend_section index_section">
 		<span>장르2</span>
 		<ul class="recommend_box">
@@ -710,8 +465,8 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div></li>
-
+					<div class="left_border border_box"></div>
+				</li>
 			</c:forEach>
 		</ul>
 		<div class="move_btn recommend_move_prev">
@@ -721,7 +476,9 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-
+	<!-- 장르 2 끝-->
+	
+	<!-- 장르 3 -->
 	<div class="recommend_section index_section">
 		<span>장르3</span>
 		<ul class="recommend_box">
@@ -732,15 +489,10 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div></li>
-
+					<div class="left_border border_box"></div>
+				</li>
 			</c:forEach>
 		</ul>
-=======
-	<div class="recommend_section index_section">
-		<span>추천작3</span>
-		<ul class="recommend_box"></ul>
->>>>>>> master
 		<div class="move_btn recommend_move_prev">
 			<i class="fas fa-angle-left"></i>
 		</div>
@@ -748,11 +500,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-<<<<<<< HEAD
-
-	<!--// 추천작5~8 구역 끝-->
-
-
+	<!-- 장르 3 -->
 
 
 =======
@@ -762,15 +510,11 @@
 		<div class="bg_close_btn">
 			<i class="far fa-times-circle"></i>
 		</div>
-<<<<<<< HEAD
-	</div>
-	<c:import url="/WEB-INF/template/footer.jsp" />
-=======
 		<div id="previewSection"></div>
 	</div>
 	<c:import url="/WEB-INF/template/footer.jsp" />
 	<script type="text/template" id="trailerTmp">
-	<div id="movieInformationWrap">
+		<div id="movieInformationWrap">
 				<div id="movieTitle">
 					<strong>${movie.title }(${movie.opendate })</strong>
 				</div>
@@ -802,7 +546,6 @@
 			</div>
 			<div id="previewWrap">${movie.src }</div>
 	</script>
->>>>>>> master
 
 	<script type="text/template" id="userStreamTmp">
     <@_.each(streams,function(stream){@>
@@ -820,12 +563,9 @@
     </li>
     <@})@>
 </script>
-<<<<<<< HEAD
 
 	<!--이어보기 -->
 	<!-- 140px 이기 때문에  -->
-=======
->>>>>>> master
 	<script type="text/template" id="continueTmp">
     <@ _.each(movies,function(movie){
         let total = movie.runtime;
@@ -890,9 +630,6 @@
 		const $userstreamMovePrev = $(".userstream_move_prev");
 		const $userstreamMoveNext = $(".userstream_move_next");
 		let userStreamMove = 0;
-<<<<<<< HEAD
-
-=======
 		const $previewSection = $("#previewSection");
 		const $trailerTmp = _.template($("#trailerTmp").html());
 		function trailer() {
@@ -909,7 +646,6 @@
 			});// ajax end
 		}
 		
->>>>>>> master
 		/* heroScript */
 		$heroContentNum.on("click", function() {
 			$heroContentNum.removeClass("hero_on");
@@ -928,23 +664,13 @@
 			let cnt = $("#heroContentSection li").length;
 
 			let nowPosition = $heroContentSectionUl.css("left");
-<<<<<<< HEAD
-			let testStr = nowPosition.split("px");
-			let realPosition = parseFloat(testStr);
-=======
-			console.log(nowPosition);
 			let testStr = nowPosition.split("px");
 			let realPosition = parseFloat(testStr);
 			//console.log(realPosition);
->>>>>>> master
 			let test = Math.abs(parseFloat(testStr) / 1100) + 1;
 
 			// let absPosition = Math.abs(parseFloat(testStr));
 
-<<<<<<< HEAD
-=======
-			// console.log(absPosition);
->>>>>>> master
 			if (flag) {
 				flag = false;
 				if (realPosition <= (-1100 * (cnt - 1))) {
@@ -993,7 +719,7 @@
 			$.ajax({
 				url : "ajax/userClim.json",
 				error : function() {
-					alert("에러!");
+					//alert("에러!");
 				},
 				success : function(json) {
 					$userStreamBox.css("width", json.length * 550);
@@ -1017,10 +743,6 @@
 				flag = false;
 				if (userStreamMove == 0) {
 					userStreamMove = -cardPosition + 1100;
-<<<<<<< HEAD
-=======
-					// console.log(continueMove);
->>>>>>> master
 				} else {
 					userStreamMove += 550;
 				}
@@ -1051,32 +773,17 @@
 		/* continueScript */
 
 		function mainContinue() {
-<<<<<<< HEAD
-
 			$.ajax({
 				url : "/ajax/member/${loginMember.no}/continue",
 				dataType : "json",
-=======
-			$.ajax({
-				url : "ajax/continue.json",
->>>>>>> master
 				error : function() {
-					alert("에러!");
+					//alert("에러!");
 				},
 				success : function(json) {
-<<<<<<< HEAD
-					console.log(json);
-
-=======
->>>>>>> master
 					$continueBox.css("width", json.length * 210);
 					$continueBox.html(continueTmp({
 						"movies" : json
 					}));
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 				}//success() end
 			});//$.ajax() end
 		}// mainContinue() end 로그인 유저의 이어보기목록 얻어와 continueBox width재설정

@@ -2,13 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="directors">
-<<<<<<< HEAD
 
-=======
 	<select id="selectDirectorForMovie" parameterType="int" resultType="Director">
 		SELECT m.no no, dir.name name
 		FROM movies m, m_directors d, directors dir
 		WHERE m.no = d.movie_no AND d.dir_no = dir.no AND m.no = #{no}
 	</select>
->>>>>>> master
 </mapper>

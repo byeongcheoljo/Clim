@@ -15,20 +15,14 @@ import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
-<<<<<<< HEAD
 import com.playus.clim.service.ContinueMoviesService;
-=======
 import com.playus.clim.service.MembersService;
->>>>>>> master
 import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
-<<<<<<< HEAD
 import com.playus.clim.vo.ContinueMovie;
-=======
 import com.playus.clim.vo.Bookmark;
->>>>>>> master
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
 
@@ -53,11 +47,9 @@ public class AjaxController {
 	@Autowired
 	private EventsService eventsService;
 	@Autowired
-<<<<<<< HEAD
 	private ContinueMoviesService continueMoviesService;
-=======
+	@Autowired
 	private MembersService membersService;
->>>>>>> master
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -140,14 +132,9 @@ public class AjaxController {
 	
 	
 /*근경시작*/
-
+	//index에서 이어보기
 	@RequestMapping(value="/member/{memberNo}/continue",method=RequestMethod.GET)
 	public List<ContinueMovie> getContinueList(@PathVariable int memberNo){
-		
-		System.out.println("//////////AJAX controller///////////////");
-		
-		System.out.println("memberNo: "+memberNo);
-		
 		return continueMoviesService.getContinueList(memberNo);
 	}
 	

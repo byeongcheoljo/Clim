@@ -110,7 +110,7 @@ body.on #headerTotalSearchText {
 #headerTotalSearch .fas {
 	position: absolute;
 	height: 30px;
-	font-size: 25px;
+	font-size: 20px;
 	top: 0px;
 	right: 5px;
 	text-align: center;
@@ -122,20 +122,23 @@ body.on #headerTotalSearchText {
 
 #headerSigninBtn {
 	position: fixed;
-	width: 80px;
+	width: 60px;
 	height: 20px;
 	line-height: 20px;
 	border-style: none;
+	border-radius:2px;
 	right: 20px;
 	top: 15px;
-	font-size: 14px;
-	background-color: #f9f9f9;
+	font-size: 12px;
+	background-color: rgb(249, 172, 26);
 	cursor: pointer;
 	font-family: "Noto Sans KR", sans-serif;
+	box-sizing: content-box;
+	outline: none;
 }
 
 #headerSigninBtn:hover {
-	background-color: #F9AC1A;
+	background-color: rgba(249, 172, 26,.9);
 }
 
 #headerSigninPopupBg {

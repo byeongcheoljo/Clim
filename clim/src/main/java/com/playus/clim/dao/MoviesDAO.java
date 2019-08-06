@@ -7,11 +7,9 @@ import com.playus.clim.vo.Movie;
 public interface MoviesDAO {
 	
 	public List<Movie> searchMovieListForCliming(String title);
-<<<<<<< HEAD
 
 	
 /*김근경 시작*/
-	
 	
 	//index에서 끌림작 1위~30위
 	public List<Movie> indexClimedList();
@@ -25,11 +23,7 @@ public interface MoviesDAO {
 	//index에서 추천3
 	public List<Movie> indexRecommandationListThree(); 
 	
-	
 /*김근경 끝*/
 	
-	
-=======
 	public Movie selectMovieTrailer(int no);
->>>>>>> master
 }

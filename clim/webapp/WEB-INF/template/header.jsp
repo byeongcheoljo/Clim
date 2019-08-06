@@ -333,7 +333,7 @@
 			dataType : "json",
 			type : "get",
 			error : function() {
-				alert("에러");
+				//alert("에러");
 			},
 			success : function(json) {
 				console.log(json);
@@ -537,32 +537,11 @@
 				} else {
 					location.reload();
 				}
-<<<<<<< HEAD
 				
             }
         });
     });
     
-
-    //비밀번호 찾기findId    //이건 서버떄 쏘스 드림
-    let $emailPwd = $("#emailPwd");
-    $("#findCertificationBtn").click(function () {
-        $.ajax({
-            url:"/ajax/findPwd",
-            dataType:"json",
-            type:"POST",
-            data:{
-            	email : $emailPwd.val()
-            },
-            error: function (xhr, error, code) {
-                alert("이메일이 올바르지 않습니다");
-            },//error end
-            success : function(json) {
-=======
-			}
-		});
-	});
-
 	//비밀번호 찾기findId    //이건 서버떄 쏘스 드림
 	let $emailPwd = $("#emailPwd");
 	$("#findCertificationBtn").click(function() {
@@ -579,7 +558,6 @@
 				alert("이메일이 올바르지 않습니다");
 			},//error end
 			success : function(json) {
->>>>>>> master
 				console.log(json.member.email.indexOf("@"));
 				let idx = json.member.email.indexOf("@");
 				window.open('http://www.'+ json.member.email.substring(idx + 1),'newWindow');
@@ -671,18 +649,16 @@
 	
 		$this = $(this);
 
-		let memberNo = ${loginMember.no};
 		let movieNo = this.dataset.movieno;
 
 		let movieName = $this.children("span").text();
 		let poster = $this.children("img").attr("src");
-
 		$.ajax({
 			url : "/ajax/addBookmarkOfCliming",
 			type : "POST",
 			datatype : "json",
 			data : {
-				memberNo : memberNo,
+				memberNo : 1,
 				movieNo : movieNo
 			},
 			error : function() {
@@ -765,12 +741,11 @@
 		})
 		
 		stompClient.send(①,{},②);
-		
 		 */
 		//객체를 String으로 
 		//userNo는 ${loginUser.no} 변경필요
 		const data = JSON.stringify({
-			"memberNo" : ${loginMember.no},
+			"memberNo" : 1,
 			"title" : title
 		});
 
