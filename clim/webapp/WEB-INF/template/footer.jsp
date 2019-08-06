@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <footer id="footer">
     <div id="footerPolicy">
         <h4 class="screen_out">정책 및 약관</h4>
@@ -21,6 +22,5 @@
             <li><a href="">고객센터</a></li>
         </ul>
     </div><!--//footerPolicy -->
-    <address>&copy; 2019 <a href="">jbp.com</a></address>
+    <address>&copy; 2019 <a href="">clim.com</a></address>
 </footer><!--// footer -->
-    

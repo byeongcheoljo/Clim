@@ -1,21 +1,50 @@
 package com.playus.clim.vo;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Event {
 
-	
 	private int no, memberNo;
 	private String title, contents;
-	private Date start, end;
-	
+	private Date startDate, endDate;
+	private boolean fullDay;
 	private Timestamp regdate;
 	
 	public Event() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public boolean isFullDay() {
+		return fullDay;
+	}
+
+	public void setFullDay(boolean fullDay) {
+		this.fullDay = fullDay;
+	}
+
+	@JsonProperty("start")
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	@JsonProperty("end")
+	public String getEndDate() {
+		 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd 09:00:00");
+		return sdf.format(endDate);
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	@JsonProperty("id")
 	public int getNo() {
 		return no;
 	}
@@ -39,29 +68,13 @@ public class Event {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	@JsonProperty("contentText")
 	public String getContents() {
 		return contents;
 	}
-
+	
 	public void setContents(String contents) {
 		this.contents = contents;
-	}
-
-	public Date getStart() {
-		return start;
-	}
-
-	public void setStart(Date start) {
-		this.start = start;
-	}
-
-	public Date getEnd() {
-		return end;
-	}
-
-	public void setEnd(Date end) {
-		this.end = end;
 	}
 
 	public Timestamp getRegdate() {
@@ -71,7 +84,5 @@ public class Event {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
-	
-	
+
 }

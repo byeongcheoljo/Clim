@@ -1,5 +1,10 @@
 package com.playus.clim.dao;
 
-public interface ActorsDAO {
+import java.util.List;
 
+import com.playus.clim.vo.Actor;
+
+public interface ActorsDAO {
+	public List<Actor> selectListForMovie(int no);
+	
 }

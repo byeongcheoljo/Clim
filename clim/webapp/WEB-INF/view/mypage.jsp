@@ -12,13 +12,12 @@
 <link href='/css/calendar/packages/daygrid/main.css' rel='stylesheet' />
 <link href='/css/calendar/packages/core/main.css' rel='stylesheet' />
 </head>
-
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
 	<main id="content">
 	<div id="tabSectionUserPage">
 		<ul id="headerNavMypage">
-			<li id="nicknameHeaderMypage">닉네임</li>
+			<li id="nicknameHeaderMypage">${member.nickname }</li>
 			<li class="header_myPage_tabbed">홈</li>
 			<li>찜</li>
 			<li>커뮤니티</li>
@@ -27,19 +26,22 @@
 		</ul>
 	</div>
 	<!-- //tabSectionUserPage -->
-
 	<div class="home_section_userpage">
 		<div id="userInfoWrap">
 			<div class="userInfo_inner right_margin small_card">구독자 수 :
 				${member.followerCnt }명</div>
 			<div class="userInfo_inner right_margin small_card">
 				가입일 :
-				<fmt:formatDate value="${member.regdate }" pattern="YYYY-MM-DD" />
+				<fmt:formatDate value="${member.regdate }" pattern="YYYY-MM-dd" />
 			</div>
 			<div class="userInfo_inner">누적 시청자 수 : ${member.climgCnt }명</div>
-			<button id="subscribeBtn" class="userInfo_inner small_card">
-				<span>구독</span> <i class="far fa-bell"></i>
-			</button>
+			<c:if test="${member.no!=loginMember.no }">
+				<button data-no="${member.no}" id="subscribeBtn"
+					class="userInfo_inner small_card ${member.subscribeCheck?'selected_btn':' '}">
+					<span>${member.subscribeCheck?"구독중":"구독" }</span> <i
+						class="${member.subscribeCheck?"fas":"far" } fa-bell"></i>
+				</button>
+			</c:if>
 		</div>
 		<!--//userInfoWrap-->
 	</div>
@@ -52,66 +54,66 @@
 					<div id='calendarInner'></div>
 				</div>
 				<!--//calender_inner-->
+				<c:if test="${member.no==loginMember.no }">
+					<div class="detail_inner detail_form">
+						<div class="notice_card"
+							style="text-align: center; font-size: 25px; font-weight: bold;">공지사항
+							입력하기</div>
+						<!--                        입력 폼-->
+						<form class="notice_form " action="" method="post">
+							<div class="notice_card">
+								<label for="noticeTitle" class="margin_lbl">제목</label> <input
+									type="text" id="noticeTitle" name="noticeTitle"/>
+								<div id="titleBlur"></div>
+								<div id="noticeTitleConfirm" class="validation_text">제목을
+									입력해주세요!</div>
+							</div>
+							<!--//notice_card-->
 
-				<div class="detail_inner detail_form">
-					<div class="notice_card"
-						style="text-align: center; font-size: 25px; font-weight: bold;">공지사항
-						입력하기</div>
-					<!--                        입력 폼-->
-					<form class="notice_form " action="" method="post">
-						<div class="notice_card">
-							<label for="noticeTitle" class="margin_lbl">제목</label> <input
-								type="text" id="noticeTitle" name="noticeTitle" value="" />
-							<div id="titleBlur"></div>
-							<div id="noticeTitleConfirm" class="validation_text">제목을
-								입력해주세요!</div>
-						</div>
-						<!--//notice_card-->
+							<div class="notice_card">
+								<label class="verticalAlign_top_label margin_lbl"
+									for="noticeContent">내용</label>
+								<textarea id="noticeContent" name="noticeContent"> </textarea>
+								<div id="contentBlur"></div>
+								<div id="noticeContentConfirm" class="validation_text">세부사항을
+									입력해주세요!</div>
+							</div>
+							<!--//notice_card-->
 
-						<div class="notice_card">
-							<label class="verticalAlign_top_label margin_lbl"
-								for="noticeContent">내용</label>
-							<textarea id="noticeContent" name="noticeContent"> </textarea>
-							<div id="contentBlur"></div>
-							<div id="noticeContentConfirm" class="validation_text">세부사항을
-								입력해주세요!</div>
-						</div>
-						<!--//notice_card-->
-
-						<div class="notice_card">
-							<label for="startYear" class="margin_lbl">시작 일</label> <select
-								name="startYear" id="startYear">
+							<div class="notice_card">
+								<label for="startYear" class="margin_lbl">시작 일</label> <select
+									name="startYear" id="startYear">
 
 
-							</select> <label for="startYear" class="margin_lbl">년</label> <select
-								name="startMonth" id="startMonth">
+								</select> <label for="startYear" class="margin_lbl">년</label> <select
+									name="startMonth" id="startMonth">
 
-							</select> <label for="startMonth" class="margin_lbl">월</label> <select
-								name="startDate" id="startDate" class="date">
+								</select> <label for="startMonth" class="margin_lbl">월</label> <select
+									name="startDate" id="startDate" class="date">
 
-							</select> <label for="startDate">일</label>
-						</div>
-						<!--//notice_card-->
+								</select> <label for="startDate">일</label>
+							</div>
+							<!--//notice_card-->
 
-						<div class="notice_card">
-							<label for="endYear" class="margin_lbl">종료 일</label> <select
-								name="endYear" id="endYear">
+							<div class="notice_card">
+								<label for="endYear" class="margin_lbl">종료 일</label> <select
+									name="endYear" id="endYear">
 
-							</select> <label for="endYear" class="margin_lbl">년</label> <select
-								name="endMonth" id="endMonth">
+								</select> <label for="endYear" class="margin_lbl">년</label> <select
+									name="endMonth" id="endMonth">
 
-							</select> <label for="endMonth" class="margin_lbl">월</label> <select
-								name="endDate" id="endDate" class="date">
+								</select> <label for="endMonth" class="margin_lbl">월</label> <select
+									name="endDate" id="endDate" class="date">
 
-							</select> <label for="endDate">일</label>
-						</div>
-						<!--//notice_card-->
-						<button type="reset" class="notice_btn">다시 입력</button>
-						<button type="submit" class="notice_btn">등록</button>
-					</form>
-				</div>
-				<!--//detail_inner-->
-
+								</select> <label for="endDate">일</label>
+							</div>
+							<!--//notice_card-->
+							<button type="reset" class="notice_btn">다시 입력</button>
+							<button type="submit" class="notice_btn">등록</button>
+						</form>
+					</div>
+					<!--//detail_inner-->
+				</c:if>
 				<!--일정 클릭시 세부사항 보여줌-->
 				<div class="detail_inner detail_info_inner" style="display: none">
 					<div class="notice_card plan_card">2019.07.25</div>
@@ -132,40 +134,8 @@
 	<ul id="chartSection">
 		<li id="latestPlayList">
 			<ul class="latest_playlist_box">
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/lionking.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/realbumin.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/aladin.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/aenabel.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/spiderman.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/lionking.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/realbumin.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/aladin.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/aenabel.jpg" />
-				</a></li>
-				<li class="latest_playlist_card"><a href="/index.jsp"> <img
-						src="/poster/spiderman.jpg" />
-				</a></li>
 
-
-			</ul>
-			<!-- //recommend_box -->
+			</ul> <!-- //recommend_box -->
 			<div class="move_btn latest_playlist_move_prev">
 				<i class="fas fa-angle-left"></i>
 			</div>
@@ -178,8 +148,7 @@
 			<div id="favoriteActorBox">
 				<canvas class="resize_canvas" id="favoriteActor" width="460"
 					height="385"></canvas>
-			</div>
-			<!--favoriteActorBox-->
+			</div> <!--favoriteActorBox-->
 		</li>
 		<!--//favoriteActorWrap-->
 
@@ -199,29 +168,35 @@
 				height="385"></canvas>
 		</li>
 		<!--//남이 볼 수 있는 페이지-->
+		<c:if test="${member.no==loginMember.no }">
+			<li id="viewersGenderWrap">
+				<canvas class="resize_canvas" id="viewersGender" width="460"
+					height="385"></canvas>
+			</li>
 
-		<li id="viewersGenderWrap">
-			<canvas class="resize_canvas" id="viewersGender" width="460"
-				height="385"></canvas>
-		</li>
+			<li id="avgViewerNumberPerTimeWrap">
+				<canvas class="resize_canvas" id="avgViewerNumberPerTime"
+					width="460" height="385"></canvas>
+			</li>
 
-		<li id="avgViewerNumberPerTimeWrap">
-			<canvas class="resize_canvas" id="avgViewerNumberPerTime" width="460"
-				height="385"></canvas>
-		</li>
-
-		<li id="viewersNumberPerTimeWrap">
-			<canvas class="resize_canvas" id="viewersNumberPerTime" width="460"
-				height="385"></canvas>
-		</li>
+			<li id="viewersNumberPerTimeWrap">
+				<canvas class="resize_canvas" id="viewersNumberPerTime" width="460"
+					height="385"></canvas>
+			</li>
+		</c:if>
 	</ul>
 	<!--//chartWrap--> </main>
 	<!-- //main -->
 	<c:import url="/WEB-INF/template/footer.jsp" />
 
 	<!--                                           template                                        -->
-
-
+	<script type="text/template" id="climingListTmp">
+	<@_.each(movies,function(movie){@>
+	<li class="latest_playlist_card"><a href="/movie/<@=movie.no@>">
+	<img src="/poster<@=movie.poster@>"/></a>
+	</li>
+	<@});@>
+	</script>
 	<!--                                           script                                        -->
 
 	<script src='/js/calendar/packages/core/main.js'></script>
@@ -243,43 +218,53 @@
 		let title = null;
 		let today = moment().format("YYYY-MM-DD");
 
-		let subscribeFlag = 0;
-
 		let $title_card = $(".title_card");
 		let $contentCard = $(".content_card");
 		let $plan_card = $(".plan_card");
 		let eventObject;
 		/*calendar 객체 선언*/
-		let calendar = new FullCalendar.Calendar(calendarEl, {
-			locale : 'ko',
-			plugins : [ 'interaction', 'dayGrid' ],
-			defaultDate : today,
-			editable : true,
-			displayEventTime : false,
-			eventLimit : true, // allow "more" link when too many events
-			events : [ {
-				title : '구글로 가즈아',
-				url : 'http://google.com/',
-				content : '흐미 ㅁㄴ아리마;넝람ㄴㅇㄹ',
-				start : '2019-07-28',
-				end : '2019-07-30T00:00:01'
-			} ],
-			eventClick : function(info) {
-				eventObject = info.event;
-				//console.log(info.event);
-				//alert(info.event.content);
-				info.jsEvent.preventDefault(); // don't let the browser navigate
-				//console.log(info.event._def.extendedProps.content);
-				startDay = moment(info.event.start).format("YYYY.MM.DD");
-				endDay = moment(info.event.end).format("YYYY.MM.DD");
-				contentText = info.event._def.extendedProps.content;
-				title = info.event.title;
-
-			}
-		});
+		
 		/*calendar 실행*/
-		calendar.render();
-
+		events();
+		/* events ajax */
+		
+		function events() {
+			$.ajax({
+				url:"/ajax/user/${member.no}/events",
+				dataType:"json",
+				type:"GET",
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log(json);					
+					let calendar = new FullCalendar.Calendar(calendarEl, {
+						locale : 'ko',
+						plugins : [ 'interaction', 'dayGrid' ],
+						defaultDate : today,
+						editable : true,
+						displayEventTime : false,
+						eventLimit : true, // allow "more" link when too many events
+						events : json,
+						eventClick : function(info) {
+							console.log(info);
+							eventObject = info.event;
+							info.jsEvent.preventDefault(); // don't let the browser navigate
+							startDay = moment(info.event.start).format("YYYY.MM.DD");
+							endDay = moment(info.event.end).format("YYYY.MM.DD");
+							contentText = info.event._def.extendedProps.contentText;
+							title = info.event.title;
+							let $detail_info_inner = $(".detail_info_inner");
+							let $input = $("<input>").attr({"type":"hidden","name":"no"}).val(info.event.id);
+							$detail_info_inner.append($input);
+						}
+					});
+					calendar.render();
+				}
+			});//ajax end
+			/* events ajax */
+		}
+		
 		/*탭 목록*/
 		$("#headerNavMypage li").click(function() {
 			//4px solid #F9AC1A
@@ -327,24 +312,35 @@
 			const endDay = endYear + "-" + endMonth + "-" + endDate;
 
 			const end = new Date(endDay);
-
-			//console.log(start);
-			//console.log(end);
-
-			calendar.addEvent({
-				title : title,
-				content : content,
-				start : start,
-				end : end,
-				fullDay : false
-			});
+			let noticeTitle = $("#noticeTitle").val();
+			let noticeContent = $("#noticeContent").val();
+			
+			$.ajax({
+				url:"/ajax/user/${loginMember.no}/events",
+				type:"POST",
+				dataType:"json",
+				data:{
+					fullDay : false,
+					title:noticeTitle,
+					contents:noticeContent,
+					startDate:startDay,
+					endDate:endDay
+				},
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log("insert: "+json);
+					calendar.addEvent(json);
+				}
+				
+			});//ajax end
+			events();
 		});//이벤트 등록
 
 		/*공지 클릭시 해당 공지 상세 보여줌*/
 		$notice_box.on("click", ".fc-content", function(e) {
-			//alert(contentText);
 			$plan_card.text(startDay + " ~ " + endDay);
-			//console.log(startDay + " ~ " + endDay);
 			$title_card.text(title);
 			$contentCard.text(contentText);
 			$(".detail_form").css({
@@ -354,11 +350,27 @@
 		});
 
 		$notice_box.on("click", "#planCancelBtn", function() {
-			$(".detail_info_inner").css({
-				"display" : "none"
-			});
-			eventObject.remove();
-			$(".detail_form").fadeIn(500);
+			let no = $(this).parents(".detail_info_inner").find("input").val();
+			console.log(no);
+			$.ajax({
+				url:"/ajax/user/"+no+"/events",
+				dataType:"json",
+				type:"DELETE",
+				error:function(){
+					alert("에러");
+				},
+				success:function(json){
+					console.log("delete :"+json);
+					$(".detail_info_inner").css({
+						"display" : "none"
+					});
+					eventObject.remove();
+					$(".detail_form").fadeIn(500);
+				}
+			
+			})
+			
+			
 		});//공지 삭제하기
 
 		$("#backBtn").on("click", function() {
@@ -367,24 +379,45 @@
 			});
 			$(".detail_form").fadeIn(500);
 		});//돌아가기 버튼
-
-		$("#subscribeBtn").on("click", function() {
-			//alert("선택");
-			const $i = $(this).find("i");
+		let $subscribeBtn = $("#subscribeBtn span");
+		let subscribeFlag = 0;
+		
+		$("#subscribeBtn").on("click",function() {
+		let name = $(this).text().trim();
+		console.log(name);
+		let no = this.dataset.no;
+		const $i = $(this).find("i");
+		
+		let type = "POST";
+		if (name == "구독중") {
+			type = "DELETE";
+		}
+		console.log(type);
+	$.ajax({
+		url : "/ajax/user/following/${loginMember.no}/follower/${member.no}",
+		type : type,
+		dataType : "json",
+		error : function() {
+			alert("에러");
+		},
+		
+		success : function(json) {
 			if (subscribeFlag == 0) {
 				$i.removeClass("far");
 				$i.addClass("fas");
-				$(this).find('span').text("구독중");
-				$(this).addClass('selected_btn');
+				$subscribeBtn.text("구독중");
+				$("#subscribeBtn").addClass('selected_btn');
 				subscribeFlag = 1;
 			} else if (subscribeFlag == 1) {
 				$i.removeClass("fas");
 				$i.addClass("far");
-				$(this).find('span').text("구독");
-				$(this).removeClass('selected_btn');
+				$subscribeBtn.text("구독");
+				$("#subscribeBtn").removeClass('selected_btn');
 				subscribeFlag = 0;
 			}
-		})//구독버튼 클릭하기
+			}//success end
+		});//ajax end		
+	});//구독버튼 클릭하기
 
 		/* 공지사항 윤달 계산 */
 		let $startYear = $("#startYear");
@@ -476,15 +509,29 @@
 		let latestPlayListMove = 0;
 		let splitLength = 0;
 		let $latest_playlist_card = $(".latest_playlist_card");
-
+		const climingListTmp = _.template($("#climingListTmp").html());
+		let data = [];
+		
+		$.ajax({
+			url : "/ajax/user/${member.no}/climing",
+			type : "GET",
+			dataType : "json",
+			error : function() {
+				alert("climingMovieList 에러");
+			},
+			success : function(json) {
+				data = json;
+				$latest_playlist_box.append(climingListTmp({
+					"movies" : json
+				}));
+				resizeBox();
+			}
+		});//ajax end	
 		/*박스 크기 재설정*/
 		function resizeBox() {
-			width = ($latest_playlist_card.length) * 209;
-			//console.log(width);
+			width = (data.length) * 209;
 			$latest_playlist_box.css("width", width + "px");
 		}
-
-		resizeBox();
 
 		// const $latest_playlist_card = $(".latest_playlist_card");
 		const $latest_playlist_move_prev = $(".latest_playlist_move_prev");
@@ -515,7 +562,7 @@
 					if (comparePx >= (0)) {
 						comparePx = 0;
 						$(this).css("color", "#9e9e9e");
-					}//if end
+					}//if end	
 				}//if end
 				$(this).prev().css("left", comparePx + "px");
 				playListMoveFlag = true;
@@ -537,9 +584,10 @@
 
 			if (playListMoveFlag) {
 				playListMoveFlag = false;
-				let length = $latest_playlist_card.length;
+				let length = data.length;
 				let splitWord = 0;
 				let comparePx = 0;
+				console.log(length);
 
 				if (length <= 5) {
 					// 자주보는 영화가 5개 이하일때
@@ -600,7 +648,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 배우",
+					text : "${member.nickname} 님이 좋아하는 배우",
 					fontSize : 25,
 					fontColor : '#231F20',
 
@@ -634,7 +682,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 감독",
+					text : "${member.nickname} 님이 좋아하는 감독",
 					fontSize : 25,
 					fontColor : '#231F20',
 				},
@@ -671,7 +719,7 @@
 				responsive : true,
 				title : {
 					display : true,
-					text : "청량고추3개넣은네넴띤 님이 좋아하는 장르",
+					text : "${member.nickname} 님이 좋아하는 장르",
 					fontSize : 25,
 					fontColor : '#231F20',
 				},
@@ -787,8 +835,6 @@
 					// 차트 나타날 때 애니메이션
 					},//options
 				});//시간대별 시청자 평균 바
-
-		console.log(writeAvgViewerNumberPerTimeChart);
 
 		let $viewersNumberPerTime = $("#viewersNumberPerTime");
 		let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {

@@ -3,6 +3,12 @@ package com.playus.clim.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playus.clim.dao.MembersDAO;
+import com.playus.clim.vo.Member;
+
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;
+
 import com.playus.clim.dao.MembersDAOImpl;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,27 +17,34 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.playus.clim.dao.MembersDAO;
+<<<<<<< HEAD
+=======
+import com.playus.clim.dao.SubscribesDAO;
+>>>>>>> master
 import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Subscribe;
 
 @Service
 public class MembersServiceImpl implements MembersService{
 	
 	@Autowired
 	private MembersDAO membersDAO;
+	@Autowired
+	private SubscribesDAO subscribesDAO;
+	@Autowired
+	private MembersDAOImpl memberDaoImpl;
 	
-	
+	/* hsp */
 	@Override
-	public Map<String, Object> myPageMember(int memberNo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member",membersDAO.myPageMemberSelectOne(memberNo));
-	return map;
+	public Member getMemberByNo(int no) {
+		return membersDAO.selectOneByNo(no);
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> master
 	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {
@@ -42,6 +55,11 @@ public class MembersServiceImpl implements MembersService{
 		System.out.println("서비스" + loginMember);
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
+<<<<<<< HEAD
+=======
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+
+>>>>>>> master
 		if (loginMember != null && loginMember.getUuid()==null) {
 			System.out.println(map);
 			map.put("loginMember", loginMember);
@@ -49,6 +67,7 @@ public class MembersServiceImpl implements MembersService{
 			map.put("loginMember", 0);
 		}
 		return map;
+<<<<<<< HEAD
 	}
 		
 	
@@ -57,23 +76,32 @@ public class MembersServiceImpl implements MembersService{
 	public int getCheckId(String email) {
 		// TODO Auto-generated method stub
 		return membersDAO.checkId(email);
+=======
+>>>>>>> master
 	}
 	
 	@Override
 	public int getCheckNickname(String nickname) {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		return membersDAO.checkNickname(nickname);
+=======
+		return memberDaoImpl.checkNickname(nickname);
+>>>>>>> master
 	}
 	
 	@Override
 	public int insertMember(Member member) {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		return membersDAO.insertMember(member);
+=======
+		return memberDaoImpl.insertMember(member);
+>>>>>>> master
 	}
 	
 	@Override
 	public Map<String, Object> UUIDUpdate(Member member) {
-
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
 		UUID uuid = UUID.randomUUID();
@@ -94,8 +122,11 @@ public class MembersServiceImpl implements MembersService{
 		// TODO Auto-generated method stub
 		return membersDAO.updateInfo(member);
 	}
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> master
 	public Map<String, Object> pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
@@ -110,6 +141,22 @@ public class MembersServiceImpl implements MembersService{
 		
 		return map;
 	}
+	@Override
+	public int getCheckId(String email) {
+		return membersDAO.checkId(email);
+	}
 	
+<<<<<<< HEAD
+=======
+	@Override
+	public Member myPageMember(int memberNo,int loginMember) {
+		Member member = membersDAO.myPageMemberSelectOne(memberNo);
+		Subscribe subscribe = new Subscribe();
+		subscribe.setFollowing(loginMember);
+		subscribe.setFollower(memberNo);
+		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
+	return member;
+	}
+>>>>>>> master
 }
 

@@ -1,6 +1,6 @@
 package com.playus.clim.dao;
 
-import org.apache.ibatis.session.SqlSession;  
+import org.apache.ibatis.session.SqlSession;   
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -8,12 +8,19 @@ import com.playus.clim.vo.Member;
 
 @Repository
 public class MembersDAOImpl implements MembersDAO{
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private SqlSession session;
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	
 	@Override
+	public Member selectOneByNo(int no) {
+		return session.selectOne("members.selectOneByNo", no);
+	}
+
 	public int checkId(String email) {
 		// TODO Auto-generated method stub
 		return session.selectOne("members.checkId",email);

@@ -5,7 +5,25 @@
 	<select id="subscribesList" resultType="Subscribe"
 		parameterType="int">
 		SELECT s.no no, following, follower, nickname
-		FROM members m, subscribes s
-		WHERE follower = m.no AND following = #{memberNo}
+		FROM
+		members m, subscribes s
+		WHERE follower = m.no AND following =
+		#{memberNo}
 	</select>
+	
+	<select id="subscribesCheck" parameterType="Subscribe" resultType="int">
+		SELECT count(*)
+		FROM subscribes
+		WHERE  following = #{following} AND follower = #{follower}
+	</select>
+	
+	<insert id="insert" parameterType="Subscribe">
+		INSERT INTO subscribes
+		VALUES (subscribes_seq.nextval,#{following},#{follower},SYSTIMESTAMP)
+	</insert>
+	
+	<delete id="delete" parameterType="Subscribe">
+		DELETE subscribes
+		WHERE following= #{following} AND follower = #{follower}
+	</delete>
 </mapper>

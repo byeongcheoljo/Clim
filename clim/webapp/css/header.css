@@ -110,7 +110,7 @@ body.on #headerTotalSearchText {
 #headerTotalSearch .fas {
 	position: absolute;
 	height: 30px;
-	font-size: 25px;
+	font-size: 20px;
 	top: 0px;
 	right: 5px;
 	text-align: center;
@@ -122,20 +122,23 @@ body.on #headerTotalSearchText {
 
 #headerSigninBtn {
 	position: fixed;
-	width: 80px;
+	width: 60px;
 	height: 20px;
 	line-height: 20px;
 	border-style: none;
+	border-radius:2px;
 	right: 20px;
 	top: 15px;
-	font-size: 14px;
-	background-color: #f9f9f9;
+	font-size: 12px;
+	background-color: rgb(249, 172, 26);
 	cursor: pointer;
 	font-family: "Noto Sans KR", sans-serif;
+	box-sizing: content-box;
+	outline: none;
 }
 
 #headerSigninBtn:hover {
-	background-color: #F9AC1A;
+	background-color: rgba(249, 172, 26,.9);
 }
 
 #headerSigninPopupBg {
@@ -469,15 +472,26 @@ body.on #headerTotalSearchText {
 	margin-top: 20px;
 	padding-bottom: 20px;
 	border-bottom: 2px solid #f9f9f9;
+	position: relative;
 }
 
 #headerSubscribeWrap {
+	width:250px;
+	min-height:500px;
 	color: #f9f9f9;
+	position: relative;
+}
+
+#headerSubscribeWrap ul{
+	width: 250px;
 }
 
 .subscribe_list {
 	/*border: 1px solid #1E88E5;*/
+	width:250px;
+	height:20px;
 	margin-top: 10px;
+	position: relative;	
 }
 
 .subscribe_list a {
@@ -487,10 +501,14 @@ body.on #headerTotalSearchText {
 }
 
 .subscribe_list a:first-child {
-	width: 100px;
+	position: absolute;
+	left: 10px;
 	/*border: 1px solid #00CF35;*/
 	/*background-color: #1E88E5;*/
-	float: left;
+}
+.subscribe_list a:nth-child(2){
+	position: absolute;
+	left: 90px;
 }
 
 .subscribe_list span {
@@ -705,7 +723,7 @@ body.on #headerTotalSearchText {
 	line-height: 1em;
 	position: absolute;
 	display: block;
-	width: 170px;
+	width: 150px;
 	height: 40px;
 	top: 30px;
 }
@@ -748,12 +766,13 @@ body.on #headerTotalSearchText {
 	position: absolute;
 	left: 152px;
 	width: 255px;
-	height: 300px;
+	min-height: 100px;
+	max-height: 300px;
 	background-color: #c5c5c5;
 	z-index: 10;
 	color: #424242;
 	display: none;
-	overflow-y: auto;
+	overflow-y: scroll;
 	overflow-x: hidden;
 	cursor: pointer;
 }
@@ -860,4 +879,19 @@ body.on #headerTotalSearchText {
 	font-size: 16px;
 	width: 100px;
 	height: 25px;
+}
+
+.search_no_result {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+.unsubscribe_list{
+	border: none;
+	color: #fafafa;
+	background: #F9AC1A;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
 }

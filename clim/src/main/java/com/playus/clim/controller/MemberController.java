@@ -11,7 +11,6 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.playus.clim.service.MembersService;
@@ -70,6 +68,58 @@ public class MemberController {
 	}
 	
 
+	
+	@RequestMapping(value="/join",method=RequestMethod.GET)
+	public String signUp() {
+		
+		return "signup";
+	}
+	
+	@RequestMapping(value="/survey", method=RequestMethod.GET)
+	public String survey() {
+		
+		
+		return "survey";
+	}
+	
+	@RequestMapping(value="/join",method=RequestMethod.POST)
+	public String signUp(Member member, String year, String month, String date) {
+		System.out.println(member.getNo());
+		System.out.println(member.getEmail());
+		System.out.println(member.getGender());
+		System.out.println(member.getNickname());
+		Date birthdate = Date.valueOf(year+"-"+month+"-"+date);
+		member.setBirthDate(birthdate);
+		
+		membersService.insertMember(member);
+		return "redirect:survey";
+	}
+	@RequestMapping(value="/user", method=RequestMethod.GET)
+	public String pwdUpdate(HttpServletRequest request) {
+		
+		Member member = new Member();
+		member.setNo(3);
+		member.setBirthDate(Date.valueOf("2019-01-01"));
+		member.setEmail("test@gmail.net");
+		member.setGender('M');
+		member.setNickname("짱아");		
+		member.setPwd("123123123");
+		HttpSession session = request.getSession();
+		session.setAttribute("member", member);
+		
+		return "myPageInformation";
+	}
+	
+	
+	@RequestMapping(value="/user", method=RequestMethod.POST)
+	public String pwdUpdate(Member member) {
+	
+		membersService.updateInfo(member);
+		System.out.println(member.getPwd());
+		
+		
+		return "redirect:index";
+	}
 	
 	//로그인
 	@ResponseBody
@@ -157,16 +207,17 @@ public class MemberController {
 	//비밀번호 변경 시
 	@RequestMapping(value="/pwdUpdate/reset", method=RequestMethod.POST)
 	public String passwordUpdate(Member member, RedirectAttributes ra) {
-		
-		
-			
 		membersService.pwdUpdate(member);
 
 		
 		return "redirect:/index";
 	}
+<<<<<<< HEAD
 
 	
 	
 }
 
+=======
+}
+>>>>>>> master

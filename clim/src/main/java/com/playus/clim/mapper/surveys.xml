@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="surveys">
+<<<<<<< HEAD
 	
 	
 	<select id="selectSurveyList" resultType="Survey" parameterType="PageVO">
@@ -33,4 +34,7 @@ WHERE r BETWEEN #{start} AND #{end}
 	
 	
 	
+=======
+
+>>>>>>> master
 </mapper>

@@ -16,12 +16,14 @@ import com.playus.clim.vo.PageVO;
 @Service
 public class BoardsServiceImpl implements BoardsService{
 	
+	/* 0802 홍성표 */
 	@Autowired
 	private BoardsDAO boardsDAO;
 	@Autowired
 	private PaginateUtil paginateUtil;
 	@Autowired
 	private BookmarksDAO bookmarksDAO;
+	
 	
 	@Override
 	public Map<String, Object> getMyBoards(int memberNo, int page) {

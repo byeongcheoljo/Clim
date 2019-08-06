@@ -5,11 +5,20 @@ import java.sql.Timestamp;
 public class Subscribe {
 
 	private int no, following, follower;
+	private String nickname;
 	private Timestamp regdate;
 	private boolean LiveCheck;
 
 	public Subscribe() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public boolean isLiveCheck() {
