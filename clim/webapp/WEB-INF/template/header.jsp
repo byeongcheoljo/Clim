@@ -648,7 +648,7 @@
 	
 		$this = $(this);
 
-		let memberNo = 1;
+		let memberNo = ${loginMember.no};
 		let movieNo = this.dataset.movieno;
 
 		let movieName = $this.children("span").text();
@@ -747,7 +747,7 @@
 		//객체를 String으로 
 		//userNo는 ${loginUser.no} 변경필요
 		const data = JSON.stringify({
-			"memberNo" : 1,
+			"memberNo" : ${loginMember.no},
 			"title" : title
 		});
 
