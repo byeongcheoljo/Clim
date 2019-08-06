@@ -9,7 +9,6 @@ import com.playus.clim.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
-import com.playus.clim.dao.MembersDAOImpl;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,8 +31,7 @@ public class MembersServiceImpl implements MembersService{
 	private MembersDAO membersDAO;
 	@Autowired
 	private SubscribesDAO subscribesDAO;
-	@Autowired
-	private MembersDAOImpl memberDaoImpl;
+
 	
 	/* hsp */
 	@Override
@@ -86,7 +84,7 @@ public class MembersServiceImpl implements MembersService{
 		// TODO Auto-generated method stub
 		return membersDAO.checkNickname(nickname);
 =======
-		return memberDaoImpl.checkNickname(nickname);
+		
 >>>>>>> master
 	}
 	
@@ -96,7 +94,7 @@ public class MembersServiceImpl implements MembersService{
 		// TODO Auto-generated method stub
 		return membersDAO.insertMember(member);
 =======
-		return memberDaoImpl.insertMember(member);
+		
 >>>>>>> master
 	}
 	
