@@ -2,18 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comments">
-<<<<<<< HEAD
 
-	<select id="myWriteCommentsList" resultType="Comment"
-		parameterType="pageVO">
-		SELECT no, memberNo, contents, regdate, boardNo, r
-		FROM(SELECT no, memberNo, contents, regdate, boardNo, rownum r
-		FROM(SELECT no, member_no memberNo, contents, regdate, board_no
-		boardNo
-		FROM comments
-		WHERE member_no = #{memberNo}
-		ORDER BY regdate))
-=======
 	
 	<select id="myWriteCommentsList" resultType="Comment" parameterType="pageVO">
 		SELECT no, memberNo, contents, regdate, boardNo, r 
@@ -22,7 +11,6 @@
 				  FROM comments
 				  WHERE member_no = #{no}
 				  ORDER BY regdate DESC))
->>>>>>> master
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 

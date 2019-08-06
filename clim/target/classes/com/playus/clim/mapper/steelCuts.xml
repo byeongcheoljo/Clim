@@ -11,8 +11,7 @@
 		resultType="String">
 		SELECT src
 		FROM(SELECT movie_no movieNo, src, ROWNUM r
-		FROM
-		steal_cuts
+		FROM steal_cuts
 		WHERE movie_no=#{movieNo})
 		WHERE r = #{randomR}
 	</select>

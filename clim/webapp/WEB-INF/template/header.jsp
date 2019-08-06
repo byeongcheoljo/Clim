@@ -333,7 +333,7 @@
 			dataType : "json",
 			type : "get",
 			error : function() {
-				alert("에러");
+				//alert("에러");
 			},
 			success : function(json) {
 				console.log(json);
@@ -537,32 +537,11 @@
 				} else {
 					location.reload();
 				}
-<<<<<<< HEAD
 				
             }
         });
     });
     
-
-    //비밀번호 찾기findId    //이건 서버떄 쏘스 드림
-    let $emailPwd = $("#emailPwd");
-    $("#findCertificationBtn").click(function () {
-        $.ajax({
-            url:"/ajax/findPwd",
-            dataType:"json",
-            type:"POST",
-            data:{
-            	email : $emailPwd.val()
-            },
-            error: function (xhr, error, code) {
-                alert("이메일이 올바르지 않습니다");
-            },//error end
-            success : function(json) {
-=======
-			}
-		});
-	});
-
 	//비밀번호 찾기findId    //이건 서버떄 쏘스 드림
 	let $emailPwd = $("#emailPwd");
 	$("#findCertificationBtn").click(function() {
@@ -578,7 +557,6 @@
 				alert("이메일이 올바르지 않습니다");
 			},//error end
 			success : function(json) {
->>>>>>> master
 				console.log(json.member.email.indexOf("@"));
 				let idx = json.member.email.indexOf("@");
 				window.open('http://www.'+ json.member.email.substring(idx + 1),'newWindow');
@@ -666,8 +644,36 @@
 	});
 
 	
-	
-	
+
+		$this = $(this);
+
+		let movieNo = this.dataset.movieno;
+
+		let movieName = $this.children("span").text();
+		let poster = $this.children("img").attr("src");
+		$.ajax({
+			url : "/ajax/addBookmarkOfCliming",
+			type : "POST",
+			datatype : "json",
+			data : {
+				memberNo : 1,
+				movieNo : movieNo
+			},
+			error : function() {
+				alert("안가요");
+			},
+			success : function(json) {
+				if (json.result == "실패") {
+					alert("이미 등록된 영화입니다!");
+				}
+				$(".movie_search").empty();
+				$(".movie_search_input").val("");
+				$(".movie_search_input").focus();
+				$(".movie_search").css("display","none");
+				getStreamingMovieList();
+			}
+		})
+	});
 
 
 	//스트리밍 방송 하기 클릭
@@ -809,12 +815,11 @@ $("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
 		})
 		
 		stompClient.send(①,{},②);
-		
 		 */
 		//객체를 String으로 
 		//userNo는 ${loginUser.no} 변경필요
 		const data = JSON.stringify({
-			"memberNo" : ${loginMember.no},
+			"memberNo" : 1,
 			"title" : title
 		});
 

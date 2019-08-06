@@ -2,50 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookmarks">
-<<<<<<< HEAD
-
 	<select id="mybookmarkListForCliming" parameterType="int"
 		resultType="Bookmark">
 		SELECT b.no, b.member_no memberNo, m.title, m.poster,
-		m.runtime
-=======
-	
-	<select id="mybookmarkListForCliming" parameterType="int" resultType="Bookmark">
-		SELECT b.no, b.member_no memberNo, m.title, m.poster, m.runtime, b.regdate, b.type
->>>>>>> master
+		m.runtime, b.regdate, b.type
 		FROM BOOKMARKS b, MOVIES m
-		WHERE b.movie_no = m.no
+		WHERE b.movie_no
+		= m.no
 		AND b.type =
 		'C'
 		AND b.member_no = #{memberNo}
 		ORDER BY regdate
 	</select>
-<<<<<<< HEAD
-
-=======
-	
 	<insert id="bookmarkInsertForCliming" parameterType="Bookmark">
-		INSERT INTO bookmarks(no, member_no, movie_no, regdate, type)
-		VALUES (bookmarks_seq.nextval, #{memberNo}, #{movieNo}, SYSTIMESTAMP, 'C')
+		INSERT INTO
+		bookmarks(no, member_no, movie_no, regdate, type)
+		VALUES
+		(bookmarks_seq.nextval, #{memberNo}, #{movieNo}, SYSTIMESTAMP, 'C')
 	</insert>
-	
 	<delete id="bookmarkDeleteForCliming" parameterType="int">
-		DELETE bookmarks
+		DELETE
+		bookmarks
 		WHERE no = #{no}
 	</delete>
-	
-	<select id="checkBookmarkOneForCliming" parameterType="Bookmark" resultType="Bookmark">
-		SELECT no,member_no memberNo, movie_no movieNo, regdate, type
+	<select id="checkBookmarkOneForCliming" parameterType="Bookmark"
+		resultType="Bookmark">
+		SELECT no,member_no memberNo, movie_no movieNo, regdate,
+		type
 		FROM bookmarks
 		WHERE member_no = #{memberNo}
-		AND movie_no = #{movieNo}
+		AND movie_no =
+		#{movieNo}
 		AND type = 'C'
 	</select>
-	
 	<insert id="insertClimingList" parameterType="Bookmark">
-	insert into bookmarks
-	values(bookmarks_seq.nextval,(select member_no from c_lists where no= #{memberNo}), #{movieNo},systimestamp,'C')
-	
+		insert into bookmarks
+		values(bookmarks_seq.nextval,(select member_no from c_lists where no= #{memberNo}),
+		#{movieNo},systimestamp,'C')
 	</insert>
->>>>>>> master
 </mapper>
