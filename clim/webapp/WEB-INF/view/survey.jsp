@@ -17,6 +17,7 @@
 </head>
 <body>
 <main id="content">
+ 
     <div class="header_logo_survey">
         <img src="/img/clim%20logo.png"><br>
         <span id="currentCheeckedMovieNum">0/15</span><br>
@@ -39,9 +40,10 @@
     <script type="text/tempate" id="surveyMovieTmp">
     <@_.each(movies,function(movie){ @>
          <li class="survey_movie_li">
-                <div class="survey_movie_img"><img src="/img/c_86iUd018svcu2mbqiag7a4k_fiodb6.jpg"></div>
+				<input type="hidden" name="movieNo" value="<@=movie.no@>"/>
+                <div class="survey_movie_img"><img src="/poster/<@=movie.poster@>"></div>
 
-                <div class="survey_movie_info"><strong class="movie_title_survey"><@=movie.movieNm@></strong>
+                <div class="survey_movie_info"><strong class="movie_title_survey"><@=movie.title@></strong>
                     <p>
                         <span class="movie_title_openDay">2019</span>
                     <p>
@@ -49,16 +51,16 @@
                     <p>
                     <span class="movie_title_score">
                         <div class="starRev">
-                          <span class="starR1">별1_왼쪽</span>
-                          <span class="starR2">별1_오른쪽</span>
-                          <span class="starR1">별2_왼쪽</span>
-                          <span class="starR2">별2_오른쪽</span>
-                          <span class="starR1">별3_왼쪽</span>
-                          <span class="starR2">별3_오른쪽</span>
-                          <span class="starR1">별4_왼쪽</span>
-                          <span class="starR2">별4_오른쪽</span>
-                          <span class="starR1">별5_왼쪽</span>
-                          <span class="starR2">별5_오른쪽</span>
+                          <span class="starR1">별1_왼쪽<input type="hidden" name="score" value="1"></span>
+                          <span class="starR2">별1_오른쪽<input type="hidden" name="score" value="2"></span>
+                          <span class="starR1">별2_왼쪽<input type="hidden" name="score" value="3"></span>
+                          <span class="starR2">별2_오른쪽<input type="hidden" name="score" value="4"></span>
+                          <span class="starR1">별3_왼쪽<input type="hidden" name="score" value="5"></span>
+                          <span class="starR2">별3_오른쪽<input type="hidden" name="score" value="6"></span>
+                          <span class="starR1">별4_왼쪽<input type="hidden" name="score" value="7"></span>
+                          <span class="starR2">별4_오른쪽<input type="hidden" name="score" value="8"></span>
+                          <span class="starR1">별5_왼쪽<input type="hidden" name="score" value="9"></span>
+                          <span class="starR2">별5_오른쪽<input type="hidden" name="score" value="10"></span>
                         </div>
                     </span>
                 </div>
@@ -79,7 +81,15 @@
         evaluate: /\<\@([\s\S]+?)\@\>/gim,
         escape: /\<\@\-(.+?)\@\>/gim
     };
-
+    
+    const url = window.location.href;
+    
+    let array = url.split("/");
+    
+    console.log(array);
+    console.log(array[4]);
+    
+    let memberNo = array[4];
 
     //////////////////movie List json///////////////////////
     const $surveyMovieTmp = _.template($("#surveyMovieTmp").html());
@@ -90,21 +100,21 @@
     function getMovieList(){
         if(flag){
             flag = false;
-
+		
         $.ajax({
-            url: "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json",
+            url: "/ajax/user/survey",
             dataType: "json",
             type: "get",
-            data:{key: "430156241533f1d058c603178cc3ca0e",itemPerPage: 5,curPage: pageNo++},
+            data:{page: pageNo++},
             error: function () {
                 alert("서버 점검중");
             },//error end
             success: function (json) {
                 console.log(json)
-                const movies = json.movieListResult.movieList;
+
                 $movieListUlSurvey.append($surveyMovieTmp({
-                    "movies": movies
-                }));
+                    "movies": json
+                })); 
                 flag = true;
 
             }//success end
@@ -136,12 +146,42 @@
     var cnt=0;
     //별 스크립트
     $("#movieListUlSurvey").on("click",'.starRev span',function(){
+    	let movieNo = $(this).parents(".survey_movie_li").find("input").val();
+    	let scoreNo = $(this).find("input").val();
         if($(this).parent().hasClass('clicked')){
             //영화 평점을 여러번 눌렀을 경우
+            
+            $.ajax({
+            	 url: "/ajax/user/"+memberNo+"/survey/"+movieNo+"/score/"+scoreNo,
+            	 dataType: "json",
+                 type: "put",
+                 error:function(){
+                	 
+                	 //alert("movie rating error")
+                 },
+                 success:function(json){
+                	 console.log(json);
+                 }
+            });
+            
             $(this).parent().children('span').removeClass('on');
             $(this).addClass('on').prevAll('span').addClass('on');
         }else{
             //영화 평점을 첫번째 눌렀을 경우
+            
+            $.ajax({
+            	 url: "/ajax/user/"+memberNo+"/survey/"+movieNo+"/score/"+scoreNo,
+            	 dataType: "json",
+                 type: "post",
+                 error:function(){
+                	 
+                	 //alert("movie rating error")
+                 },
+                 success:function(json){
+                	 console.log(json);
+                 }
+            });
+            
             $(this).parent().addClass('clicked');
             $(this).parent().children('span').removeClass('on');
             $(this).addClass('on').prevAll('span').addClass('on');
@@ -180,6 +220,21 @@
         $(this).addClass('on').prevAll('span').addClass('on');
         return false;
     });
+    
+    $(".done_button_survey").click(function() {
+		if(cnt < 15){
+			
+			return false;
+		}
+		else{
+			location.replace("/index");
+			return true;
+		}
+		
+		//alert("test");
+		
+	});
+    
     //별 스크립트 end
 </script>
 </body>

@@ -52,7 +52,7 @@
     const $userStreamBox = $("#userStreamBox");
 
     $.ajax({
-        url: "/ajax/userClim.json",
+        url: "/ajax/user/bookmark/${memberNo}",
         dataType: "json",
         type: "get",
         error: function () {

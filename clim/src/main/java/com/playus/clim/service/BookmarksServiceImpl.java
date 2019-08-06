@@ -2,8 +2,11 @@ package com.playus.clim.service;
 
 import java.util.List;
 
+<<<<<<< HEAD
+=======
 import javax.servlet.http.HttpSession;
 
+>>>>>>> master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +57,17 @@ public class BookmarksServiceImpl implements BookmarksService{
 		bookmarksDAO.insertClimingList(bookmark);
 		
 	}
+	@Override
+	public List<Bookmark> getMyMovieList(int no) {
+		// TODO Auto-generated method stub
+		
+		return bookmarksDAO.mybookmarkListForMovies(no);
+	}
 
+@Override
+	public int deletMybookmarkMovie(int no) {
+		// TODO Auto-generated method stub
+		return bookmarksDAO.deletMybookmarkMovie(no);
+	}
+	
 }

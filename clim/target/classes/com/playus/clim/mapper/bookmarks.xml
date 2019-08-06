@@ -40,4 +40,20 @@
 		values(bookmarks_seq.nextval,(select member_no from c_lists where no= #{memberNo}),
 		#{movieNo},systimestamp,'C')
 	</insert>
+	
+	
+	<select id="mybookmarkListForMovies" parameterType="int" resultType="Bookmark">
+	select b.no no,m.no movieNo, mem.no memberNo, m.title, m.poster, b.regdate
+	from movies m, bookmarks b, members mem
+	where b.member_no = #{mem.no} and b.movie_no = m.no and mem.no = b.member_no
+	
+	
+	</select>
+	
+	<delete id="deleteMybookmarkMovie" parameterType="int">
+	delete bookmarks
+	where no = #{no}
+	</delete>
+	
+	
 </mapper>

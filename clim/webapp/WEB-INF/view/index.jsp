@@ -5,11 +5,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<<<<<<< HEAD
+    <meta charset="UTF-8">
+    <title>Clim | </title>
+	<c:import url="/WEB-INF/template/link.jsp"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+=======
 <meta charset="UTF-8">
 <title>Clim | Main</title>
 <c:import url="/WEB-INF/template/link.jsp" />
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/preview.css">
+>>>>>>> master
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />

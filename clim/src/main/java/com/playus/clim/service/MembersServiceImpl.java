@@ -18,7 +18,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.servlet.http.HttpSession;
 
 import com.playus.clim.dao.MembersDAO;
+<<<<<<< HEAD
+=======
 import com.playus.clim.dao.SubscribesDAO;
+>>>>>>> master
 import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Subscribe;
 
@@ -38,6 +41,10 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.selectOneByNo(no);
 	}
 	
+<<<<<<< HEAD
+	
+=======
+>>>>>>> master
 	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {
@@ -46,9 +53,13 @@ public class MembersServiceImpl implements MembersService{
 		session.setAttribute("loginMember", loginMember);
 
 		System.out.println("서비스" + loginMember);
-
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
+<<<<<<< HEAD
+=======
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+
+>>>>>>> master
 		if (loginMember != null && loginMember.getUuid()==null) {
 			System.out.println(map);
 			map.put("loginMember", loginMember);
@@ -56,16 +67,37 @@ public class MembersServiceImpl implements MembersService{
 			map.put("loginMember", 0);
 		}
 		return map;
+<<<<<<< HEAD
+	}
+		
+	
+
+	@Override
+	public int getCheckId(String email) {
+		// TODO Auto-generated method stub
+		return membersDAO.checkId(email);
+=======
+>>>>>>> master
 	}
 	
 	@Override
 	public int getCheckNickname(String nickname) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		return membersDAO.checkNickname(nickname);
+=======
 		return memberDaoImpl.checkNickname(nickname);
+>>>>>>> master
 	}
 	
 	@Override
 	public int insertMember(Member member) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		return membersDAO.insertMember(member);
+=======
 		return memberDaoImpl.insertMember(member);
+>>>>>>> master
 	}
 	
 	@Override
@@ -88,8 +120,13 @@ public class MembersServiceImpl implements MembersService{
 	@Override
 	public int updateInfo(Member member) {
 		// TODO Auto-generated method stub
-		return memberDaoImpl.updateInfo(member);
+		return membersDAO.updateInfo(member);
 	}
+<<<<<<< HEAD
+	
+	
+=======
+>>>>>>> master
 	public Map<String, Object> pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
@@ -109,6 +146,8 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.checkId(email);
 	}
 	
+<<<<<<< HEAD
+=======
 	@Override
 	public Member myPageMember(int memberNo,int loginMember) {
 		Member member = membersDAO.myPageMemberSelectOne(memberNo);
@@ -118,5 +157,6 @@ public class MembersServiceImpl implements MembersService{
 		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
 	return member;
 	}
+>>>>>>> master
 }
 

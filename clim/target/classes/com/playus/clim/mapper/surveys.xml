@@ -2,5 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="surveys">
+<<<<<<< HEAD
+	
+	
+	<select id="selectSurveyList" resultType="Survey" parameterType="PageVO">
+	
+	SELECT no, title, poster, nameKor, opendate, r
+FROM(SELECT no, title, poster, nameKor, opendate, rownum r
+	 FROM(SELECT m.no, m.title, poster, c.name_kor nameKor, m.opendate
+		  FROM movies m, m_countries mc, Countries c
+	 	  WHERE m.no = mc.movie_no
+	 	  AND mc.contry_no = c.no))
+WHERE r BETWEEN #{start} AND #{end}
 
+
+	</select>
+	
+	<insert id="insertSurvey" parameterType="Survey" >
+	insert into reviews(no, movie_no, member_no, score, regdate)
+	values (surveys_seq.nextval, #{movieNo}, #{memberNo}, #{score}, systimestamp)
+	</insert>
+	
+	
+	<update id="updateSurvey" parameterType="Survey">
+
+	update reviews
+	set score = #{score}
+	where movie_No = #{movieNo} and member_No = #{memberNo}
+
+	</update>
+	
+	
+	
+=======
+
+>>>>>>> master
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,7 +13,7 @@
 <body>
 <main id="content">
     <ul id="headerNavMypage">
-        <li id="nicknameHeaderMypage">닉네임</li>
+        <li id="nicknameHeaderMypage">${member.nickname}</li>
         <li>홈</li>
         <li>찜</li>
         <li>커뮤니티</li>
@@ -23,9 +24,46 @@
     <div id="paymentWrap">
         <div id="paymentInformationBox">
             <!--###등급이 없는 경우-->
-            <h2>나의 결재 정보</h2>
+            <h2>나의 결재 정보 </h2>
+            <c:choose>
+
+            	
+             <c:when test="${member.grade==69}">
+  				<h4>현재 이코노미 멤버쉽을 이용중입니다.</h4>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
+				<button class="payment_btn update">수정</button>
+				<form action="/user/${loginMember.no}/payment" method="post">
+				<button class="payment_btn terminate">해지</button>
+				<input type=hidden name="_method" value="delete">
+				</form>
+             </c:when>
+             
+             <c:when test="${member.grade==83}">
+  				<h4>현재 스탠다드 멤버쉽을 이용중입니다.</h4>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
+				<button class="payment_btn update">수정</button>
+				<form action="/user/${loginMember.no}/payment" method="post">
+				<button class="payment_btn terminate">해지</button>
+				<input type=hidden name="_method" value="delete">
+				</form>
+             </c:when>
+             
+             <c:when test="${member.grade==80}">
+  				<h4>현재 프라임 멤버쉽을 이용중입니다.</h4>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
+				<button class="payment_btn update">수정</button>
+				<form action="/user/${loginMember.no}/payment" method="post">
+				<button class="payment_btn terminate">해지</button>
+				<input type=hidden name="_method" value="delete">
+				</form>
+             </c:when>
+             <c:otherwise>
+           
                        <p>현재 멤버쉽을 이용중이지 않습니다.</p>
                        <button class="payment_btn writer">등록하기</button>
+         
+             </c:otherwise>
+             </c:choose>
             <!--####등급이 있는 경우-->
 <!--            <h4>현재 프라임 멤버쉽을 이용중입니다.</h4>-->
 <!--            <p>*매월 8일에 자동 결제 됩니다.</p>-->
@@ -64,31 +102,85 @@
 <div id="bg">
     <div id="paymentForm">
         <i class="fas fa-times-circle"></i>
-        <form action="">
+        <form action="/user/${loginMember.no}/payment" method="post">
             <h2>이용할 멤버쉽을 선택해 주세요.</h2>
-            <ul id="paymentFormTap">
-                <li class="membership_tap tap_on">이코노미</li>
-                <li class="membership_tap">스탠다드</li>
-                <li class="membership_tap">프라임</li>
+            <ul id="paymentFormTap"><!--  li 쓰면 안됨  ajax로... -->
+            	<label>
+               <input type="radio" name="grade" value="E"><li class="membership_tap tap_on"  >이코노미</li> </input>
+               </label>
+               <label>
+               <input type="radio" name="grade" value="S"><li class="membership_tap" >스탠다드</li></input>
+               </label>
+               <label>
+               <input type="radio" name="grade" value="P"> <li class="membership_tap" >프라임</li></input>
+               </label>
+               
+<!-- 				<input type="radio" name="grade" value="E">이코노미</input> -->
+<!-- 				<input type="radio" name="grade" value="S">스탠다드</input> -->
+<!-- 				<input type="radio" name="grade" value="P">프라임</input> -->
             </ul>
             <p id="membershipCard">
                 <strong>카드사</strong>
                 <button class="payment_btn select" type="button">선택하기</button>
-            <ul id="membershipCardList">
-                <li><input name="card" type="radio">KB국민</input></li>
-                <li><input name="card" type="radio">농협</input></li>
-                <li><input name="card" type="radio">신한</input></li>
-                <li><input name="card" type="radio">현대</input></li>
-                <li><input name="card" type="radio">롯데</input></li>
-                <li><input name="card" type="radio">우리</input></li>
-                <li><input name="card" type="radio">KEB외환</input></li>
-                <li><input name="card" type="radio">조흥</input></li>
-                <li><input name="card" type="radio">카카오</input></li>
-                <li><input name="card" type="radio">하나</input></li>
-                <li><input name="card" type="radio">BC</input></li>
-                <li><input name="card" type="radio">기업</input></li>
-                <li><input name="card" type="radio">씨티</input></li>
-                <li><input name="card" type="radio">JBP</input></li>
+            <ul id="membershipCardList"> <!--  li 쓰면 안됨  ajax로... -->
+            	
+            	<label>
+                <input name="card" type="radio" value="0"><li>KB국민</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="1"><li>농협</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="2"><li>신한</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="3"> <li>현대</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="4"><li>롯데</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="5"><li>우리</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="6"><li>KEB외환</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="7"> <li>조흥</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="8"><li>카카오</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="9"><li>하나</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="10"><li>BC</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="11"><li>기업</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="12"><li>씨티</li></input>
+                </label>
+                
+                <label>
+                <input name="card" type="radio" value="13"><li>JBP</li></input>
+                </label>
+                
+                
             </ul>
             </p>
             <p>
@@ -123,7 +215,7 @@
         </form>
     </div>
 </div>
-<!-- 	<c:import url="/WEB-INF/template/footer.jsp" /> </main> -->
+ 	<c:import url="/WEB-INF/template/footer.jsp" /> </main> 
 	<script>
 		$("#paymentFormTap li").click(function() {
 			//4px solid #F9AC1A

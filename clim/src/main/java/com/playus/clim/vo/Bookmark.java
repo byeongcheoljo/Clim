@@ -4,8 +4,13 @@ import java.sql.Timestamp;
 
 public class Bookmark {
 
+<<<<<<< HEAD
+	private int no, memberNo, movieNo;
+	private String title, poster;
+=======
 	/*0802 runtime title poster추가 홍성표*/
 	private int no, memberNo, movieNo, runtime;
+>>>>>>> master
 	private Timestamp regdate;
 	private String title, poster;
 	private char type;
@@ -16,6 +21,8 @@ public class Bookmark {
 	}
 
 
+<<<<<<< HEAD
+=======
 	
 	public int getRuntime() {
 		return runtime;
@@ -29,30 +36,43 @@ public class Bookmark {
 
 
 
+>>>>>>> master
 	public String getTitle() {
 		return title;
 	}
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 	public String getPoster() {
 		return poster;
 	}
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 	public void setPoster(String poster) {
 		this.poster = poster;
 	}
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 	public int getNo() {
 		return no;
 	}

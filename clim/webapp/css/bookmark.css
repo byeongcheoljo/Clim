@@ -145,6 +145,12 @@ body{
             white-space:nowrap;
             padding-right:50px;
         }
+        .imgBox img {
+        	width: 100%;
+        	height:100%;
+        	
+        
+        }
 
         .bookmark_movie_card:hover .marquee p {
             margin-top:15px;

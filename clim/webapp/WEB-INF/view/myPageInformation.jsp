@@ -24,14 +24,14 @@
 	<div id="myPageInformationWrap">
 
 
-		<form id="information" action="/user" method="post">
-		<input type="hidden" name="no" value="${member.no}">
+		<form id="information" action="/user/${loginMember.no}/info" method="post">
+		<input type="hidden" name="no" value="${loginMember.no}">
 			<h2>개인정보 수정</h2>
 			<p>
-				<strong>e-mail</strong> ${member.email}
+				<strong>e-mail</strong> ${loginMember.email}
 			</p>
 			<p>
-				<strong>닉네임</strong> ${member.nickname}
+				<strong>닉네임</strong> ${loginMember.nickname}
 			</p>
 			<p>
 				<strong>비밀번호</strong> <input id="newPwd" type="password"

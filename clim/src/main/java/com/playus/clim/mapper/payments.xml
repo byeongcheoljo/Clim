@@ -2,5 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="payments">
+<<<<<<< HEAD
+	
+	
+	<select id="selectOneMember" resultType="Member" parameterType="int">
+	
+	select m.no memberNo, email, nickname, grade, p.regdate regdate
+	from members m, payments p
+	where m.no = #{p.member_no} and m.no = p.member_no
+	
+	</select>
+	
+	
+	<update id="updatePayment" parameterType="Payment">
+	
+	update payments
+	set  grade = #{grade}, card_name = #{cardName}, card_no = #{cardNo}, card_validate = #{cardVaildate},
+	card_pw = #{cardPW}, card_cvc = #{cardCVC}
+	where member_no = #{memberNo}
+	
+	</update>
+	
+	<update id="deletePayment" parameterType="int">
+	update payments
+	set grade= 'F'
+	where member_no = #{memberNo}
+	
+	</update>
+	
+	<insert id="defaultPayment" parameterType="int">
 
+	insert into payments(no, grade, member_no, card_name, card_no, card_validate, card_pw, card_cvc, regdate)
+	values (payments_seq.nextval, 'F', #{no}, '0','000000000000','0000','00','000', systimestamp)
+	</insert>
+	
+=======
+
+>>>>>>> master
 </mapper>
