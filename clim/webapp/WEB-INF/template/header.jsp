@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header id="header">
     <a href=""><img class="header_index_nav" src="/img/clim.png"/></a></div>
     <div id="headerMenuSection">
@@ -68,21 +70,25 @@
             </form>
         </div><!--//headerSearchBox-->
 
+<c:choose>
+	<c:when test="${loginMember==null}">
     <!--로그인 안했을때 -->
     <button id="headerSigninBtn">로그인</button>
-
+	</c:when>
+	<c:otherwise>
     <!-- 로그인했을시 정보버튼 확인-->
     <div id="headerLoginInfo">
         <span><img id="headerStreamingImg" src="/img/camera.png"/></span>
         <span class="header_userInfo_nav"><i class="fas fa-user-alt"></i></span>
         <ul id="headerUserInfoBox">
-            <li><a href="">닉네임여섯자</a></li>
+            <li><a href="">${loginMember.nickname }</a></li>
             <li><a href="">찜</a></li>
             <li><a href="">내정보</a></li>
             <li><a href="">고객센터</a></li>
             <li>
-                <form action="" method="">
-                <button class="logout_btn">로그아웃</button>
+                <form action="/session" method="POST">
+	                <button class="logout_btn">로그아웃</button>
+                <input type="hidden" name="_method" value="DELETE"> 
                 </form>
             </li>
         </ul>
@@ -130,6 +136,8 @@
             </div><!--/streamingPopup-->
         </div><!--//streamingPopupBg-->
     </div>
+    </c:otherwise>
+</c:choose>
 
     <!--로그인 팝업창 출력-->
     <div id="headerSigninPopupBg">
@@ -140,13 +148,13 @@
             </div><!--//-->
             <div id="headerSigninPopupContentWrap">
                 <div id="headerSigninPopupContentBox">
-                    <form method="post" action="/login.do" id="headerSigninForm">
+                    <form method="post" id="headerSigninForm">
                         <fieldset>
                             <label for="loginId" class="LoginLabel screen_out" id="idLabel">ID:</label>
-                            <input type="text" autofocus name="id" id="loginId" placeholder="이메일을 입력해주세요" title="이메일을 입력해주세요."/>
+                            <input type="text" autofocus name="email" id="email" placeholder="이메일을 입력해주세요" title="이메일을 입력해주세요."/>
                             <br>
                             <label for="loginPassword" class="LoginLabel screen_out" id="pwdLabel">PassWord:</label>
-                            <input type="password" name="password" id="loginPassword" placeholder="비밀번호를 입력해주세요" title="비밀번호를 입력해주세요."/>
+                            <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력해주세요" title="비밀번호를 입력해주세요."/>
                             <br>
                             <label id="signupMsg">아이디또는 비밀번호가 맞지않습니다.</label>
                             <button id="loginBtn" title="로그인버튼">로그인</button>
@@ -173,10 +181,10 @@
                 <p>계정으로 사용하는 이메일 주소를 입력하시면</p>
                 <p>이메일로 재설정 링크를 전송 해드립니다.</p>
 
-                <form method="post" action="/find.do" id="">
+                <form method="post" id="">
                     <fieldset>
-                        <label for="findId" class="Find_Label screen_out">이메일 </label>
-                        <input type="text" autofocus name="id" id="findId" placeholder="이메일을 입력해주세요" title="이메일을 입력해주세요."/>
+                        <label for="emailPwd" class="Find_Label screen_out">이메일 </label>
+                        <input type="text" autofocus name="emailPwd" id="emailPwd" placeholder="이메일을 입력해주세요" title="이메일을 입력해주세요."/>
                         <label id="findMsg">이메일형식을 지켜주세요</label>
                     </fieldset>
                     <button type="submit" id="findCertificationBtn" title="인증번호 보내기">인증번호 전송하기</button>
@@ -446,61 +454,62 @@
     });
 
     //아이디비번작성후 로그인 버튼 클릭시
+<<<<<<< HEAD
     let $loginId  = $("#loginId");
     let $loginPassword = $("#loginPassword");
 
     /*
     $("#loginBtn").click(function () {
+=======
+    let $email  = $("#email");
+    let $pwd = $("#pwd");
+    $("#loginBtn").click(function (e) {
+>>>>>>> master
         let pwd;
         let idflag = true;
 
         $.ajax({
-            url:"json/member.json",
-            dataType:"json",
-            type:"GET",
-            success : function(json) {
-                _.each(json,function (info) {
-                    if($loginId.val()==info.id){
-                        pwd = info.password;
-                    }
-                    else{
-                        idflag=false;
-                    }
-                });
-                if($loginPassword.val()!=pwd || idflag){
-                    $("#signupMsg").css("display","block");
-                }
-                else{
-                    $("#signupMsg").css("display","none");
-                }
-
+            url:"/ajax/session",
+            data : {
+            	email : $email.val(),
+            	pwd : $pwd.val(),
             },
-            error : function() {
-                alert("서버점검중");
+            dataType:"json",
+            type:"post",
+			error: function (xhr,error,code) {
+				alert(error);
+				console.log(xhr.responseText);
+			}, // error end
+            success : function(json) {
+				if (json.loginMember == 0) {
+					 $("#signupMsg").css("display","block");
+					 e.preventDefault();
+				}
+				else{
+					location.reload();
+				}
             }
         });
     });
+    
 
     //비밀번호 찾기findId    //이건 서버떄 쏘스 드림
+    let $emailPwd = $("#emailPwd");
     $("#findCertificationBtn").click(function () {
-
         $.ajax({
-            url:"json/member.json",
+            url:"/ajax/findPwd",
             dataType:"json",
-            type:"GET",
-            success : function(json) {
-                _.each(json,function (info) {
-                    if($findId.val()==info.id){
-                        // let idx = info.id.indexOf("@");
-                        // window.open('http://www.'+$findId.val.substring(idx+1), 'newWindow');
-                    }
-                    else{
-                        // $("#findMsg").css("display","block");
-                    }
-                });
+            type:"POST",
+            data:{
+            	email : $emailPwd.val()
             },
-            error : function() {
-                alert("서버점검중");
+            error: function (xhr, error, code) {
+                alert("이메일이 올바르지 않습니다");
+            },//error end
+            success : function(json) {
+				console.log(json.member.email.indexOf("@"));
+				let idx = json.member.email.indexOf("@");
+				window.open('http://www.'+json.member.email.substring(idx+1), 'newWindow');
             }
         });
     });

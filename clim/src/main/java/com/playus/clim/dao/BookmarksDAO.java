@@ -11,4 +11,6 @@ public interface BookmarksDAO {
 	public int bookmarkDeleteForCliming(int no);
 	public Bookmark checkBookmarkOneForCliming(Bookmark bookmark);
 
+	public void insertClimingList(Bookmark bookmark);
+
 }

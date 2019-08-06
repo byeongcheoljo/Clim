@@ -1,5 +1,7 @@
 package com.playus.clim.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,7 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	private SqlSession session;
 	
 	@Override
+<<<<<<< HEAD
 	public void insert(ClimingList climingList) {
 		System.out.println("z2");
 		session.insert("climingLists.insert", climingList);
@@ -23,4 +26,10 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 		return session.selectOne("climingLists.selectOne", no);
 	}
 
+=======
+	public int subscribesLiveCheck(int memberNo) {
+		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
+	}
+	
+>>>>>>> master
 }

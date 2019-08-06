@@ -19,4 +19,8 @@ public class MoviesDAOImpl implements MoviesDAO{
 		return session.selectList("movies.searchMovieListForCliming", "%"+title+"%");
 	}
 	
+	@Override
+	public Movie selectMovieTrailer(int no) {
+		return session.selectOne("movies.selectMovieTrailer",no);
+	}
 }

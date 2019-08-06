@@ -1,6 +1,6 @@
 package com.playus.clim.controller;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,10 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
+<<<<<<< HEAD
+=======
+import com.playus.clim.service.ClimingMovieListsService;
+>>>>>>> master
 import com.playus.clim.service.CommentsService;
+import com.playus.clim.service.MembersService;
+import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
+import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+<<<<<<< HEAD
 import com.playus.clim.vo.Bookmark;
+=======
+import com.playus.clim.vo.Event;
+>>>>>>> master
 import com.playus.clim.vo.Movie;
 
 @RestController
@@ -32,7 +43,18 @@ public class AjaxController {
 	@Autowired
 	private MoviesService moviesService;
 	@Autowired
+<<<<<<< HEAD
 	private BookmarksService bookmarksService;
+=======
+	private ReportsService reportService;
+	@Autowired
+	private BookmarksService bookmarkService;
+	@Autowired
+	private EventsService eventsService;
+	
+	@Autowired
+	private MembersService membersService;
+>>>>>>> master
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -82,6 +104,35 @@ public class AjaxController {
 		}else {
 			return "{\"result\":\""+ "실패" +"\"}";
 		}
+	}
+
+	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
+	public int getCheckId(String email) {
+		
+		
+		return membersService.getCheckId(email);
+	}
+	
+	@RequestMapping(value="/getCheckNickname/nickname", method=RequestMethod.GET)
+	public int getCheckNickname(String nickname) {
+		
+		return membersService.getCheckNickname(nickname);
+	}
+	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
+	public void reportClimer(int roomNo,int userNo,String content){
+		
+		reportService.reportClimer(roomNo,userNo,content);
+	}
+	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
+	public void addClimingList(int roomNo,int movieNo){
+		
+		bookmarkService.addClimingList(roomNo,movieNo);
+
+	}
+	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
+	public List<Event> eventsList(int memberNo) {
+		return eventsService.getList(memberNo);
+
 	}
 
 }

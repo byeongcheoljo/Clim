@@ -195,7 +195,7 @@ body.on #headerTotalSearchText {
 	height: 300px;
 }
 
-.LoginLabel, #loginId, #loginPassword {
+.LoginLabel, #email, #pwd {
 	height: 30px;
 	position: absolute;
 }
@@ -211,14 +211,14 @@ body.on #headerTotalSearchText {
 	top: 40px;
 }
 
-#loginId {
+#email {
 	left: 130px;
 	width: 240px;
 	height: 33px;
 	border: 1px solid silver;
 }
 
-#loginPassword {
+#pwd {
 	left: 130px;
 	top: 50px;
 	width: 240px;
@@ -347,7 +347,7 @@ body.on #headerTotalSearchText {
 	margin-bottom: 15px;
 }
 
-#findId {
+#emailPwd {
 	width: 180px;
 	height: 20px;
 	display: block;

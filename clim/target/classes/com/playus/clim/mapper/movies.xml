@@ -2,11 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movies">
-	
-	<select id="searchMovieListForCliming" resultType="Movie" parameterType="String">
+	<select id="searchMovieListForCliming" resultType="Movie"
+		parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
+<<<<<<< HEAD
 		WHERE title LIKE #{title}
+=======
+		WHERE title= #{title}
+	</select>
+
+	<select id="selectMovieTrailer" resultType="Movie"
+		parameterType="int">
+		SELECT m.no no, title,opendate,
+		(SELECT
+		NVL(AVG(score),0.0) score FROM
+		reviews WHERE movie_no = 1) score,
+		movie_rating movieRating, runtime,
+		contents,t.src src,poster,m.regdate
+		regdate
+		FROM movies m, trailers t
+		WHERE m.no = t.movie_no AND m.no =
+		#{no}
+>>>>>>> master
 	</select>
 	
+	<select id="getClimingMovieList" parameterType="int"
+		resultType="Movie">
+		select no,title,runtime,src,poster
+		from movies
+		where no in(select movie_no
+		from bookmarks,
+		(select no,member_no,title
+		from c_lists) clist
+		where bookmarks.member_no=clist.member_no and clist.no=#{no} and type='C')
+	</select>
 </mapper>

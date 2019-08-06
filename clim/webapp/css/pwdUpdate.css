@@ -52,17 +52,20 @@ body {
 	background-color: #F9AC1A;
 }
 
-.input_signup {
+.input_pwdFind {
 	width: 200px;
 	height: 30px;
 	display: block;
 	position: relative;
 	margin: auto;
+	bottom: 0px;
 }
 
-#pwdUpdate {
+#pwd {
 	margin-bottom: 30px;
 	margin-top: 60px;
+	position: relative;
+	top:0px;
 }
 
 .confirm {

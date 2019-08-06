@@ -1,5 +1,9 @@
 package com.playus.clim.dao;
 
-public interface DirectorsDAO {
+import java.util.List;
 
+import com.playus.clim.vo.Director;
+
+public interface DirectorsDAO {
+	public List<Director> selectDirectorForMovie(int no);
 }

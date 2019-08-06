@@ -1,584 +1,566 @@
 @charset "UTF-8";
 
-body{
-           font-family: "Noto Sans KR", sans-serif;
-        }
-
-        #streamingDetailVideoSection {
-            width: 1080px;
-            height: 600px;
-            background-color: #231F20;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            margin-left: -540px;
-            margin-top: -300px;
-
-        }
-
-        .video-js .vjs-big-play-button {
-            /* Center it horizontally */
-            left: 50%;
-            margin-left: -2.1em;
-            /* Center it vertically */
-            top: 50%;
-            margin-top: -1.4000000000000001em;
-            font-size: 3em;
-            display: block;
-            z-index: 2;
-            position: absolute;
-            width: 4em;
-            height: 2.6em;
-            text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
-            opacity: 1;
-            /* Need a slightly gray bg so it can be seen on black backgrounds */
-            /* background-color-with-alpha */
-            background-color: #07141e;
-            background-color: rgba(7, 20, 30, 0.7);
-            border: 0.1em solid #3b4249;
-            /* border-radius */
-            -webkit-border-radius: 0.8em;
-            -moz-border-radius: 0.8em;
-            border-radius: 0.8em;
-            /* box-shadow */
-            -webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
-            -moz-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
-            /* transition */
-            -webkit-transition: all 0.4s;
-            -moz-transition: all 0.4s;
-            -o-transition: all 0.4s;
-            transition: all 0.4s;
-            line-height: 2.6em;
-
-
-        }
-
-        .video-js.vjs-paused .vjs-has-started,
-        .video-js vjs-user-active .vjs-has-started{
-            display: block;
-        }
-        #streamingDetailSlideBar {
-            background-color:  #231F20;
-
-            width: 300px;
-            height: 600px;
-            position: absolute;
-            z-index: 4;
-            right: 0px;
-
-        }
-        .video-js.vjs-user-active.vjs-has-started{
-            opacity: 1;
-        }
-
-        #streamingDetailTopTab {
-            font-family: "Noto Sans KR", sans-serif;
-            width: 300px;
-            height: 60px;
-            /*background-color: orange; */
-            overflow: hidden;
-            margin-top: 0;
-            padding: 0;
-
-        }
-
-        .streamingDetail_tab {
-
-            width: 80px;
-            height: 50px;
-            background-color: #231F20;
-            float: left;
-            line-height: 50px;
-            list-style: none;
-            color: #f9f9f9;
-            font-size: 19px;
-            cursor: pointer;
-            line-height: 70px;
-            text-align: center;
-        }
-
-        #streamingDetailTopTab .streamingDetail_tab.on {
-            border-bottom: 10px solid rgb(255, 173, 0);
-        }
-
-        #streamingDetailInfo {
-            height: 100px;
-            width: 280px;
-            background: aliceblue;
-            position: relative;
-            left: 10px;
-            top: 10px;
-
-        }
-
-        #streamingDetailStreamerName {
-            font-size: 22px;
-            line-height: 100px;
-            text-indent: 5px;
-        }
-        .fa-crown{
-            color: rgb(255, 173, 0);
-        }
-
-        .streamingDetail_index{
-            font-size: 12px;
-            position: relative;
-            right: -120px;
-            top: -50px;
-            margin-bottom: 5px;
-        }
-
-        .streamingDetail_info_btn{
-
-            border-radius: 100%;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 19px;
-        }
-
-        #streamingDetailSubscribeBtn{
-            position: absolute;
-            right: 50px;
-            top: 10px;
-        }
-
-        #streamingDetailReportBtn{
-            position: absolute;
-            right: 30px;
-            top: 10px;
-            color: red;
-        }
-        #streamingDetailRoomTitle{
-            font-size: 20px;
-            position: relative;
-            top: -20px;
-            color: #f9f9f9;
-        }
-        #streamingDetailMovieListContents{
-            width: 280px;
-            height: 360px;
-            background-color: aqua;
-        }
-
-       #streamingDetailMovieList{
-           width: 280px;
-           height: 360px;
-           background:  #231F20;
-           overflow-y: scroll;
-       }
-
-
-
-        #toggleCloseBtn{
-
-            left: -30px;
-            top: 180px;
-            position: absolute;
-
-        }
-
-        #toggleOpenBtn{
-            right: 0px;
-            top: 180px;
-            display: none;
-            position: absolute;
-            z-index: 4;
-        }
-        .inequality_btn{
-            width: 30px;
-            height: 60px;
-            background-color: rgb(255,173,0);
-            line-height: 60px;
-            text-align: center;
-
-            font-size: 19px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        #streamingDetailChatWrap{
-            width: 300px;
-            height: 530px;
-            background-color: #231F20;
-
-
-            top: 70px;
-        }
-
-        .streamingDetail_tab_contents{
-            position: absolute;
-        }
-
-        #streamingDetailTopWarp .streamingDetail_tab_contents{
-            display: none;
-        }
-
-        #streamingDetailTopWarp .streamingDetail_tab_contents.on{
-            display: block;
-        }
-
-        .streamingDetail_movie{
-            width: 280px;
-            height: 120px;
-            /*border: 1px #424242 solid;*/
-            border-bottom: #f4f4f4 1px solid;
-        }
-
-        .streamingDetail_movie img{
-            width: 60px;
-            height: 80px;
-            padding: 10px;
-            cursor: pointer;
-            position: relative;
-            left: 30px;
-            top: 10px;
-        }
-
-        .streamingDetail_movie span{
-            font-size: 18px;
-            color: #f9f9f9;
-            position: relative;
-            top: -40px;
-            right: -30px;
-            cursor: pointer;
-            text-align: center;
-
-            }
-
-        .streamingDetail_movie .fa-trash-alt{
-            font-size: 18px;
-            color: #f9f9f9;
-            position: relative;
-            top: 0px;
-            right: 10px;
-            cursor: pointer;
-        }
-        .streamingDetail_movie .fa-trash-alt:hover{
-            color: red;
-        }
-
-        .streamingDetail_switch_btn{
-            background: none;
-            border: none;
-            font-size: 16px;
-            color: rgb(255,173,0);
-            cursor: pointer;
-
-        }
-        .streamingDetail_up_btn{
-            position: relative;
-            top: -80px;
-            left: 10px;
-
-        }
-
-        .streamingDetail_down_btn{
-            position: relative;
-            top: -40px;
-            left: -15px;
-        }
-
-        #streamingDetailTitleSearch{
-            width: 220px;
-            height: 20px;
-            position: relative;
-            top: -10px;
-        }
-
-        #streamingReportPopup{
-            width: 300px;
-            height: 300px;
-            background: slategray;
-            position: absolute;
-            z-index: 5;
-            left: 50%;
-            top: 50%;
-            margin-left: -150px;
-            margin-top: -150px;
-        }
-
-        #streamingReportContent{
-            width: 250px;
-            height: 200px;
-            position: relative;
-            left: 50%;
-            margin-left: -125px;
-            top: 50%;
-            margin-top: 10px;
-        }
-        #streamingReportName{
-            font-size: 22px;
-            text-align: center;
-            padding-top: 10px;
-        }
-        #streamingReportBtn{
-            width: 80px;
-            height: 40px;
-            position: relative;
-            left: -20px;
-            top: 30px;
-            background: rgb(255,173,0);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        #streamingCloseBtn{
-            position: absolute;
-            top: 9px;
-            right: 10px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        #streamingBg{
-            width: 1080px;
-            height: 600px;
-            background-color: rgba(0,0,0,0.9);
-            position: absolute;
-            z-index: 5;
-            display: none;
-        }
-
-
-        #streamingDetailChatList ul {
-            width: 300px;
-            height: 400px;
-            overflow-y: scroll;
-            padding-top: 8px;
-        }
-
-        #streamingDetailChatList li {
-            padding: 5px;
-            min-height: 60px;
-            position: relative;
-            padding-bottom: 20px;
-
-
-        }
-
-
-
-        #streamingDetailChatList{
-            position: relative;
-            width: 300px;
-            height: 500px;
-            top: 50px;
-        }
-
-
-        .card_user strong{
-            position: absolute;
-            top: -10px;
-            left: 0;
-            color: #f9f9f9;
-
-        }
-
-        #streamingDetailClimList{
-            font-size: 18px;
-            color: #f9f9f9;
-
-        }
-
-        #streamingDetailClimList li{
-            padding-top: 20px;
-            padding-left: 20px;
-        }
-        .streamingDetail_movie>div{
-            position: relative;
-
-        }
-        .garbage {
-            position: absolute;
-            right:140px;
-            bottom: 5px;
-        }
-
-        #streamingDetailTitleList{
-            width: 280px;
-            height: 355px;
-            background: #231F20;
-            position: absolute;
-            left: 5px;
-            z-index: 5;
-            display: none;
-        }
-
-        #streamingDetailTitleList ul{
-            width: 260px;
-            height: 340px;
-            overflow-y: scroll;
-
-        }
-
-        #streamingDetailTitleList li{
-            color: #f9f9f9;
-            padding: 10px;
-
-        }
-        #streamingDetailTitleList li img {
-            width: 60px;
-            height: 80px;
-        }
-
-        #streamingDetailTitleList li:hover{
-            box-shadow: #3b4249 5px 0px 2px 2px;
-            cursor: pointer;
-
-        }
-
-
-
-        #streamingDetailChatList .box_chat{
-            width: 260px;
-            height: 40px;
-            /* 포지셔닝 컨텍스트 지정 */
-            position: relative;
-            left: 6px;
-            top: 20px;
-        }
-
-        #streamingDetailChatList .comments {
-            font-size: 16px;
-            font-weight: 300;
-            line-height: 1.6em;
-            max-width: 590px;
-            min-height: 15px;
-            background: rgb(249,172,26);
-            border-radius: 0 14px 14px 14px;
-            padding: 8px 12px;
-            position: relative;
-            color: rgb(249,249,249);
-            white-space: pre-wrap;
-            /* 단어를 브레이크 */
-            word-wrap: break-word;
-            display: inline-block;
-            /*font-weight: 700;*/
-            /*text-shadow:1px 1px 1px #424242;*/
-        }
-
-        #streamingDetailChatList .mine .comments {
-            border-radius: 14px 0px 14px 14px;
-        }
-
-        #streamingDetailChatList .mine .comments::before {
-            right: -10px;
-            left: inherit;
-            border: none;
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid rgb(249,172,26);
-        }
-
-        #streamingDetailChatList .comments::before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: -10px;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-bottom: 10px solid transparent;
-            border-right: 10px solid rgb(249,172,26);
-        }
-
-        #streamingDetailChatList .mine .box_chat{
-
-            position: relative;
-            text-align: right;
-        }
-
-
-        #streamingDetailSubscribeContent{
-
-            width: 200px;
-            height: 100px;
-            position: absolute;
-            background: #3b4249;
-            left: -400px;
-            color: #f9f9f9;
-            line-height: 100px;
-            text-align: center;
-            display: none;
-        }
-
-        #streamingDetailInputChatBox{
-            position: relative;
-            bottom: 10px;
-        }
-        #msgInput{
-            position: absolute;
-            bottom: 10px;
-            left: 40px;
-            height: 30px;
-        }
-        #msgBtn{
-            position: absolute;
-            bottom: 10px;
-            right: 18px;
-            width: 60px;
-            height: 36px;
-            border-radius: 8px;
-            background-color: rgb(255,173,0);
-            border: none;
-        }
-        #emotion{
-            position: absolute;
-            font-size: 20px;
-            bottom: 18px;
-            right: 95px;
-            cursor: pointer;
-        }
-
-        #vote{
-            position: absolute;
-            bottom: 14px;
-            cursor: pointer;
-            font-size: 28px;
-            color: rgb(255,173,0);
-            left: 8px;
-        }
-
-        #streamingDetailClimList li i{
-            color:  rgb(255,173,0);
-        }
-        #streamingDetailClimList li i:hover{
-            color: red;
-            cursor: pointer;
-        }
-
-        .cmd {
-            text-align: center;
-        }
-        .cmd span {
-            vertical-align: middle;
-            font-size: 18px;
-            font-weight: 900;
-            color: rgb(255, 173, 8);
-        }
-
-        #emotionBox{
-            width: 280px;
-            height: 100px;
-            position: absolute;
-            background-color: slategray;
-            top: -160px;
-            left: 0px;
-            display: none;
-        }
-
-        #emotionBox i {
-            cursor: pointer;
-            text-indent: 240px;
-            padding: 10px;
-        }
-        
-        .streamingDetail_movie a {
-            color: #f9f9f9;
-            text-decoration: none;
-        }
+body {
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+#streamingDetailVideoSection {
+	width: 1080px;
+	height: 600px;
+	background-color: #231F20;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -540px;
+	margin-top: -300px;
+}
+
+.video-js .vjs-big-play-button {
+	/* Center it horizontally */
+	left: 50%;
+	margin-left: -2.1em;
+	/* Center it vertically */
+	top: 50%;
+	margin-top: -1.4000000000000001em;
+	font-size: 3em;
+	display: block;
+	z-index: 2;
+	position: absolute;
+	width: 4em;
+	height: 2.6em;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	opacity: 1;
+	/* Need a slightly gray bg so it can be seen on black backgrounds */
+	/* background-color-with-alpha */
+	background-color: #07141e;
+	background-color: rgba(7, 20, 30, 0.7);
+	border: 0.1em solid #3b4249;
+	/* border-radius */
+	-webkit-border-radius: 0.8em;
+	-moz-border-radius: 0.8em;
+	border-radius: 0.8em;
+	/* box-shadow */
+	-webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
+	-moz-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
+	box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
+	/* transition */
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	line-height: 2.6em;
+}
+
+.video-js.vjs-paused .vjs-has-started, .video-js vjs-user-active .vjs-has-started
+	{
+	display: block;
+}
+
+#streamingDetailSlideBar {
+	background-color: #231F20;
+	width: 310px;
+	height: 600px;
+	position: absolute;
+	z-index: 4;
+	right: 0px;
+}
+
+.video-js.vjs-user-active.vjs-has-started {
+	opacity: 1;
+}
+
+#streamingDetailTopTab {
+	font-family: "Noto Sans KR", sans-serif;
+	width: 300px;
+	height: 60px;
+	/*background-color: orange; */
+	overflow: hidden;
+	margin-top: 0;
+	padding: 0;
+}
+
+.streamingDetail_tab {
+	width: 80px;
+	height: 50px;
+	background-color: #231F20;
+	float: left;
+	line-height: 50px;
+	list-style: none;
+	color: #f9f9f9;
+	font-size: 19px;
+	cursor: pointer;
+	line-height: 70px;
+	text-align: center;
+}
+
+#streamingDetailTopTab .streamingDetail_tab.on {
+	border-bottom: 10px solid rgb(255, 173, 0);
+}
+
+#streamingDetailInfo {
+	height: 100px;
+	width: 280px;
+	background: aliceblue;
+	position: relative;
+	left: 10px;
+	top: 10px;
+}
+
+#streamingDetailStreamerName {
+	font-size: 22px;
+	line-height: 100px;
+	text-indent: 5px;
+}
+
+.fa-crown {
+	color: rgb(255, 173, 0);
+}
+
+.streamingDetail_index {
+	font-size: 12px;
+	position: relative;
+	right: -120px;
+	top: -50px;
+	margin-bottom: 5px;
+}
+
+.streamingDetail_info_btn {
+	border-radius: 100%;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 19px;
+}
+
+#streamingDetailSubscribeBtn {
+	position: absolute;
+	right: 50px;
+	top: 10px;
+}
+
+#streamingDetailReportBtn {
+	position: absolute;
+	right: 30px;
+	top: 10px;
+	color: red;
+}
+
+#streamingDetailRoomTitle {
+	font-size: 20px;
+	position: relative;
+	top: -20px;
+	color: #f9f9f9;
+}
+
+#streamingDetailMovieListContents {
+	width: 280px;
+	height: 360px;
+}
+
+#streamingDetailMovieList {
+	width: 300px;
+	height: 350px;
+	background: #231F20;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#toggleCloseBtn {
+	left: -30px;
+	top: 180px;
+	position: absolute;
+}
+
+#toggleOpenBtn {
+	right: 0px;
+	top: 180px;
+	display: none;
+	position: absolute;
+	z-index: 4;
+}
+
+.inequality_btn {
+	width: 30px;
+	height: 60px;
+	background-color: rgb(255, 173, 0);
+	line-height: 60px;
+	text-align: center;
+	font-size: 19px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#streamingDetailChatWrap {
+	width: 300px;
+	height: 530px;
+	background-color: #231F20;
+	top: 70px;
+}
+
+.streamingDetail_tab_contents {
+	position: absolute;
+}
+
+#streamingDetailTopWarp .streamingDetail_tab_contents {
+	display: none;
+}
+
+#streamingDetailTopWarp .streamingDetail_tab_contents.on {
+	display: block;
+}
+
+.streamingDetail_movie {
+	width: 280px;
+	height: 120px;
+	/*border: 1px #424242 solid;*/
+	border-bottom: #f4f4f4 1px solid;
+}
+
+.streamingDetail_movie img {
+	width: 60px;
+	height: 80px;
+	padding: 10px;
+	cursor: pointer;
+	position: relative;
+	left: 30px;
+	top: 10px;
+}
+
+.streamingDetail_movie span {
+	font-size: 18px;
+	color: #f9f9f9;
+	position: relative;
+	top: -40px;
+	right: -30px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.streamingDetail_movie .fa-trash-alt {
+	font-size: 18px;
+	color: #f9f9f9;
+	position: relative;
+	top: 0px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.streamingDetail_movie .fa-trash-alt:hover {
+	color: red;
+}
+
+.streamingDetail_switch_btn {
+	background: none;
+	border: none;
+	font-size: 16px;
+	color: rgb(255, 173, 0);
+	cursor: pointer;
+}
+
+.streamingDetail_up_btn {
+	position: relative;
+	top: -80px;
+	left: 10px;
+}
+
+.streamingDetail_down_btn {
+	position: relative;
+	top: -40px;
+	left: -15px;
+}
+
+#streamingDetailTitleSearch {
+	width: 220px;
+	height: 20px;
+	position: relative;
+	top: -10px;
+}
+
+#streamingReportPopup {
+	width: 300px;
+	height: 300px;
+	background: slategray;
+	position: absolute;
+	z-index: 5;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	margin-top: -150px;
+}
+
+#streamingReportContent {
+	width: 250px;
+	height: 200px;
+	position: relative;
+	left: 50%;
+	margin-left: -125px;
+	top: 50%;
+	margin-top: 10px;
+}
+
+#streamingReportName {
+	font-size: 22px;
+	text-align: center;
+	padding-top: 10px;
+}
+
+#streamingReportBtn {
+	width: 80px;
+	height: 40px;
+	position: relative;
+	left: -20px;
+	top: 30px;
+	background: rgb(255, 173, 0);
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+#streamingCloseBtn {
+	position: absolute;
+	top: 9px;
+	right: 10px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+#streamingBg {
+	width: 1080px;
+	height: 600px;
+	background-color: rgba(0, 0, 0, 0.9);
+	position: absolute;
+	z-index: 5;
+	display: none;
+}
+
+#streamingDetailChatList ul {
+	width: 300px;
+	height: 400px;
+	overflow-y: scroll;
+	padding-top: 8px;
+}
+
+#streamingDetailChatList li {
+	padding: 5px;
+	min-height: 60px;
+	position: relative;
+	padding-bottom: 20px;
+}
+
+#streamingDetailChatList {
+	position: relative;
+	width: 300px;
+	height: 500px;
+	top: 50px;
+}
+
+.card_user strong {
+	position: absolute;
+	top: -10px;
+	left: 0;
+	color: #f9f9f9;
+}
+
+#streamingDetailClimList {
+	font-size: 18px;
+	color: #f9f9f9;
+}
+
+#streamingDetailClimList li {
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.streamingDetail_movie>div {
+	position: relative;
+}
+
+.garbage {
+	position: absolute;
+	right: 140px;
+	bottom: 5px;
+}
+
+#streamingDetailTitleList {
+	width: 280px;
+	height: 350px;
+	background: #231F20;
+	position: absolute;
+	z-index: 5;
+	display: none;
+}
+
+#streamingDetailTitleList ul {
+	width: 300px;
+	height: 340px;
+	overflow-y: scroll;
+}
+
+#streamingDetailTitleList li {
+	color: #f9f9f9;
+	padding: 10px;
+}
+
+#streamingDetailTitleList li img {
+	width: 60px;
+	height: 80px;
+}
+
+#streamingDetailTitleList li:hover {
+	box-shadow: #3b4249 5px 0px 2px 2px;
+	cursor: pointer;
+}
+
+#streamingDetailChatList .box_chat {
+	width: 260px;
+	height: 40px;
+	/* 포지셔닝 컨텍스트 지정 */
+	position: relative;
+	left: 6px;
+	top: 20px;
+}
+
+#streamingDetailChatList .comments {
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.6em;
+	max-width: 590px;
+	min-height: 15px;
+	background: rgb(249, 172, 26);
+	border-radius: 0 14px 14px 14px;
+	padding: 8px 12px;
+	position: relative;
+	color: rgb(249, 249, 249);
+	white-space: pre-wrap;
+	/* 단어를 브레이크 */
+	word-wrap: break-word;
+	display: inline-block;
+	/*font-weight: 700;*/
+	/*text-shadow:1px 1px 1px #424242;*/
+}
+
+#streamingDetailChatList .mine .comments {
+	border-radius: 14px 0px 14px 14px;
+}
+
+#streamingDetailChatList .mine .comments::before {
+	right: -10px;
+	left: inherit;
+	border: none;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid rgb(249, 172, 26);
+}
+
+#streamingDetailChatList .comments::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: -10px;
+	top: 0;
+	width: 0;
+	height: 0;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid rgb(249, 172, 26);
+}
+
+#streamingDetailChatList .mine .box_chat {
+	position: relative;
+	text-align: right;
+}
+
+#streamingDetailSubscribeContent {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	background: #3b4249;
+	left: -400px;
+	color: #f9f9f9;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+}
+
+#streamingDetailInputChatBox {
+	position: relative;
+	bottom: 10px;
+}
+
+#msgInput {
+	position: absolute;
+	bottom: 10px;
+	left: 40px;
+	height: 30px;
+}
+
+#msgBtn {
+	position: absolute;
+	bottom: 10px;
+	right: 18px;
+	width: 60px;
+	height: 36px;
+	border-radius: 8px;
+	background-color: rgb(255, 173, 0);
+	border: none;
+}
+
+#emotion {
+	position: absolute;
+	font-size: 20px;
+	bottom: 18px;
+	right: 95px;
+	cursor: pointer;
+}
+
+#vote {
+	position: absolute;
+	bottom: 14px;
+	cursor: pointer;
+	font-size: 28px;
+	color: rgb(255, 173, 0);
+	left: 8px;
+}
+
+#streamingDetailClimList li i {
+	color: rgb(255, 173, 0);
+}
+
+#streamingDetailClimList li i:hover {
+	color: red;
+	cursor: pointer;
+}
+
+.cmd {
+	text-align: center;
+}
+
+.cmd span {
+	vertical-align: middle;
+	font-size: 18px;
+	font-weight: 900;
+	color: rgb(255, 173, 8);
+}
+
+#emotionBox {
+	width: 280px;
+	height: 100px;
+	position: absolute;
+	background-color: slategray;
+	top: -160px;
+	left: 0px;
+	display: none;
+}
+
+#emotionBox i {
+	cursor: pointer;
+	text-indent: 240px;
+	padding: 10px;
+}
+
+.streamingDetail_movie a {
+	color: #f9f9f9;
+	text-decoration: none;
+}
