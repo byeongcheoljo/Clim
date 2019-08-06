@@ -45,6 +45,11 @@
 </main>
 <script type="text/template" id="contentBoxTmp">
 <@if(!empty){@>
+	<li class="mypage_community_card">
+        <div class="content_num content_num_top top">no</div>
+        <div class="content_tit content_tit_top top">내용</div>
+        <div class="content_date content_date_top top">작성시간</div>
+    </li>
     <@ _.each(contents, function(content){
 	let contentContent = content.contents;
 	console.log(contentContent.length);
@@ -66,6 +71,10 @@
 </script>
 <script type="text/template" id="replyBoxTmp">
 <@if(!empty){@>
+	<li class="mypage_community_card">
+        <div class="content_tit content_tit_top top">내용</div>
+        <div class="content_date content_date_top top">작성 시간</div>
+    </li>
     <@ _.each(replies, function(reply){
     let replyContent = reply.contents;
     if(replyContent.length>33){
@@ -85,6 +94,11 @@
 <script type="text/template" id="commentBoxTmp">
 
 <@if(!empty){@>
+	<li class="mypage_community_card">
+        <div class="content_tit content_tit_top top">내용</div>
+        <div class="contnet_movie contnet_movie_top top">영화 제목</div>
+        <div class="content_date content_date_top top">작성 시간</div>
+    </li>
     <@ _.each(comments, function(comment){
     let commentContent = comment.contents;
     if(commentContent.length>33){

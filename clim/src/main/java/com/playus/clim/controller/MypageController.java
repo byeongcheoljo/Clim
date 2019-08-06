@@ -15,7 +15,7 @@ public class MypageController {
 	@Autowired
 	private MembersService membersService;
 	
-	@RequestMapping(value="/mypage/{memberNo}/community", method=RequestMethod.GET)
+	@RequestMapping(value="/user/{memberNo}/community", method=RequestMethod.GET)
 	public String myPageCommunity(@PathVariable int memberNo, Model model) {
 
 		model.addAttribute("member", membersService.getMemberByNo(memberNo));

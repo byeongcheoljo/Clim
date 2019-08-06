@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
@@ -14,7 +15,6 @@
 
 <context:component-scan
 	base-package="com.playus.clim.*"/>
-
 <!-- Spring web MVC의 설정 ajax관련/또는 table을 기준으로 하나씩 두면 된다. -->
 
 <!-- 0627 인터셉터 설정
@@ -52,7 +52,15 @@
   <mvc:resources location="/video/" mapping="/video/**"/>
   <mvc:resources location="/vtt/" mapping="/vtt/**"/>
 
+		<websocket:message-broker application-destination-prefix="/app">
+		<websocket:stomp-endpoint path="/clim">
+			<websocket:sockjs/>
+		</websocket:stomp-endpoint>
+		<websocket:simple-broker prefix="/topic,/queue"/>
+	</websocket:message-broker>
 
+		<!-- handshake, disconnect를 감지하는 리스너 -->
+	 <bean class="com.playus.clim.listener.StompListener"/>
 
 </beans>
 

@@ -98,8 +98,8 @@
                 <div class="streaming_popup_contentWrap">
                     <form class="streaming_title">
                         <fieldset>
-                            <label class="streaming_room_title">방 제목 : </label>
-                            <input type="text" placeholder="영화제목을 입력해주세요" title="영화제목을 입력해주세요."/>
+                            <label for="climTitle" class="streaming_room_title">방 제목 : </label>
+                            <input id="climTitle" type="text" placeholder="영화제목을 입력해주세요" title="영화제목을 입력해주세요."/>
                             <button type="submit" class="streaming_start_btn" title="끌리밍 시작">방송하기</button>
                         </fieldset>
                     </form>
@@ -632,9 +632,6 @@
 
 
     //스트리밍 방송 하기 클릭
-    $(".streaming_start_btn").click(function (e) {
-        e.stopPropagation();
-    });
 /*
     //구독중인 리스트 불러오기
     getSubscribeList();
@@ -674,7 +671,78 @@
                 $(".streaming_movie_wrap").html(streamingMovieListTmp({movies:json}));
             }
         });
+    };// getStremingMovieList() end
+    
+    
+  //webSocket stomp client
+    let stompClient = null;
+
+
+    function connect(callback) {
+    	
+    	let socket = new SockJS('/clim');
+    	stompClient = Stomp.over(socket);
+    	
+    	// SockJS와 stomp client를 통해 연결을 시도.
+    	stompClient.connect({},function() {
+    		
+    		console.log("2) 연결!");
+    	
+    		//인자로 받은 함수를 여기서 호출
+    		if(callback) callback();
+    		
+    	});
     }
+    
+    connect();
+    
+    
+    $(".streaming_title").on("submit",function(e){
+    	e.preventDefault();
+    })
+    
+    
+	$(".streaming_start_btn").on("click",function(e) {
+		e.stopPropagation();
+	
+	let title = $("#climTitle").val();
+	
+	//넘길 데이터(파라미터)
+	
+	/*
+	$.ajax({ 
+		url: ①
+		data:②
+		success:③
+	})
+	
+	stompClient.send(①,{},②);
+	
+	*/
+	//객체를 String으로 
+	//userNo는 ${loginUser.no} 변경필요
+	const data = JSON.stringify({"memberNo":1,"title":title});
+	
+	//방만들기
+	stompClient.send("/app/clim/make",{},data);
+	
+	//방번호 얻어오기
+	stompClient.subscribe("/user/queue/clim/make",function(protocol) {
+		//넘어오는 데이터는 body에
+		console.log(protocol.body);
+		
+		//방을 만들었기 때문에 유저에게 목록을 다시
+		stompClient.send("/app/clim/list",{});
+		
+		//해당 번호 방으로 이동
+		location.href = 
+			"/room/"+protocol.body;
+		
+	});
+	
+	
+	
+});
     
     
     

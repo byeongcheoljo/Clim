@@ -9,7 +9,7 @@
 			 FROM(SELECT no, contents, member_no memberNo, views, regdate
 				  FROM boards
 				  WHERE member_no = #{memberNo}
-				  ORDER BY regdate))
+				  ORDER BY regdate DESC))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	

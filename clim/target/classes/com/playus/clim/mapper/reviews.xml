@@ -10,7 +10,7 @@
 				  FROM reviews r, movies m
 				  WHERE r.member_no = #{memberNo}
 				  AND m.no = r.movie_no
-				  ORDER BY regdate))
+				  ORDER BY regdate DESC))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	

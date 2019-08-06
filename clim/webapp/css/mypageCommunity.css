@@ -62,7 +62,7 @@ body{
     left: 8px;
 }
 .content_tit{
-    left: 40px;
+    left: 70px;
     cursor: pointer;
 }
 .content_date{
@@ -194,4 +194,23 @@ li {
 	cursor: not-allowed;
 	font-weight:bold;
 	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.screen_out{
+	display:none;
+}
+
+.mypage_community_card .top{
+	color:#F9AC1A;
+	top:-15px;
+	font-size:25px;
+	cursor : default;
+}
+
+.content_tit_top {
+	left:200px;
+}
+
+.mypage_community_card .content_num_top {
+	left:0;
 }
