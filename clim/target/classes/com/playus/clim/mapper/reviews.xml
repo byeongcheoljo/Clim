@@ -8,7 +8,7 @@
 		FROM(SELECT no, movieNo, memberNo, contents, score, regdate, title, rownum r 
 			 FROM(SELECT r.no, movie_no movieNo, member_no memberNo, r.contents, r.score, r.regdate, m.title
 				  FROM reviews r, movies m
-				  WHERE r.member_no = #{memberNo}
+				  WHERE r.member_no = #{no}
 				  AND m.no = r.movie_no
 				  ORDER BY regdate DESC))
 		WHERE r BETWEEN #{start} AND #{end}

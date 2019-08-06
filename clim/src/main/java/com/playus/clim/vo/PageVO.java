@@ -14,10 +14,10 @@ public class PageVO {
 		this.start = end-numPage+1;
 	}
 
-	public PageVO(int page, int numPage, int memberNo) {
+	public PageVO(int page, int numPage, int no) {
 		this.end = page * numPage;
 		this.start = end-numPage+1;
-		this.memberNo = memberNo;
+		this.no = no;
 	}
 	
 	public int getMemberNo() {
