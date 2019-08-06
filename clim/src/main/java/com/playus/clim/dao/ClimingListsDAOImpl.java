@@ -15,9 +15,8 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	private SqlSession session;
 	
 	@Override
-<<<<<<< HEAD
 	public void insert(ClimingList climingList) {
-		System.out.println("z2");
+		System.out.println("z4");
 		session.insert("climingLists.insert", climingList);
 	}
 	
@@ -26,10 +25,8 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 		return session.selectOne("climingLists.selectOne", no);
 	}
 
-=======
 	public int subscribesLiveCheck(int memberNo) {
 		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
 	}
 	
->>>>>>> master
 }

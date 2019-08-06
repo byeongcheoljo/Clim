@@ -13,12 +13,10 @@ public class MembersDAOImpl implements MembersDAO{
 	private SqlSession session;
 	
 	@Override
-<<<<<<< HEAD
 	public Member selectOneByNo(int no) {
 		return session.selectOne("members.selectOneByNo", no);
 	}
 
-=======
 	public int checkId(String email) {
 		// TODO Auto-generated method stub
 		return session.selectOne("members.checkId",email);
@@ -62,5 +60,4 @@ public class MembersDAOImpl implements MembersDAO{
 		// TODO Auto-generated method stub
 		return session.update("members.pwdUpdate", member);
 	}
->>>>>>> master
 }

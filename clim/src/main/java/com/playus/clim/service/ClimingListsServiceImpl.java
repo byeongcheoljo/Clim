@@ -1,10 +1,7 @@
 package com.playus.clim.service;
 
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
-=======
 
->>>>>>> master
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.ClimingListsDAO;
@@ -13,7 +10,6 @@ import com.playus.clim.vo.ClimingList;
 @Service
 public class ClimingListsServiceImpl implements ClimingListsService{
 	
-<<<<<<< HEAD
 	@Autowired
 	private ClimingListsDAO climingListsDAO;
 	
@@ -25,10 +21,9 @@ public class ClimingListsServiceImpl implements ClimingListsService{
 	
 	@Override
 	public void make(ClimingList climingList) {
+		System.out.println("z3");
 		climingListsDAO.insert(climingList);
 	}
 	
 
-=======
->>>>>>> master
 }

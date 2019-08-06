@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="climingLists">
-<<<<<<< HEAD
 	
 	<insert id="insert" parameterType="ClimingList">
 		<selectKey order="BEFORE" keyProperty="no" resultType="int">
@@ -19,12 +18,10 @@
 		WHERE no = #{no}
 	</select>
 	
-=======
 	<select id="subscribesLiveCheck" resultType="int"
 		parameterType="int">
 		SELECT count(*)
 		FROM c_lists
 		WHERE close_time is NULL AND member_no = #{userNo}
 	</select>
->>>>>>> master
 </mapper>

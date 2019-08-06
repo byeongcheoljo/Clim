@@ -1,12 +1,9 @@
 package com.playus.clim.service;
 
-<<<<<<< HEAD
-=======
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
->>>>>>> master
 import com.playus.clim.vo.Member;
 
 public interface MembersService {
