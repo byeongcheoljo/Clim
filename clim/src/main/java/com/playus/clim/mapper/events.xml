@@ -3,11 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="events">
 	<select id="eventList" resultType="Event" parameterType="int">
+<<<<<<< HEAD
 		SELECT
 		no, member_no memberNo,title,contents, start_date
 		startDate,end_date
 		endDate,regdate
+=======
+		SELECT no, member_no memberNo,title,contents, start_date startDate,end_date endDate,regdate
+>>>>>>> master
 		FROM events
 		WHERE member_no = #{memberNo}
 	</select>
+
+	<insert id="insert" parameterType="Event">
+		INSERT INTO events
+		VALUES(events_seq.nextval,#{memberNo},#{title},#{contents},#{startDate},#{endDate},SYSTIMESTAMP)
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE events
+		WHERE no = #{no}
+	</delete>
 </mapper>

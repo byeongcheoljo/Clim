@@ -2,15 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
+
+	<select id="selectOneByNo" parameterType="int" resultType="Member">
+		SELECT no, email, nickname,gender, birth_date birthDate, regdate
+		FROM members
+		WHERE no = #{no}
+	</select>
+	<select id="selectClimingLeader" resultType="Leader"
+		parameterType="int">
+		select
+		members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+		from members,
+		(select no,member_no,title
+		from c_lists)clists,
+		(select count(*) currCount
+		from c_logs
+		where clim_no=#{no} and close_time is null)currentPeople,
+		(select count(*) accCount
+		from c_logs
+		where clim_no=#{no} and close_time is not null)accPeople
+		where clists.member_no=members.no and clists.no=#{no}
+	</select>
+
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
 		select no, email,
+<<<<<<< HEAD
 		(select count(*) from subscribes where
 		follower = #{memberNo}) followerCnt,
 		(select count(*) from c_logs c
 		where member_no = #{memberNo} AND type = 'I') climgCnt,
 		nickname,
 		gender, birth_date birthDate, pwd, regdate
+=======
+		(select count(*) from subscribes where follower = #{memberNo}) followerCnt,
+		(select count(*) from c_logs c where member_no = #{memberNo} AND open_time is not null) climgCnt,
+		nickname, regdate
+>>>>>>> master
 		from members
 		where no =
 		#{memberNo}
@@ -24,7 +52,42 @@
 		WHERE email = #{email}
 		AND pwd = #{pwd}
 	</select>
+<<<<<<< HEAD
 
+=======
+	
+	<select id="checkId" parameterType="string" resultType="int">
+	select count(*)
+	from members
+	where email = #{email}
+	
+	</select>
+	<select id="checkNickname" parameterType="string" resultType="int">
+	select count(*)
+	from members
+	where nickname = #{nickname}
+	
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+	<selectKey order="BEFORE" keyProperty="no" resultType="int">
+	select members_seq.nextval
+	from dual
+	</selectKey>
+	insert into members(no, email, nickname, gender, birth_date, pwd, regdate)
+	values(#{no}, #{email}, #{nickname}, #{gender}, #{birthDate}, #{pwd}, systimestamp)
+	</insert>
+	
+	
+	
+	<update id="updateInfo" parameterType="Member">
+	update members 
+	set pwd = #{pwd}
+	where no = #{no}
+	
+	</update>
+	
+>>>>>>> master
 	<update id="UUIDUpdate" parameterType="Member">
 		<selectKey keyProperty="no" order="BEFORE" resultType="int">
 			SELECT no
@@ -41,5 +104,8 @@
 		set UUID = #{uuid}, pwd = #{pwd}
 		where no = #{no}
 	</update>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 </mapper>

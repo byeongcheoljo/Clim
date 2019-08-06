@@ -17,4 +17,14 @@ public class EventsServiceImpl implements EventsService{
 	public List<Event> getList(int memberNo) {
 		return eventsDAO.eventList(memberNo);
 	}
+	
+	@Override
+	public int write(Event event) {
+		return eventsDAO.eventInsert(event);
+	}
+	
+	@Override
+	public int delete(int no) {
+		return eventsDAO.eventDelete(no);
+	}
 }

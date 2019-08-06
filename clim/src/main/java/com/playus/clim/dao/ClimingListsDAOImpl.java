@@ -15,6 +15,16 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	private SqlSession session;
 	
 	@Override
+	public void insert(ClimingList climingList) {
+		System.out.println("z4");
+		session.insert("climingLists.insert", climingList);
+	}
+	
+	@Override
+	public ClimingList selectOne(int no) {
+		return session.selectOne("climingLists.selectOne", no);
+	}
+
 	public int subscribesLiveCheck(int memberNo) {
 		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
 	}

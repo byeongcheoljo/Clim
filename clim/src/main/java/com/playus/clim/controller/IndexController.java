@@ -12,9 +12,12 @@ import com.playus.clim.service.MoviesService;
 @Controller
 public class IndexController {
 	
+<<<<<<< HEAD
 	@Autowired
 	private MoviesService moviesService;
 
+=======
+>>>>>>> master
 	@RequestMapping(value= {"/", "/index"}, method=RequestMethod.GET)
 	public String index(Model model) {
 		

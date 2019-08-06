@@ -18,4 +18,15 @@ public class EventsDAOImpl implements EventsDAO{
 	public List<Event> eventList(int memberNo) {
 		return session.selectList("events.eventList",memberNo);
 	}
+	
+	@Override
+	public int eventInsert(Event event) {
+		return session.insert("events.insert",event);
+	}
+	
+	@Override
+	public int eventDelete(int no) {
+		return session.delete("events.delete",no);
+	}
+	
 }

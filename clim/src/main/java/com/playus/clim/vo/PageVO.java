@@ -1,8 +1,8 @@
 package com.playus.clim.vo;
 
 public class PageVO {
-	
-	private int start, end, no;
+	/* 0803 홍성표 memberNo 추가 */
+	private int start, end, no, memberNo;
 	
 	public PageVO() {
 		// TODO Auto-generated constructor stub
@@ -20,6 +20,12 @@ public class PageVO {
 		this.no = no;
 	}
 	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
 	public int getNo() {
 		return no;
 	}

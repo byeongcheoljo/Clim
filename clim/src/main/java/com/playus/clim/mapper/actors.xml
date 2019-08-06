@@ -2,5 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="actors">
+<<<<<<< HEAD
 
+=======
+	<select id="selectListForMovie" parameterType="int" resultType="Actor">
+		SELECT m.no no, act.name name
+		FROM movies m, m_actors a, actors act
+		WHERE m.no = a.movie_no AND a.actor_no = act.no AND m.no = #{no}
+	</select>
+>>>>>>> master
 </mapper>

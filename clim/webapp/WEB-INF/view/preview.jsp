@@ -37,8 +37,8 @@
 					</li>
 					<li>배우
 						<div id="actor">
-							<span><a href="">승현</a></span><span><a href="">승현</a></span><span><a
-								href="">승현</a></span><span><a href="">승현</a></span><span><a
+							<span><a href="">승현</a></span><span><a href="">승현</a></span><span>
+							<a href="">승현</a></span><span><a href="">승현</a></span><span><a
 								href="">승현</a></span><span><a href="">승현</a></span><span><a
 								href="">승현</a></span><span><a href="">승현</a></span><span><a
 								href="">승현</a></span><span><a href="">승현</a></span><span><a
@@ -57,9 +57,7 @@
 				</ul>
 			</div>
 			<div id="previewWrap">
-				<video id="preview" autoplay loop poster="/img/spider.jpg">
-					<source src="/video/spider.mp4" type="video/mp4">
-				</video>
+			
 			</div>
 		</div>
 	</div>

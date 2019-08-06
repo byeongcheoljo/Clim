@@ -1,14 +1,22 @@
 package com.playus.clim.service;
 
+<<<<<<< HEAD
 import java.io.ObjectOutputStream.PutField;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+=======
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+>>>>>>> master
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.playus.clim.dao.ActorsDAO;
+import com.playus.clim.dao.DirectorsDAO;
 import com.playus.clim.dao.MoviesDAO;
 import com.playus.clim.dao.SteelCutsDAO;
 import com.playus.clim.vo.Movie;
@@ -20,13 +28,20 @@ public class MoviesServiceImpl implements MoviesService{
 	@Autowired
 	private MoviesDAO moviesDAO;
 	@Autowired
+<<<<<<< HEAD
 	private SteelCutsDAO steelcutsDAO;
+=======
+	private ActorsDAO actorsDAO;
+	@Autowired
+	private DirectorsDAO directorsDAO;
+>>>>>>> master
 
 	@Override
 	public List<Movie> getSearchResultForcliming(String title) {
 		return moviesDAO.searchMovieListForCliming(title);
 	}
 	
+<<<<<<< HEAD
 /*김근경 시작*/
 	//index에서 끌림작 1위~30위
 	@Override
@@ -62,5 +77,15 @@ public class MoviesServiceImpl implements MoviesService{
 		return map;
 	}
 /*김근경 끝*/
+=======
+	@Override
+	public Map<String, Object> getMovieTrailer(int no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("movie",moviesDAO.selectMovieTrailer(no));
+		map.put("directors",directorsDAO.selectDirectorForMovie(no));
+		map.put("actors",actorsDAO.selectListForMovie(no));
+		return map;
+	}
+>>>>>>> master
 
 }

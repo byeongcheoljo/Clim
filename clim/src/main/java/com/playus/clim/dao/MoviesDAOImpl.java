@@ -47,4 +47,8 @@ public class MoviesDAOImpl implements MoviesDAO{
 	
 /*김근경 끝*/
 	
+	@Override
+	public Movie selectMovieTrailer(int no) {
+		return session.selectOne("movies.selectMovieTrailer",no);
+	}
 }

@@ -6,6 +6,7 @@
 	<select id="myWriteBoardsList" resultType="Board"
 		parameterType="PageVO">
 		SELECT no, contents, memberNo, views, regdate, r
+<<<<<<< HEAD
 		FROM(SELECT no, contents, memberNo, views, regdate, rownum r
 		FROM(SELECT no, contents, member_no memberNo, views, regdate
 		FROM
@@ -14,6 +15,14 @@
 		ORDER BY regdate))
 		WHERE r BETWEEN
 		#{start} AND #{end}
+=======
+		FROM(SELECT no, contents, memberNo, views, regdate, rownum r 
+			 FROM(SELECT no, contents, member_no memberNo, views, regdate
+				  FROM boards
+				  WHERE member_no = #{no}
+				  ORDER BY regdate DESC))
+		WHERE r BETWEEN #{start} AND #{end}
+>>>>>>> master
 	</select>
 
 	<select id="myWriteBoardsTotal" resultType="int"
