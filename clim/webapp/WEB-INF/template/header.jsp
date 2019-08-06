@@ -521,7 +521,7 @@
 			url : "/ajax/session",
 			data : {
 				email : $email.val(),
-				pwd : $pwd.val(),
+				pwd : $pwd.val()
 			},
 			dataType : "json",
 			type : "post",
@@ -571,8 +571,7 @@
 			dataType : "json",
 			type : "POST",
 			data : {
-				email : $emailPwd
-						.val()
+				email : $emailPwd.val()
 			},
 			error : function(xhr,
 					error, code) {
@@ -666,40 +665,10 @@
 		}// if() end 글자 다 지웠을 때는 ajax작동 안함
 	});
 
-	//영화 검색시 나오는 리스트 클릭시
-	$(".movie_search").on("click",".movie_search_list",function() {
 	
-		$this = $(this);
+	
+	
 
-		let memberNo = ${loginMember.no};
-		let movieNo = this.dataset.movieno;
-
-		let movieName = $this.children("span").text();
-		let poster = $this.children("img").attr("src");
-
-		$.ajax({
-			url : "/ajax/addBookmarkOfCliming",
-			type : "POST",
-			datatype : "json",
-			data : {
-				memberNo : memberNo,
-				movieNo : movieNo
-			},
-			error : function() {
-				alert("안가요");
-			},
-			success : function(json) {
-				if (json.result == "실패") {
-					alert("이미 등록된 영화입니다!");
-				}
-				$(".movie_search").empty();
-				$(".movie_search_input").val("");
-				$(".movie_search_input").focus();
-				$(".movie_search").css("display","none");
-				getStreamingMovieList();
-			}
-		})
-	});
 
 	//스트리밍 방송 하기 클릭
 	/*
@@ -750,6 +719,81 @@
 		e.preventDefault();
 	})
 	
+	//영화 검색시 나오는 리스트 클릭시
+
+
+	
+	
+
+	/*
+	let stompClient = null;
+	function connect(callback){
+		let socket = new SockJS('/clim');
+		stompClient = Stomp.over(socket);
+		// SockJS와 stomp client를 통해 연결을 시도.
+		stompClient.connect({},function(){
+			console.log("2) 연결");
+			if(callback) callback();
+		});
+	}//connect end
+	
+	connect(function(){
+		console.log("1) 연결");
+	
+	});//connect end
+	 */
+	 
+<c:if test="${loginMember !=null }">
+//구독취소 버튼시 리스트에서 삭제
+$("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
+			let no = this.dataset.no;
+			$.ajax({
+				url : "/ajax/user/following/${loginMember.no}/follower/"+ no,
+				type : "DELETE",
+				dataType : "json",
+				error : function() {
+					alert("에러");
+				},
+				success : function(json) {
+					console.log(json);
+					$(this).parents("li").remove();
+					getSubscribeList();
+		}//success end
+	});//ajax end		
+});//구독버튼 클릭하기
+
+	$(".movie_search").on("click",".movie_search_list",function() {
+	
+		$this = $(this);
+	
+		let movieNo = this.dataset.movieno;
+	
+		let movieName = $this.children("span").text();
+		let poster = $this.children("img").attr("src");
+	
+		$.ajax({
+			url : "/ajax/addBookmarkOfCliming",
+			type : "POST",
+			datatype : "json",
+			data : {
+				memberNo : ${loginMember.no},
+				movieNo : movieNo
+			},
+			error : function() {
+				alert("안가요");
+			},
+			success : function(json) {
+				if (json.result == "실패") {
+					alert("이미 등록된 영화입니다!");
+				}
+				$(".movie_search").empty();
+				$(".movie_search_input").val("");
+				$(".movie_search_input").focus();
+				$(".movie_search").css("display","none");
+				getStreamingMovieList();
+			}
+		})
+	});	
 	$(".streaming_start_btn").on("click",function(e) {
 		e.stopPropagation();
 
@@ -794,38 +838,5 @@
 
 	});
 
-	//구독취소 버튼시 리스트에서 삭제
-	$("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
-				let no = this.dataset.no;
-				$.ajax({
-					url : "/ajax/user/following/${loginMember.no}/follower/"+ no,
-					type : "DELETE",
-					dataType : "json",
-					error : function() {
-						alert("에러");
-					},
-					success : function(json) {
-						console.log(json);
-						$(this).parents("li").remove();
-						getSubscribeList();
-			}//success end
-		});//ajax end		
-	});//구독버튼 클릭하기
-	/*
-	let stompClient = null;
-	function connect(callback){
-		let socket = new SockJS('/clim');
-		stompClient = Stomp.over(socket);
-		// SockJS와 stomp client를 통해 연결을 시도.
-		stompClient.connect({},function(){
-			console.log("2) 연결");
-			if(callback) callback();
-		});
-	}//connect end
-	
-	connect(function(){
-		console.log("1) 연결");
-	
-	});//connect end
-	 */
+</c:if>
 </script>
