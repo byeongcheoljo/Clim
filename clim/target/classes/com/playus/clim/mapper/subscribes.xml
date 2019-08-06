@@ -8,4 +8,22 @@
 		FROM members m, subscribes s
 		WHERE follower = m.no AND following = #{memberNo}
 	</select>
+	
+	<insert id="insert" parameterType="Subscribe">
+		INSERT INTO subscribes(no, following, follower, regdate)
+		VALUES(subscribes_seq.nextval, #{following}, #{follower}, systimestamp)
+	</insert>
+	
+	<delete id="delete" parameterType="Subscribe">
+		DELETE subscribes
+		WHERE following = #{following}
+		AND follower = #{follower}
+	</delete>
+	
+	<select id="selectOne" parameterType="Subscribe" resultType="int">
+		SELECT count(*)
+		FROM subscribes
+		WHERE following = #{following}
+		AND follower = #{follower}
+	</select>
 </mapper>

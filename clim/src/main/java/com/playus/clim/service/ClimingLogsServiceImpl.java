@@ -33,4 +33,17 @@ public class ClimingLogsServiceImpl implements ClimingLogsService{
 		map.put("climeedCnt",climingLogsDAO.climmedCnt(roomNo));
 		return map;
 	}
+	@Override
+	public void getOutCliming(int no,String sessionId) {
+		// TODO Auto-generated method stub
+		ClimingLog log = new ClimingLog();
+		log.setNo(no);
+		log.setSessionId(sessionId);
+		climingLogsDAO.updateCloseTime(log);
+	}
+	@Override
+	public void climClose(int no) {
+		// TODO Auto-generated method stub
+		climingLogsDAO.updateCloseTimeClim(no);
+	}
 }

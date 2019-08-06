@@ -29,4 +29,14 @@ public class SubscribesServiceImpl implements SubscribesService {
 
 		return subscribes;
 	}
+	
+	@Override
+	public int addFollow(Subscribe subscribe) {
+		return subscribesDAO.insert(subscribe);
+	}
+	
+	@Override
+	public int removeFollow(Subscribe subscribe) {
+		return subscribesDAO.delete(subscribe);
+	}
 }

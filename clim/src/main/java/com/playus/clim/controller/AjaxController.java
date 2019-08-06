@@ -18,8 +18,10 @@ import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
+import com.playus.clim.vo.Subscribe;
 
 @RestController
 @RequestMapping(value = "/ajax")
@@ -40,7 +42,9 @@ public class AjaxController {
 	@Autowired
 	private EventsService eventsService;
 	@Autowired
-	private ClimingLogsService climingLogsService;
+	private ClimingMovieListsService climingMovieListsService;
+	@Autowired
+	private SubscribesService subscribesService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -86,9 +90,29 @@ public class AjaxController {
 	@RequestMapping(value = "/delete/ClimingList", method = RequestMethod.GET)
 	public void deleteClimingList(int roomNo,int movieNo){
 		
+		
 		bookmarkService.deleteClimingList(roomNo,movieNo);
 
 	}
+	@RequestMapping(value = "/room/{roomNo}/ClimingMovie/{movieNo}", method = RequestMethod.GET)
+	public void insertClimingMovieList(@PathVariable int roomNo,@PathVariable int movieNo){
+		
+		
+		climingMovieListsService.insertPlayedMovie(roomNo,movieNo);
+	}
 	
-
+	@RequestMapping(value="/subscribe/follow", method=RequestMethod.POST)
+	public void insertFollow(Subscribe subscribe) {
+		System.out.println(subscribe.getFollowing());
+		System.out.println(subscribe.getFollower());
+		subscribesService.addFollow(subscribe);
+	}
+	
+	@RequestMapping(value="/subscribe/follow", method=RequestMethod.GET)
+	public void deleteFollow(Subscribe subscribe) {
+		System.out.println(subscribe.getFollowing());
+		System.out.println(subscribe.getFollower());
+		subscribesService.removeFollow(subscribe);
+	}
+	
 }

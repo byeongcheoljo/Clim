@@ -10,4 +10,8 @@ public interface ClimingLogsService {
 
 	Map<String, Object> getClimeeList(int roomNo);
 
+	void getOutCliming(int no, String string);
+
+	void climClose(int no);
+
 }

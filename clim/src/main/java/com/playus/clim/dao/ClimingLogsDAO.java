@@ -13,4 +13,8 @@ public interface ClimingLogsDAO {
 
 	int climmedCnt(int roomNo);
 
+	void updateCloseTime(ClimingLog log);
+
+	void updateCloseTimeClim(int no);
+
 }

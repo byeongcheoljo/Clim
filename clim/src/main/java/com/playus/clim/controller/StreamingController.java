@@ -36,9 +36,9 @@ public class StreamingController {
 	
 	
 	@RequestMapping(value="/room/{no}", method=RequestMethod.GET)
-	public String getModelPage(Model model, @PathVariable int no) {
+	public String getModelPage(Model model, @PathVariable int no, HttpSession session) {
 		System.out.println(no);
-		model.addAllAttributes(streamingDetailService.getDetailByRoomNo(no));
+		model.addAllAttributes(streamingDetailService.getDetailByRoomNo(no, session));
 		
 		return "streamingDetail";
 		
@@ -58,13 +58,14 @@ public class StreamingController {
 	
 	@MessageMapping("/room/{no}/close")
 	@SendTo("/topic/room/{no}/close")
-	public int asdfas( 
+	public int asdfas( @DestinationVariable int no,
 			SimpMessageHeaderAccessor accessor) {
 		
 		System.out.println(accessor.getSessionId());
 		
 		System.out.println("방장이 문을 닫았음");
 		
+		climingLogsService.climClose(no);
 		//climListService.close(accessor.getSessionId());
 		
 		return 1;
@@ -100,13 +101,30 @@ public class StreamingController {
 		@SendTo("/topic/room/{no}/get/climee")
 		public Map<String, Object> getClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
 			System.out.println("/room/"+no+"/get/climee");
-			
-			
-			
 			return climingLogsService.getClimeeList(no);
 		}
 		
-		
+		//방장이 나가라고함
+		@MessageMapping("/room/{no}/ban/{memberNo}")
+		@SendTo("/topic/room/{no}/ban/{memberNo}")
+		public int banClimee(int member_no) {
+			System.out.println("/room/{roomNo}/ban/{memberNo}");
+			return 1;
+		}
+		//나감~~
+		@MessageMapping("/room/{no}/baned/member/{memberNo}")
+		@SendTo("/topic/room/{no}/member/baned")
+		public String banedClimee(@DestinationVariable int no,String nickname, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/topic/room/{no}/member/baned");
+			climingLogsService.getOutCliming(no,accessor.getSessionId());
+			return nickname;
+		}
+		@MessageMapping("/room/{no}/{memberNo}/close")
+		public void getOutClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/{no}/{memberNo}/close");
+			climingLogsService.getOutCliming(no,accessor.getSessionId());
+			
+		}
 		
 		
 		@MessageMapping("/room/{no}/put/sessionId")

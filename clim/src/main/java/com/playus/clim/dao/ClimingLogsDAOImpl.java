@@ -30,4 +30,15 @@ public class ClimingLogsDAOImpl implements ClimingLogsDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne("climingLogs.selectClimeed",roomNo);
 	}
+	@Override
+	public void updateCloseTime(ClimingLog log) {
+		// TODO Auto-generated method stub
+		session.update("climingLogs.setCloseTime",log);
+	}
+	@Override
+	public void updateCloseTimeClim(int no) {
+		// TODO Auto-generated method stub
+		System.out.println(no);
+		session.update("climingLogs.setClimCloseTime",no);
+	}
 }

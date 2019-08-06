@@ -163,6 +163,14 @@ body {
 	line-height: 100px;
 	text-indent: 5px;
 }
+#streamingDetailStreamerName a{
+	text-decoration: none;
+	color: #231F20;
+}
+#streamingDetailStreamerName a:hover{
+
+	color: #F9AC1A;
+}
 
 .fa-crown {
 	color: rgb(255, 173, 0);

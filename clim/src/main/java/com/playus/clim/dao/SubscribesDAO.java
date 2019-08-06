@@ -6,4 +6,10 @@ import com.playus.clim.vo.Subscribe;
 
 public interface SubscribesDAO {
 	public List<Subscribe> selectList(int memberNo);
+
+	public int insert(Subscribe subscribe);
+
+	public int delete(Subscribe subscribe);
+
+	public int selectOne(Subscribe subscribe);
 }

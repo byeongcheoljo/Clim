@@ -25,4 +25,13 @@
 						where no=#{roomNo}))
 		and close_time is not null
 	</select>
+	<update id="setCloseTime" parameterType="ClimingLog">
+	update c_logs set close_time=systimestamp
+	where clim_no=#{no} and session_id=#{sessionId}
+	</update>
+	
+	<update id="setClimCloseTime" parameterType="int">
+	update c_lists set close_time=systimestamp
+	where no=#{no}
+	</update>
 </mapper>
