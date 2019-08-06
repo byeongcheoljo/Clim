@@ -12,7 +12,7 @@ import com.playus.clim.vo.PageVO;
 
 @Service
 public class ReviewsServiceImpl implements ReviewsService{
-	
+	/* 0802 홍성표 */
 	@Autowired
 	private ReviewsDAO reviewsDAO;
 	@Autowired

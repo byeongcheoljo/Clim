@@ -19,6 +19,7 @@ body{
             background: lemonchiffon;
             width: 1080px;
             height: 80px;
+            top:50px;
         }
 
         /*지은*/
@@ -52,7 +53,7 @@ body{
 
         }
 
-        #content .header_myPage_tabbed {
+        #main .header_myPage_tabbed {
             border-bottom: 4px solid #F9AC1A;
             color: #F9AC1A;
         }

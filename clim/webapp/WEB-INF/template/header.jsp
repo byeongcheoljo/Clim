@@ -102,10 +102,10 @@
                 </div><!--//streamingPopupWrap-->
                 <i class="far fa-times-circle streaming_close_icon"></i>
                 <div class="streaming_popup_contentWrap">
-                    <form method="post" action="test.do" class="streaming_title">
+                    <form class="streaming_title">
                         <fieldset>
-                            <label class="streaming_room_title">방 제목 : </label>
-                            <input type="text" placeholder="영화제목을 입력해주세요" title="영화제목을 입력해주세요."/>
+                            <label for="climTitle" class="streaming_room_title">방 제목 : </label>
+                            <input id="climTitle" type="text" placeholder="영화제목을 입력해주세요" title="영화제목을 입력해주세요."/>
                             <button type="submit" class="streaming_start_btn" title="끌리밍 시작">방송하기</button>
                         </fieldset>
                     </form>
@@ -223,34 +223,38 @@
 
 <!--영화목록 템플릿-->
 <script type="template" id="streamingMovieListTmp">
-        <@_.each(movies, function(movie){@>
+    <@_.each(movies, function(movie){@>
         <li class="streaming_movie_list">
             <div class="streaming_card_icon">
                 <button class="movie_order_upBtn"><i class="fas fa-chevron-up"></i></button>
                 <button class="movie_order_downBtn"><i class="fas fa-chevron-down"></i></i></button>
             </div>
-            <div class="streaming_movie_img"><img src="<@=movie.img@>"/></div>
+            <div class="streaming_movie_img"><img src="/posters<@=movie.poster@>"/></div>
             <div class="streaming_movie_name">
-                <span><@=movie.name@></span></div>
-            <div class="streaming_movie_showTime"><@=movie.showTime@></div>
+                <span><@=movie.title@></span></div>
+            <div class="streaming_movie_showTime"><@=movie.runtime@>분</div>
             <div class="streaming_movie_delete">
-                <button class="streaming_movieDelete_list">
+                <button class="streaming_movieDelete_list" data-bookmarkno="<@=movie.no@>">
                     <i class="fas fa-trash-alt"></i>
                 </button><!--//streaming_movie_delete-->
             </div>
         </li>
-        <@})@>
+    <@})@>
 </script>
 
 <!--영화검색 템플릿-->
 <script type="text/template" id="movieSearchTmp">
     <ul>
-    <@ _.each(searchs,function(data){@>
-        <li class="movie_search_list">
-            <img src="<@=data.img@>">
-            <span><@=data.name@></span>
-        </li>
-    <@})@>
+		<@ if(searchs.length!=0){@>
+    		<@ _.each(searchs,function(movie){@>
+        		<li class="movie_search_list" data-movieno = "<@=movie.no@>">
+        	   		<img src="/posters<@=movie.poster@>"/>
+         			<span><@=movie.title@></span>
+       			</li>
+    		<@})@>
+		<@ }else{ @>
+			<li class="movie_search_list"><div class="search_no_result">등록되지 않은 영화입니다.</div></li>
+		<@ } @>
     </ul>
 
 </script>
@@ -372,8 +376,6 @@
         $(this).addClass("category_on")
     });
 
-
-
     //비밀번호 찾기 클릭시 팝업 출력
     $("#findPwdPopup").click(function () {
        $("#headerSigninPopupBg").css("display","none");
@@ -393,14 +395,24 @@
     //스트리밍 방만들기 팝업
     $("#headerStreamingImg").click(function () {
         $(".streaming_popupBg").fadeIn();
+        getStreamingMovieList();
     });
     $(".streaming_popupBg").click(function () {
+    	$(".movie_search").empty();
+		$(".movie_search_input").val("");
+		$(".movie_search").css("display","none");
         $(".streaming_popupBg").css("display","none");
     });
     $(".streaming_popup").click(function () {
+    	$(".movie_search").empty();
+		$(".movie_search_input").val("");
+		$(".movie_search").css("display","none");
         return false;
     });
     $(".streaming_close_icon").click(function () {
+    	$(".movie_search_input").val("");
+		$(".movie_search").css("display","none");
+        $(".streaming_popupBg").css("display","none");
         $(".streaming_popupBg").css("display","none");
     });
     
@@ -445,9 +457,17 @@
     });
 
     //아이디비번작성후 로그인 버튼 클릭시
+<<<<<<< HEAD
+    let $loginId  = $("#loginId");
+    let $loginPassword = $("#loginPassword");
+
+    /*
+    $("#loginBtn").click(function () {
+=======
     let $email  = $("#email");
     let $pwd = $("#pwd");
     $("#loginBtn").click(function (e) {
+>>>>>>> master
         let pwd;
         let idflag = true;
 
@@ -497,27 +517,12 @@
         });
     });
 
-    //스트리밍 준비 무비 리스트
-    getStreamingMovieList();
-    function getStreamingMovieList(){
-        $.ajax({
-            url:"json/movie.json",
-            dataType:"json",
-            type:"get",
-            error:function () {
-                alert("에러");
-            },
-            success:function (movie) {
-                $(".streaming_movie_wrap").html(streamingMovieListTmp({movies:movie}));
-            }
-        });
-    }
-
+    
+*/
     //스트리밍 방만들기전 순서 바꾸기
     let $streamingMovieWrap = $(".streaming_movie_wrap");
     // 영화 목록에 아래 버튼을 클릭시 스왑
     $streamingMovieWrap.on("click",".movie_order_downBtn",function () {
-        alert("down button");
         let lastIndex = $streamingMovieWrap[0].childElementCount - 1;
         let temp = $(this).parents("li");
         console.log(temp);
@@ -533,7 +538,6 @@
 
     // 영화 목록에서 윗 버튼을 클릭하면 스왑
     $streamingMovieWrap.on("click",".movie_order_upBtn",function () {
-        alert("up button");
         let zeroIndex = 0;
         let temp = $(this).parents("li");
         console.log(temp);
@@ -549,34 +553,83 @@
 
     //스트리밍 영화목록 삭제하기
     $streamingMovieWrap.on("click",".streaming_movieDelete_list", function () {
-        $(this).parents("li").remove();
+    	let bookNo = this.dataset.bookmarkno
+    	
+    	$.ajax({
+    		url:"/ajax/bookmarkForCliming/"+bookNo,
+    		type:"DELETE",
+    		datatype:"json",
+    		error:function(){
+    			alert("서버 점검중입니다!");
+    		},
+    		success:function(json){
+    			console.log(json);
+    			getStreamingMovieList();
+    		}
+    	});
     });
+    
+    //영화 목록에 추가
 
     //스트리밍 영화목록 검색하기
     $(".movie_search_input").on("keyup", function () {
         let searchTitle = $(".movie_search_input").val().trim();
-        console.log(searchTitle);
+        console.log(searchTitle.length);
 
         if(searchTitle.length == 0){
             $(".movie_search").css("display","none");
         } else{
             $(".movie_search").css("display","block");
         } //if~else end
-
-        $.ajax({
-            url:"json/movie.json",
-            dataType:"json",
-            error:function () {
-                alert("에렁");
-            },
-            success:function (search) {
-                console.log(search);
-                $(".movie_search").html(movieSearchTmp({searchs:search}));
-            }
-        }) //ajax end
+		if(searchTitle.length!=0){
+	        $.ajax({
+	            url:"/ajax/climingSearch/"+searchTitle,
+	            dataType:"json",
+	            error:function () {
+	                alert("에렁");
+	            },
+	            success:function (data) {
+	            	
+	                $(".movie_search").html(movieSearchTmp({searchs:data}));
+	            }
+	        }) //ajax end
+		}// if() end 글자 다 지웠을 때는 ajax작동 안함
     });
+    
     //영화 검색시 나오는 리스트 클릭시
     $(".movie_search").on("click", ".movie_search_list", function () {
+    	
+    	$this = $(this);
+    	
+    	let memberNo = 1;
+    	let movieNo = this.dataset.movieno;
+    	
+    	let movieName = $this.children("span").text();
+    	let poster = $this.children("img").attr("src");
+    	
+    	$.ajax({
+    		url:"/ajax/addBookmarkOfCliming",
+    		type:"POST",
+    		datatype:"json",
+    		data:{
+    			memberNo : memberNo,
+    			movieNo : movieNo
+    		},
+    		error:function(){
+    			alert("안가요");
+    		},
+    		success:function(json){
+    			if(json.result == "실패"){
+    				alert("이미 등록된 영화입니다!");
+    			}
+    			$(".movie_search").empty();
+    			$(".movie_search_input").val("");
+    			$(".movie_search_input").focus();
+    			$(".movie_search").css("display","none");
+    			getStreamingMovieList();
+    		}
+    	})
+    	/*
         console.log($(this).text());
         console.log($(this).find("img").attr("src"));
         alert("asdasjdhasjkdh");
@@ -585,17 +638,13 @@
             "img":$(this).find("img").attr("src"),
             "showTime":$(this).text()
         }));
-
-
+		*/
     });
 
 
 
     //스트리밍 방송 하기 클릭
-    $(".streaming_start_btn").click(function (e) {
-        e.stopPropagation();
-    });
-
+/*
     //구독중인 리스트 불러오기
     function getSubscribeList(){
         $.ajax({
@@ -611,6 +660,106 @@
             }
         });
     }
+<<<<<<< HEAD
+*/
+    //구독취소 버튼시 리스트에서 삭제
+    $("#headerSubscribeWrap").on("click",".unsubscribe_list", function () {
+        $(this).parents("li").remove();
+    });
+    
+    
+    /* 0802 로그인 유저의 끌리밍 리스트 불러오기 */
+    
+	//스트리밍 준비 무비 리스트
+    function getStreamingMovieList(){
+        $.ajax({
+            url:"/ajax/bookmark/climing",
+            dataType:"json",
+            type:"get",
+            error:function () {
+                alert("에러");
+            },
+            success:function (json) {
+            	console.log(json);
+                $(".streaming_movie_wrap").html(streamingMovieListTmp({movies:json}));
+            }
+        });
+    };// getStremingMovieList() end
+    
+    
+  //webSocket stomp client
+    let stompClient = null;
+
+
+    function connect(callback) {
+    	
+    	let socket = new SockJS('/clim');
+    	stompClient = Stomp.over(socket);
+    	
+    	// SockJS와 stomp client를 통해 연결을 시도.
+    	stompClient.connect({},function() {
+    		
+    		console.log("2) 연결!");
+    	
+    		//인자로 받은 함수를 여기서 호출
+    		if(callback) callback();
+    		
+    	});
+    }
+    
+    connect();
+    
+    
+    $(".streaming_title").on("submit",function(e){
+    	e.preventDefault();
+    })
+    
+    
+	$(".streaming_start_btn").on("click",function(e) {
+		e.stopPropagation();
+	
+	let title = $("#climTitle").val();
+	
+	//넘길 데이터(파라미터)
+	
+	/*
+	$.ajax({ 
+		url: ①
+		data:②
+		success:③
+	})
+	
+	stompClient.send(①,{},②);
+	
+	*/
+	//객체를 String으로 
+	//userNo는 ${loginUser.no} 변경필요
+	const data = JSON.stringify({"memberNo":1,"title":title});
+	
+	//방만들기
+	stompClient.send("/app/clim/make",{},data);
+	
+	//방번호 얻어오기
+	stompClient.subscribe("/user/queue/clim/make",function(protocol) {
+		//넘어오는 데이터는 body에
+		console.log(protocol.body);
+		
+		//방을 만들었기 때문에 유저에게 목록을 다시
+		stompClient.send("/app/clim/list",{});
+		
+		//해당 번호 방으로 이동
+		location.href = 
+			"/room/"+protocol.body;
+		
+	});
+	
+	
+	
+});
+    
+    
+    
+=======
     //구독취소 버튼시 리스트에서 삭제
     $("#headerSubscribeWrap").on("click",".unsubscribe_list", function () {
 		let no = this.dataset.no;
@@ -647,4 +796,5 @@
 	
 	
 	
+>>>>>>> master
 </script>

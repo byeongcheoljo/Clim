@@ -6,6 +6,9 @@
 		parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
+<<<<<<< HEAD
+		WHERE title LIKE #{title}
+=======
 		WHERE title= #{title}
 	</select>
 
@@ -21,6 +24,7 @@
 		FROM movies m, trailers t
 		WHERE m.no = t.movie_no AND m.no =
 		#{no}
+>>>>>>> master
 	</select>
 	
 	<select id="getClimingMovieList" parameterType="int"

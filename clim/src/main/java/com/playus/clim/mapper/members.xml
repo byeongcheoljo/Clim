@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
+<<<<<<< HEAD
+
+	<select id="selectOneByNo" parameterType="int" resultType="Member">
+		SELECT no, email, nickname,gender, birth_date birthDate, regdate
+		FROM members
+		WHERE no = #{no}
+=======
 	<select id="selectClimingLeader" resultType="Leader"
 		parameterType="int">
 		select
@@ -33,6 +40,7 @@
 		FROM members
 		WHERE email = #{email}
 		AND pwd = #{pwd}
+>>>>>>> master
 	</select>
 	
 	<select id="checkId" parameterType="string" resultType="int">

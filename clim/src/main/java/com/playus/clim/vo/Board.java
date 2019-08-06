@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Board {
 
 	private int no, memberNo, views;
-	private Clob contents;
+	private String contents;
 	private Timestamp regdate;
 	
 	public Board() {
@@ -37,11 +37,11 @@ public class Board {
 		this.views = views;
 	}
 
-	public Clob getContents() {
+	public String getContents() {
 		return contents;
 	}
 
-	public void setContents(Clob contents) {
+	public void setContents(String contents) {
 		this.contents = contents;
 	}
 

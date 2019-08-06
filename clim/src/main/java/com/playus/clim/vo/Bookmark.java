@@ -4,16 +4,53 @@ import java.sql.Timestamp;
 
 public class Bookmark {
 
-	
-	private int no, memberNo, movieNo;
+	/*0802 runtime title poster추가 홍성표*/
+	private int no, memberNo, movieNo, runtime;
 	private Timestamp regdate;
-	
+	private String title, poster;
 	private char type;
 	
 	
 	public Bookmark() {
 		// TODO Auto-generated constructor stub
 	}
+
+
+	
+	public int getRuntime() {
+		return runtime;
+	}
+
+
+
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
+	}
+
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public String getPoster() {
+		return poster;
+	}
+
+
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
 
 
 	public int getNo() {

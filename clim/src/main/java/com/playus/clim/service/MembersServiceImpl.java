@@ -1,5 +1,23 @@
 package com.playus.clim.service;
 
+<<<<<<< HEAD
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.playus.clim.dao.MembersDAO;
+import com.playus.clim.vo.Member;
+
+@Service
+public class MembersServiceImpl implements MembersService{
+	/* 0802 홍성표 */
+	@Autowired
+	private MembersDAO membersDAO;
+	
+	@Override
+	public Member getMemberByNo(int no) {
+		return membersDAO.selectOneByNo(no);
+	}
+=======
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
@@ -34,6 +52,7 @@ public class MembersServiceImpl implements MembersService{
 		Member loginMember = membersDAO.selectLogin(member);
 
 		session.setAttribute("loginMember", loginMember);
+>>>>>>> master
 
 		System.out.println("서비스" + loginMember);
 

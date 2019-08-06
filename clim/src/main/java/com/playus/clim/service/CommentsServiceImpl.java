@@ -12,7 +12,7 @@ import com.playus.clim.vo.PageVO;
 
 @Service
 public class CommentsServiceImpl implements CommentsService{
-	
+	/* 0802 홍성표 */
 	@Autowired
 	private CommentsDAO commentsDAO;
 	@Autowired

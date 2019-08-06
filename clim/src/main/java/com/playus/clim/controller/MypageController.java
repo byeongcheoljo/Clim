@@ -1,15 +1,28 @@
 package com.playus.clim.controller;
 
+<<<<<<< HEAD
+=======
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+>>>>>>> master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
+
+import com.playus.clim.service.MembersService;
+
+@Controller
+public class MypageController {
+	/* 0803 홍성표 */
+	@Autowired
+	private MembersService membersService;
+=======
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playus.clim.service.ClimingMovieListsService;
@@ -71,4 +84,18 @@ public class MypageController {
 	public int eventsDelete(@PathVariable int memberNo) {
 		return eventsService.delete(memberNo);
 	}
+<<<<<<< HEAD
+>>>>>>> master
+	
+	@RequestMapping(value="/user/{memberNo}/community", method=RequestMethod.GET)
+	public String myPageCommunity(@PathVariable int memberNo, Model model) {
+
+		model.addAttribute("member", membersService.getMemberByNo(memberNo));
+		
+		return "mypageCommunity";
+	}
+	
+
+=======
+>>>>>>> master
 }

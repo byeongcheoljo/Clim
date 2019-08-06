@@ -8,8 +8,8 @@
 		FROM(SELECT no, memberNo, contents, regdate, boardNo, rownum r 
 			 FROM(SELECT no, member_no memberNo, contents, regdate, board_no boardNo
 				  FROM comments
-				  WHERE member_no = #{memberNo}
-				  ORDER BY regdate))
+				  WHERE member_no = #{no}
+				  ORDER BY regdate DESC))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	

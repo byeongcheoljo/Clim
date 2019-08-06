@@ -3,15 +3,23 @@ package com.playus.clim.vo;
 import java.sql.Timestamp;
 
 public class Review {
-
+	/* 0803 홍성표 title 추가 */
 	private int no, movieNo, memberNo, score;
-	private String contents;
+	private String contents, title;
 	private Timestamp regdate;
-	
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 
 
 	public int getNo() {
