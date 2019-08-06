@@ -645,35 +645,7 @@
 
 	
 
-		$this = $(this);
-
-		let movieNo = this.dataset.movieno;
-
-		let movieName = $this.children("span").text();
-		let poster = $this.children("img").attr("src");
-		$.ajax({
-			url : "/ajax/addBookmarkOfCliming",
-			type : "POST",
-			datatype : "json",
-			data : {
-				memberNo : 1,
-				movieNo : movieNo
-			},
-			error : function() {
-				alert("안가요");
-			},
-			success : function(json) {
-				if (json.result == "실패") {
-					alert("이미 등록된 영화입니다!");
-				}
-				$(".movie_search").empty();
-				$(".movie_search_input").val("");
-				$(".movie_search_input").focus();
-				$(".movie_search").css("display","none");
-				getStreamingMovieList();
-			}
-		})
-	});
+		
 
 
 	//스트리밍 방송 하기 클릭
@@ -819,7 +791,7 @@ $("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
 		//객체를 String으로 
 		//userNo는 ${loginUser.no} 변경필요
 		const data = JSON.stringify({
-			"memberNo" : 1,
+			"memberNo" : ${loginMember.no},
 			"title" : title
 		});
 
