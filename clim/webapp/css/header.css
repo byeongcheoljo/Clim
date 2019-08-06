@@ -469,15 +469,26 @@ body.on #headerTotalSearchText {
 	margin-top: 20px;
 	padding-bottom: 20px;
 	border-bottom: 2px solid #f9f9f9;
+	position: relative;
 }
 
 #headerSubscribeWrap {
+	width:250px;
+	min-height:500px;
 	color: #f9f9f9;
+	position: relative;
+}
+
+#headerSubscribeWrap ul{
+	width: 250px;
 }
 
 .subscribe_list {
 	/*border: 1px solid #1E88E5;*/
+	width:250px;
+	height:20px;
 	margin-top: 10px;
+	position: relative;	
 }
 
 .subscribe_list a {
@@ -487,10 +498,14 @@ body.on #headerTotalSearchText {
 }
 
 .subscribe_list a:first-child {
-	width: 100px;
+	position: absolute;
+	left: 10px;
 	/*border: 1px solid #00CF35;*/
 	/*background-color: #1E88E5;*/
-	float: left;
+}
+.subscribe_list a:nth-child(2){
+	position: absolute;
+	left: 90px;
 }
 
 .subscribe_list span {
@@ -860,4 +875,15 @@ body.on #headerTotalSearchText {
 	font-size: 16px;
 	width: 100px;
 	height: 25px;
+}
+
+.unsubscribe_list{
+	border: none;
+	color: #fafafa;
+	background: #F9AC1A;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	
 }
