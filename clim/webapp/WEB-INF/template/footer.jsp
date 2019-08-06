@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <footer id="footer">
     <div id="footerPolicy">
         <h4 class="screen_out">정책 및 약관</h4>
@@ -23,12 +24,3 @@
     </div><!--//footerPolicy -->
     <address>&copy; 2019 <a href="">clim.com</a></address>
 </footer><!--// footer -->
-<script src="/js/sockjs.min.js"></script>
-<script src="/js/stomp.min.js"></script>
-<script>
-	let stompClient = null;
-	function connect(callback){
-		let scoket = new SockJS('/clim');
-		stompClient = Stomp.over(socket);
-	}
-</script>

@@ -60,8 +60,7 @@ public class MypageController {
 		return climingMovieListsService.myPageClimingList(memberNo);
 	}
 
-	@RequestMapping(value = "/ajax/user/following/{loginMember}/follower/{memberNo}", method = { RequestMethod.POST,
-			RequestMethod.DELETE })
+	@RequestMapping(value = "/ajax/user/following/{loginMember}/follower/{memberNo}", method = { RequestMethod.POST,RequestMethod.DELETE })
 	@ResponseBody
 	public String subscribes(@PathVariable int loginMember, @PathVariable int memberNo) {
 		int count = subscribesService.subscribes(loginMember, memberNo);
@@ -85,6 +84,7 @@ public class MypageController {
 	public int eventsDelete(@PathVariable int memberNo) {
 		return eventsService.delete(memberNo);
 	}
+<<<<<<< HEAD
 >>>>>>> master
 	
 	@RequestMapping(value="/user/{memberNo}/community", method=RequestMethod.GET)
@@ -96,4 +96,6 @@ public class MypageController {
 	}
 	
 
+=======
+>>>>>>> master
 }
