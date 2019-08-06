@@ -2,15 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookmarks">
+<<<<<<< HEAD
+
+	<select id="mybookmarkListForCliming" parameterType="int"
+		resultType="Bookmark">
+		SELECT b.no, b.member_no memberNo, m.title, m.poster,
+		m.runtime
+=======
 	
 	<select id="mybookmarkListForCliming" parameterType="int" resultType="Bookmark">
 		SELECT b.no, b.member_no memberNo, m.title, m.poster, m.runtime, b.regdate, b.type
+>>>>>>> master
 		FROM BOOKMARKS b, MOVIES m
 		WHERE b.movie_no = m.no
-		AND b.type = 'C'
+		AND b.type =
+		'C'
 		AND b.member_no = #{memberNo}
 		ORDER BY regdate
 	</select>
+<<<<<<< HEAD
+
+=======
 	
 	<insert id="bookmarkInsertForCliming" parameterType="Bookmark">
 		INSERT INTO bookmarks(no, member_no, movie_no, regdate, type)
@@ -35,4 +47,5 @@
 	values(bookmarks_seq.nextval,(select member_no from c_lists where no= #{memberNo}), #{movieNo},systimestamp,'C')
 	
 	</insert>
+>>>>>>> master
 </mapper>

@@ -6,6 +6,10 @@
 		parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
+<<<<<<< HEAD
+		WHERE title
+		= #{title}
+=======
 		WHERE title LIKE #{title}
 	</select>
 
@@ -32,5 +36,46 @@
 		(select no,member_no,title
 		from c_lists) clist
 		where bookmarks.member_no=clist.member_no and clist.no=#{no} and type='C')
+>>>>>>> master
 	</select>
+
+
+	<!-- 김근경 시작 -->
+	<!-- *끌림작은 끌림지수(climed)가 높은순 *index는 no 1~10/11~20/21~30 -->
+
+
+	<!-- //끌림작 1위~30위 -->
+	<select id="indexClimedList" resultType="Movie">
+		SELECT
+		no,title,opendate,climed
+		FROM movies
+		WHERE climed BETWEEN 1 AND 30
+		ORDER
+		BY climed desc
+	</select>
+
+	<!-- //index 추천작1(no 1~10) -->
+	<select id="indexRecommandationListOne" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 1 AND 10
+	</select>
+	<!-- //index 추천작2(no 11~20) -->
+	<select id="indexRecommandationListTwo" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 11 AND 20
+	</select>
+	<!-- //index 추천작3(no 21~30) -->
+	<select id="indexRecommandationListThree" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 21 AND 30
+	</select>
+
+
+	<!-- 김근경 끝 -->
 </mapper>

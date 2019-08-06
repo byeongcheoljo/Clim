@@ -5,8 +5,10 @@
 	<select id="subscribesList" resultType="Subscribe"
 		parameterType="int">
 		SELECT s.no no, following, follower, nickname
-		FROM members m, subscribes s
-		WHERE follower = m.no AND following = #{memberNo}
+		FROM
+		members m, subscribes s
+		WHERE follower = m.no AND following =
+		#{memberNo}
 	</select>
 	
 	<select id="subscribesCheck" parameterType="Subscribe" resultType="int">

@@ -2,9 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reports">
+<<<<<<< HEAD
+
+=======
 	
 	<insert id="climer" parameterType="Report">
 	insert into reports
 	values(reports_seq.nextval,'C', #{reporterNo},(select member_no from c_lists where no= #{postNo}), #{postNo}, #{contents},systimestamp,null)
 	</insert>
+>>>>>>> master
 </mapper>

@@ -537,6 +537,28 @@
 				} else {
 					location.reload();
 				}
+<<<<<<< HEAD
+				
+            }
+        });
+    });
+    
+
+    //비밀번호 찾기findId    //이건 서버떄 쏘스 드림
+    let $emailPwd = $("#emailPwd");
+    $("#findCertificationBtn").click(function () {
+        $.ajax({
+            url:"/ajax/findPwd",
+            dataType:"json",
+            type:"POST",
+            data:{
+            	email : $emailPwd.val()
+            },
+            error: function (xhr, error, code) {
+                alert("이메일이 올바르지 않습니다");
+            },//error end
+            success : function(json) {
+=======
 			}
 		});
 	});
@@ -557,6 +579,7 @@
 				alert("이메일이 올바르지 않습니다");
 			},//error end
 			success : function(json) {
+>>>>>>> master
 				console.log(json.member.email.indexOf("@"));
 				let idx = json.member.email.indexOf("@");
 				window.open('http://www.'+ json.member.email.substring(idx + 1),'newWindow');

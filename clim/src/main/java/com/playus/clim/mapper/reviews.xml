@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviews">
+<<<<<<< HEAD
+
+	<select id="myWriteReviewsList" resultType="Review"
+		parameterType="PageVO">
+		SELECT no, movieNo, memberNo, contents, score, regdate,
+		title, r
+		FROM(SELECT no, movieNo, memberNo, contents, score, regdate, title, rownum r
+		FROM(SELECT r.no, movie_no movieNo, member_no memberNo, r.contents,
+		r.score, r.regdate, m.title
+		FROM reviews r, movies m
+		WHERE r.member_no = #{memberNo}
+		AND m.no = r.movie_no
+		ORDER BY regdate))
+=======
 	
 	<select id="myWriteReviewsList" resultType="Review" parameterType="PageVO">
 		SELECT no, movieNo, memberNo, contents, score, regdate, title, r 
@@ -11,13 +25,15 @@
 				  WHERE r.member_no = #{no}
 				  AND m.no = r.movie_no
 				  ORDER BY regdate DESC))
+>>>>>>> master
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
-	
-	<select id="myWriteReviewsTotal" resultType="int" parameterType="int">
+
+	<select id="myWriteReviewsTotal" resultType="int"
+		parameterType="int">
 		SELECT count(*)
 		FROM reviews
 		WHERE member_no = #{memberNo}
 	</select>
-	
+
 </mapper>
