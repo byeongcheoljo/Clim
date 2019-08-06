@@ -237,7 +237,7 @@
 					alert("에러");
 				},
 				success:function(json){
-					console.log(json);
+					console.log(json);					
 					let calendar = new FullCalendar.Calendar(calendarEl, {
 						locale : 'ko',
 						plugins : [ 'interaction', 'dayGrid' ],
@@ -254,6 +254,9 @@
 							endDay = moment(info.event.end).format("YYYY.MM.DD");
 							contentText = info.event._def.extendedProps.contentText;
 							title = info.event.title;
+							let $detail_info_inner = $(".detail_info_inner");
+							let $input = $("<input>").attr({"type":"hidden","name":"no"}).val(info.event.id);
+							$detail_info_inner.append($input);
 						}
 					});
 					calendar.render();
@@ -305,7 +308,7 @@
 
 			const endYear = $("#endYear").val();
 			const endMonth = $("#endMonth").val();
-			const endDate = $("#endDate").val()+1;
+			const endDate = $("#endDate").val();
 			const endDay = endYear + "-" + endMonth + "-" + endDate;
 
 			const end = new Date(endDay);
@@ -329,7 +332,6 @@
 				success:function(json){
 					console.log("insert: "+json);
 					calendar.addEvent(json);
-// 					$(".fc-event-container").attr({"data-index":$}});
 				}
 				
 			});//ajax end
@@ -348,8 +350,10 @@
 		});
 
 		$notice_box.on("click", "#planCancelBtn", function() {
+			let no = $(this).parents(".detail_info_inner").find("input").val();
+			console.log(no);
 			$.ajax({
-				url:"/ajax/user/${loginMember.no}/events",
+				url:"/ajax/user/"+no+"/events",
 				dataType:"json",
 				type:"DELETE",
 				error:function(){
@@ -396,6 +400,7 @@
 		error : function() {
 			alert("에러");
 		},
+		
 		success : function(json) {
 			if (subscribeFlag == 0) {
 				$i.removeClass("far");

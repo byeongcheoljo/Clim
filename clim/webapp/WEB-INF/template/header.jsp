@@ -3,7 +3,7 @@
     
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header id="header">
-    <a href=""><img class="header_index_nav" src="/img/clim.png"/></a></div>
+    <a href="/"><img class="header_index_nav" src="/img/clim.png"/></a></div>
     <div id="headerMenuSection">
         <!--상단메뉴 목록 -->
             <div class="header_menu_nav header_category_wrap">카테고리</div>
@@ -196,6 +196,7 @@
 
 
     <!-- 구독중인 슬라이드바 -->
+    <c:if test="${loginMember!=null }">
     <div id="headerSubscribeList">
         <div class="look_subscribe_btn">
             <i class="fas fa-angle-double-right"></i>
@@ -216,6 +217,7 @@
             <!--구독자 리스트 템플릿 -->
         </div><!--//headerSubscribeWrap-->
     </div><!--headerSubscribeSlideWrap-->
+    </c:if>
 </header>
 
 
@@ -257,18 +259,18 @@
 <script type="template" id="subscribeListTmp">
     <ul>
         <@ _.each(subscribes, function(subscribe){@>
-        <li class="subscribe_list">
-            <a href=""><@=subscribe.nickName@></a>
-            <a href=""><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
-            <form method="" action="">
-                <button class="unsubscribe_list">구독취소</button>
-            </form>
+        <li class="subscribe_list" >
+            <a href="/user/<@=subscribe.follower@>"><@=subscribe.nickname@></a>
+			<@if(subscribe.LiveCheck){@>
+            <a href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
+            <@}@>
+                <button class="unsubscribe_list" data-no="<@=subscribe.follower@>">구독취소</button>
         </li>
         <@})@>
     </ul>
 </script>
-
-
+<script src="/js/sockjs.min.js"></script>
+<script src="/js/stomp.min.js"></script>
 <script>
     _.templateSettings = {interpolate: /\<\@\=(.+?)\@\>/gim,evaluate: /\<\@([\s\S]+?)\@\>/gim,escape: /\<\@\-(.+?)\@\>/gim};
 
@@ -435,6 +437,7 @@
     $(".look_subscribe_btn").click(function () {
         $("#headerSubscribeSlideWrap").css("display","block");
         $("#headerSubscribeList").css("display","none");
+        getSubscribeList();
     });
     $(".header_subscribe_btn").click(function () {
         $("#headerSubscribeSlideWrap").css("display","none");
@@ -594,23 +597,54 @@
     });
 
     //구독중인 리스트 불러오기
-    getSubscribeList();
     function getSubscribeList(){
         $.ajax({
-            url:"json/member.json",
+            url:"/ajax/user/${loginMember.no}/subscribe",
             dataType:"json",
-            type:"get",
+            type:"GET",
             error:function () {
                 alert("에러");
             },
-            success:function (subscribe) {
-                $("#headerSubscribeWrap").html(subscribeListTmp({subscribes:subscribe}));
+            success:function (json) {
+            	console.log(json);
+                $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
             }
         });
     }
-
     //구독취소 버튼시 리스트에서 삭제
     $("#headerSubscribeWrap").on("click",".unsubscribe_list", function () {
-        $(this).parents("li").remove();
-    });
+		let no = this.dataset.no;
+		$.ajax({
+			url : "/ajax/user/following/${loginMember.no}/follower/"+no,
+			type : "DELETE",
+			dataType : "json",
+			error : function() {
+				alert("에러");
+			},
+			success : function(json) {
+				console.log(json);
+				$(this).parents("li").remove();
+				getSubscribeList();
+				}//success end
+			});//ajax end		
+		});//구독버튼 클릭하기
+    
+    let stompClient = null;
+	function connect(callback){
+		let socket = new SockJS('/clim');
+		stompClient = Stomp.over(socket);
+		// SockJS와 stomp client를 통해 연결을 시도.
+		stompClient.connect({},function(){
+			console.log("2) 연결");
+			if(callback) callback();
+		});
+	}//connect end
+	
+	connect(function(){
+		console.log("1) 연결");
+	
+	});//connect end
+	
+	
+	
 </script>
