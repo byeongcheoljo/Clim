@@ -878,12 +878,11 @@ body.on #headerTotalSearchText {
 	height: 25px;
 }
 
-<<<<<<< HEAD
 .search_no_result {
     position: absolute;
     top: 40px;
     left: 10px;
-=======
+}
 .unsubscribe_list{
 	border: none;
 	color: #fafafa;
@@ -892,6 +891,4 @@ body.on #headerTotalSearchText {
 	cursor: pointer;
 	position: absolute;
 	right: 10px;
-	
->>>>>>> master
 }
