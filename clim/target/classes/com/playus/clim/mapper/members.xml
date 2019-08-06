@@ -5,20 +5,26 @@
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
 		select no, email,
-		(select count(*) from subscribes where follower = #{memberNo}) followerCnt,
-		(select count(*) from c_logs c where member_no = #{memberNo} AND type = 'I') climgCnt,
-		nickname, gender, birth_date birthDate, pwd, regdate
+		(select count(*) from subscribes where
+		follower = #{memberNo}) followerCnt,
+		(select count(*) from c_logs c
+		where member_no = #{memberNo} AND type = 'I') climgCnt,
+		nickname,
+		gender, birth_date birthDate, pwd, regdate
 		from members
-		where no = #{memberNo}
+		where no =
+		#{memberNo}
 	</select>
 
-	<select id="selectLogin" parameterType="Member" resultType="Member">
-		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
+	<select id="selectLogin" parameterType="Member"
+		resultType="Member">
+		SELECT no, email, nickname, gender, birth_date birthDate,
+		pwd, uuid
 		FROM members
 		WHERE email = #{email}
 		AND pwd = #{pwd}
 	</select>
-	
+
 	<update id="UUIDUpdate" parameterType="Member">
 		<selectKey keyProperty="no" order="BEFORE" resultType="int">
 			SELECT no
@@ -29,11 +35,12 @@
 		set UUID = #{uuid}
 		where email = #{email}
 	</update>
-	
+
 	<update id="pwdUpdate" parameterType="Member">
-	update members
-	set UUID = #{uuid}, pwd = #{pwd}
-	where no = #{no}
+		update members
+		set UUID =
+		#{uuid}, pwd = #{pwd}
+		where no = #{no}
 	</update>
-	
+
 </mapper>

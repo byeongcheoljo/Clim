@@ -11,10 +11,20 @@ public class SteelCutsDAOImpl implements SteelCutsDAO{
 	
 	@Autowired
 	private SqlSession session;
+
+/*김근경 시작*/
 	
 	@Override
-	public String selectOneForClimed(int movieNo) {
-		return session.selectOne("steelCuts.selectOneForClimed", movieNo);
+	public String selectOneForClimed(StealCut stealCut) {
+		return session.selectOne("steelCuts.selectOneForClimed", stealCut);
 	}
+	
+	//r을 위한 total
+	@Override
+	public int selectTotalForMovieId(int no) {
+		return session.selectOne("steelCuts.selectTotalForMovieId",no);
+	}
+	
+/*김근경 끝*/
 
 }

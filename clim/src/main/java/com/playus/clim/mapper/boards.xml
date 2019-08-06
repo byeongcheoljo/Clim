@@ -3,20 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boards">
 
-	<select id="myWriteBoardsList" resultType="Board" parameterType="PageVO">
+	<select id="myWriteBoardsList" resultType="Board"
+		parameterType="PageVO">
 		SELECT no, contents, memberNo, views, regdate, r
-		FROM(SELECT no, contents, memberNo, views, regdate, rownum r 
-			 FROM(SELECT no, contents, member_no memberNo, views, regdate
-				  FROM boards
-				  WHERE member_no = #{memberNo}
-				  ORDER BY regdate))
+		FROM(SELECT no, contents, memberNo, views, regdate, rownum r
+		FROM(SELECT no, contents, member_no memberNo, views, regdate
+		FROM boards
+		WHERE member_no = #{memberNo}
+		ORDER BY regdate))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
-	
-	<select id="myWriteBoardsTotal" resultType="int" parameterType="int">
+
+	<select id="myWriteBoardsTotal" resultType="int"
+		parameterType="int">
 		SELECT count(*)
 		FROM boards
 		WHERE member_no = #{memberNo}
 	</select>
-	
+
 </mapper>

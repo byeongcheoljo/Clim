@@ -3,8 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="events">
 	<select id="eventList" resultType="Event" parameterType="int">
-		SELECT no, member_no memberNo,title,contents, start_date
-		startDate,end_date endDate,regdate
+		SELECT
+		no, member_no memberNo,title,contents, start_date
+		startDate,end_date
+		endDate,regdate
 		FROM events
 		WHERE member_no = #{memberNo}
 	</select>

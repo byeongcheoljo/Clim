@@ -2,5 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="continueMovies">
-	
+
+	<!-- 김근경 시작 -->
+	<!-- //index에서 이어보기 -->
+	<select id="indexContinueList" parameterType="int" resultType="ContinueMovie">
+		SELECT mc.no no, title,runtime,poster,current_time currentTime,
+		member_no memberNo,flag,movie_no movieNo
+		FROM movies m, m_continues mc
+		WHERE m.no=mc.movie_no
+		AND	flag='T'
+		AND member_no=#{memberNo}
+		ORDER BY 1 desc
+	</select>
+	<!-- 김근경 끝 -->
+
 </mapper>

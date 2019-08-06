@@ -11,8 +11,9 @@ public interface MoviesDAO {
 	
 /*김근경 시작*/
 	
-	//index에서 끌림작 1위~6위
-	public List<Movie> indexClimedListOne();
+	
+	//index에서 끌림작 1위~30위
+	public List<Movie> indexClimedList();
 	
 	//index에서 추천1
 	public List<Movie> indexRecommandationListOne();

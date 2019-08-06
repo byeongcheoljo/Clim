@@ -2,45 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movies">
-	<select id="searchMovieListForCliming" resultType="Movie" parameterType="String">
+	<select id="searchMovieListForCliming" resultType="Movie"
+		parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
-		WHERE title = #{title}
+		WHERE title
+		= #{title}
 	</select>
-	
-<!-- 김근경 시작 -->
-	<!-- 
-	 *끌림작은 끌림지수(climed)가 높은순
-	 *index는 no 1~10/11~20/21~30 
-	 -->
-	
-	<!-- //끌림작 1위~6위-->
-	<select id="indexClimedListOne" resultType="Movie">
-		SELECT no,title,opendate,climed
+
+
+	<!-- 김근경 시작 -->
+	<!-- *끌림작은 끌림지수(climed)가 높은순 *index는 no 1~10/11~20/21~30 -->
+
+
+	<!-- //끌림작 1위~30위 -->
+	<select id="indexClimedList" resultType="Movie">
+		SELECT
+		no,title,opendate,climed
 		FROM movies
-		WHERE climed BETWEEN 1 AND 6
-		ORDER BY climed desc
+		WHERE climed BETWEEN 1 AND 30
+		ORDER
+		BY climed desc
 	</select>
-	
-	<!--//index 추천작1(no 1~10) -->
+
+	<!-- //index 추천작1(no 1~10) -->
 	<select id="indexRecommandationListOne" resultType="Movie">
-		SELECT no,title,poster
+		SELECT
+		no,title,poster
 		FROM movies
 		WHERE no BETWEEN 1 AND 10
 	</select>
-	<!--//index 추천작2(no 11~20) -->
+	<!-- //index 추천작2(no 11~20) -->
 	<select id="indexRecommandationListTwo" resultType="Movie">
-		SELECT no,title,poster
+		SELECT
+		no,title,poster
 		FROM movies
 		WHERE no BETWEEN 11 AND 20
-	</select>	
-	<!--//index 추천작3(no 21~30) -->
+	</select>
+	<!-- //index 추천작3(no 21~30) -->
 	<select id="indexRecommandationListThree" resultType="Movie">
-		SELECT no,title,poster
+		SELECT
+		no,title,poster
 		FROM movies
 		WHERE no BETWEEN 21 AND 30
-	</select>	
-	
-	
-<!-- 김근경 끝 -->
+	</select>
+
+
+	<!-- 김근경 끝 -->
 </mapper>

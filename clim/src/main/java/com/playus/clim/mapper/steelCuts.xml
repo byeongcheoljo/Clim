@@ -3,13 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="steelCuts">
 
-<!-- movieNo에 대한 rowNum 첫번째만 불러오기 -->
-	<select id="selectOneForClimed" parameterType="int" resultType="String">
+
+	<!-- 김근경 시작 -->
+
+	<!-- movieNo에 대한 스틸컷(src)을 랜덤하게 1개 불러오기 -->
+	<select id="selectOneForClimed" parameterType="StealCut"
+		resultType="String">
 		SELECT src
 		FROM(SELECT movie_no movieNo, src, ROWNUM r
-			 FROM steal_cuts 
-			 WHERE movie_no=#{movieNo})
-		WHERE r = 1
+		FROM steal_cuts
+		WHERE movie_no=#{movieNo})
+		WHERE r = #{randomR}
 	</select>
-	
+
+	<!-- movieNo의 스틸컷 개수를 알기위해 total을 구함 -->
+	<select id="selectTotalForMovieId" parameterType="int"
+		resultType="int">
+		SELECT count(*)
+		FROM steal_cuts
+		WHERE movie_no=#{movieNo}
+	</select>
+	<!-- 김근경 끝 -->
+
+
 </mapper>

@@ -21,12 +21,12 @@ public class MoviesDAOImpl implements MoviesDAO{
 
 /*김근경 시작*/
 	
-	//index에서 끌림작 1위~6위
+	//index에서 끌림작 1위~30위
 	@Override
-	public List<Movie> indexClimedListOne() {
-		return session.selectList("movies.indexClimedListOne");
+	public List<Movie> indexClimedList() {
+		return session.selectList("movies.indexClimedList");
 	}
-	
+
 	//index에서 추천1
 	@Override
 	public List<Movie> indexRecommandationListOne() {

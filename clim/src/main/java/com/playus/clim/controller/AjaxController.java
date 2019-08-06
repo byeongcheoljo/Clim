@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.CommentsService;
+import com.playus.clim.service.ContinueMoviesService;
 import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.ContinueMovie;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
 
@@ -31,6 +33,8 @@ public class AjaxController {
 	private MoviesService moviesService;
 	@Autowired
 	private EventsService eventsService;
+	@Autowired
+	private ContinueMoviesService continueMoviesService;
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -60,5 +64,23 @@ public class AjaxController {
 	public List<Event> eventsList(int memberNo) {
 		return eventsService.getList(memberNo);
 	}
+	
+	
+/*근경시작*/
+
+	@RequestMapping(value="/member/{memberNo}/continue",method=RequestMethod.GET)
+	public List<ContinueMovie> getContinueList(@PathVariable int memberNo){
+		
+		System.out.println("//////////AJAX controller///////////////");
+		
+		System.out.println("memberNo: "+memberNo);
+		
+		return continueMoviesService.getContinueList(memberNo);
+	}
+	
+/*근경끝*/
+	
+	
+	
 
 }
