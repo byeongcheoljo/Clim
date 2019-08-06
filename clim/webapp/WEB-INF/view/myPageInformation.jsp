@@ -24,7 +24,7 @@
 	<div id="myPageInformationWrap">
 
 
-		<form id="information" action="/user/info/${no}" method="post">
+		<form id="information" action="/user/${loginMember.no}/info" method="post">
 		<input type="hidden" name="no" value="${loginMember.no}">
 			<h2>개인정보 수정</h2>
 			<p>

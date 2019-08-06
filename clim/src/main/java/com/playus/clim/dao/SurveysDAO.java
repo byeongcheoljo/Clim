@@ -7,7 +7,10 @@ import com.playus.clim.vo.Survey;
 
 public interface SurveysDAO {
 
-	
 	public List<Survey> selectSurveyList(PageVO pageVO);
 	
+	public int insertMovieRate(Survey survey);
+	
+	public int updateMovieRate(Survey survey);
+
 }

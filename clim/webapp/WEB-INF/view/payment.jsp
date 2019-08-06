@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,23 +30,29 @@
             	
              <c:when test="${member.grade==69}">
   				<h4>현재 이코노미 멤버쉽을 이용중입니다.</h4>
-				<p>*매월 8일에 자동 결제 됩니다.</p>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
 				<button class="payment_btn update">수정</button>
+				<form action="/user/${loginMember.no}/payment" method="post">
 				<button class="payment_btn terminate">해지</button>
+				<input type=hidden name="_method" value="delete">
+				</form>
              </c:when>
              
              <c:when test="${member.grade==83}">
   				<h4>현재 스탠다드 멤버쉽을 이용중입니다.</h4>
-				<p>*매월 8일에 자동 결제 됩니다.</p>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
 				<button class="payment_btn update">수정</button>
+				<form action="/user/${loginMember.no}/payment" method="post">
 				<button class="payment_btn terminate">해지</button>
+				<input type=hidden name="_method" value="delete">
+				</form>
              </c:when>
              
              <c:when test="${member.grade==80}">
   				<h4>현재 프라임 멤버쉽을 이용중입니다.</h4>
-				<p>*매월 8일에 자동 결제 됩니다.</p>
+				<p>*매월 <fmt:formatDate value="${member.regdate}" pattern="dd"/>일에 자동 결제 됩니다.</p>
 				<button class="payment_btn update">수정</button>
-				<form action="/user/payment/${member.no}" method="post">
+				<form action="/user/${loginMember.no}/payment" method="post">
 				<button class="payment_btn terminate">해지</button>
 				<input type=hidden name="_method" value="delete">
 				</form>
@@ -95,7 +102,7 @@
 <div id="bg">
     <div id="paymentForm">
         <i class="fas fa-times-circle"></i>
-        <form action="/user/payment/${member.no}" method="post">
+        <form action="/user/${loginMember.no}/payment" method="post">
             <h2>이용할 멤버쉽을 선택해 주세요.</h2>
             <ul id="paymentFormTap"><!--  li 쓰면 안됨  ajax로... -->
             	<label>
@@ -170,7 +177,6 @@
                 </label>
                 
                 <label>
- 
                 <input name="card" type="radio" value="13"><li>JBP</li></input>
                 </label>
                 
@@ -209,7 +215,7 @@
         </form>
     </div>
 </div>
-<!-- 	<c:import url="/WEB-INF/template/footer.jsp" /> </main> -->
+ 	<c:import url="/WEB-INF/template/footer.jsp" /> </main> 
 	<script>
 		$("#paymentFormTap li").click(function() {
 			//4px solid #F9AC1A

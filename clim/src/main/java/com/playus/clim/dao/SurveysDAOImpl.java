@@ -21,4 +21,16 @@ public class SurveysDAOImpl implements SurveysDAO{
 		// TODO Auto-generated method stub
 		return session.selectList("surveys.selectSurveyList",pageVO);
 	}
+	
+	@Override
+	public int insertMovieRate(Survey survey) {
+		// TODO Auto-generated method stub
+		return session.insert("surveys.insertSurvey", survey);
+	}
+	
+	@Override
+	public int updateMovieRate(Survey survey) {
+		// TODO Auto-generated method stub
+		return session.update("surveys.updateSurvey",survey);
+	}
 }

@@ -195,7 +195,7 @@ body.on #headerTotalSearchText {
 	height: 300px;
 }
 
-.LoginLabel, #email, #pwd {
+.LoginLabel, #email,#headerSigninForm #pwd {
 	height: 30px;
 	position: absolute;
 }
@@ -218,7 +218,7 @@ body.on #headerTotalSearchText {
 	border: 1px solid silver;
 }
 
-#pwd {
+#headerSigninForm #pwd {
 	left: 130px;
 	top: 50px;
 	width: 240px;

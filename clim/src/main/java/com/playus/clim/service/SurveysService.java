@@ -10,4 +10,8 @@ public interface SurveysService {
 
 	public List<Survey> selectSurveyList(int page);
 	
+	public int insertMovieRate(Survey survey);
+	
+	public int updateMovieRate(Survey survey);
+	
 }

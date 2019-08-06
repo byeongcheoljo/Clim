@@ -47,13 +47,6 @@ public class MemberController {
 		return "signup";
 	}
 	
-	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
-	public String survey() {
-		
-		
-		return "survey";
-	}
-	
 	@RequestMapping(value="/join",method=RequestMethod.POST)
 	public String signUp(Member member, String year, String month, String date) {
 		System.out.println(member.getNo());
@@ -73,25 +66,10 @@ public class MemberController {
 		int memberNo = member.getNo();
 		
 		return "redirect:/user/"+memberNo+"/survey";
+		//return "redirect:/user/survey";
 	}
 	
-	@RequestMapping(value="/user/info/{no}", method=RequestMethod.GET)
-	public String pwdUpdate(HttpSession session, @PathVariable int no) {
-		
-		
-		
-		return "myPageInformation";
-	}
-	
-	@RequestMapping(value="/user/info/{no}", method=RequestMethod.POST)
-	public String pwdUpdate(Member member, @PathVariable int no) {
-	
-		membersService.updateInfo(member);
-		System.out.println(member.getPwd());
-		
-		
-		return "redirect:/index";
-	}
+
 	
 	//로그인
 	@ResponseBody

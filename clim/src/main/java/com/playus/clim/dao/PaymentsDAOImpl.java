@@ -17,7 +17,7 @@ public class PaymentsDAOImpl implements PaymentsDAO{
 	@Override
 	public Member getPayment(int no) {
 		// TODO Auto-generated method stub
-		return session.selectOne("payments.selectOne", no);
+		return session.selectOne("payments.selectOneMember", no);
 	}
 	
 	

@@ -17,4 +17,20 @@ WHERE r BETWEEN #{start} AND #{end}
 
 	</select>
 	
+	<insert id="insertSurvey" parameterType="Survey" >
+	insert into reviews(no, movie_no, member_no, score, regdate)
+	values (surveys_seq.nextval, #{movieNo}, #{memberNo}, #{score}, systimestamp)
+	</insert>
+	
+	
+	<update id="updateSurvey" parameterType="Survey">
+
+	update reviews
+	set score = #{score}
+	where movie_No = #{movieNo} and member_No = #{memberNo}
+
+	</update>
+	
+	
+	
 </mapper>

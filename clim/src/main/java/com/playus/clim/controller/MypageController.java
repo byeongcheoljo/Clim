@@ -1,9 +1,12 @@
 package com.playus.clim.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +15,7 @@ import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.MembersService;
 import com.playus.clim.service.PaymentsService;
 import com.playus.clim.vo.Bookmark;
+import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Payment;
 
 @Controller
@@ -27,19 +31,21 @@ public class MypageController {
 
 	@RequestMapping(value = "/user/{memberNo}", method = RequestMethod.GET)
 	public String myPage(Model model, @PathVariable int memberNo) {
+		
 		model.addAllAttributes(membersService.myPageMember(memberNo));
+		
 		return "mypage";
 	}
 
-	@RequestMapping(value = "/user/payment/{no}", method = RequestMethod.GET)
-	public String payment(Model model, @PathVariable int no) {
-
-		model.addAttribute("member", paymentsService.getPaymentOne(no));
+	@RequestMapping(value = "/user/{memberNo}/payment", method = RequestMethod.GET)
+	public String payment(Model model, @PathVariable int memberNo) {
+		System.out.println("payment"+memberNo);
+		model.addAttribute("member", paymentsService.getPaymentOne(memberNo));
 
 		return "payment";
 	}
 
-	@RequestMapping(value = "/user/payment/{memberNo}", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/{memberNo}/payment", method = RequestMethod.POST)
 	public String payment(Payment payment, @PathVariable int memberNo, String cardNum1, String cardNum2, String cardNum3,
 			String cardNum4, String validMonth, String validYear, String pwd, String cvc, int card) {
 
@@ -75,13 +81,13 @@ public class MypageController {
 		
 		paymentsService.updatePaymentInfo(payment);
 
-		return "redirect:/user/payment/{memberNo}";
+		return "redirect:/user/{memberNo}/payment";
 	}
 	
-	@RequestMapping(value="/user/payment/{memberNo}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/user/{memberNo}/payment", method=RequestMethod.DELETE)
 	public String payment(@PathVariable int memberNo) {
 		 paymentsService.deletePaymentInfo(memberNo);
-		return "redirect:/user/payment/{memberNo}";
+		return "redirect:/user/{memberNo}/payment";
 	}
 
 	@RequestMapping(value="/user/{memberNo}/bookmark",method=RequestMethod.GET)
@@ -92,15 +98,24 @@ public class MypageController {
 		
 	}
 	
-	@RequestMapping(value="/ajax/user/{memberNo}/bookmark/{no}",method=RequestMethod.DELETE)
-	@ResponseBody
-	public String deleteList(@PathVariable int memberNo, @PathVariable int no) {
-		int result = bookmarksService.deletMybookmarkMovie(no);
+
+	@RequestMapping(value="/user/{memberNo}/info", method=RequestMethod.GET)
+	public String pwdUpdate(HttpSession session, @PathVariable int memberNo) {
 		
-		return "{\"result:"+result+"\"}";
 		
+		
+		return "myPageInformation";
 	}
 	
+	@RequestMapping(value="/user/{memberNo}/info", method=RequestMethod.POST)
+	public String pwdUpdate(Member member, @PathVariable int memberNo, @RequestHeader String referer) {
+	
+		membersService.updateInfo(member);
+		System.out.println(member.getPwd());
+		
+		
+		return "redirect:"+referer;
+	}
 	
 	
 	

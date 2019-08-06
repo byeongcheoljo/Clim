@@ -36,4 +36,16 @@ public class SurveysServiceImpl implements SurveysService{
 		return surveysDAO.selectSurveyList(pageVO);
 	}
 	
+	@Override
+	public int insertMovieRate(Survey survey) {
+		// TODO Auto-generated method stub
+		return surveysDAO.insertMovieRate(survey);
+	}
+	
+	@Override
+	public int updateMovieRate(Survey survey) {
+		// TODO Auto-generated method stub
+		return surveysDAO.updateMovieRate(survey);
+	}
+	
 }

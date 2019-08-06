@@ -4,11 +4,11 @@
 <mapper namespace="payments">
 	
 	
-	<select id="selectOne" resultType="Member" parameterType="int">
+	<select id="selectOneMember" resultType="Member" parameterType="int">
 	
-	select m.no, email, nickname, grade, p.regdate
+	select m.no memberNo, email, nickname, grade, p.regdate regdate
 	from members m, payments p
-	where m.no = #{p.member_no}
+	where m.no = #{p.member_no} and m.no = p.member_no
 	
 	</select>
 	

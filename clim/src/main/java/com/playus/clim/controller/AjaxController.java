@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
@@ -47,6 +48,7 @@ public class AjaxController {
 	
 	@Autowired
 	private SurveysService surveysService;
+	
 	
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
@@ -110,11 +112,42 @@ public class AjaxController {
 		
 	}
 	
+	@RequestMapping(value="/user/{memberNo}/bookmark/{no}",method=RequestMethod.DELETE)
+	public String deleteList(@PathVariable int memberNo, @PathVariable int no) {
+		int result = bookmarkService.deletMybookmarkMovie(no);
+		
+		return "{\"result:"+result+"\"}";
+		
+	}
+
+	
 	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
 	public List<Survey> selectSurveyList(int page){
 		
 		
 		return surveysService.selectSurveyList(page);
 	}
+	
+	@RequestMapping(value="/user/{memberNo}/survey/{movieNo}/score/{score}", method=RequestMethod.POST)
+	public String insertMovieRate(Survey survey, @PathVariable int memberNo, @PathVariable int movieNo, @PathVariable int score) {
+		System.out.println(memberNo);
+		System.out.println(movieNo);
+		int result= surveysService.insertMovieRate(survey);
+		
+		return "{\"result:"+result+"\"}";
+	}
+	
+	
+	@RequestMapping(value="/user/{memberNo}/survey/{movieNo}/score/{score}", method=RequestMethod.PUT)
+	public String updateMovieRate(Survey survey, @PathVariable int memberNo, @PathVariable int movieNo, @PathVariable int score) {
+		System.out.println(memberNo);
+		System.out.println(movieNo);
+		int result= surveysService.updateMovieRate(survey);
+		
+		return "{\"result:"+result+"\"}";
+	
+	}
+	
+	
 	
 }
