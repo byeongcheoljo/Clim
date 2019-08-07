@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="climingLists">
 
+<<<<<<< HEAD
 	<!-- clim번호(방번호)로 climingList 출력( 방제, 방장닉네임, 방송시작시간, 방송종료시간) -->
 	<select id="selectList"  resultType="ClimingList">
 		SELECT no, title, nickname, clim_no climNo, viewCount viewerCount 
@@ -20,4 +21,31 @@
 	<select id="selectFeatures" resultType="Movie" parameterType="Feature">
 		
 	</select>
+=======
+		<insert id="insert" parameterType="ClimingList">
+			<selectKey order="BEFORE" keyProperty="no" resultType="int">
+				SELECT c_lists_seq.nextval
+				FROM dual
+			</selectKey>
+			INSERT INTO c_lists(no, member_no, title, session_id, regdate, open_time,
+			close_time)
+			VALUES(#{no}, #{memberNo}, #{title}, #{sessionId}, SYSTIMESTAMP, SYSTIMESTAMP, #{closeTime})
+		</insert>
+
+		<select id="selectOne" resultType="ClimingList"
+			parameterType="int">
+			SELECT no, member_no memberNo, title, regdate, session_id sessionId
+			FROM c_lists
+			WHERE no = #{no}
+		</select>
+
+		<select id="subscribesLiveCheck" resultType="int"
+			parameterType="int">
+			SELECT count(*)
+			FROM c_lists
+			WHERE close_time is NULL AND member_no = #{userNo}
+		</select>
+		
+		
+>>>>>>> master
 </mapper>

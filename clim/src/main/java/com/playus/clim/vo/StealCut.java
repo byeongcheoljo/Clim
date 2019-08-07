@@ -6,12 +6,26 @@ public class StealCut {
 
 	
 	private int no, movieNo;
+	private int no, movieNo,randomR;
 	private String src;
 	private Timestamp regdate;
 	
 	public StealCut() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public int getRandomR() {
+		return randomR;
+	}
+
+
+	public void setRandomR(int randomR) {
+		this.randomR = randomR;
+	}
+
+
 
 	public int getNo() {
 		return no;

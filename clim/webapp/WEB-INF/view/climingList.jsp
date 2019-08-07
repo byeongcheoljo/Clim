@@ -41,6 +41,20 @@
         <@});@>
     </script>
 
+<<<<<<< HEAD
+=======
+    $.ajax({
+        url: "/ajax/user/bookmark/${memberNo}",
+        dataType: "json",
+        type: "get",
+        error: function () {
+            alert("서버 점검중");
+        },//error end
+        success: function (json) {
+            $userStreamBox.html($climingListTmp({
+                "climes": json
+            }));
+>>>>>>> master
 
 
 

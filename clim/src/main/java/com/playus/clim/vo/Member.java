@@ -5,18 +5,57 @@ import java.sql.Timestamp;
 
 public class Member {
 
+<<<<<<< HEAD
 	
 	private int no;
 	private String email, nickname, pwd, uuid, title;
 	private char gender;
+=======
+	private int no, followerCnt, climgCnt;
+	private String email, nickname, pwd, uuid;
+	private char gender, grade;
+>>>>>>> master
 	private Date birthDate;
 	private Timestamp regdate;
 	
 	
+	private boolean subscribeCheck;
+
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public char getGrade() {
+		return grade;
+	}
+
+	public void setGrade(char grade) {
+		this.grade = grade;
+	}
+
+	public boolean isSubscribeCheck() {
+		return subscribeCheck;
+	}
+
+	public void setSubscribeCheck(boolean subscribeCheck) {
+		this.subscribeCheck = subscribeCheck;
+	}
+
+	public int getFollowerCnt() {
+		return followerCnt;
+	}
+
+	public void setFollowerCnt(int followerCnt) {
+		this.followerCnt = followerCnt;
+	}
+
+	public int getClimgCnt() {
+		return climgCnt;
+	}
+
+	public void setClimgCnt(int climgCnt) {
+		this.climgCnt = climgCnt;
+	}
 
 	public int getNo() {
 		return no;
@@ -113,4 +152,5 @@ public class Member {
 	
 	
 	
+
 }

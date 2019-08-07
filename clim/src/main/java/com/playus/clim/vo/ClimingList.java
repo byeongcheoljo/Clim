@@ -4,12 +4,59 @@ import java.sql.Timestamp;
 
 public class ClimingList {
 
+<<<<<<< HEAD
 	private int no, memberNo, viewerCount;
 	private String title, nickname;
 	private Timestamp regdate;
+=======
+	private int no, memberNo;
+	private String title, sessionId;
+	private Timestamp regdate, openTime, closeTime;
+>>>>>>> master
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Timestamp getRegdate() {
+		return regdate;
+	}
+
+
+
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
+	}
+
+
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+
+	public Timestamp getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(Timestamp openTime) {
+		this.openTime = openTime;
+	}
+
+	public Timestamp getCloseTime() {
+		return closeTime;
+	}
+
+	public void setCloseTime(Timestamp closeTime) {
+		this.closeTime = closeTime;
 	}
 
 	
@@ -60,14 +107,6 @@ public class ClimingList {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public Timestamp getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
 	}
 
 }
