@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Clim | Main</title>
 <c:import url="/WEB-INF/template/link.jsp" />
-<link rel="stylesheet" href="/css/preview.css">
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/preview.css">
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
@@ -182,7 +182,6 @@
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
 	</div>-->
-
 	<div id="climContentSection" class="index_section">
 		<span>끌림작</span>
 		<ul id="climBox">
@@ -1035,7 +1034,10 @@
 				}//success end
 			});// ajax end
 		}
-		$("#movieInformationWrap").on("click",".preview_btn",function(){
+		
+		
+		
+		$(".trailer_bg").on("click",".book_mark",function(){
 			console.log("ㅇㅇ");
 		});//click end
 
