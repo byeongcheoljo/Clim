@@ -503,8 +503,6 @@
 	<!-- 장르 3 -->
 
 
-=======
->>>>>>> master
 	</main>
 	<div class="trailer_bg">
 		<div class="bg_close_btn">
@@ -714,7 +712,7 @@
 			}
 		})
 
-		/* userStreamScript*/
+		/* userStreamScript
 		function userStream() {
 			$.ajax({
 				url : "ajax/userClim.json",

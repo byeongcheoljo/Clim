@@ -8,9 +8,9 @@
 				SELECT c_lists_seq.nextval
 				FROM dual
 			</selectKey>
-			INSERT INTO c_lists(no, member_no, title, session_id, regdate,
+			INSERT INTO c_lists(no, member_no, title, session_id, regdate, open_time,
 			close_time)
-			VALUES(#{no}, #{memberNo}, #{title}, #{sessionId}, SYSTIMESTAMP, #{closeTime})
+			VALUES(#{no}, #{memberNo}, #{title}, #{sessionId}, SYSTIMESTAMP, SYSTIMESTAMP, #{closeTime})
 		</insert>
 
 		<select id="selectOne" resultType="ClimingList"

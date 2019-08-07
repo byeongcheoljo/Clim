@@ -79,7 +79,6 @@
 		</form>
 	</div>
 	<!--//headerSearchBox-->
-
 	<c:choose>
 		<c:when test="${loginMember==null}">
 			<!--로그인 안했을때 -->
@@ -539,7 +538,7 @@
 				}
 				
             }
-        });
+        });	
     });
     
 	//비밀번호 찾기findId    //이건 서버떄 쏘스 드림
@@ -643,8 +642,6 @@
 		}// if() end 글자 다 지웠을 때는 ajax작동 안함
 	});
 
-	
-
 		
 
 
@@ -682,63 +679,53 @@
 		// SockJS와 stomp client를 통해 연결을 시도.
 		stompClient.connect({}, function() {
 
-			console.log("2) 연결!");
+			//방번호 얻어오기
+			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
+				//넘어오는 데이터는 body에
+				console.log(protocol.body);
+
+				//방을 만들었기 때문에 유저에게 목록을 다시
+				stompClient.send("/app/clim/list", {});
+
+				//해당 번호 방으로 이동
+				location.href = "/room/"+ protocol.body;
+
+			});
 
 			//인자로 받은 함수를 여기서 호출
-			if (callback)
-				callback();
+			if (callback) callback();
 
 		});
-	}
 
+	}
+	
+	console.log("before");
 	connect();
+	console.log("after");
 
 	$(".streaming_title").on("submit", function(e) {
 		e.preventDefault();
 	})
-	
 	//영화 검색시 나오는 리스트 클릭시
 
-
-	
-	
-
-	/*
-	let stompClient = null;
-	function connect(callback){
-		let socket = new SockJS('/clim');
-		stompClient = Stomp.over(socket);
-		// SockJS와 stomp client를 통해 연결을 시도.
-		stompClient.connect({},function(){
-			console.log("2) 연결");
-			if(callback) callback();
-		});
-	}//connect end
-	
-	connect(function(){
-		console.log("1) 연결");
-	
-	});//connect end
-	 */
-	 
 <c:if test="${loginMember !=null }">
-//구독취소 버튼시 리스트에서 삭제
-$("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
-			let no = this.dataset.no;
-			$.ajax({
-				url : "/ajax/user/following/${loginMember.no}/follower/"+ no,
-				type : "DELETE",
-				dataType : "json",
-				error : function() {
-					alert("에러");
-				},
-				success : function(json) {
-					console.log(json);
-					$(this).parents("li").remove();
-					getSubscribeList();
-		}//success end
-	});//ajax end		
-});//구독버튼 클릭하기
+	//구독취소 버튼시 리스트에서 삭제
+	$("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
+				let no = this.dataset.no;
+				$.ajax({
+					url : "/ajax/user/following/${loginMember.no}/follower/"+ no,
+					type : "DELETE",
+					dataType : "json",
+					error : function() {
+						alert("에러");
+					},
+					success : function(json) {
+						console.log(json);
+						$(this).parents("li").remove();
+						getSubscribeList();
+			}//success end
+		});//ajax end		
+	});//구독버튼 클릭하기
 
 	$(".movie_search").on("click",".movie_search_list",function() {
 	
@@ -772,11 +759,14 @@ $("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
 			}
 		})
 	});	
+	
 	$(".streaming_start_btn").on("click",function(e) {
 		e.stopPropagation();
-
+		
 		let title = $("#climTitle").val();
 
+		alert(title);
+		
 		//넘길 데이터(파라미터)
 
 		/*
@@ -797,21 +787,6 @@ $("#headerSubscribeWrap").on("click",".unsubscribe_list",function() {
 
 		//방만들기
 		stompClient.send("/app/clim/make", {}, data);
-
-		//방번호 얻어오기
-		stompClient.subscribe("/user/queue/clim/make", function(protocol) {
-			//넘어오는 데이터는 body에
-			console.log(protocol.body);
-
-			//방을 만들었기 때문에 유저에게 목록을 다시
-			stompClient.send(
-					"/app/clim/list", {});
-
-			//해당 번호 방으로 이동
-			location.href = "/room/"
-					+ protocol.body;
-
-		});
 
 	});
 

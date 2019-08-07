@@ -75,8 +75,6 @@
 		<bean class="interceptor.TestInterceptor"></bean> </mvc:interceptor> </mvc:interceptors> -->
 
 
-
-
 	<!-- /WEB-INF/view 와 .jsp 중복을 처리하기 위한 코드 -->
 	<mvc:view-resolvers>
 		<mvc:jsp suffix=".jsp" prefix="/WEB-INF/view/" />
@@ -97,16 +95,6 @@
 	<mvc:resources location="/video/" mapping="/video/**" />
 	<mvc:resources location="/vtt/" mapping="/vtt/**" />
 	<mvc:resources location="/climimg/" mapping="/climimg/**" />
-
-
-	<websocket:message-broker
-		application-destination-prefix="/app">
-		<websocket:stomp-endpoint path="/clim">
-			<websocket:sockjs />
-		</websocket:stomp-endpoint>
-		<websocket:simple-broker
-			prefix="/topic,/queue" />
-	</websocket:message-broker>
 
 	<!-- handshake, disconnect를 감지하는 리스너 -->
 	<bean class="com.playus.clim.stomp.listener.StompListener" />
