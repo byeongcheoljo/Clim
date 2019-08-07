@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -646,7 +647,7 @@
 
 
 	//스트리밍 방송 하기 클릭
-	
+	/*
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -662,7 +663,11 @@
 	 }
 	 });
 	 }
-	 
+	 */
+	//구독취소 버튼시 리스트에서 삭제
+	$("#headerSubscribeWrap").on("click",".unsubscribe_list", function() {
+		$(this).parents("li").remove();
+	});
 
 	//webSocket stomp client
 	let stompClient = null;
@@ -675,8 +680,6 @@
 		// SockJS와 stomp client를 통해 연결을 시도.
 		stompClient.connect({}, function() {
 
-			alert("test");
-		
 			//방번호 얻어오기
 			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
 				//넘어오는 데이터는 body에

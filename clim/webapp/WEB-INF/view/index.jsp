@@ -712,7 +712,7 @@
 			}
 		})
 
-		/* userStreamScript*/
+		/* userStreamScript
 		function userStream() {
 			$.ajax({
 				url : "ajax/userClim.json",

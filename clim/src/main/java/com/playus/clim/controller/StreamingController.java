@@ -52,7 +52,6 @@ public class StreamingController {
 		// 고유한 값
 		String sessionId = accessor.getSessionId();
 		
-		
 		//System.out.println(sessionId);
 		System.out.println("/app/clim/make");
 		//System.out.println("userNo : "+clim.getUserNo());
