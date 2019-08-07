@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 public class StealCut {
 
 	
-	private int no, movieNo;
 	private int no, movieNo,randomR;
 	private String src;
 	private Timestamp regdate;

@@ -87,6 +87,12 @@
             margin-top: 80px;
             padding-bottom: 60px;
         }
+        
+        .survey_movie_img img{
+        	width: 200px;
+        	height: 250px;
+        
+        }
 
         /*==============별 CSS*/
         .starR1{

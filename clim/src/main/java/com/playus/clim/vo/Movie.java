@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 public class Movie {
 	
 	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed;
-	private String title, contents, src, titleEng, poster,repGenre;
 	private String title, contents, src, titleEng, poster,repGenre, recSteal;
 	private Date opendate;
 	private char movieRating;

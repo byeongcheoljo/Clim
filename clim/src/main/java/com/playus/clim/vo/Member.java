@@ -17,8 +17,6 @@ public class Member {
 >>>>>>> master
 	private Date birthDate;
 	private Timestamp regdate;
-	
-	
 	private boolean subscribeCheck;
 
 	public Member() {
@@ -61,46 +59,37 @@ public class Member {
 		return no;
 	}
 
-
 	public void setNo(int no) {
 		this.no = no;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getNickname() {
 		return nickname;
 	}
 
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-
 
 	public String getPwd() {
 		return pwd;
 	}
 
-
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
 
-
 	public String getUuid() {
 		return uuid;
 	}
-
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
@@ -118,39 +107,28 @@ public class Member {
 		this.title = title;
 	}
 
-
 	public char getGender() {
 		return gender;
 	}
-
 
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
 
-
 	public Date getBirthDate() {
 		return birthDate;
 	}
-
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
-
 	public Timestamp getRegdate() {
 		return regdate;
 	}
 
-
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
-	
-	
-	
-	
 
 }

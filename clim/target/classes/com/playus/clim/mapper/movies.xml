@@ -2,11 +2,79 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="movies">
-	
-	<select id="searchMovieListForCliming" resultType="Movie" parameterType="String">
+
+	<select id="searchMovieListForCliming" resultType="Movie"
+		parameterType="String">
 		SELECT no, title, runtime, poster
 		FROM movies
-		WHERE title = #{title}
+		WHERE title LIKE #{title}
 	</select>
-	
+
+	<select id="selectMovieTrailer" resultType="Movie"
+		parameterType="int">
+		SELECT m.no no, title,opendate,
+		(SELECT
+		NVL(AVG(score),0.0) score FROM
+		reviews WHERE movie_no = 1) score,
+		movie_rating movieRating, runtime,
+		contents,t.src src,poster,m.regdate
+		regdate
+		FROM movies m, trailers t
+		WHERE m.no = t.movie_no AND m.no =
+		#{no}
+	</select>
+
+	<select id="getClimingMovieList" parameterType="int"
+		resultType="Movie">
+		select no,title,runtime,src,poster
+		from movies
+		where no
+		in(select movie_no
+		from bookmarks,
+		(select no,member_no,title
+		from
+		c_lists) clist
+		where bookmarks.member_no=clist.member_no and
+		clist.no=#{no} and type='C')
+	</select>
+
+
+	<!-- 김근경 시작 -->
+	<!-- *끌림작은 끌림지수(climed)가 높은순 *index는 no 1~10/11~20/21~30 -->
+
+
+	<!-- //끌림작 1위~30위 -->
+	<select id="indexClimedList" resultType="Movie">
+		SELECT
+		no,title,opendate,climed
+		FROM movies
+		WHERE climed BETWEEN 1 AND 30
+		ORDER
+		BY climed desc
+	</select>
+
+	<!-- //index 추천작1(no 1~10) -->
+	<select id="indexRecommandationListOne" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 1 AND 10
+	</select>
+	<!-- //index 추천작2(no 11~20) -->
+	<select id="indexRecommandationListTwo" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 11 AND 20
+	</select>
+	<!-- //index 추천작3(no 21~30) -->
+	<select id="indexRecommandationListThree" resultType="Movie">
+		SELECT
+		no,title,poster
+		FROM movies
+		WHERE no BETWEEN 21 AND 30
+	</select>
+
+
+	<!-- 김근경 끝 -->
 </mapper>

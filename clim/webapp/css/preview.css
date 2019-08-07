@@ -16,13 +16,6 @@
             height: 100%;
         }
 
-        #bg {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            background-color: rgba(35, 31, 32, .9);
-        }
-
         #previewSection {
             width: 100%;
             height: 600px;
@@ -209,25 +202,32 @@
             margin: 40px;
             cursor: pointer;
             outline: none;
+            color: #fafafa;
         }
 
         .play {
             left: 0;
             bottom: 0;
             background-color: #F9AC1A;
-            color: #fafafa;
         }
 
         .detail {
             right: 20px;
             bottom: 0;
             background-color: rgb(220, 20, 60);
-            color: #fafafa;
+        }
+        
+        .book_mark{
+        	right: -20px;
+        	top:-20px;
+        	width:80px;
+        	height:30px;
+        	background-color: aqua;
         }
 
-        #previewWrap video {
-            width: 100%;
-            height: 100%;
+        #previewWrap iframe{
+            width: 100%; IMPORT
+            height: 100%; INPORT
             background: linear-gradient(to left, rgb(30, 30, 30) 95%, rgb(30, 30, 30));
         }
 

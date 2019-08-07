@@ -19,15 +19,15 @@
     <div id="streamingDetailVideoSection">
         <div id="streamingBg">
             <div id="streamingReportPopup">
-                <div id="streamingReportName">규밤이 신고하기</div>
+                <div id="streamingReportName">${leader.nickname } 신고하기</div>
                 <button id="streamingCloseBtn"><i class="fas fa-times-circle"></i></button>
 
-                <form id="reportForm" action="tet.do" method="post">
-                    <fieldset>
+                <div id="reportForm">
+                    
                     <textarea id="streamingReportContent"></textarea>
                     <button id="streamingReportBtn">신고</button>
-                    </fieldset>
-                </form>
+                    
+                </div>
             </div>
         </div>
         <div id="streamingDetailSlideBar">
@@ -49,14 +49,14 @@
             <div id="streamingDetailTopWarp">
 
                 <div id="streamingDetailInfo" class="streamingDetail_tab_contents on">
-                    <div id="streamingDetailStreamerName"><i class="fas fa-crown"></i>규밤이</div>
+                    <div id="streamingDetailStreamerName"><i class="fas fa-crown"></i>${leader.nickname }</div>
                     <button class="streamingDetail_info_btn" id="streamingDetailSubscribeBtn"><i class="far fa-lightbulb"></i></button>
                     <button class="streamingDetail_info_btn" id="streamingDetailReportBtn"><i class="fas fa-exclamation"></i></button>
-                    <div class="streamingDetail_index" id="streamingDetailCumulativeIndex">누적 끌림 지수 : 100명</div>
-                    <div class="streamingDetail_index" id="streamingDetailCurrentIndex">현재 끌림 지수 : 30명</div>
-                    <div id="streamingDetailSubscribeContent">규밤이님을 구독하셨습니다.</div>
+                    <div class="streamingDetail_index" id="streamingDetailCumulativeIndex">누적 끌림 지수 : ${leader.acccount }명</div>
+                    <div class="streamingDetail_index" id="streamingDetailCurrentIndex">현재 끌림 지수 : ${leader.currcount }명</div>
+                    <div id="streamingDetailSubscribeContent">${leader.nickname }님을 구독하셨습니다.</div>
 
-                    <div id="streamingDetailRoomTitle">판타지 세계로~~</div>
+                    <div id="streamingDetailRoomTitle">${leader.title }</div>
                     <input id="streamingDetailTitleSearch" placeholder="입력하는 곳입니당ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ">
 
                     <div id="streamingDetailTitleList">
@@ -70,37 +70,19 @@
                     <div id="streamingDetailMovieListContents">
                         <ul id="streamingDetailMovieList">
 
-                            <li class="streamingDetail_movie">
-                                <div><img src="/img/movie_image.jpg">
-                                    <span>알라딘</span>
-                                    <source type="video/mp4" src="/video/The_Power_of_Teamwork_-_Funny_Animation.mp4" />
-                                    <div class="garbage"><i class="fas fa-trash-alt"></i></div>
-                                </div>
-                                <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
-                                <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
-                            </li>
-
-                            <li class="streamingDetail_movie">
-                                <div><img src="/img/movie_image.jpg">
-                                    <span>라이온 킹</span>
-                                    
+ 						<c:forEach items="${movieLists}" var="climing_movie">
+                           <li class="streamingDetail_movie">
+                                <div><img src="/poster${climing_movie.poster}">
+                                    <span>${climing_movie.title}</span>
                                     <source type="video/mp4" src="/video/loop.mp4" />
-
-                                    <div class="garbage"><i class="fas fa-trash-alt"></i></div>
+                                    <div class="garbage"><input hidden value="${climing_movie.no}"><i class="fas fa-trash-alt"></i></div>
                                 </div>
                                 <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
                                 <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
                             </li>
-
-
-                            <li class="streamingDetail_movie">
-                                <div><img src="/img/movie_image.jpg">
-                                    <span><a href="movieDetail.html" target="_blank"> 라이온 킹2222 </a></span>
-                                    <div class="garbage"> <i class="fas fa-trash-alt"></i> </div>
-                                </div>
-                                <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
-                                <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
-                            </li>
+  						 </c:forEach>
+		
+                            
 
                         </ul>
 
@@ -188,7 +170,7 @@
         <div class="inequality_btn" id="toggleOpenBtn">< </div>
 
         <video id="my-player" class="video-js">
-                <source type="video/mp4" src="/video/The_Power_of_Teamwork_-_Funny_Animation.mp4" />
+                  <source type="video/mp4" src="/video/loop.mp4" />
         </video>
 
 
@@ -198,15 +180,16 @@
 
 <script type="text/template" id="movieAddPlayListTmp">
 
-        <li class="streamingDetail_movie">
-        <div><img src="/</@=img@>">
-            <span><@=title@></span>
-            <div class="garbage"> <i class="fas fa-trash-alt"></i> </div>
-        </div>
-        <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
-        <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
-        </li>
-
+     
+<li class="streamingDetail_movie">
+                                <div><img src="/poster<@=img@>">
+                                    <span><@=title@></span>
+                                    <source type="video/mp4" src="/video/loop.mp4" />
+                                    <div class="garbage"><i class="fas fa-trash-alt"></i></div>
+                                </div>
+                                <button class="streamingDetail_switch_btn streamingDetail_up_btn"><i class="fas fa-angle-up"></i></button>
+                                <button class="streamingDetail_switch_btn streamingDetail_down_btn"><i class="fas fa-angle-down"></i></button>
+                            </li>
 
 </script>
 
@@ -235,7 +218,11 @@
 <script type="text/template" id="SearchListTmp">
     <@ _.each(json, function(data){ @>
 
-    <li class="movie_title"><img src="/<@=data.img@>"><@=data.title@></li>
+    <li class="movie_title"><img src="/<@=data.poster@>"><span><@=data.title@></span>
+	<input id="source" hidden value="<@=data.src@>">
+	<input id="no" hidden value="<@=data.no@>">
+	
+</li>
     <@})@>
 
 
@@ -285,7 +272,7 @@
             videojs("my-player").ready(function() {
                 myPlayer.src({
                     type: "video/mp4",
-                    src: "/video/The_Power_of_Teamwork_-_Funny_Animation.mp4"
+                    src: "/video/loop.mp4"
                 });
 
             });
@@ -324,13 +311,20 @@
             });
 
             $(".streamingDetail_movie .fa-trash-alt").click(function() {
-                alert("delete 구현해야해")
+            	const movie_no=$(this).parent().find('input').val();
+            	/*$.ajax({
+            		url:"/ajax/delete/ClimingList",
+            		data:{}
+            	});*/
                 $(this).parents("li").remove();
             });
 
             // 쓰레기통 클릭하면 영화 삭제
             $streamingDetailMovieList.on("click", ".streamingDetail_movie .fa-trash-alt", function() {
-                $(this).parents("li").remove();
+            	const movie_no=$(this).parent().find('input').val();
+            	alert("하이");
+            	$(this).parents("li").remove();
+            	return false;
             });
 
             // 영화 목록에 아래 버튼을 클릭시 스왑
@@ -387,6 +381,23 @@
             });
 
             $("#streamingReportBtn").click(function (e) {
+            	var room_no =  decodeURIComponent(location.href);
+				room_no=room_no.split('room/');
+				room_no= room_no[1];
+            	var content=$("#streamingReportContent").val()
+            	$.ajax({
+            		url:'/ajax/report/climer',
+            		data:{roomNo:room_no,userNo:2,content:content},
+            		
+            		error:function(){
+            			
+            		},
+            		success:function(){
+            			alert("신고되었습니다.");
+            		}
+
+            	});
+            	
                 e.stopPropagation();
             });
 
@@ -429,19 +440,21 @@
 
                 if (searchTitle.length == 0) {
                     $("#streamingDetailTitleList").hide();
+                    $("#streamingDetailTitleList ul").empty();
                     return false;
                 }
                 $("#streamingDetailTitleList").show();
 
                 $.ajax({
-                    url: "/ajax/movieList.json",
+                    url: "/ajax/climingSearch/"+searchTitle,
                     dataType: "json",
                     error: function() {
                         alert("movieList 서버 점검.")
                     },
                     success: function(json) {
                         console.log(json);
-                        console.log(json[0].title)
+                        console.log(json[0].title);
+                        
                        $("#streamingDetailTitleList ul").empty();
 
                         $("#streamingDetailTitleList ul").append(SearchListTmp({
@@ -469,15 +482,32 @@
 
             //영화 제목을 검색 후 영화 제목을 클릭하면 리스트에 영화가 자동으로 뜸
             $("#streamingDetailTitleList ul").on("click", ".movie_title", function() {
-                console.log($(this).text());
-                console.log($(this).find('img').attr("src"));
-                $streamingDetailMovieList.append(movieAddPlayListTmp({
-                    "title": $(this).text(),
-                    "img": $(this).find('img').attr("src")
-                }));
+            	var room_no =  decodeURIComponent(location.href);
+				room_no=room_no.split('room/');
+				room_no= room_no[1];
+				const title=$(this).text();
+				const img = $(this).find('img').attr("src");
+				const source = $(this).find('#source').val();
+				const movie_no=$(this).find('#no').val();
+            $.ajax({
+            	url:"/ajax/addClimingList",
+            	data:{roomNo:room_no,movieNo:movie_no},
+            	error:function(){
+            		alert("서버점검중");
+            	},
+            	success:function(){
+            		$streamingDetailMovieList.append(movieAddPlayListTmp({
+                        "title": title,
+                        "img": img,
+                        "source":source,
+                        "no":movie_no
+                    }));
 
-                $("#streamingDetailTitleList").hide();
-                $("#streamingDetailTitleSearch").val(" ").focus();
+                    $("#streamingDetailTitleList").hide();
+                    $("#streamingDetailTitleSearch").val(" ").focus();
+                    
+            	}
+            });
                 
             });
 
@@ -516,7 +546,7 @@
 
 
             //끌리미들 목록
-            function climList() {
+            /*function climList() {
                 $.ajax({
                     url: "/ajax/climList.json",
                     dataType: "json",
@@ -532,7 +562,7 @@
                     }
                 });
             }
-            climList();
+            climList();*/
             
             
             $("#streamingReportBtn").submit(function(){

@@ -11,7 +11,7 @@ import com.playus.clim.vo.PageVO;
 
 @Repository
 public class CommentsDAOImpl implements CommentsDAO{
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private SqlSession session;
 	

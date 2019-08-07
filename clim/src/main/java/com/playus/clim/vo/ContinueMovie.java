@@ -4,12 +4,37 @@ import java.sql.Timestamp;
 
 public class ContinueMovie {
 
-	private int no, memberNo, movieNo, currentTime;
+	private int no, memberNo, movieNo, currentTime, runtime;
 	private char flag;
+	private String title, poster;
 	private Timestamp regdate;
 
 	public ContinueMovie() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(int runtime) {
+		this.runtime = runtime*60;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 
 	public int getNo() {

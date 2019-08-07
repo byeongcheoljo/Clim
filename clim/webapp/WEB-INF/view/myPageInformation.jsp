@@ -24,13 +24,14 @@
 	<div id="myPageInformationWrap">
 
 
-		<form id="information" action="">
+		<form id="information" action="/user/${loginMember.no}/info" method="post">
+		<input type="hidden" name="no" value="${loginMember.no}">
 			<h2>개인정보 수정</h2>
 			<p>
-				<strong>e-mail</strong> gildong123@gmail.com
+				<strong>e-mail</strong> ${loginMember.email}
 			</p>
 			<p>
-				<strong>닉네임</strong> 쾌걸 홍길동
+				<strong>닉네임</strong> ${loginMember.nickname}
 			</p>
 			<p>
 				<strong>비밀번호</strong> <input id="newPwd" type="password"
@@ -42,9 +43,11 @@
 					class="pwd" name="pwdCheck" placeholder="위와 동일한 비밀번호를 입력해주세요." />
 			</p>
 			<div class="pwd_check msg"></div>
+		
+		<button class="information_btn change" type="submit">변경</button>
+		<button class="information_btn cancel" type="reset">취소</button>
 		</form>
-		<button class="information_btn change">변경</button>
-		<button class="information_btn cancel">취소</button>
+
 	</div>
 	<script>
 		$("#headerNavMypage li").click(function() {
@@ -64,22 +67,35 @@
 		const pwdExp = /^[\w]{8,}$/;
 
 		$information.submit(function() {
-			if (!testPw()) {
-				return false;
-			}
-			if (!testPwCheck()) {
-				return false;
-			}
+			
+// 			if (!testPwCheck()) {
+// 				console.log(!testPwCheck())
+// 				console.log("zz2");
+				
+// 			}
+			
+// 		 	if (!testPw()) {
+// 		 		//console.log(!testPw())
+// 		 		console.log("zz1");
+// 				return false;
+// 			}
+		 	testPwCheck();
+		 	testPw();
+			console.log("abc");
+			
+			
 		});
 
 		function testPw() {
 			let pw1 = $newPwd.val().trim();
-			if (pw1 == '' | pw1 == ' ') {
+			if (pw1 == ''  | pw1 == ' ') {
 				$newPwdMsg.removeClass("ok")
 						.text("비밀번호에 공백 또는 빈칸은 들어갈 수 없습니다.");
+				return false;
 			}
 			if (!pwdExp.test(pw1)) {
 				$newPwdMsg.removeClass("ok").text("비밀번호를 다시 설정해주세요.");
+				return false;
 			} else {
 				$newPwdMsg.addClass("ok").text("좋은 비밀번호네요!");
 			}
@@ -90,10 +106,11 @@
 			let pw2 = $newPwdCheck.val().trim();
 			if (!pwdExp.test(pw2)) {
 				$newPwdCheckMsg.removeClass("ok").text("비밀번호를 다시 설정해주세요.");
+				return false;
 			}
-
 			if (pw1 != pw2) {
 				$newPwdCheckMsg.removeClass("ok").text("비밀번호가 일치하지않습니다.");
+				return false;
 			} else {
 				$newPwdCheckMsg.addClass("ok").text("비밀번호가 일치합니다");
 			}
@@ -101,6 +118,9 @@
 
 		$newPwd.keyup(testPw);
 		$newPwdCheck.keyup(testPwCheck);
+		
+	
+		
 	</script>
 </body>
 </html>

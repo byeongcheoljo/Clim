@@ -11,7 +11,7 @@ import com.playus.clim.vo.Review;
 
 @Repository
 public class ReviewsDAOImpl implements ReviewsDAO{
-	
+	/* 0803 홍성표 */
 	@Autowired
 	private SqlSession session;
 	

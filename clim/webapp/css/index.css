@@ -12,13 +12,13 @@ body{
 }
 .index_section{
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 .move_btn{
     color: white;
     position: absolute;
-    font-size: 50px;
-    top: 125px;
+    font-size: 35px;
+    top: 140px;
     cursor: pointer;
 }
 .move_btn:hover{
@@ -50,13 +50,15 @@ body{
     bottom: -3px;
 }
 .index_section span {
-    font-weight: bold;
-    color: #FFF;
-    font-size: 26px;
+    
+    color: #fafafa;
+    font-size: 22px;
     position: relative;
-    top: 5px;
-    left:30px;
+    top: 15px;
+    left:50px;
     user-select: none;
+    font-weight: bold;
+    text-shadow: 1px 1px #424242;
 }
 
 
@@ -261,7 +263,7 @@ body{
 #heroImg{
     width: 1100px;
     height:400px;
-    margin: 50px 0;
+    margin: 50px 0 100px 0;
 }
 #heroImg img{
     width: 1100px;
@@ -322,9 +324,9 @@ body{
 }
 .bg_close_btn{
     position: absolute;
-    right: 40px;
-    top: 40px;
-    font-size: 50px;
+    right: 20px;
+    top: 60px;
+    font-size: 40px;
     color: #fff;
     cursor: pointer;
 }
@@ -338,7 +340,7 @@ body{
     margin-top: 25px;
     left: 0;
     transition: .3s ease;
-    width: 1260px;
+    width: 2100px;
 }
 .recommend_card{
     width: 154px;
@@ -456,13 +458,14 @@ body{
 }
 .recommend_card_rank7 img{
     width: 194px;
-    height: 189px;
+    height: 189	px;
 }
 .recommend_special_name{
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    color: #FFFFFF;
-    font-size: 20px;
+    bottom: 10px;
+    left: 10px;
+    color: #fafafa;
+    text-shadow: 1px 1px #424242;
+    font-size: 18px;
     font-weight: bold;
 }
