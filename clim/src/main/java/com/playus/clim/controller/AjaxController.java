@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
+<<<<<<< HEAD
+import com.playus.clim.service.ClimingListsService;
+=======
 import com.playus.clim.service.BookmarksService;
+>>>>>>> master
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.ContinueMoviesService;
 import com.playus.clim.service.MembersService;
@@ -21,10 +25,14 @@ import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+<<<<<<< HEAD
+import com.playus.clim.vo.ClimingList;
+=======
 import com.playus.clim.service.SurveysService;
 import com.playus.clim.vo.ContinueMovie;
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
+>>>>>>> master
 import com.playus.clim.vo.Movie;
 import com.playus.clim.vo.Survey;
 
@@ -41,6 +49,9 @@ public class AjaxController {
 	@Autowired
 	private MoviesService moviesService;
 	@Autowired
+<<<<<<< HEAD
+	private ClimingListsService climingListsService;
+=======
 	private BookmarksService bookmarksService;
 	@Autowired
 	private ReportsService reportService;
@@ -57,6 +68,7 @@ public class AjaxController {
 	private SurveysService surveysService;
 	
 	
+>>>>>>> master
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -79,6 +91,14 @@ public class AjaxController {
 	public List<Movie> getSearchResultForcliming(@PathVariable String title){
 		return moviesService.getSearchResultForcliming(title);
 	}
+<<<<<<< HEAD
+/* -------------------------------------------Sohn-------------------------------------------*/
+	@RequestMapping(value="/climing", method=RequestMethod.GET)
+	public List<ClimingList> getClimingList(){
+		return climingListsService.getClimingList();
+	}
+/* -------------------------------------------//Sohn-------------------------------------------*/
+=======
 	
 	@RequestMapping(value="/bookmark/climing", method = RequestMethod.GET)
 	public List<Bookmark> getmyBookmarkListForCliming(HttpSession session){
@@ -107,6 +127,7 @@ public class AjaxController {
 			return "{\"result\":\""+ "실패" +"\"}";
 		}
 	}
+>>>>>>> master
 
 	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
 	public int getCheckId(String email) {
@@ -192,3 +213,8 @@ public class AjaxController {
 /*근경끝*/
 	
 }
+
+
+
+
+

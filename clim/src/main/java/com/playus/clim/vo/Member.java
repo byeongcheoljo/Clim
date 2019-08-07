@@ -5,9 +5,16 @@ import java.sql.Timestamp;
 
 public class Member {
 
+<<<<<<< HEAD
+	
+	private int no;
+	private String email, nickname, pwd, uuid, title;
+	private char gender;
+=======
 	private int no, followerCnt, climgCnt;
 	private String email, nickname, pwd, uuid;
 	private char gender, grade;
+>>>>>>> master
 	private Date birthDate;
 	private Timestamp regdate;
 	private boolean subscribeCheck;
@@ -86,6 +93,18 @@ public class Member {
 
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
+	}
+	
+	
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public char getGender() {

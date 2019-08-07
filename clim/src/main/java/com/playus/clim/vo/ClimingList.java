@@ -4,9 +4,15 @@ import java.sql.Timestamp;
 
 public class ClimingList {
 
+<<<<<<< HEAD
+	private int no, memberNo, viewerCount;
+	private String title, nickname;
+	private Timestamp regdate;
+=======
 	private int no, memberNo;
 	private String title, sessionId;
 	private Timestamp regdate, openTime, closeTime;
+>>>>>>> master
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
@@ -52,6 +58,32 @@ public class ClimingList {
 	public void setCloseTime(Timestamp closeTime) {
 		this.closeTime = closeTime;
 	}
+
+	
+	
+	public int getViewerCount() {
+		return viewerCount;
+	}
+
+
+
+	public void setViewerCount(int viewerCount) {
+		this.viewerCount = viewerCount;
+	}
+
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
 
 	public int getNo() {
 		return no;
