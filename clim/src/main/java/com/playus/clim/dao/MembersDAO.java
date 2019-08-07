@@ -1,24 +1,9 @@
 package com.playus.clim.dao;
 
 import com.playus.clim.vo.Member;
-<<<<<<< HEAD
-
-
-public interface MembersDAO {
-	
-	public int checkId(String email);
-	public int checkNickname(String nickname);
-	
-	public int insertMember(Member member);
-	
-	public int updateInfo(Member member);
-
-=======
-
 public interface MembersDAO {
 	/* 0803 홍성표 */
 	public Member selectOneByNo(int no);
->>>>>>> master
 	//myPage
 	public Member myPageMemberSelectOne(int memberNo);
 	//로그인
@@ -37,4 +22,5 @@ public interface MembersDAO {
 	public int insertMember(Member member);
 	
 	public int updateInfo(Member member);
+	
 }

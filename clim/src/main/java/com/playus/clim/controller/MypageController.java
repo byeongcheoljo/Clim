@@ -1,10 +1,7 @@
 package com.playus.clim.controller;
 
-<<<<<<< HEAD
-=======
-import java.util.List;
+import java.util.List; 
 
->>>>>>> master
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-<<<<<<< HEAD
-=======
 
 import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.EventsService;
@@ -25,13 +20,10 @@ import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.ClimingMovieList;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Member;
->>>>>>> master
 
 import com.playus.clim.service.BookmarksService;
-import com.playus.clim.service.MembersService;
 import com.playus.clim.service.PaymentsService;
 import com.playus.clim.vo.Bookmark;
-import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Payment;
 
 @Controller
@@ -40,22 +32,27 @@ public class MypageController {
 	@Autowired
 	private MembersService membersService;
 	@Autowired
-<<<<<<< HEAD
 	private PaymentsService paymentsService;
 	@Autowired
 	private BookmarksService bookmarksService;
+	@Autowired
+	private ClimingMovieListsService climingMovieListsService;
+	@Autowired
+	private SubscribesService subscribesService;
+	@Autowired
+	private EventsService eventsService;
 	
-
 	@RequestMapping(value = "/user/{memberNo}", method = RequestMethod.GET)
-	public String myPage(Model model, @PathVariable int memberNo) {
-		
-		model.addAllAttributes(membersService.myPageMember(memberNo));
-		
+	public String myPage(Model model, @PathVariable int memberNo, HttpSession session) {  
+
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int loginMemberNo = loginMember.getNo();
+		model.addAttribute("member", membersService.myPageMember(memberNo, loginMemberNo));
 		return "mypage";
 	}
-
+	
 	@RequestMapping(value = "/user/{memberNo}/payment", method = RequestMethod.GET)
-	public String payment(Model model, @PathVariable int memberNo) {
+	public String payment(Model model, @PathVariable int memberNo) { 
 		System.out.println("payment"+memberNo);
 		model.addAttribute("member", paymentsService.getPaymentOne(memberNo));
 
@@ -63,7 +60,7 @@ public class MypageController {
 	}
 
 	@RequestMapping(value = "/user/{memberNo}/payment", method = RequestMethod.POST)
-	public String payment(Payment payment, @PathVariable int memberNo, String cardNum1, String cardNum2, String cardNum3,
+	public String payment(Payment payment, @PathVariable int memberNo, String cardNum1, String cardNum2, String cardNum3, 
 			String cardNum4, String validMonth, String validYear, String pwd, String cvc, int card) {
 
 		//카드 번호 합치기
@@ -115,9 +112,8 @@ public class MypageController {
 		
 	}
 	
-
 	@RequestMapping(value="/user/{memberNo}/info", method=RequestMethod.GET)
-	public String pwdUpdate(HttpSession session, @PathVariable int memberNo) {
+	public String pwdUpdate(HttpSession session, @PathVariable int memberNo) { 
 		
 		
 		
@@ -125,7 +121,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/user/{memberNo}/info", method=RequestMethod.POST)
-	public String pwdUpdate(Member member, @PathVariable int memberNo, @RequestHeader String referer) {
+	public String pwdUpdate(Member member, @PathVariable int memberNo, @RequestHeader String referer) { 
 	
 		membersService.updateInfo(member);
 		System.out.println(member.getPwd());
@@ -134,24 +130,6 @@ public class MypageController {
 		return "redirect:"+referer;
 	}
 	
-	
-	
-=======
-	private ClimingMovieListsService climingMovieListsService;
-	@Autowired
-	private SubscribesService subscribesService;
-	@Autowired
-	private EventsService eventsService;
-
-	@RequestMapping(value = "/user/{memberNo}", method = RequestMethod.GET)
-	public String myPage(Model model, @PathVariable int memberNo, HttpSession session) {
-
-		Member loginMember = (Member) session.getAttribute("loginMember");
-		int loginMemberNo = loginMember.getNo();
-		model.addAttribute("member", membersService.myPageMember(memberNo, loginMemberNo));
-		return "mypage";
-	}
-
 	@RequestMapping(value = "/ajax/user/{memberNo}/climing", method = RequestMethod.GET)
 	@ResponseBody
 	public List<ClimingMovieList> myPageClimingMovieList(@PathVariable int memberNo) {
@@ -190,7 +168,5 @@ public class MypageController {
 		
 		return "mypageCommunity";
 	}
-	
 
->>>>>>> master
 }

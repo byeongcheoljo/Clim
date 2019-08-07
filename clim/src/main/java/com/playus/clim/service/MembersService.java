@@ -1,10 +1,6 @@
 package com.playus.clim.service;
 
-<<<<<<< HEAD
-import java.util.Map; 
-=======
 import java.util.Map;
->>>>>>> master
 
 import javax.servlet.http.HttpSession;
 
@@ -28,19 +24,10 @@ public interface MembersService {
 	public int insertMember(Member member);
 
 	public int updateInfo(Member member);
-<<<<<<< HEAD
 	
 	//이메일 링크 클릭후 비밀번호 변경 홈페이지
-	public Map<String, Object> pwdUpdate(Member member);
-	
-	//myPage
-	public Map<String, Object> myPageMember(int memberNo);
-=======
-
-	// 이메일 링크 클릭후 비밀번호 변경 홈페이지
 	public Map<String, Object> pwdUpdate(Member member);
 
 	// myPage
 	public Member myPageMember(int memberNo, int loginMember);
->>>>>>> master
 }
