@@ -5,11 +5,6 @@
 	<select id="myWriteBoardsList" resultType="Board"
 		parameterType="PageVO">
 		SELECT no, contents, memberNo, views, regdate, r
-		FROM(SELECT no, contents, memberNo, views, regdate, rownum r
-		FROM(SELECT no, contents, member_no memberNo, views, regdate
-		FROM boards
-		WHERE member_no = #{memberNo}
-		ORDER BY regdate))
 		FROM(SELECT no, contents, memberNo, views, regdate, rownum r 
 			 FROM(SELECT no, contents, member_no memberNo, views, regdate
 				  FROM boards
