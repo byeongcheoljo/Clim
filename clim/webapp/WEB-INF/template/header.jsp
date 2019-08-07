@@ -970,7 +970,7 @@
 
 
 	//스트리밍 방송 하기 클릭
-	/*
+	
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -986,7 +986,7 @@
 	 }
 	 });
 	 }
-	 */
+	 
 	//구독취소 버튼시 리스트에서 삭제
 	$("#headerSubscribeWrap").on("click",".unsubscribe_list", function() {
 		$(this).parents("li").remove();
