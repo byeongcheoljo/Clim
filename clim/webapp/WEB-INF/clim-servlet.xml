@@ -58,6 +58,9 @@
 			prefix="/topic, /queue" />
 	</websocket:message-broker>
 
+		<!-- handshake, disconnect를 감지하는 리스너 -->
+	 <bean class="com.playus.listener.StompListener"/>
+	  
 </beans>
 
 

@@ -60,6 +60,7 @@ body{
 
 .user_streaming_card .streaming_info {
 	position: relative;
+	top:15px;
 	color: #fafafa;
 }
 

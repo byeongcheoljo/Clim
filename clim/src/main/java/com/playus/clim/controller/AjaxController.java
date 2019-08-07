@@ -14,6 +14,7 @@ import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Movie;
 
 @RestController
@@ -55,10 +56,15 @@ public class AjaxController {
 		return moviesService.getSearchResultForcliming(title);
 	}
 /* -------------------------------------------Sohn-------------------------------------------*/
-	@RequestMapping(value="/climing/member/{memberNo}", method=RequestMethod.GET)
-	public List<Movie> getClimingMovieList(@PathVariable int memberNo){
-		return climingListsService.getList(memberNo);
+	@RequestMapping(value="/climing", method=RequestMethod.GET)
+	public List<ClimingList> getClimingList(){
+		return climingListsService.getClimingList();
 	}
 /* -------------------------------------------//Sohn-------------------------------------------*/
 
 }
+
+
+
+
+

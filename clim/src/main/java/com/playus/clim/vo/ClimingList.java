@@ -4,13 +4,39 @@ import java.sql.Timestamp;
 
 public class ClimingList {
 
-	private int no, memberNo;
-	private String title;
+	private int no, memberNo, viewerCount;
+	private String title, nickname;
 	private Timestamp regdate;
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	public int getViewerCount() {
+		return viewerCount;
+	}
+
+
+
+	public void setViewerCount(int viewerCount) {
+		this.viewerCount = viewerCount;
+	}
+
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
 
 	public int getNo() {
 		return no;

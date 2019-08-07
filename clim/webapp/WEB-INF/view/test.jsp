@@ -4,9 +4,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>레알마드리드 방장페이지</title>
 </head>
 <body>
-
+<h1>방장인데스</h1>
 </body>
 </html>
