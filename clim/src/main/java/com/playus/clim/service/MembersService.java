@@ -24,8 +24,8 @@ public interface MembersService {
 	public int insertMember(Member member);
 
 	public int updateInfo(Member member);
-
-	// 이메일 링크 클릭후 비밀번호 변경 홈페이지
+	
+	//이메일 링크 클릭후 비밀번호 변경 홈페이지
 	public Map<String, Object> pwdUpdate(Member member);
 
 	// myPage

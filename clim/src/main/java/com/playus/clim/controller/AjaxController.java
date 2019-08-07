@@ -1,6 +1,6 @@
 package com.playus.clim.controller;
 
-import java.util.List; 
+import java.util.List;  
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
-import com.playus.clim.service.ClimingMovieListsService;
 import com.playus.clim.service.CommentsService;
 import com.playus.clim.service.ContinueMoviesService;
 import com.playus.clim.service.MembersService;
@@ -21,10 +21,12 @@ import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
+import com.playus.clim.service.SurveysService;
 import com.playus.clim.vo.ContinueMovie;
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
+import com.playus.clim.vo.Survey;
 
 @RestController
 @RequestMapping(value = "/ajax")
@@ -50,6 +52,11 @@ public class AjaxController {
 	private ContinueMoviesService continueMoviesService;
 	@Autowired
 	private MembersService membersService;
+	
+	@Autowired
+	private SurveysService surveysService;
+	
+	
 	
 	@RequestMapping(value = "/member/{memberNo}/boards/page/{page}", method = RequestMethod.GET)
 	public Map<String, Object> getMyBoards(@PathVariable int memberNo, @PathVariable int page){
@@ -130,6 +137,50 @@ public class AjaxController {
 
 	}
 	
+	@RequestMapping(value="/user/{memberNo}/bookmark", method=RequestMethod.GET)
+	public List<Bookmark> getMovieBookmarkList(@PathVariable int memberNo){
+		
+		return  bookmarkService.getMyMovieList(memberNo);
+		
+	}
+	
+	@RequestMapping(value="/user/{memberNo}/bookmark/{no}",method=RequestMethod.DELETE)
+	public String deleteList(@PathVariable int memberNo, @PathVariable int no) {
+		int result = bookmarkService.deletMybookmarkMovie(no);
+		
+		return "{\"result:"+result+"\"}";
+		
+	}
+
+	
+	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
+	public List<Survey> selectSurveyList(int page){
+		
+		
+		return surveysService.selectSurveyList(page);
+	}
+	
+	@RequestMapping(value="/user/{memberNo}/survey/{movieNo}/score/{score}", method=RequestMethod.POST)
+	public String insertMovieRate(Survey survey, @PathVariable int memberNo, @PathVariable int movieNo, @PathVariable int score) {
+		System.out.println(memberNo);
+		System.out.println(movieNo);
+		int result= surveysService.insertMovieRate(survey);
+		
+		return "{\"result:"+result+"\"}";
+	}
+	
+	
+	@RequestMapping(value="/user/{memberNo}/survey/{movieNo}/score/{score}", method=RequestMethod.PUT)
+	public String updateMovieRate(Survey survey, @PathVariable int memberNo, @PathVariable int movieNo, @PathVariable int score) {
+		System.out.println(memberNo);
+		System.out.println(movieNo);
+		int result= surveysService.updateMovieRate(survey);
+		
+		return "{\"result:"+result+"\"}";
+	
+	}
+	
+	
 	
 /*근경시작*/
 	//index에서 이어보기
@@ -140,7 +191,4 @@ public class AjaxController {
 	
 /*근경끝*/
 	
-	
-	
-
 }

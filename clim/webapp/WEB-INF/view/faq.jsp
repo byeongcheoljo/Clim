@@ -177,7 +177,8 @@
     <!--팝업창(문의하기) 마크업-->
     <div id="faqWriteBg"></div>
     <div id="faqWriteWrap">
-        <form action="" method="">
+        <form action="/QnA" method="post">
+        <input type="hidden" name="reporterNo", value="${loginMember.no}">
             <div class="faq_write_top">문의하기</div>
             <div class="faq_write_content">
                     <ul>
@@ -185,21 +186,21 @@
                         <li>
                             <span class="content_common"><label for="faqTitleInput">제목</label></span>
                             <div class="content_input_box">
-                                <input name="" id="faqTitleInput">
+                                <input name="title" id="faqTitleInput">
                             </div>
                         </li>
 
                         <li>
                             <span class="content_common"><label for="faqEmailInput">이메일 주소</label></span>
                             <div class="content_input_box">
-                                <input name="" placeholder=" example@gamil.com" id="faqEmailInput">
+                                <input name="email" value="${loginMember.email}" placeholder=" example@gamil.com" id="faqEmailInput">
                             </div>
                         </li>
 
                         <li>
                             <span class="content_common"><label for="faqContentInput">문의 내용</label></span>
 
-                                <textarea name="" id="faqContentInput" placeholder="글자수는 300자로 제한됩니다."></textarea>
+                                <textarea name="contents" id="faqContentInput" placeholder="글자수는 300자로 제한됩니다."></textarea>
                                 <span id="faqContentCounter">(0 / 최대 300자)</span>
 
                         </li>

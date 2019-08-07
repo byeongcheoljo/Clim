@@ -37,5 +37,17 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 		// TODO Auto-generated method stub
 		session.insert("bookmarks.insertClimingList", bookmark);
 	}
+	
+	@Override
+	public List<Bookmark> mybookmarkListForMovies(int no) {
+		// TODO Auto-generated method stub
+		return session.selectList("bookmarks.mybookmarkListForMovies", no);
+	}
+	
+	@Override
+	public int deletMybookmarkMovie(int no) {
+		// TODO Auto-generated method stub
+		return session.delete("deleteMybookmarkMovie",no);
+	}
 
 }

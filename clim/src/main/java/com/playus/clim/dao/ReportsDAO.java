@@ -6,5 +6,7 @@ public interface ReportsDAO {
 
 
 	void insertReportClimer(Report report);
+	
+	public int insertFAQ(Report report);
 
 }

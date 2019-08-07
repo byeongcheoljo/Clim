@@ -22,4 +22,10 @@ System.out.println(report.getContents());
 	session.insert("reports.climer",report);
 }
 
+
+@Override
+public int insertFAQ(Report report) {
+	// TODO Auto-generated method stub
+	return session.insert("reports.faq",report);
+}
 }

@@ -13,7 +13,7 @@
 <main id="content">
     <!--###########################################################################코딩시작-->
     <div id="signupLogoImg">
-        <a href="index.html"><img src="/img/clim.png"/></a>
+        <a href="/index"><img src="/img/clim.png"/></a>
     </div>
     <div id="signupWrap">
         <form method="post" action="/join" id="signUpForm">

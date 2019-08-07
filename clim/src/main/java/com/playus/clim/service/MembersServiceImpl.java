@@ -1,6 +1,6 @@
 package com.playus.clim.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.MembersDAO;
@@ -9,7 +9,6 @@ import com.playus.clim.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
-import com.playus.clim.dao.MembersDAOImpl;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -29,24 +28,22 @@ public class MembersServiceImpl implements MembersService{
 	private MembersDAO membersDAO;
 	@Autowired
 	private SubscribesDAO subscribesDAO;
-	@Autowired
-	private MembersDAOImpl memberDaoImpl;
+
 	
 	/* hsp */
 	@Override
-	public Member getMemberByNo(int no) {
+	public Member getMemberByNo(int no) {  
 		return membersDAO.selectOneByNo(no);
 	}
 	
 	//로그인
 	@Override
-	public Map<String, Object> login(Member member, HttpSession session) {
+	public Map<String, Object> login(Member member, HttpSession session) { 
 		Member loginMember = membersDAO.selectLogin(member);
 
 		session.setAttribute("loginMember", loginMember);
 
 		System.out.println("서비스" + loginMember);
-
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
 		if (loginMember != null && loginMember.getUuid()==null) {
@@ -57,15 +54,21 @@ public class MembersServiceImpl implements MembersService{
 		}
 		return map;
 	}
-	
+
+	@Override
+	public int getCheckId(String email) {
+		return membersDAO.checkId(email);
+	}
 	@Override
 	public int getCheckNickname(String nickname) {
-		return memberDaoImpl.checkNickname(nickname);
+		// TODO Auto-generated method stub
+		return membersDAO.checkNickname(nickname);
 	}
 	
 	@Override
 	public int insertMember(Member member) {
-		return memberDaoImpl.insertMember(member);
+		// TODO Auto-generated method stub
+		return membersDAO.insertMember(member);
 	}
 	
 	@Override
@@ -88,7 +91,7 @@ public class MembersServiceImpl implements MembersService{
 	@Override
 	public int updateInfo(Member member) {
 		// TODO Auto-generated method stub
-		return memberDaoImpl.updateInfo(member);
+		return membersDAO.updateInfo(member);
 	}
 	public Map<String, Object> pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
@@ -104,10 +107,7 @@ public class MembersServiceImpl implements MembersService{
 		
 		return map;
 	}
-	@Override
-	public int getCheckId(String email) {
-		return membersDAO.checkId(email);
-	}
+	
 	
 	@Override
 	public Member myPageMember(int memberNo,int loginMember) {

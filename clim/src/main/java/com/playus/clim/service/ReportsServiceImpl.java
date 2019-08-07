@@ -22,4 +22,11 @@ public class ReportsServiceImpl implements ReportsService{
 		reportsdao.insertReportClimer(report);
 		
 	}
+	
+	
+	@Override
+	public int reportFaq(Report report) {
+		// TODO Auto-generated method stub
+		return reportsdao.insertFAQ(report);
+	}
 }
