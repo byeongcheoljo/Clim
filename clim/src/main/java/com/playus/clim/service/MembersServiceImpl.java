@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -117,6 +118,26 @@ public class MembersServiceImpl implements MembersService{
 		subscribe.setFollower(memberNo);
 		member.setSubscribeCheck(1==subscribesDAO.subscribesCheck(subscribe));
 	return member;
+	}
+	
+	@Override
+	public List<Member> myPageMovieForActors(int no) {
+		return membersDAO.myPageMovieForActors(no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieFordirectors(int no) {
+		return membersDAO.myPageMovieFordirectors(no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieForGenres(int no) {
+		return membersDAO.myPageMovieForGenres(no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieForStriming(int no) {
+		return membersDAO.myPageMovieForStriming(no);
 	}
 }
 

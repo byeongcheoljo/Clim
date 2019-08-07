@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Member {
 
 	private int no, followerCnt, climgCnt;
-	private String email, nickname, pwd, uuid;
+	private String email, nickname, pwd, uuid, name;
 	private char gender, grade;
 	private Date birthDate;
 	private Timestamp regdate;
@@ -14,6 +14,14 @@ public class Member {
 
 	public Member() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public char getGrade() {

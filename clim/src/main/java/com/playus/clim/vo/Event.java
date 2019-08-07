@@ -36,9 +36,11 @@ public class Event {
 	}
 
 	@JsonProperty("end")
-	public String getEndDate() {
+	public Date getEndDate() {
 		 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd 09:00:00");
-		return sdf.format(endDate);
+		String date= sdf.format(endDate);
+		endDate = Date.valueOf(date);
+		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {

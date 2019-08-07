@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.playus.clim.service.MoviesService;
 
@@ -15,8 +16,9 @@ public class MovieController {
 	@Autowired
 	private MoviesService moviesService;
 	
-	@RequestMapping(value = "/ajax/movie/{no}/trailer",method = RequestMethod.GET )
-	public Map<String, Object> getTrailer(@PathVariable int no){
-		return moviesService.getMovieTrailer(no);
+	@RequestMapping(value = "/ajax/movie/{movieNo}/trailer",method = RequestMethod.GET )
+	@ResponseBody
+	public Map<String, Object> getTrailer(@PathVariable int movieNo){
+		return moviesService.getMovieTrailer(movieNo);
 	}
 }

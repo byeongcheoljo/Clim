@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Clim | Main</title>
 <c:import url="/WEB-INF/template/link.jsp" />
-<link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/preview.css">
+<link rel="stylesheet" href="/css/index.css" />
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
@@ -146,48 +146,43 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- //hotSection end -->
-	
-	<c:if test="${loginMember!=null }">
-	<!-- 구독중인 끌리머의 스트리밍 -->
-	<div id="userStreamSection" class="index_section">
-		<span>${loginMember.nickname}님의 클리머</span>
-		<ul id="userStreamBox">
-		</ul>
-		<!-- //userStreamBox end -->
-		<div class="move_btn userstream_move_prev">
-			<i class="fas fa-angle-left"></i>
+	<!-- //hotSection end --> <c:if test="${loginMember!=null }">
+		<!-- 구독중인 끌리머의 스트리밍 -->
+		<div id="userStreamSection" class="index_section">
+			<span>${loginMember.nickname}님의 클리머</span>
+			<ul id="userStreamBox">
+			</ul>
+			<!-- //userStreamBox end -->
+			<div class="move_btn userstream_move_prev">
+				<i class="fas fa-angle-left"></i>
+			</div>
+			<div class="move_btn userstream_move_next">
+				<i class="fas fa-angle-right"></i>
+			</div>
 		</div>
-		<div class="move_btn userstream_move_next">
-			<i class="fas fa-angle-right"></i>
-		</div>
-	</div>
-	<!-- //userStreamSection(구독중인 끌리머 방송 구역 끝) end -->
-	
+		<!-- //userStreamSection(구독중인 끌리머 방송 구역 끝) end -->
 
-	<!-- 이어보기 구역 -->
-	<!-- //userStreamSection end -->
-	<div id="continueSection" class="index_section">
-		<span>이어보기</span>
-		<ul id="continueBox">
-		</ul>
-		<!-- //continueBox end -->
-		<div class="move_btn continue_move_prev">
-			<i class="fas fa-angle-left"></i>
-		</div>
-		<div class="move_btn continue_move_next">
-			<i class="fas fa-angle-right"></i>
-		</div>
-	</div>
-	<!-- //continueSection(이어보기 구역 끝) -->
-	</c:if>
 
-	<!-- //continueSection end -->
-	<!--  
+		<!-- 이어보기 구역 -->
+		<!-- //userStreamSection end -->
+		<div id="continueSection" class="index_section">
+			<span>이어보기</span>
+			<ul id="continueBox">
+			</ul>
+			<!-- //continueBox end -->
+			<div class="move_btn continue_move_prev">
+				<i class="fas fa-angle-left"></i>
+			</div>
+			<div class="move_btn continue_move_next">
+				<i class="fas fa-angle-right"></i>
+			</div>
+		</div>
+		<!-- //continueSection(이어보기 구역 끝) -->
+	</c:if> <!-- //continueSection end --> <!--  
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
 	</div>-->
-	
+
 	<div id="climContentSection" class="index_section">
 		<span>끌림작</span>
 		<ul id="climBox">
@@ -195,8 +190,8 @@
 			<li>
 				<ul>
 					<c:forEach items="${climedList}" var="climed" begin="0" end="5">
-						<li class="clim_card" data-movieNo="${climed.no }">
-							<img src="/stealCut${climed.recSteal }" />
+						<li class="clim_card" data-movieNo="${climed.no }"><img
+							src="/stealCut${climed.recSteal }" />
 							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
 									value="${climed.opendate}" pattern="YYYY" />
 								)
@@ -206,7 +201,7 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-				
+
 				</ul>
 			</li>
 			<!-- //끌림작 1~6위 끝 -->
@@ -214,8 +209,8 @@
 			<li>
 				<ul>
 					<c:forEach items="${climedList }" var="climed" begin="6" end="11">
-						<li class="clim_card" data-movieNo="${climed.no }">
-						<img src="/stealCut${climed.recSteal }" />
+						<li class="clim_card" data-movieNo="${climed.no }"><img
+							src="/stealCut${climed.recSteal }" />
 							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
 									value="${climed.opendate}" pattern="YYYY" />
 								)
@@ -225,7 +220,7 @@
 							<div class="bottom_border border_box"></div>
 							<div class="left_border border_box"></div></li>
 					</c:forEach>
-					
+
 				</ul>
 			</li>
 			<!-- //끌림작 7~12위 끝 -->
@@ -233,8 +228,8 @@
 			<li>
 				<ul>
 					<c:forEach items="${climedList }" var="climed" begin="12" end="17">
-						<li class="clim_card" data-movieNo="${climed.no }">
-						<img src="/stealCut${climed.recSteal }" />
+						<li class="clim_card" data-movieNo="${climed.no }"><img
+							src="/stealCut${climed.recSteal }" />
 							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
 									value="${climed.opendate}" pattern="YYYY" />
 								)
@@ -251,8 +246,8 @@
 			<li>
 				<ul>
 					<c:forEach items="${climedList }" var="climed" begin="18" end="23">
-						<li class="clim_card" data-movieNo="${climed.no }">
-						<img src="/stealCut${climed.recSteal }" />
+						<li class="clim_card" data-movieNo="${climed.no }"><img
+							src="/stealCut${climed.recSteal }" />
 							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
 									value="${climed.opendate}" pattern="YYYY" />
 								)
@@ -269,8 +264,8 @@
 			<li>
 				<ul>
 					<c:forEach items="${climedList }" var="climed" begin="24" end="29">
-						<li class="clim_card" data-movieNo="${climed.no }">
-						<img src="/stealCut${climed.recSteal }" />
+						<li class="clim_card" data-movieNo="${climed.no }"><img
+							src="/stealCut${climed.recSteal }" />
 							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
 									value="${climed.opendate}" pattern="YYYY" />
 								)
@@ -283,22 +278,20 @@
 				</ul>
 			</li>
 			<!-- //끌림작 25~30위 끝 -->
-		</ul>	<!-- //climBox end -->
+		</ul>
+		<!-- //climBox end -->
 		<div class="move_btn clim_move_prev">
 			<i class="fas fa-angle-left"></i>
 		</div>
 		<div class="move_btn clim_move_next">
 			<i class="fas fa-angle-right"></i>
 		</div>
-	</div><!-- //climContentSection end --> 
-	
-    <!-- 중간 히어로이미지 구역 --> 
+	</div>
+	<!-- //climContentSection end --> <!-- 중간 히어로이미지 구역 -->
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
 	</div>
-	<!-- //중간 히어로이미지 구역 끝 --> 
-	
-	<!-- 추천작1 -->
+	<!-- //중간 히어로이미지 구역 끝 --> <!-- 추천작1 -->
 	<div class="recommend_section index_section">
 		<span>추천작1</span>
 		<ul class="recommend_box">
@@ -308,8 +301,7 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div>
-				</li>
+					<div class="left_border border_box"></div></li>
 			</c:forEach>
 		</ul>
 		<!-- //recommend_box -->
@@ -320,10 +312,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- //recommend_section end -->
-	<!-- 추천작1 끝 -->
-	
-	<!-- 추천작 2 -->
+	<!-- //recommend_section end --> <!-- 추천작1 끝 --> <!-- 추천작 2 -->
 	<div class="recommend_section index_section">
 		<span>추천작2</span>
 		<ul class="recommend_box">
@@ -334,8 +323,7 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div>
-				</li>
+					<div class="left_border border_box"></div></li>
 			</c:forEach>
 		</ul>
 		<div class="move_btn recommend_move_prev">
@@ -345,9 +333,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- 추천작 2 끝 -->
-
-	<!-- 추천착3 -->
+	<!-- 추천작 2 끝 --> <!-- 추천착3 -->
 	<div class="recommend_section index_section">
 		<span>추천작3</span>
 		<ul class="recommend_box">
@@ -369,9 +355,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!--추천작3 끝-->
-
-	<!-- 추천작4 구역 -->
+	<!--추천작3 끝--> <!-- 추천작4 구역 -->
 	<div class="recommend_special_section index_section">
 		<span>추천작4</span>
 		<ul class="recommend_special_box">
@@ -426,9 +410,7 @@
 				<div class="left_border border_box"></div></li>
 		</ul>
 	</div>
-	<!-- //추천작4 구역 끝 -->
-	
-	<!-- 장르 1 -->
+	<!-- //추천작4 구역 끝 --> <!-- 장르 1 -->
 	<div class="recommend_section index_section">
 		<span>장르1</span>
 		<ul class="recommend_box">
@@ -439,8 +421,7 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div>
-				</li>
+					<div class="left_border border_box"></div></li>
 			</c:forEach>
 		</ul>
 		<!-- //recommend_box -->
@@ -451,10 +432,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- //recommend_section end -->
-	<!-- 장르 1 끝 -->
-	
-	<!-- 장르 2 -->
+	<!-- //recommend_section end --> <!-- 장르 1 끝 --> <!-- 장르 2 -->
 	<div class="recommend_section index_section">
 		<span>장르2</span>
 		<ul class="recommend_box">
@@ -465,8 +443,7 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div>
-				</li>
+					<div class="left_border border_box"></div></li>
 			</c:forEach>
 		</ul>
 		<div class="move_btn recommend_move_prev">
@@ -476,9 +453,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- 장르 2 끝-->
-	
-	<!-- 장르 3 -->
+	<!-- 장르 2 끝--> <!-- 장르 3 -->
 	<div class="recommend_section index_section">
 		<span>장르3</span>
 		<ul class="recommend_box">
@@ -489,8 +464,7 @@
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
-					<div class="left_border border_box"></div>
-				</li>
+					<div class="left_border border_box"></div></li>
 			</c:forEach>
 		</ul>
 		<div class="move_btn recommend_move_prev">
@@ -500,10 +474,7 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- 장르 3 -->
-
-
-	</main>
+	<!-- 장르 3 --> </main>
 	<div class="trailer_bg">
 		<div class="bg_close_btn">
 			<i class="far fa-times-circle"></i>
@@ -511,38 +482,39 @@
 		<div id="previewSection"></div>
 	</div>
 	<c:import url="/WEB-INF/template/footer.jsp" />
+	<script src="/js/moment-with-locales.js"></script>
 	<script type="text/template" id="trailerTmp">
 		<div id="movieInformationWrap">
 				<div id="movieTitle">
-					<strong>${movie.title }(${movie.opendate })</strong>
+					<strong><@=movie.title@>(<@=moment(movie.opendate).format('YYYY')@>)</strong>
 				</div>
 				<ul id="movieInformationBox">
 				<button class="preview_btn book_mark">BookMark</button>
-					<li>평균 평점 <span><i class="fas fa-star"></i> ${movie.score }</span> <span
+					<li>평균 평점 <span><i class="fas fa-star"></i> <@=movie.score@></span> <span
 						id="age">${movie.movieRating }</span></li>
-					<li>상영시간 <span>${movie.runtime }분</span></li>
+					<li>상영시간 <span><@=movie.runtime@>분</span></li>
 					<li>감독
 						<div id="director">
-						<c:forEach items="${directors }" var="director">
-						<span><a href="/search/director/${director.no }">${director.name }</a></span>
-						</c:forEach>
+						<@_.each(directors,function(director){@>
+						<span><a href="/search/director/<@=director.no@>"> <@=director.name@></a></span>
+						<@});@>
 						</div>
 					</li>
 					<li>배우
 						<div id="actor">
-						<c:forEach items="${actors }" var="actor">
-							<span><a href="/search/actor/${actor.no }">${actor.name }</a></span>
-						</c:forEach>
+						<@_.each(actors,function(actor){@>
+							<span><a href="/search/actor/<@=actor.no@>"><@=actor.name@></a></span>
+						<@});@>
 						</div>
 					</li>
 					<li>줄거리
-						<p>${movie.contents }</p>
+						<p id="trailerContents"><@=movie.contents@></p>
 					</li>
 					<button class="preview_btn play">Play</button>
 					<button class="preview_btn detail">Detail</button>
 				</ul>
 			</div>
-			<div id="previewWrap">${movie.src }</div>
+			<div id="previewWrap"><@=movie.src@></div>
 	</script>
 
 	<script type="text/template" id="userStreamTmp">
@@ -630,20 +602,7 @@
 		let userStreamMove = 0;
 		const $previewSection = $("#previewSection");
 		const $trailerTmp = _.template($("#trailerTmp").html());
-		function trailer() {
-			$.ajax({
-				url:"/ajax/movie/${movie.no}/trailer",
-				dataType:"json",
-				type:"GET",
-				error:function(){
-					alert("에러");
-				},//error end
-				success:function(json){
-					$previewSection.append($trailerTmp({"movie":json.movie,"directors":json.directors,"actors":json.actors}));
-				}//success end
-			});// ajax end
-		}
-		
+
 		/* heroScript */
 		$heroContentNum.on("click", function() {
 			$heroContentNum.removeClass("hero_on");
@@ -655,7 +614,6 @@
 				$heroContentSectionUl.css("left", heroMove);
 				flag = true;
 			}
-
 		})// $heroContentNum click() end
 
 		setInterval(function() {
@@ -853,20 +811,20 @@
 				flag = true;
 			}
 		})
-
+		
 		/* 1초이상 호버해야 bg나옴 1초전에 마우스 떠나면 실행안함 */
 		let timer;
 		let timer2;
 		let timer3;
 		let timer4;
 		let timer5;
+		let movieNo;
 		$climCard.on("mouseenter", function() {
-			// $(this).css("border","3px solid yellow");
 			$this = $(this);
-			// console.log($(this).children('.top_border'));
-
+			movieNo = this.dataset.movieno;
 			timer = setTimeout(function() {
 				$trailerBg.fadeIn(100);
+				trailer();
 			}, 2000);
 
 			timer2 = setTimeout(function() {
@@ -958,12 +916,14 @@
 			}
 		}); // $recommendMoveNext click() end
 
+		
 		$recommendBox.on("mouseenter", ".recommend_card", function() {
-			// $(this).css("border","3px solid yellow");
 			$this = $(this);
-			// console.log($(this).children('.top_border'));
+
+			movieNo = this.dataset.movieno;
 			timer = setTimeout(function() {
 				$trailerBg.fadeIn(100);
+				trailer();
 			}, 2000);
 
 			timer2 = setTimeout(function() {
@@ -990,6 +950,7 @@
 					height : "234px",
 					border : "1.5px solid #F9AC1A"
 				});
+
 			}, 1500);
 		}).on("mouseleave", ".recommend_card", function() {
 			clearTimeout(timer);
@@ -1003,19 +964,21 @@
 				height : "0",
 				border : "transparent"
 			});
+
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
 
 		$(".recommend_special_box").on("mouseenter", ".recommend_special_card",
 				function() {
 					// $(this).css("border","3px solid yellow");
 					$this = $(this);
-
 					let cardWidth = $this.css("width");
 					let cardHeight = $this.css("height");
 
 					// console.log($(this).children('.top_border'));
+					movieNo = this.dataset.movieno;
 					timer = setTimeout(function() {
 						$trailerBg.fadeIn(100);
+						trailer();
 					}, 2000);
 
 					timer2 = setTimeout(function() {
@@ -1055,7 +1018,28 @@
 				height : "0",
 				border : "transparent"
 			});
+
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
+
+		function trailer() {
+			console.log(movieNo);
+			$.ajax({
+				url : "/ajax/movie/"+ movieNo +"/trailer",
+				dataType : "json",
+				type : "GET",
+				error : function() {
+					alert("에러");
+				},//error end
+				success : function(json) {
+					$previewSection.append($trailerTmp({"movie" : json.movie,"directors" : json.directors,"actors" : json.actors}));
+				}//success end
+			});// ajax end
+		}
+		$("#movieInformationWrap").on("click",".preview_btn",function(){
+			console.log("ㅇㅇ");
+		});//click end
+
+		
 	</script>
 </body>
 </html>

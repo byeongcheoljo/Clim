@@ -1,5 +1,7 @@
 package com.playus.clim.dao;
 
+import java.util.List;
+
 import com.playus.clim.vo.Member;
 public interface MembersDAO {
 	/* 0803 홍성표 */
@@ -23,4 +25,11 @@ public interface MembersDAO {
 	
 	public int updateInfo(Member member);
 	
+	public List<Member> myPageMovieForActors(int no);
+	
+	public List<Member> myPageMovieFordirectors(int no);
+	
+	public List<Member> myPageMovieForGenres(int no);
+	
+	public List<Member> myPageMovieForStriming(int no);
 }

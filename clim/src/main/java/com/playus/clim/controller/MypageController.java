@@ -76,23 +76,6 @@ public class MypageController {
 		payment.setCardPW(pwd);
 		payment.setCardCVC(cvc);	
 		payment.setCardName(card);
-		
-		
-		//payment.setGrade(grade);
-		
-		
-
-		System.out.println(payment.getCardCVC());
-		System.out.println(payment.getCardName());
-		System.out.println(payment.getCardNo());
-		System.out.println(payment.getCardPW());
-		System.out.println(payment.getCardVaildate());
-		System.out.println(payment.getGrade());
-		System.out.println(payment.getMemberNo());
-		System.out.println(payment.getNo());
-		System.out.println(payment.getRegdate());
-		System.out.println(fullCardNum);
-		
 		paymentsService.updatePaymentInfo(payment);
 
 		return "redirect:/user/{memberNo}/payment";
@@ -168,5 +151,29 @@ public class MypageController {
 		
 		return "mypageCommunity";
 	}
-
+	@RequestMapping(value = "/ajax/user/{memberNo}/actor",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Member> myPageMovieForActors(@PathVariable int memberNo){
+		return membersService.myPageMovieForActors(memberNo);
+	}
+	
+	@RequestMapping(value = "/ajax/user/{memberNo}/director",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Member> myPageMovieFordirectors(@PathVariable int memberNo){
+		return membersService.myPageMovieFordirectors(memberNo);
+	}
+	
+	@RequestMapping(value = "/ajax/user/{memberNo}/genre",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Member> myPageMovieForGenres(@PathVariable int memberNo){
+		return membersService.myPageMovieForGenres(memberNo);
+	}
+	
+	@RequestMapping(value = "/ajax/user/{memberNo}/climing/genre",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Member> myPageMovieForStriming(@PathVariable int memberNo){
+		return membersService.myPageMovieForStriming(memberNo);
+	}
+			
+	
 }

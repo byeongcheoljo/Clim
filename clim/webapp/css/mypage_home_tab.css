@@ -18,7 +18,7 @@ body{
             position: relative;
             background: lemonchiffon;
             width: 1080px;
-            height: 80px;
+            height: 110px;
             top:50px;
         }
 
@@ -53,7 +53,7 @@ body{
 
         }
 
-        #main .header_myPage_tabbed {
+        #headerNavMypage .header_myPage_tabbed {
             border-bottom: 4px solid #F9AC1A;
             color: #F9AC1A;
         }

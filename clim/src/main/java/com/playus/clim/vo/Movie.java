@@ -4,54 +4,33 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Movie {
-	
+
 	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed;
-	private String title, contents, src, titleEng, poster,repGenre, recSteal;
+	private String title, contents, src, titleEng, poster, repGenre, recSteal;
 	private Date opendate;
 	private char movieRating;
 	private Timestamp regdate;
-	
-	
-	
-	
+	private double score;
+
 	public Movie() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 
+	public double getScore() {
+		return score;
+	}
 
-
-
-
-
+	public void setScore(double score) {
+		this.score = score;
+	}
 
 	public String getRecSteal() {
 		return recSteal;
 	}
 
-
-
-
-
-
-
-
-
-
 	public void setRecSteal(String recSteal) {
 		this.recSteal = recSteal;
 	}
-
-
-
-
-
-
-
-
-
 
 	public int getNo() {
 		return no;
@@ -164,6 +143,7 @@ public class Movie {
 	public void setMovieRating(char movieRating) {
 		this.movieRating = movieRating;
 	}
+
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -172,5 +152,4 @@ public class Movie {
 		this.regdate = regdate;
 	}
 
-	
 }

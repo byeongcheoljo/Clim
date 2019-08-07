@@ -1,5 +1,5 @@
 package com.playus.clim.service;
-import java.io.ObjectOutputStream.PutField;
+import java.io.ObjectOutputStream.PutField; 
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -70,11 +70,11 @@ public class MoviesServiceImpl implements MoviesService{
 /*김근경 끝*/
 	
 	@Override
-	public Map<String, Object> getMovieTrailer(int no) {
+	public Map<String, Object> getMovieTrailer(int movieNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("movie",moviesDAO.selectMovieTrailer(no));
-		map.put("directors",directorsDAO.selectDirectorForMovie(no));
-		map.put("actors",actorsDAO.selectListForMovie(no));
+		map.put("movie",moviesDAO.selectMovieTrailer(movieNo));
+		map.put("directors",directorsDAO.selectDirectorForMovie(movieNo));
+		map.put("actors",actorsDAO.selectListForMovie(movieNo));
 		return map;
 	}
 

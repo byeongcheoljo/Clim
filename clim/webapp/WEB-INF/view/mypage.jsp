@@ -63,7 +63,7 @@
 						<form class="notice_form " action="" method="post">
 							<div class="notice_card">
 								<label for="noticeTitle" class="margin_lbl">제목</label> <input
-									type="text" id="noticeTitle" name="noticeTitle"/>
+									type="text" id="noticeTitle" name="noticeTitle" />
 								<div id="titleBlur"></div>
 								<div id="noticeTitleConfirm" class="validation_text">제목을
 									입력해주세요!</div>
@@ -223,48 +223,56 @@
 		let $plan_card = $(".plan_card");
 		let eventObject;
 		/*calendar 객체 선언*/
-		
+
 		/*calendar 실행*/
 		events();
 		/* events ajax */
-		
+
 		function events() {
-			$.ajax({
-				url:"/ajax/user/${member.no}/events",
-				dataType:"json",
-				type:"GET",
-				error:function(){
-					alert("에러");
-				},
-				success:function(json){
-					console.log(json);					
-					let calendar = new FullCalendar.Calendar(calendarEl, {
-						locale : 'ko',
-						plugins : [ 'interaction', 'dayGrid' ],
-						defaultDate : today,
-						editable : true,
-						displayEventTime : false,
-						eventLimit : true, // allow "more" link when too many events
-						events : json,
-						eventClick : function(info) {
-							console.log(info);
-							eventObject = info.event;
-							info.jsEvent.preventDefault(); // don't let the browser navigate
-							startDay = moment(info.event.start).format("YYYY.MM.DD");
-							endDay = moment(info.event.end).format("YYYY.MM.DD");
-							contentText = info.event._def.extendedProps.contentText;
-							title = info.event.title;
-							let $detail_info_inner = $(".detail_info_inner");
-							let $input = $("<input>").attr({"type":"hidden","name":"no"}).val(info.event.id);
-							$detail_info_inner.append($input);
+			$
+					.ajax({
+						url : "/ajax/user/${member.no}/events",
+						dataType : "json",
+						type : "GET",
+						error : function() {
+							alert("에러");
+						},
+						success : function(json) {
+							console.log(json);
+							let calendar = new FullCalendar.Calendar(
+									calendarEl,
+									{
+										locale : 'ko',
+										plugins : [ 'interaction', 'dayGrid' ],
+										defaultDate : today,
+										editable : true,
+										displayEventTime : false,
+										eventLimit : true, // allow "more" link when too many events
+										events : json,
+										eventClick : function(info) {
+											console.log(info);
+											eventObject = info.event;
+											info.jsEvent.preventDefault(); // don't let the browser navigate
+											startDay = moment(info.event.start)
+													.format("YYYY.MM.DD");
+											endDay = moment(info.event.end)
+													.format("YYYY.MM.DD");
+											contentText = info.event._def.extendedProps.contentText;
+											title = info.event.title;
+											let $detail_info_inner = $(".detail_info_inner");
+											let $input = $("<input>").attr({
+												"type" : "hidden",
+												"name" : "no"
+											}).val(info.event.id);
+											$detail_info_inner.append($input);
+										}
+									});
+							calendar.render();
 						}
-					});
-					calendar.render();
-				}
-			});//ajax end
+					});//ajax end
 			/* events ajax */
 		}
-		
+
 		/*탭 목록*/
 		$("#headerNavMypage li").click(function() {
 			//4px solid #F9AC1A
@@ -314,26 +322,28 @@
 			const end = new Date(endDay);
 			let noticeTitle = $("#noticeTitle").val();
 			let noticeContent = $("#noticeContent").val();
-			
+
 			$.ajax({
-				url:"/ajax/user/${loginMember.no}/events",
-				type:"POST",
-				dataType:"json",
-				data:{
+				url : "/ajax/user/${loginMember.no}/events",
+				type : "POST",
+				dataType : "json",
+				data : {
 					fullDay : false,
-					title:noticeTitle,
-					contents:noticeContent,
-					startDate:startDay,
-					endDate:endDay
+					title : noticeTitle,
+					contents : noticeContent,
+					startDate : startDay,
+					endDate : endDay
 				},
-				error:function(){
+				error : function() {
 					alert("에러");
 				},
-				success:function(json){
-					console.log("insert: "+json);
+				success : function(json) {
+					
+					
+					console.log("insert: " + json);
 					calendar.addEvent(json);
 				}
-				
+
 			});//ajax end
 			events();
 		});//이벤트 등록
@@ -353,24 +363,23 @@
 			let no = $(this).parents(".detail_info_inner").find("input").val();
 			console.log(no);
 			$.ajax({
-				url:"/ajax/user/"+no+"/events",
-				dataType:"json",
-				type:"DELETE",
-				error:function(){
+				url : "/ajax/user/" + no + "/events",
+				dataType : "json",
+				type : "DELETE",
+				error : function() {
 					alert("에러");
 				},
-				success:function(json){
-					console.log("delete :"+json);
+				success : function(json) {
+					console.log("delete :" + json);
 					$(".detail_info_inner").css({
 						"display" : "none"
 					});
 					eventObject.remove();
 					$(".detail_form").fadeIn(500);
 				}
-			
+
 			})
-			
-			
+
 		});//공지 삭제하기
 
 		$("#backBtn").on("click", function() {
@@ -381,43 +390,49 @@
 		});//돌아가기 버튼
 		let $subscribeBtn = $("#subscribeBtn span");
 		let subscribeFlag = 0;
-		
-		$("#subscribeBtn").on("click",function() {
-		let name = $(this).text().trim();
-		console.log(name);
-		let no = this.dataset.no;
-		const $i = $(this).find("i");
-		
-		let type = "POST";
-		if (name == "구독중") {
-			type = "DELETE";
-		}
-		console.log(type);
-	$.ajax({
-		url : "/ajax/user/following/${loginMember.no}/follower/${member.no}",
-		type : type,
-		dataType : "json",
-		error : function() {
-			alert("에러");
-		},
-		
-		success : function(json) {
-			if (subscribeFlag == 0) {
-				$i.removeClass("far");
-				$i.addClass("fas");
-				$subscribeBtn.text("구독중");
-				$("#subscribeBtn").addClass('selected_btn');
-				subscribeFlag = 1;
-			} else if (subscribeFlag == 1) {
-				$i.removeClass("fas");
-				$i.addClass("far");
-				$subscribeBtn.text("구독");
-				$("#subscribeBtn").removeClass('selected_btn');
-				subscribeFlag = 0;
-			}
-			}//success end
-		});//ajax end		
-	});//구독버튼 클릭하기
+
+		$("#subscribeBtn")
+				.on(
+						"click",
+						function() {
+							let name = $(this).text().trim();
+							console.log(name);
+							let no = this.dataset.no;
+							const $i = $(this).find("i");
+
+							let type = "POST";
+							if (name == "구독중") {
+								type = "DELETE";
+							}
+							console.log(type);
+							$
+									.ajax({
+										url : "/ajax/user/following/${loginMember.no}/follower/${member.no}",
+										type : type,
+										dataType : "json",
+										error : function() {
+											alert("에러");
+										},
+
+										success : function(json) {
+											if (subscribeFlag == 0) {
+												$i.removeClass("far");
+												$i.addClass("fas");
+												$subscribeBtn.text("구독중");
+												$("#subscribeBtn").addClass(
+														'selected_btn');
+												subscribeFlag = 1;
+											} else if (subscribeFlag == 1) {
+												$i.removeClass("fas");
+												$i.addClass("far");
+												$subscribeBtn.text("구독");
+												$("#subscribeBtn").removeClass(
+														'selected_btn');
+												subscribeFlag = 0;
+											}
+										}//success end
+									});//ajax end		
+						});//구독버튼 클릭하기
 
 		/* 공지사항 윤달 계산 */
 		let $startYear = $("#startYear");
@@ -511,7 +526,7 @@
 		let $latest_playlist_card = $(".latest_playlist_card");
 		const climingListTmp = _.template($("#climingListTmp").html());
 		let data = [];
-		
+
 		$.ajax({
 			url : "/ajax/user/${member.no}/climing",
 			type : "GET",
@@ -629,139 +644,214 @@
 
 			}
 		}); // $latest_playlist_move_next click() end
+		let name = [];
 
+		let cnt = [];
 		/* 차트 */
 		let $favoriteActor = $("#favoriteActor");
-		let writeActorDonutData = {
-			datasets : [ {
-				data : [ 38, 31, 15, 6, 5 ],
-				backgroundColor : [ '#EF9A9A', '#90CAF9', '#B39DDB', '#E6EE9C',
-						'#86ff5f' ],
-				label : 'points',
-			} ],
-			labels : [ "마동석", "원빈", "하정우", "이병현", "윌스미스" ]
-		};//donutData end
-		let writeActorDonutChart = new Chart($favoriteActor, {
-			type : 'doughnut',
-			data : writeActorDonutData,
-			options : {
-				responsive : true,
-				title : {
-					display : true,
-					text : "${member.nickname} 님이 좋아하는 배우",
-					fontSize : 25,
-					fontColor : '#231F20',
+		$.ajax({
+			url : "/ajax/user/${member.no}/actor",
+			type : "GET",
+			dataType : "json",
+			error : function() {
+				alert("에러");
+			},
+			success : function(json) {
+				console.log(json);
 
-				},
+				$.each(json, function(index) {
+					name[index] = this.name;
+				});
 
-				cutoutPercentage : 50, // 도넛 가운데 구멍 크기(50은 기본 0은 꽉 막힘)
-				rotation : -0.5 * Math.PI, // 시작 각도 변경 (기본: -0.5 * Math.PI)
-				onSize : 100,
-				animation : {
-					animateScale : true,
-					animateRotate : true
-				}
-			// 차트 나타날 때 애니메이션
+				$.each(json, function(index) {
+					cnt[index] = this.no;
+				});
+
+				let writeActorDonutData = {
+					datasets : [ {
+						data : cnt,
+						backgroundColor : [ '#EF9A9A', '#90CAF9', '#B39DDB',
+								'#E6EE9C', '#86ff5f' ],
+						label : 'points',
+					} ],
+					labels : name
+				};//donutData end
+				let writeActorDonutChart = new Chart($favoriteActor, {
+					type : 'doughnut',
+					data : writeActorDonutData,
+					options : {
+						responsive : true,
+						title : {
+							display : true,
+							text : "${member.nickname} 님이 좋아하는 배우",
+							fontSize : 25,
+							fontColor : '#231F20',
+
+						},
+
+						cutoutPercentage : 50, // 도넛 가운데 구멍 크기(50은 기본 0은 꽉 막힘)
+						rotation : -0.5 * Math.PI, // 시작 각도 변경 (기본: -0.5 * Math.PI)
+						onSize : 100,
+						animation : {
+							animateScale : true,
+							animateRotate : true
+						}
+					// 차트 나타날 때 애니메이션
+					}
+				});//좋아하는 배우 도넛
 			}
-		});//좋아하는 배우 도넛
+		});//ajax end
 
 		let $favoriteDirector = $("#favoriteDirector");
-		let writeDirectorDonutData = {
-			datasets : [ {
-				data : [ 44, 24, 15, 7, 5 ],
-				backgroundColor : [ '#EF9A9A', '#90CAF9', '#B39DDB', '#E6EE9C',
-						'#86ff5f' ],
-				label : 'points',
-			} ],
-			labels : [ "가이 리치", "존 패브로", "존 왓츠", "조너선러바인", "홍성표", ]
-		};//donutData end
-		let writeDirectorDonutChart = new Chart($favoriteDirector, {
-			type : 'doughnut',
-			data : writeDirectorDonutData,
-			options : {
-				responsive : true,
-				title : {
-					display : true,
-					text : "${member.nickname} 님이 좋아하는 감독",
-					fontSize : 25,
-					fontColor : '#231F20',
-				},
-				cutoutPercentage : 50, // 도넛 가운데 구멍 크기(50은 기본 0은 꽉 막힘)
-				rotation : -0.5 * Math.PI, // 시작 각도 변경 (기본: -0.5 * Math.PI)
-				onSize : 100,
-				animation : {
-					animateScale : true,
-					animateRotate : true
-				}
-			// 차트 나타날 때 애니메이션
-			},//options
-		// legend: {
-		//     labels: {
-		//         fontColor: "white",
-		//         fontSize: 18
-		//     }
-		// }
-		});//좋아하는 감독 도넛
+		$.ajax({
+			url : "/ajax/user/${member.no}/director",
+			type : "GET",
+			dataType : "json",
+			error : function() {
+				alert("에러");
+			},
+			success : function(json) {
+				console.log(json);
+
+				$.each(json, function(index) {
+					name[index] = this.name;
+				});
+
+				$.each(json, function(index) {
+					cnt[index] = this.no;
+				});
+
+				let writeDirectorDonutData = {
+					datasets : [ {
+						data : cnt,
+						backgroundColor : [ '#EF9A9A', '#90CAF9', '#B39DDB',
+								'#E6EE9C', '#86ff5f' ],
+						label : 'points',
+					} ],
+					labels : name
+				};//donutData end
+				let writeDirectorDonutChart = new Chart($favoriteDirector, {
+					type : 'doughnut',
+					data : writeDirectorDonutData,
+					options : {
+						responsive : true,
+						title : {
+							display : true,
+							text : "${member.nickname} 님이 좋아하는 감독",
+							fontSize : 25,
+							fontColor : '#231F20',
+						},
+						cutoutPercentage : 50, // 도넛 가운데 구멍 크기(50은 기본 0은 꽉 막힘)
+						rotation : -0.5 * Math.PI, // 시작 각도 변경 (기본: -0.5 * Math.PI)
+						onSize : 100,
+						animation : {
+							animateScale : true,
+							animateRotate : true
+						}
+					// 차트 나타날 때 애니메이션
+					},//options
+				});//좋아하는 감독 도넛
+			}
+		});//ajax end
 
 		let $favoriteGenre = $("#favoriteGenre");
-		let writeGenreRadarData = {
-			datasets : [ {
-				data : [ 62, 54, 28, 45, 39, 66, 100 ],
-				backgroundColor : 'rgba(249,172,26, 0.5)',
-				label : 'Genres',
-			} ],
-			labels : [ "드라마", "멜로", "범죄", "액션", "SF", "코미디", "공포" ]
-		};// end
-		let writeGenreRadarChart = new Chart($favoriteGenre, {
-			type : 'radar',
-			data : writeGenreRadarData,
-			options : {
-				responsive : true,
-				title : {
-					display : true,
-					text : "${member.nickname} 님이 좋아하는 장르",
-					fontSize : 25,
-					fontColor : '#231F20',
-				},
-				legend : {
-					display : false, //라벨 숨김
-				},
+		$.ajax({
+			url : "/ajax/user/${member.no}/genre",
+			type : "GET",
+			dataType : "json",
+			error : function() {
+				alert("에러");
+			},
+			success : function(json) {
+				console.log(json);
+				$.each(json, function(index) {
+					name[index] = this.name;
+				});
 
-				animation : {
-					animateScale : true,
-					animateRotate : true
-				}
-			// 차트 나타날 때 애니메이션
-			},//options
+				$.each(json, function(index) {
+					cnt[index] = this.no;
+				});
 
-		});//좋아하는 장르 레이더
+				let writeGenreRadarData = {
+					datasets : [ {
+						data : cnt,
+						backgroundColor : 'rgba(249,172,26, 0.5)',
+						label : 'Genres',
+					} ],
+					labels : name
+				};// end
 
+				let writeGenreRadarChart = new Chart($favoriteGenre, {
+					type : 'radar',
+					data : writeGenreRadarData,
+					options : {
+						responsive : true,
+						title : {
+							display : true,
+							text : "${member.nickname} 님이 좋아하는 장르",
+							fontSize : 25,
+							fontColor : '#231F20',
+						},
+						legend : {
+							display : false, //라벨 숨김
+						},
+
+						animation : {
+							animateScale : true,
+							animateRotate : true
+						}
+					// 차트 나타날 때 애니메이션
+					},//options
+				});//좋아하는 장르 레이더
+			}
+		});//ajax end
 		let $streamingGenres = $("#streamingGenres");
-		let writeStreamingGenresChart = new Chart($streamingGenres, {
-			type : 'pie',
-			data : {
-				datasets : [ {
-					data : [ 38, 21, 15, 10, 6, 5 ],
-					backgroundColor : [ '#EF9A9A', '#90CAF9', '#B39DDB',
-							'#E6EE9C', '#86ff5f', '#ff5ad2' ],
-				} ],
-				labels : [ "범죄", "액션", "공포", "멜로", "코미디", "드라마" ],
-			},
-			options : {
-				responsive : true,
-				title : {
-					display : true,
-					text : "스트리밍 장르",
-					fontSize : 25,
-					fontColor : '#231F20',
+		$.ajax({
+				url : "/ajax/user/${member.no}/climing/genre",
+				type : "GET",
+				dataType : "json",
+				error : function() {
+					alert("에러");
 				},
-				animation : {
-					animateScale : true,
-					animateRotate : true
-				}
-			},
+				success : function(json) {
+					console.log(json);
+					$.each(json, function(index) {
+						name[index] = this.name;
+					});
 
-		});//스트리밍 장르 파이
+					$.each(json, function(index) {
+						cnt[index] = this.no;
+					});
+					let writeStreamingGenresChart = new Chart(
+							$streamingGenres, {
+								type : 'pie',
+								data : {
+									datasets : [ {
+										data : cnt,
+										backgroundColor : [ '#EF9A9A',
+												'#90CAF9', '#B39DDB',
+												'#E6EE9C', '#86ff5f',
+												'#ff5ad2' ],
+									} ],
+									labels : name,
+								},
+								options : {
+									responsive : true,
+									title : {
+										display : true,
+										text : "스트리밍 장르",
+										fontSize : 25,
+										fontColor : '#231F20',
+									},
+									animation : {
+										animateScale : true,
+										animateRotate : true
+									}
+								},
+
+							});//스트리밍 장르 파이
+				}
+			});//ajax end
 
 		let $viewersGender = $("#viewersGender");
 		let writeViewersGenderChart = new Chart($viewersGender, {
