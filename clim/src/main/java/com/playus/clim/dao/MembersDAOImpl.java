@@ -1,6 +1,6 @@
 package com.playus.clim.dao;
 
-import org.apache.ibatis.session.SqlSession;   
+import org.apache.ibatis.session.SqlSession;    
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +11,6 @@ public class MembersDAOImpl implements MembersDAO{
 	/* 0803 홍성표 */
 	@Autowired
 	private SqlSession session;
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 	
 	@Override
 	public Member selectOneByNo(int no) {

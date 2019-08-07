@@ -1,6 +1,6 @@
 package com.playus.clim.controller;
 
-import java.util.List; 
+import java.util.List;  
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,20 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.playus.clim.service.BoardsService;
 import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.CommentsService;
-<<<<<<< HEAD
-=======
 import com.playus.clim.service.ContinueMoviesService;
->>>>>>> master
 import com.playus.clim.service.MembersService;
 import com.playus.clim.service.EventsService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.ReportsService;
 import com.playus.clim.service.ReviewsService;
-<<<<<<< HEAD
 import com.playus.clim.service.SurveysService;
-=======
 import com.playus.clim.vo.ContinueMovie;
->>>>>>> master
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Movie;
@@ -126,10 +120,6 @@ public class AjaxController {
 		
 		return membersService.getCheckNickname(nickname);
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> master
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
@@ -147,7 +137,6 @@ public class AjaxController {
 
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value="/user/{memberNo}/bookmark", method=RequestMethod.GET)
 	public List<Bookmark> getMovieBookmarkList(@PathVariable int memberNo){
 		
@@ -193,8 +182,6 @@ public class AjaxController {
 	
 	
 	
-=======
-	
 /*근경시작*/
 	//index에서 이어보기
 	@RequestMapping(value="/member/{memberNo}/continue",method=RequestMethod.GET)
@@ -204,8 +191,4 @@ public class AjaxController {
 	
 /*근경끝*/
 	
-	
-	
-
->>>>>>> master
 }

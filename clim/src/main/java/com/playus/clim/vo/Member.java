@@ -2,13 +2,12 @@ package com.playus.clim.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.UUID;
 
 public class Member {
 
 	private int no, followerCnt, climgCnt;
 	private String email, nickname, pwd, uuid;
-	private char gender,grade;
+	private char gender, grade;
 	private Date birthDate;
 	private Timestamp regdate;
 	private boolean subscribeCheck;
@@ -17,21 +16,14 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
-<<<<<<< HEAD
-	
-
 	public char getGrade() {
 		return grade;
 	}
-
-
 
 	public void setGrade(char grade) {
 		this.grade = grade;
 	}
 
-
-=======
 	public boolean isSubscribeCheck() {
 		return subscribeCheck;
 	}
@@ -55,7 +47,6 @@ public class Member {
 	public void setClimgCnt(int climgCnt) {
 		this.climgCnt = climgCnt;
 	}
->>>>>>> master
 
 	public int getNo() {
 		return no;
