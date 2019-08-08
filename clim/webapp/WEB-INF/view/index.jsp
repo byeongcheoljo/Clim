@@ -1028,6 +1028,8 @@
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
 
 		function trailer() {
+			$("#headerSubscribeSlideWrap").css("display", "none");
+			$("#headerSubscribeList").css("display", "block");
 			console.log(movieNo);
 			$.ajax({
 				url : "/ajax/movie/"+ movieNo +"/trailer",
@@ -1053,9 +1055,6 @@
 				url:"/ajax/movie/"+no+"/bookmark/${loginMember.no}",
 				type:type,
 				dataType:"json",
-				data:{
-					type:"B"
-				},
 				error:function(){
 					alert("bookmark add 에러");
 				},

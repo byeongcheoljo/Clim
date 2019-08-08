@@ -25,6 +25,6 @@ public interface BookmarksService {
 
 	public void deleteClimingList(int roomNo, int movieNo);
 	
-	public int bookmarkForMovie(int movieNo, char type, int memberNo);
+	public int bookmarkForMovie(int movieNo, int memberNo);
 
 }

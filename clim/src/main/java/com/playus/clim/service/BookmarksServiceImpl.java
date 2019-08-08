@@ -77,12 +77,11 @@ public class BookmarksServiceImpl implements BookmarksService {
 		bookmarksDAO.deleteClimingList(bookmark);
 		
 	@Override
-	public int bookmarkForMovie(int movieNo, char type, int memberNo) {
+	public int bookmarkForMovie(int movieNo, int memberNo) {
 		
 		Bookmark bookmark = new Bookmark();
 		bookmark.setMemberNo(memberNo);
 		bookmark.setMovieNo(movieNo);
-		bookmark.setType(type);
 		
 		int count = bookmarksDAO.bookmarkCheck(bookmark);
 		
