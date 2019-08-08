@@ -41,5 +41,8 @@ public class ClimingListsServiceImpl implements ClimingListsService {
 		// TODO Auto-generated method stub
 		climingListsDAO.updateSessionId(clim);
 	}
-
+	@Override
+	public List<ClimingList> subscribesClimingList() {
+		return climingListsDAO.subscribesClimingList();
+	}
 }

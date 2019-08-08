@@ -4,30 +4,26 @@
 <mapper namespace="subscribes">
 	<select id="subscribesList" resultType="Subscribe"
 		parameterType="int">
-		SELECT s.no no, following, follower, nickname
-		FROM
-		members m, subscribes s
-		WHERE follower = m.no AND following =
-		#{memberNo}
+		SELECT s.no no, following, follower, nickname,session_id
+		FROM members m, subscribes s, c_lists c
+		WHERE s.follower = m.no AND c.member_no(+) = s.follower AND following =#{no}
 	</select>
-	
 
 	<select id="subscribesCheck" parameterType="Subscribe" resultType="int">
 		SELECT count(*)
 		FROM subscribes
-		WHERE  following = #{following} AND follower = #{follower}
+		WHERE following =
+		#{following} AND follower = #{follower}
 	</select>
 	
 
 	<insert id="insert" parameterType="Subscribe">
 		INSERT INTO subscribes(no, following, follower, regdate)
 		VALUES(subscribes_seq.nextval, #{following}, #{follower}, systimestamp)
-
 	</insert>
-	
+
 	<delete id="delete" parameterType="Subscribe">
 		DELETE subscribes
-
 		WHERE following= #{following} AND follower = #{follower}
 	</delete>
 

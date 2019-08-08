@@ -1,5 +1,7 @@
 package com.playus.clim.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;    
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,5 +61,25 @@ public class MembersDAOImpl implements MembersDAO{
 	public int pwdUpdate(Member member) {
 		// TODO Auto-generated method stub
 		return session.update("members.pwdUpdate", member);
+	}
+	
+	@Override
+	public List<Member> myPageMovieForActors(int no) {
+		return session.selectList("members.myPageMovieForActors",no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieFordirectors(int no) {
+		return session.selectList("members.myPageMovieFordirectors",no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieForGenres(int no) {
+		return session.selectList("members.myPageMovieForGenres",no);
+	}
+	
+	@Override
+	public List<Member> myPageMovieForStriming(int no) {
+		return session.selectList("members.myPageMovieForStriming",no);
 	}
 }

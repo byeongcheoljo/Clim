@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
-
 		<select id="selectOneByNo" parameterType="int"
 			resultType="Member">
 			SELECT no, email, nickname,gender, birth_date birthDate,
@@ -10,56 +9,30 @@
 			FROM members
 			WHERE no = #{no}
 		</select>
-		
-		
-		
-		
-	<select id="selectClimingLeader" resultType="Leader"
-		parameterType="int">
-		select
-		members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
-		from members,
-		(select no,member_no,title
-		from c_lists)clists,
-		(select count(*) currCount
-		from c_logs
-		where clim_no=#{no} and close_time is null)currentPeople,
-		(select count(*) accCount
-		from c_logs
-		where clim_no in(select no
-		from c_lists
-		where member_no=(select member_no
-		from c_lists
-		where no=#{no}))
-		and close_time is not null)accPeople
-		where clists.member_no=members.no and clists.no=#{no}
-	</select>
-
-	<select id="myPageMemberSelectOne" parameterType="int"
-			resultType="Member">
-			select no, email,
-			(select count(*) from subscribes where
-			follower = #{memberNo})
-			followerCnt,
-			(select count(*) from c_logs c
-			where member_no = #{memberNo} AND
-			open_time is not null) climgCnt,
-			nickname,
-			regdate
-			from
-			members
-			where no =
-			#{memberNo}
+		<select id="selectClimingLeader" resultType="Leader" parameterType="int">
+			select members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+			from members, (select no,member_no,title from c_lists)clists, (select count(*) currCount from c_logs
+			where clim_no=#{no} and close_time is null)currentPeople,
+			(select count(*) accCount from c_logs where clim_no in(select no
+			from c_lists where member_no=(select member_no from c_lists where no=#{no})) and close_time is not null)accPeople
+			where clists.member_no=members.no and clists.no=#{no}
 		</select>
 
-	<select id="selectLogin" parameterType="Member" resultType="Member">
-		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
-		FROM members
-		WHERE email = #{email}
-		AND pwd = #{pwd}
-	</select>
-	
+		<select id="myPageMemberSelectOne" parameterType="int"
+			resultType="Member">
+			select no, email, (select count(*) from subscribes where follower = #{memberNo}) followerCnt,
+			(select count(*) from c_logs c where member_no = #{memberNo} AND open_time is not null) climgCnt,
+			nickname, regdate
+			from members
+			where no = #{memberNo}
+		</select>
 
+		<select id="selectLogin" parameterType="Member" resultType="Member">
+			SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
+			FROM members
+			WHERE email = #{email}
+			AND pwd = #{pwd}
+		</select>
 
 		<update id="UUIDUpdate" parameterType="Member">
 			<selectKey keyProperty="no" order="BEFORE" resultType="int">
@@ -94,29 +67,155 @@
 			select count(*)
 			from members
 			where nickname = #{nickname}
-
+		</select>
+		<select id="selectOneByNo" parameterType="int" resultType="Member">
+			SELECT no, email, nickname,gender, birth_date birthDate,
+			regdate
+			FROM members
+			WHERE no = #{no}
+		</select>
+		<select id="selectClimingLeader" resultType="Leader" parameterType="int">
+			select members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+			from members, (select no,member_no,title from c_lists)clists, (select count(*) currCount
+			from c_logs where clim_no=#{no} and close_time is null)currentPeople,(select count(*) accCount
+			from c_logs
+			where clim_no=#{no} and close_time is not null)accPeople
+			where clists.member_no=members.no and clists.no=#{no}
 		</select>
 
-		<insert id="insertMember" parameterType="Member">
-			<selectKey order="BEFORE" keyProperty="no" resultType="int">
-				SELECT members_seq.nextval
-				FROM dual
-			</selectKey>
-			insert into members(no, email, nickname, gender, birth_date, pwd,
-			regdate)
-			values(#{no},#{email}, #{nickname}, #{gender}, #{birthDate}, #{pwd}, systimestamp)
+	<select id="myPageMemberSelectOne" parameterType="int"
+		resultType="Member">
+		select no, email,(select count(*) from subscribes where
+		follower = #{memberNo}) followerCnt, (select count(*)
+		from c_logs log,c_lists list
+		where log.clim_no = list.no AND list.member_no = #{memberNo} AND log.open_time is not
+		null) climgCnt,nickname, regdate
+		from members
+		where no =#{memberNo}
+	</select>
 
-		</insert>
+	<select id="selectLogin" parameterType="Member"
+		resultType="Member">
+		SELECT no, email, nickname, gender, birth_date birthDate,
+		pwd, uuid
+		FROM members
+		WHERE email = #{email}
+		AND pwd = #{pwd}
+	</select>
 
-		<update id="updateInfo" parameterType="Member">
+	<update id="UUIDUpdate" parameterType="Member">
+		<selectKey keyProperty="no" order="BEFORE" resultType="int">
+			SELECT no
+			FROM members
+			WHERE email=#{email}
+		</selectKey>
+		update members
+		set UUID = #{uuid}
+		where email = #{email}
+	</update>
+	<update id="pwdUpdate" parameterType="Member">
+		update members
+		set UUID =
+		#{uuid}, pwd = #{pwd}
+		where no = #{no}
+	</update>
+	<select id="checkId" parameterType="string" resultType="int">
+		select
+		count(*)
+		from members
+		where email = #{email}
 
-			update members
-			set pwd = #{pwd}
-			where no = #{no}
+	</select>
+	<select id="checkNickname" parameterType="string"
+		resultType="int">
+		select count(*)
+		from members
+		where nickname = #{nickname}
+
+	</select>
+
+	<insert id="insertMember" parameterType="Member">
+		<selectKey order="BEFORE" keyProperty="no" resultType="int">
+			SELECT members_seq.nextval
+			FROM dual
+		</selectKey>
+		insert into members(no, email, nickname, gender, birth_date, pwd,
+		regdate)
+		values(#{no},#{email}, #{nickname}, #{gender}, #{birthDate},
+		#{pwd}, systimestamp)
+	</insert>
+
+	<update id="updateInfo" parameterType="Member">
+		update members
+		set pwd =
+		#{pwd}
+		where no = #{no}
+	</update>
+
+	<select id="myPageMovieForActors" resultType="Member"
+		parameterType="int">
+		SELECT name,no
+		FROM(SELECT name,no, rownum r
+		FROM(SELECT
+		a.name name, count(a.no) no
+		FROM movies m, m_continues con, m_actors
+		actor,actors a
+		WHERE m.no = con.movie_no AND m.no = actor.movie_no AND
+		a.no =
+		actor.actor_no AND con.member_no = #{no}
+		GROUP BY a.name ORDER BY
+		2 DESC , 1))
+		WHERE r BETWEEN 1 AND 5
+	</select>
+
+	<select id="myPageMovieFordirectors" resultType="Member"
+		parameterType="int">
+		SELECT name,no
+		FROM(SELECT
+		name, no, rownum r
+		FROM(SELECT
+		d.name name,
+		count(d.no) no
+		FROM movies m,m_continues con, m_directors
+		dir,
+		directors d
+		WHERE m.no = con.movie_no AND m.no = dir.movie_no AND
+		d.no
+		= dir.dir_no AND
+		con.member_no = #{no}
+		GROUP BY d.name ORDER BY 2
+		DESC,1))
+		WHERE r BETWEEN 1 AND 5
+	</select>
+
+	<select id="myPageMovieForGenres" resultType="Member"
+		parameterType="int">
+		SELECT name,no
+		FROM(SELECT name,no, rownum r
+		FROM(SELECT
+		g.genre name, count(g.no) no
+		FROM movies m,
+		m_continues con, m_genres
+		genre, genres g
+		WHERE m.no = con.movie_no AND
+		m.no = genre.movie_no AND
+		g.no =
+		genre.genre_no AND con.member_no = #{no}
+		GROUP BY g.genre ORDER
+		BY 2 DESC , 1))
+		WHERE r BETWEEN 1 AND 7
+	</select>
 
 		</update>
-		
-		
-		
+		<select id="myPageMovieForStriming" resultType="Member"
+		parameterType="int">
+		SELECT name,no FROM(SELECT name, no, rownum r 
+		FROM(SELECT g.genre name, count(g.no) no 
+		FROM movies m, c_lists list, c_plays play, genres g, m_genres genre
+		WHERE m.no = play.movie_no AND m.no = genre.movie_no AND genre.genre_no = g.no AND list.no = play.clim_no AND
+		list.member_no = #{no}
+		GROUP BY g.genre ORDER BY 2 DESC))
+		WHERE r BETWEEN 1 AND 6
+		</select>
 
 </mapper>

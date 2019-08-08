@@ -62,6 +62,18 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 		// TODO Auto-generated method stub
 		return session.selectOne("bookmarks.checkClimingList",bookmark);
 
+	@Override
+	public int bookmarkCheck(Bookmark bookmark) {
+		return session.selectOne("bookmarks.bookmarkCheck",bookmark);
 	}
 
+	@Override
+	public int boomarkForMovieInsert(Bookmark bookmark) {
+		return session.insert("bookmarks.boomarkForMovieInsert",bookmark);
+	}
+	
+	@Override
+	public int boomarkForMovieDelete(Bookmark bookmark) {
+		return session.insert("bookmarks.boomarkForMovieDelete",bookmark);
+	}
 }

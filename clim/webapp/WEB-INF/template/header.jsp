@@ -87,10 +87,10 @@
 		<c:otherwise>
 			<!-- 로그인했을시 정보버튼 확인-->
 			<div id="headerLoginInfo">
-				<span><img id="headerStreamingImg" src="/img/camera.png" /></span> <span
-					class="header_userInfo_nav"><i class="fas fa-user-alt"></i></span>
+				<span><img id="headerStreamingImg" src="/img/camera.png" /></span>
+				<span class="header_userInfo_nav"><i class="fas fa-user-alt"></i></span>
 				<ul id="headerUserInfoBox">
-					<li><a href="">${loginMember.nickname }</a></li>
+					<li><a href="/user/${loginMember.no }">${loginMember.nickname }</a></li>
 					<li><a href="">찜</a></li>
 					<li><a href="">내정보</a></li>
 					<li><a href="">고객센터</a></li>
@@ -646,7 +646,7 @@
 
 
 	//스트리밍 방송 하기 클릭
-	
+	const list =[];
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -659,14 +659,9 @@
 	 success:function (json) {
 	 console.log(json);
 	 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
-	 }
-	 });
-	 }
-	 
-	//구독취소 버튼시 리스트에서 삭제
-	$("#headerSubscribeWrap").on("click",".unsubscribe_list", function() {
-		$(this).parents("li").remove();
-	});
+	 }//success end
+	 });//ajax end
+	 }//getSubscribeList end
 
 	//webSocket stomp client
 	let stompClient = null;
@@ -678,14 +673,25 @@
 
 		// SockJS와 stomp client를 통해 연결을 시도.
 		stompClient.connect({}, function() {
+			console.log("2) 연결");
+			//방번호 얻어오기
+			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
+				//넘어오는 데이터는 body에
+				console.log(protocol.body);
+
+				//방을 만들었기 때문에 유저에게 목록을 다시
+				stompClient.send("/app/clim/list", {});
+
+				//해당 번호 방으로 이동
+				location.href = "/room/"+ protocol.body;
+				
+			});
 
 			//인자로 받은 함수를 여기서 호출
 			if (callback) callback();
-
+			console.log("1) 연결");
 		});
-
 	}
-	
 	console.log("before");
 	connect(function(){
 
@@ -763,20 +769,15 @@
 	
 	$(".streaming_start_btn").on("click",function(e) {
 		e.stopPropagation();
-		
 		let title = $("#climTitle").val();
-
 		alert(title);
-		
 		//넘길 데이터(파라미터)
-
 		/*
 		$.ajax({ 
 			url: ①
 			data:②
 			success:③
 		})
-		
 		stompClient.send(①,{},②);
 		 */
 		//객체를 String으로 
@@ -785,11 +786,8 @@
 			"memberNo" : ${loginMember.no} ,
 			"title" : title
 		});
-
 		//방만들기
 		stompClient.send("/app/clim/make", {}, data);
-
 	});
-
 </c:if>
 </script>

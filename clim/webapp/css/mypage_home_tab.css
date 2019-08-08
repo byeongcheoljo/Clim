@@ -18,8 +18,8 @@ body{
             position: relative;
             background: lemonchiffon;
             width: 1080px;
-            height: 80px;
-            top:50px;
+            height: 110px;
+            top:35px;
         }
 
         /*지은*/
@@ -53,7 +53,7 @@ body{
 
         }
 
-        #main .header_myPage_tabbed {
+        #headerNavMypage .header_myPage_tabbed {
             border-bottom: 4px solid #F9AC1A;
             color: #F9AC1A;
         }
@@ -332,6 +332,7 @@ body{
             height: 275px;
             overflow: hidden;
             background: #231F20;
+            position: relative;
         }
 
         #chartSection #latestPlayList .latest_playlist_box {

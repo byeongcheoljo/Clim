@@ -20,8 +20,7 @@
 		contents,t.src src,poster,m.regdate
 		regdate
 		FROM movies m, trailers t
-		WHERE m.no = t.movie_no AND m.no =
-		#{no}
+		WHERE m.no = t.movie_no AND m.no =#{no}
 	</select>
 
 	<select id="getClimingMovieList" parameterType="int"

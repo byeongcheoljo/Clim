@@ -7,7 +7,7 @@ public class Member {
 
 	
 	private int no, followerCnt, climgCnt;
-	private String email, nickname, pwd, uuid, title;
+	private String email, nickname, pwd, uuid, title, name;
 	private char gender, grade;
 	private Date birthDate;
 	private Timestamp regdate;
@@ -15,6 +15,14 @@ public class Member {
 
 	public Member() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public char getGrade() {
@@ -88,9 +96,6 @@ public class Member {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
-	
-
 
 	public String getTitle() {
 		return title;

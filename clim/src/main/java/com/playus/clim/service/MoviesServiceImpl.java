@@ -1,5 +1,5 @@
 package com.playus.clim.service;
-import java.io.ObjectOutputStream.PutField;
+import java.io.ObjectOutputStream.PutField;  
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.ActorsDAO;
+import com.playus.clim.dao.BookmarksDAO;
 import com.playus.clim.dao.DirectorsDAO;
 import com.playus.clim.dao.MoviesDAO;
 import com.playus.clim.dao.SteelCutsDAO;
+import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Movie;
 import com.playus.clim.vo.StealCut;
 
@@ -27,7 +29,10 @@ public class MoviesServiceImpl implements MoviesService{
 	private ActorsDAO actorsDAO;
 	@Autowired
 	private DirectorsDAO directorsDAO;
-
+	@Autowired
+	private BookmarksDAO bookmarksDAO;
+	
+	
 	@Override
 	public List<Movie> getSearchResultForcliming(String title) {
 		return moviesDAO.searchMovieListForCliming(title);
@@ -70,11 +75,20 @@ public class MoviesServiceImpl implements MoviesService{
 /*김근경 끝*/
 	
 	@Override
-	public Map<String, Object> getMovieTrailer(int no) {
+	public Map<String, Object> getMovieTrailer(int movieNo,int memberNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("movie",moviesDAO.selectMovieTrailer(no));
-		map.put("directors",directorsDAO.selectDirectorForMovie(no));
-		map.put("actors",actorsDAO.selectListForMovie(no));
+		
+		Movie movies = moviesDAO.selectMovieTrailer(movieNo);
+		if(memberNo!=0){
+		Bookmark bookmark = new Bookmark();
+		bookmark.setMemberNo(memberNo);
+		bookmark.setMovieNo(movieNo);
+		bookmark.setType('B');
+		movies.setBookmarkCheck(1==bookmarksDAO.bookmarkCheck(bookmark));
+		}
+		map.put("movie",movies);
+		map.put("directors",directorsDAO.selectDirectorForMovie(movieNo));
+		map.put("actors",actorsDAO.selectListForMovie(movieNo));
 		return map;
 	}
 

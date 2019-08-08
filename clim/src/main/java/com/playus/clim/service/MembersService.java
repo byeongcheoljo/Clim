@@ -1,5 +1,6 @@
 package com.playus.clim.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -30,4 +31,12 @@ public interface MembersService {
 
 	// myPage
 	public Member myPageMember(int memberNo, int loginMember);
+	
+	public List<Member> myPageMovieForActors(int no);
+	
+	public List<Member> myPageMovieFordirectors(int no);
+	
+	public List<Member> myPageMovieForGenres(int no);
+	
+	public List<Member> myPageMovieForStriming(int no);
 }
