@@ -98,29 +98,21 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
 		</dependency>
-<<<<<<< HEAD
 		
 		<!-- https://웹 소켓 -->
-=======
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
->>>>>>> master
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
 			<version>5.1.8.RELEASE</version>
 		</dependency>
-<<<<<<< HEAD
 		<!-- https://스톰프 메세지 프로토콜 -->
-=======
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
->>>>>>> master
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-messaging</artifactId>
 			<version>5.1.8.RELEASE</version>
 		</dependency>
-<<<<<<< HEAD
-=======
 		<!-- video -->
 		<!-- https://mvnrepository.com/artifact/xuggle/xuggle-xuggler -->
 		<dependency>
@@ -149,6 +141,5 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
->>>>>>> master
 	</dependencies>
 </project>

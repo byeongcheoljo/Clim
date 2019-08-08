@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.playus.clim.vo.ClimingList;
-<<<<<<< HEAD
 import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Movie;
-=======
->>>>>>> master
 
 @Repository
 public class ClimingListsDAOImpl implements ClimingListsDAO{
@@ -20,7 +17,6 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	private SqlSession session;
 	
 	@Override
-<<<<<<< HEAD
 	public List<ClimingList> selectList() {
 		
 		 List<ClimingList> climingList = session.selectList("climingLists.selectList");
@@ -34,7 +30,8 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 		
 		return session.selectList("climingLists.selectFeatures");
 	}
-=======
+	
+	@Override
 	public void insert(ClimingList climingList) {
 		System.out.println("z4");
 		session.insert("climingLists.insert", climingList);
@@ -44,10 +41,9 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	public ClimingList selectOne(int no) {
 		return session.selectOne("climingLists.selectOne", no);
 	}
-
+	@Override
 	public int subscribesLiveCheck(int memberNo) {
 		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
 	}
 	
->>>>>>> master
 }

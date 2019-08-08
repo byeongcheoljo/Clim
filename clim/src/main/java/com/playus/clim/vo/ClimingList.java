@@ -4,15 +4,9 @@ import java.sql.Timestamp;
 
 public class ClimingList {
 
-<<<<<<< HEAD
 	private int no, memberNo, viewerCount;
-	private String title, nickname;
-	private Timestamp regdate;
-=======
-	private int no, memberNo;
-	private String title, sessionId;
+	private String title, nickname, sessionId;
 	private Timestamp regdate, openTime, closeTime;
->>>>>>> master
 
 	public ClimingList() {
 		// TODO Auto-generated constructor stub

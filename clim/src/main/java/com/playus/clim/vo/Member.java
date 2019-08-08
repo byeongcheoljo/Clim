@@ -5,16 +5,10 @@ import java.sql.Timestamp;
 
 public class Member {
 
-<<<<<<< HEAD
 	
-	private int no;
-	private String email, nickname, pwd, uuid, title;
-	private char gender;
-=======
 	private int no, followerCnt, climgCnt;
-	private String email, nickname, pwd, uuid;
+	private String email, nickname, pwd, uuid, title;
 	private char gender, grade;
->>>>>>> master
 	private Date birthDate;
 	private Timestamp regdate;
 	private boolean subscribeCheck;
