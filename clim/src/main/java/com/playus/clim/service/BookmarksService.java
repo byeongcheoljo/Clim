@@ -20,6 +20,6 @@ public interface BookmarksService {
 
 	public int removeBookmarkOfCliming(int no);
 
-	public int bookmarkForMovie(int movieNo, char type, int memberNo);
+	public int bookmarkForMovie(int movieNo, int memberNo);
 
 }

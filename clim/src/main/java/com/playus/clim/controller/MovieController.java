@@ -37,10 +37,10 @@ public class MovieController {
 		return moviesService.getMovieTrailer(movieNo,memberNo);
 	}
 	
-	@RequestMapping(value = "/ajax/movie/{movieNo}/bookmark/{memberNo}",method = { RequestMethod.POST,RequestMethod.DELETE})
+	@RequestMapping(value = "/ajax/movie/{movieNo}/bookmark/{memberNo}",method = { RequestMethod.POST, RequestMethod.DELETE })
 	@ResponseBody
-	public String bookmarkCheck(@PathVariable int movieNo,char type,@PathVariable int memberNo) {
-		int count = bookmarksService.bookmarkForMovie(movieNo,type,memberNo);
-		return "{\"count\":"+(count == 0)+"}";
+	public String bookmarkCheck(@PathVariable int movieNo,@PathVariable int memberNo) {
+		int count = bookmarksService.bookmarkForMovie(movieNo,memberNo);
+		return "{\"count\":"+(count == 1)+"}";
 	}
 }
