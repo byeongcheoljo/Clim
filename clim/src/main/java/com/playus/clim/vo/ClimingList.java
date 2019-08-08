@@ -13,14 +13,10 @@ public class ClimingList {
 	public ClimingList() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Timestamp getRegdate() {
 		return regdate;
 	}
-
-
 
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
@@ -31,9 +27,14 @@ public class ClimingList {
 	public ClimingList(int no, String sessionId) {
 		// TODO Auto-generated constructor stub
 		this.no= no;
-		this.sessionId = sessionId;
+	
+	public String getSessionId() {
+		return sessionId;
 	}
 
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
 
 	public Timestamp getOpenTime() {
 		return openTime;

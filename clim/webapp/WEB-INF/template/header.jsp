@@ -299,7 +299,7 @@
         <@ _.each(subscribes, function(subscribe){@>
         <li class="subscribe_list" >
             <a href="/user/<@=subscribe.follower@>"><@=subscribe.nickname@></a>
-			<@if(subscribe.LiveCheck){@>
+			<@if(subscribe.liveCheck){@>
             <a href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
             <@}@>
                 <button class="unsubscribe_list" data-no="<@=subscribe.follower@>">구독취소</button>

@@ -7,7 +7,7 @@ public class Subscribe {
 	private int no, following, follower;
 	private String nickname;
 	private Timestamp regdate;
-	private boolean LiveCheck;
+	private boolean liveCheck;
 
 	public Subscribe() {
 		// TODO Auto-generated constructor stub
@@ -22,11 +22,11 @@ public class Subscribe {
 	}
 
 	public boolean isLiveCheck() {
-		return LiveCheck;
+		return liveCheck;
 	}
 
 	public void setLiveCheck(boolean liveCheck) {
-		LiveCheck = liveCheck;
+		this.liveCheck = liveCheck;
 	}
 
 	public int getNo() {
