@@ -34,13 +34,6 @@ public class ClimingList {
 		this.sessionId = sessionId;
 	}
 
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
 
 	public Timestamp getOpenTime() {
 		return openTime;

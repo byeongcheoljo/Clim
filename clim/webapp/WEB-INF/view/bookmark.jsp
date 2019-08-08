@@ -13,7 +13,7 @@
 <c:import url="/WEB-INF/template/header.jsp"/>
 <main id="content">
     <ul id="headerNavMypage">
-        <li id="nicknameHeaderMypage">닉네임</li>
+        <li id="nicknameHeaderMypage">${loginMember.nickname}</li>
         <li class="header_myPage_tabbed">홈</li>
         <li>찜</li>
         <li>커뮤니티</li>

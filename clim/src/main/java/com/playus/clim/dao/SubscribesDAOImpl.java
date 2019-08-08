@@ -34,6 +34,8 @@ public class SubscribesDAOImpl implements SubscribesDAO {
 	public int insert(Subscribe subscribe) {
 		return session.insert("subscribes.insert", subscribe);
 	}
+
+	
 	
 	@Override
 	public int selectOne(Subscribe subscribe) {

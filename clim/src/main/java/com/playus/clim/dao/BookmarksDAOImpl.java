@@ -51,6 +51,7 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 		// TODO Auto-generated method stub
 		return session.delete("bookmarks.deleteMybookmarkMovie",no);
 	}
+
 	@Override
 	public void deleteClimingList(Bookmark bookmark) {
 		// TODO Auto-generated method stub

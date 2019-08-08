@@ -156,7 +156,7 @@ public class AjaxController {
 	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
 	public String addClimingList(int roomNo,int movieNo){
 		
-		return bookmarkService.addClimingList(roomNo,movieNo);
+		return bookmarkService.addClimingList(roomNo, movieNo);
 
 	}
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
@@ -182,8 +182,8 @@ public class AjaxController {
 	}
 
 	
-	@RequestMapping(value="/user/survey", method=RequestMethod.GET)
-	public List<Survey> selectSurveyList(int page){
+	@RequestMapping(value="/user/{memberNo}/survey", method=RequestMethod.GET)
+	public List<Survey> selectSurveyList(int page, @PathVariable int memberNo){
 		
 		
 		return surveysService.selectSurveyList(page);

@@ -18,6 +18,7 @@ public class ClimingMovieListsDAOImpl implements ClimingMovieListsDAO{
 	public List<ClimingMovieList> myPageClimingMovieList(int memberNo) {
 		return session.selectList("climingMoviesLists.myPageClimingMovieList",memberNo);
 	}
+
 	@Override
 	public void insertPlyaedMovie(ClimingMovieList climingMovieList) {
 		// TODO Auto-generated method stub
