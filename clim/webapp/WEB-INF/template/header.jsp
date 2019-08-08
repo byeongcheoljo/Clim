@@ -673,7 +673,7 @@
 
 		// SockJS와 stomp client를 통해 연결을 시도.
 		stompClient.connect({}, function() {
-
+			console.log("2) 연결");
 			//방번호 얻어오기
 			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
 				//넘어오는 데이터는 body에
@@ -684,16 +684,14 @@
 
 				//해당 번호 방으로 이동
 				location.href = "/room/"+ protocol.body;
-
+				
 			});
 
 			//인자로 받은 함수를 여기서 호출
 			if (callback) callback();
-
+			console.log("1) 연결");
 		});
-
 	}
-	
 	console.log("before");
 	connect();
 	console.log("after");
@@ -777,14 +775,5 @@
 		//방만들기
 		stompClient.send("/app/clim/make", {}, data);
 	});
-		
-// 	connect(function(){
-// 		stompClient.subscribe("/topic/clim/list",function(protocol){
-// 			list = JSON.parse(protocol.body);
-// 			stompClient.send("/app/clim/list", {});
-// 		});//subscribe end
-	 		
-// 	});//connect() end
-	
 </c:if>
 </script>
