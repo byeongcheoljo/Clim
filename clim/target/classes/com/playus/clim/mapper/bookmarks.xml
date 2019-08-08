@@ -62,10 +62,12 @@
 	delete from bookmarks
 	where member_no=(select member_no from c_lists where no= #{memberNo}) and movie_no= #{movieNo} and type='C'
 	</delete>
+	
 	<select id="checkClimingList" parameterType="int" resultType="Bookmark">
 	select no,member_no memberNo
 	from bookmarks
 	where member_no=(select member_no from c_lists where no= #{memberNo} ) and type='C' and movie_no=#{movieNo}
 		
 	</select>
+
 </mapper>

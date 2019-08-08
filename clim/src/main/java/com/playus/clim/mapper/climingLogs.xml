@@ -6,7 +6,6 @@
 	<insert id="insertLog" parameterType="ClimingLog">
 	insert into c_logs
 	values(c_logs_seq.nextval,#{climingNo},#{memberNo},systimestamp,#{sessionId},systimestamp,null)
-	
 	</insert>
 	<select id="selectClimees" parameterType="int" resultType="Member">
 	select no,nickname
