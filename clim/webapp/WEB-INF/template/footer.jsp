@@ -22,20 +22,10 @@
             <li><a href="">고객센터</a></li>
         </ul>
     </div><!--//footerPolicy -->
-<<<<<<< HEAD
     <address>&copy; 2019 <a href="">jbp.com</a></address>
 </footer><!--// footer -->
     
     
     
     
-    
-    
-    
-    
-    
-    
-=======
-    <address>&copy; 2019 <a href="">clim.com</a></address>
-</footer><!--// footer -->
->>>>>>> master
+ 

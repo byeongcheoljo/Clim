@@ -41,23 +41,6 @@
         <@});@>
     </script>
 
-<<<<<<< HEAD
-=======
-    $.ajax({
-        url: "/ajax/user/bookmark/${memberNo}",
-        dataType: "json",
-        type: "get",
-        error: function () {
-            alert("서버 점검중");
-        },//error end
-        success: function (json) {
-            $userStreamBox.html($climingListTmp({
-                "climes": json
-            }));
->>>>>>> master
-
-
-
 	<script src="/js/moment-with-locales.js"></script>
 	<script src="/js/underscore-min.js"></script>
 	<script src="/js/jquery.js"></script>
@@ -74,9 +57,7 @@
 		const $climingListTmp = _.template($("#climingListTmp").html());
 		const $userStreamBox = $("#userStreamBox");
 
-		//webSocket stomp 시작
-		let stompClient = null;
-
+/*
 		function connect(callback) {
 			let socket = new SockJS('/clim');
 			stompClient = Stomp.over(socket);
@@ -84,23 +65,26 @@
 			//console.log(stompClient);
 
 			stompClient.connect({}, function() {
-				//SockJS와 stompclient를 통해 연결을 시도(구독)
-				stompClient.subscribe("/topic/climing/set/feature", function(
-						protocol) {
-					console.log("구독완료!");
 
-				}); //connect function end
+				//콜백 함수 호출
+				if (callback)
+					callback;
 
 			});
 
 			//인자로 받은 함수를 여기서 호출
 
-			//콜백 함수 호출
-			if (callback)
-				callback;
 
-		}//fn connect end
-		connect();
+		};//fn connect end
+		*/
+		connect(function(){
+			//SockJS와 stompclient를 통해 연결을 시도(구독)
+// 			stompClient.subscribe("/topic/climing/set/feature", function(
+// 					protocol) {
+// 				console.log("구독완료!");
+
+// 			}); //connect function end
+		});
 
 		function getList() {
 
@@ -112,27 +96,27 @@
 					alert("서버 점검중");
 				},//error end
 				success : function(json) {
-					console.log("제이슨");
-					console.log(json);
-					stompClient.send("/app/climing/request/feature", {}, {});
+// 					console.log("제이슨");
+// 					console.log(json);
+// 					stompClient.send("/app/climing/request/feature", {}, {});
 
-					
 					$.each(json, function(idx) {
 
-						stompClient.subscribe("/topic/climing/get/feature", function(protocol) {
-							console.log("구독완료!");
-							
-							console.log(protocol.body);//movie객체
-							
-							const json = JSON.parse(protocol.body);
-							
-							alert("sdfasfd");
-							
-							$(".user_streaming_card").eq(idx).find(".streaming_poster").attr("src","")
-							
-							
+// 						stompClient.subscribe("/topic/climing/get/feature",
+// 								function(protocol) {
+// 									console.log("구독완료!");
 
-						}); //connect function end
+// 									console.log(protocol.body);//movie객체
+
+// 									const json = JSON.parse(protocol.body);
+
+// 									alert("sdfasfd");
+
+// 									$(".user_streaming_card").eq(idx).find(
+// 											".streaming_poster")
+// 											.attr("src", "")
+
+// 								}); //connect function end
 
 					});
 

@@ -39,8 +39,11 @@ public class AjaxController {
 	private CommentsService commentsService;
 	@Autowired
 	private ReviewsService reviewsService;
+	
 	@Autowired
 	private MoviesService moviesService;
+	
+	
 	@Autowired
 	private ClimingListsService climingListsService;
 	@Autowired

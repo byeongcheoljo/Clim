@@ -28,7 +28,8 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	@Override
 	public List<Movie> selectFeature() {
 		
-		return session.selectList("climingLists.selectFeatures");
+		//return session.selectList("climingLists.selectFeatures");
+		return null;
 	}
 	
 	@Override
