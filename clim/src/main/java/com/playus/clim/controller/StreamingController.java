@@ -2,6 +2,8 @@ package com.playus.clim.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -19,6 +21,7 @@ import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.Subscribe;
 import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.vo.ClimingList;
+import com.playus.clim.vo.Member;
 
 @Controller
 public class StreamingController {

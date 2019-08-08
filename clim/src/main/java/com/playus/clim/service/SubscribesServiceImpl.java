@@ -22,7 +22,7 @@ public class SubscribesServiceImpl implements SubscribesService {
 	public List<Subscribe> getList(int memberNo) {
 		List<Subscribe> subscribes = subscribesDAO.selectList(memberNo);
 		for (Subscribe subscribe : subscribes) {
-			subscribe.setLiveCheck(1 == climingListsDAO.subscribesLiveCheck(memberNo));
+			subscribe.setLiveCheck(1==climingListsDAO.subscribesLiveCheck(subscribe.getFollower()));
 		}
 		return subscribes;
 	}

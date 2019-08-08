@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -300,7 +299,7 @@
         <@ _.each(subscribes, function(subscribe){@>
         <li class="subscribe_list" >
             <a href="/user/<@=subscribe.follower@>"><@=subscribe.nickname@></a>
-			<@if(subscribe.LiveCheck){@>
+			<@if(subscribe.liveCheck){@>
             <a href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
             <@}@>
                 <button class="unsubscribe_list" data-no="<@=subscribe.follower@>">구독취소</button>
@@ -501,7 +500,7 @@
 	$(".look_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "block");
 		$("#headerSubscribeList").css("display", "none");
-		getSubscribeList();
+		getSubscribeList();	
 	});
 	$(".header_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "none");
@@ -643,9 +642,6 @@
 		}// if() end 글자 다 지웠을 때는 ajax작동 안함
 	});
 
-		
-
-
 	//스트리밍 방송 하기 클릭
 	const list =[];
 	 //구독중인 리스트 불러오기
@@ -658,6 +654,7 @@
 	 alert("에러");
 	 },
 	 success:function (json) {
+		 console.log(json);
 		 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
 	 }//success end
 	 });//ajax end
