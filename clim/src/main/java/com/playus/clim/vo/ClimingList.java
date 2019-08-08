@@ -28,17 +28,6 @@ public class ClimingList {
 
 
 
-	public String getSessionId() {
-		return sessionId;
-	}
-
-
-
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
-
-
 	public ClimingList(int no, String sessionId) {
 		// TODO Auto-generated constructor stub
 		this.no= no;

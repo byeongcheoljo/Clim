@@ -8,8 +8,6 @@ import com.playus.clim.vo.Bookmark;
 public interface BookmarksService {
 
 
-	void addClimingList(int roomNo, int movieNo);
-
 	public List<Bookmark> getMyMovieList(int no);
 
 	public int deletMybookmarkMovie(int no);
@@ -21,9 +19,9 @@ public interface BookmarksService {
 
 	public int removeBookmarkOfCliming(int no);
 
-	String addClimingList(int roomNo, int movieNo);
+	public String addClimingList(int roomNo, int movieNo);
 
-	void deleteClimingList(int roomNo, int movieNo);
+	public void deleteClimingList(int roomNo, int movieNo);
 	
 
 

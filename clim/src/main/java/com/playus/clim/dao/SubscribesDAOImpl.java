@@ -26,16 +26,6 @@ public class SubscribesDAOImpl implements SubscribesDAO {
 	}
 	
 	@Override
-	public int insert(Subscribe subscribe) {
-		return session.insert("subscribes.insert",subscribe);
-	}
-	
-	@Override
-	public int delete(Subscribe subscribe) {
-		return session.delete("subscribes.delete",subscribe);
-	}
-	
-	@Override
 	public int delete(Subscribe subscribe) {
 		return session.delete("subscribes.delete", subscribe);
 	}

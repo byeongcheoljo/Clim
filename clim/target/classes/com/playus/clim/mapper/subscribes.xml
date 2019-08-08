@@ -27,9 +27,10 @@
 	
 	<delete id="delete" parameterType="Subscribe">
 		DELETE subscribes
-		WHERE following = #{following}
-		AND follower = #{follower}
+
+		WHERE following= #{following} AND follower = #{follower}
 	</delete>
+
 	
 	<select id="selectOne" parameterType="Subscribe" resultType="int">
 		SELECT count(*)
