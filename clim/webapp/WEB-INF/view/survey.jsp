@@ -102,7 +102,7 @@
             flag = false;
 		
         $.ajax({
-            url: "/ajax/user/survey",
+            url: "/ajax/user/"+memberNo+"/survey",
             dataType: "json",
             type: "get",
             data:{page: pageNo++},

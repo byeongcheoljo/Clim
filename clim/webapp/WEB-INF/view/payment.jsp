@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="/css/payment.css">
 </head>
 <body>
+<c:import url="/WEB-INF/template/header.jsp"/>
 <main id="content">
     <ul id="headerNavMypage">
-        <li id="nicknameHeaderMypage">${member.nickname}</li>
+        <li id="nicknameHeaderMypage">${loginMember.nickname}</li>
         <li>홈</li>
         <li>찜</li>
         <li>커뮤니티</li>

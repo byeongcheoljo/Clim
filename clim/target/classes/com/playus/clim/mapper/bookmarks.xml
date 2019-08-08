@@ -68,4 +68,5 @@
 	where member_no=(select member_no from c_lists where no= #{memberNo} ) and type='C' and movie_no=#{movieNo}
 		
 	</select>
+
 </mapper>

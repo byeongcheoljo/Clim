@@ -8,7 +8,7 @@ import com.playus.clim.vo.Bookmark;
 public interface BookmarksService {
 
 
-	void addClimingList(int roomNo, int movieNo);
+	//void addClimingList(int roomNo, int movieNo);
 
 	public List<Bookmark> getMyMovieList(int no);
 

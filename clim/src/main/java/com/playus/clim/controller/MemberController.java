@@ -55,10 +55,11 @@ public class MemberController {
 		paymentsService.defaultPaymentInfo(member.getNo());
 		int memberNo = member.getNo();
 		return "redirect:/user/"+memberNo+"/survey";
+		//return "redirect:/user/survey";
 	}
 
-	@RequestMapping(value="/survey", method=RequestMethod.GET)
-	public String survey() {
+	@RequestMapping(value="/user/{memberNo}/survey", method=RequestMethod.GET)
+	public String survey(@PathVariable int memberNo) {
 		return "survey";
 	}
 	

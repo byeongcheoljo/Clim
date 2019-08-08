@@ -51,8 +51,14 @@ public class BookmarksServiceImpl implements BookmarksService {
 		bookmark.setMovieNo(movieNo);
 		bookmark.setMemberNo(roomNo);
 
-		bookmarksDAO.insertClimingList(bookmark);
-
+		//bookmarksDAO.insertClimingList(bookmark);
+		if(bookmarksDAO.checkClimingList(bookmark) != null) {
+			return "{\"result\":" + false + "}";
+		}
+		else {
+			bookmarksDAO.insertClimingList(bookmark);
+			return "{\"result\":" + true + "}";
+		}
 	}
 
 	@Override
@@ -65,16 +71,7 @@ public class BookmarksServiceImpl implements BookmarksService {
 	@Override
 	public int deletMybookmarkMovie(int no) {
 		// TODO Auto-generated method stub
-		return bookmarksDAO.deletMybookmarkMovie(no);
-
-		if(bookmarksDAO.checkClimingList(bookmark)!=null) {
-			return "{\"result\":" + false + "}";
-		}
-		else {
-			bookmarksDAO.insertClimingList(bookmark);
-			return "{\"result\":" + true + "}";
-		}
-		
+		return bookmarksDAO.deletMybookmarkMovie(no);		
 		
 	}
 	@Override
