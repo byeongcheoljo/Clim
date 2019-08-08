@@ -3,4 +3,36 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="climingLogs">
 
+	<insert id="insertLog" parameterType="ClimingLog">
+	insert into c_logs
+	values(c_logs_seq.nextval,#{climingNo},#{memberNo},systimestamp,#{sessionId},systimestamp,null)
+	
+	</insert>
+	<select id="selectClimees" parameterType="int" resultType="Member">
+	select no,nickname
+	from members
+	where no in (select member_no
+	from c_logs
+	where clim_no=#{roomNo} and close_time is null)
+	</select>
+	<select id="selectClimeed" parameterType="int" resultType="int">
+		select count(*) 
+		from c_logs
+		where clim_no in(select no
+		from c_lists
+		where member_no=(select member_no
+						from c_lists
+						where no=#{roomNo}))
+		and close_time is not null
+	</select>
+	<update id="setCloseTime" parameterType="ClimingLog">
+	update c_logs set close_time=systimestamp
+	where clim_no=#{no} and session_id=#{sessionId}
+	</update>
+	
+	<update id="setClimCloseTime" parameterType="int">
+	update c_lists set close_time=systimestamp
+	where no=#{no}
+	</update>
+
 </mapper>

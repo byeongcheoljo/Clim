@@ -3,10 +3,19 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="climingMoviesLists">
 
+
 	<select id="myPageClimingMovieList" resultType="ClimingMovieList" parameterType="int">
 		SELECT DISTINCT m.no no, poster
 		FROM c_plays p , c_lists l, movies m
 		WHERE p.movie_no = m.no AND p.clim_no = l.no AND l.member_no = #{memberNo}
 		ORDER BY 1 DESC
 	</select>
+
+	<insert id="insertPlayedMovie" parameterType="ClimingMovieList">
+	insert into
+	c_plays
+	values(c_plays_seq.nextval,#{climingNo},#{movieNo},systimestamp)
+	
+	</insert>
+
 </mapper>

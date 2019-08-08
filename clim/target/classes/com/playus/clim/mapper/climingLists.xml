@@ -45,6 +45,10 @@
 		FROM c_lists
 		WHERE close_time is NULL AND member_no = #{userNo}
 	</select>
-		
-		
+
+	<update id="updateSessionId" parameterType="ClimingList">
+	update c_lists set session_id=#{sessionId}
+	where no=#{no}
+	</update>
+
 </mapper>

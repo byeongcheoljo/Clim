@@ -1,12 +1,16 @@
 package com.playus.clim.service;
 
+
 import java.util.List;
 import java.util.Map;
 
 import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Movie;
 
+
 public interface ClimingListsService {
+
+	void updateSessionId(ClimingList clim);
 	
 	public List<ClimingList> getClimingList();
 	

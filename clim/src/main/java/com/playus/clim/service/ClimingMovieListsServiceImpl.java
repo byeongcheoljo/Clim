@@ -11,9 +11,20 @@ import com.playus.clim.vo.ClimingMovieList;
 public class ClimingMovieListsServiceImpl implements ClimingMovieListsService{
 	@Autowired
 	private ClimingMovieListsDAO climingMovieListsDAO;
+
 	
 	@Override
 	public List<ClimingMovieList> myPageClimingList(int memberNo) {
 		return climingMovieListsDAO.myPageClimingMovieList(memberNo);
+	}
+	@Override
+	public void insertPlayedMovie(int roomNo, int movieNo) {
+		// TODO Auto-generated method stub
+		ClimingMovieList climingMovieList = new ClimingMovieList();
+		climingMovieList.setClimingNo(roomNo);
+		climingMovieList.setMovieNo(movieNo);
+		
+		climingMovieListsDAO.insertPlyaedMovie(climingMovieList);
+
 	}
 }

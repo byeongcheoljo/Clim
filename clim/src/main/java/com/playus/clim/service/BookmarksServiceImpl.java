@@ -45,11 +45,12 @@ public class BookmarksServiceImpl implements BookmarksService {
 	}
 
 	@Override
-	public void addClimingList(int roomNo, int movieNo) {
+	public String addClimingList(int roomNo, int movieNo) {
 		// TODO Auto-generated method stub
 		Bookmark bookmark = new Bookmark();
 		bookmark.setMovieNo(movieNo);
 		bookmark.setMemberNo(roomNo);
+
 		bookmarksDAO.insertClimingList(bookmark);
 
 	}
@@ -65,6 +66,25 @@ public class BookmarksServiceImpl implements BookmarksService {
 	public int deletMybookmarkMovie(int no) {
 		// TODO Auto-generated method stub
 		return bookmarksDAO.deletMybookmarkMovie(no);
+
+		if(bookmarksDAO.checkClimingList(bookmark)!=null) {
+			return "{\"result\":" + false + "}";
+		}
+		else {
+			bookmarksDAO.insertClimingList(bookmark);
+			return "{\"result\":" + true + "}";
+		}
+		
+		
+	}
+	@Override
+	public void deleteClimingList(int roomNo, int movieNo) {
+		// TODO Auto-generated method stub
+		Bookmark bookmark = new Bookmark();
+		bookmark.setMovieNo(movieNo);
+		bookmark.setMemberNo(roomNo);
+		bookmarksDAO.deleteClimingList(bookmark);
+
 	}
 
 }

@@ -36,5 +36,10 @@ public class ClimingListsServiceImpl implements ClimingListsService {
 		System.out.println("z3");
 		climingListsDAO.insert(climingList);
 	}
+	@Override
+	public void updateSessionId(ClimingList clim) {
+		// TODO Auto-generated method stub
+		climingListsDAO.updateSessionId(clim);
+	}
 
 }

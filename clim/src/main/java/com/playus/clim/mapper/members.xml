@@ -10,29 +10,32 @@
 			FROM members
 			WHERE no = #{no}
 		</select>
-		<select id="selectClimingLeader" resultType="Leader"
-			parameterType="int">
-			select
-			members.no no,members.nickname
-			nickname,currentPeople.currCount currcount,accPeople.accCount
-			acccount,title
-			from members,
-			(select no,member_no,title
-			from
-			c_lists)clists,
-			(select count(*) currCount
-			from c_logs
-			where
-			clim_no=#{no} and close_time is null)currentPeople,
-			(select count(*)
-			accCount
-			from c_logs
-			where clim_no=#{no} and close_time is not
-			null)accPeople
-			where clists.member_no=members.no and clists.no=#{no}
-		</select>
+		
+		
+		
+		
+	<select id="selectClimingLeader" resultType="Leader"
+		parameterType="int">
+		select
+		members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+		from members,
+		(select no,member_no,title
+		from c_lists)clists,
+		(select count(*) currCount
+		from c_logs
+		where clim_no=#{no} and close_time is null)currentPeople,
+		(select count(*) accCount
+		from c_logs
+		where clim_no in(select no
+		from c_lists
+		where member_no=(select member_no
+		from c_lists
+		where no=#{no}))
+		and close_time is not null)accPeople
+		where clists.member_no=members.no and clists.no=#{no}
+	</select>
 
-		<select id="myPageMemberSelectOne" parameterType="int"
+	<select id="myPageMemberSelectOne" parameterType="int"
 			resultType="Member">
 			select no, email,
 			(select count(*) from subscribes where
@@ -49,14 +52,14 @@
 			#{memberNo}
 		</select>
 
-		<select id="selectLogin" parameterType="Member"
-			resultType="Member">
-			SELECT no, email, nickname, gender, birth_date birthDate,
-			pwd, uuid
-			FROM members
-			WHERE email = #{email}
-			AND pwd = #{pwd}
-		</select>
+	<select id="selectLogin" parameterType="Member" resultType="Member">
+		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
+		FROM members
+		WHERE email = #{email}
+		AND pwd = #{pwd}
+	</select>
+	
+
 
 		<update id="UUIDUpdate" parameterType="Member">
 			<selectKey keyProperty="no" order="BEFORE" resultType="int">
@@ -68,11 +71,16 @@
 			set UUID = #{uuid}
 			where email = #{email}
 		</update>
+		
+		
+		
+		
 		<update id="pwdUpdate" parameterType="Member">
 			update members
 			set UUID = #{uuid}, pwd = #{pwd}
 			where no = #{no}
 		</update>
+		
 		<select id="checkId" parameterType="string" resultType="int">
 			select
 			count(*)
@@ -80,6 +88,7 @@
 			where email = #{email}
 
 		</select>
+		
 		<select id="checkNickname" parameterType="string"
 			resultType="int">
 			select count(*)
@@ -106,5 +115,8 @@
 			where no = #{no}
 
 		</update>
+		
+		
+		
 
 </mapper>

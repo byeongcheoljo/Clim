@@ -3,6 +3,7 @@ package com.playus.clim.dao;
 import java.util.List;
 
 import com.playus.clim.vo.Bookmark;
+import com.playus.clim.vo.Movie;
 
 public interface BookmarksDAO {
 	
@@ -13,8 +14,15 @@ public interface BookmarksDAO {
 
 	public void insertClimingList(Bookmark bookmark);
 
+
 	public List<Bookmark> mybookmarkListForMovies(int no);
 	
 	public int deletMybookmarkMovie(int no);
 	
+
+	public void deleteClimingList(Bookmark bookmark);
+
+	public Bookmark checkClimingList(Bookmark bookmark);
+
+
 }

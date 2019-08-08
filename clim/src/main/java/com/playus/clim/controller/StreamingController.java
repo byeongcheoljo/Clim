@@ -1,8 +1,15 @@
+
 package com.playus.clim.controller;
 
+
+import java.util.Map;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -13,29 +20,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.playus.clim.service.ClimingListsService;
+import com.playus.clim.service.ClimingLogsService;
 import com.playus.clim.service.StreamingDetailService;
 import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.Subscribe;
-import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.vo.ClimingList;
-
+import com.playus.clim.vo.ClimingLog;
+import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Movie;
 
 @Controller
 public class StreamingController {
 	@Autowired
 	private StreamingDetailService streamingDetailService;
 	@Autowired
-	private SubscribesService subscribesService;
+	private ClimingLogsService climingLogsService;
 	@Autowired
 	private ClimingListsService climingListsService;
+		@Autowired
+	private SubscribesService subscribesService;
 	
 	
 	@RequestMapping(value="/room/{no}", method=RequestMethod.GET)
-	public String getModelPage(Model model, @PathVariable int no) {
+	public String getModelPage(Model model, @PathVariable int no, HttpSession session) {
 		System.out.println(no);
-		model.addAllAttributes(streamingDetailService.getDetailByRoomNo(no));
+		model.addAllAttributes(streamingDetailService.getDetailByRoomNo(no, session));
+		
 		return "streamingDetail";
+		
 	}
 	
 	@RequestMapping(value="/ajax/user/{memberNo}/subscribe",method=RequestMethod.GET)
@@ -43,6 +56,7 @@ public class StreamingController {
 	public List<Subscribe> getSubscribeList(@PathVariable int memberNo){
 		return subscribesService.getList(memberNo);
 	};
+	
 	
 	@MessageMapping("/clim/make")
 	@SendToUser("/queue/clim/make")
@@ -72,12 +86,102 @@ public class StreamingController {
 		
 	}
 	
+	
+	
 	@MessageMapping("/room/{no}/chat")
 	@SendTo("/topic/room/{no}/chat")
-	public String asapqkfkeo(String msg, SimpMessageHeaderAccessor accessor) {
+	public String asdfas(String msg, 
+			SimpMessageHeaderAccessor accessor) {
 		
 		System.out.println(msg);
 		
 		return msg;
 	}
+	
+	
+	@MessageMapping("/room/{no}/close")
+	@SendTo("/topic/room/{no}/close")
+	public int asdfas( @DestinationVariable int no,
+			SimpMessageHeaderAccessor accessor) {
+		
+		System.out.println(accessor.getSessionId());
+		
+		System.out.println("방장이 문을 닫았음");
+		
+		climingLogsService.climClose(no);
+		//climListService.close(accessor.getSessionId());
+		
+		return 1;
+	}
+	//방에서 현재 시간을 얻어옴
+		@MessageMapping("/room/{no}/get/time")
+		@SendTo("/topic/room/{no}/get/time")
+		public int afdasdf(@DestinationVariable int no, int memberNo , SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/{no}/get/time");
+			System.out.println(memberNo);
+			
+			
+			ClimingLog log = new ClimingLog();
+			log.setClimingNo(no);
+			log.setMemberNo(memberNo);
+			log.setSessionId(accessor.getSessionId());
+			climingLogsService.joinCliming(log);
+			
+			//아무값이나 리턴하지 않으면 응답이 가지 않음
+			return 1;
+		}
+		
+		//방에서 현재 시간을 세팅함
+		@MessageMapping("/room/{no}/set/time")
+		@SendTo("/topic/room/{no}/set/time")
+		public Movie afdasdf(Movie movie, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/{no}/set/time");
+			
+			return movie;
+		}
+		
+		@MessageMapping("/room/{no}/get/climee")
+		@SendTo("/topic/room/{no}/get/climee")
+		public Map<String, Object> getClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/"+no+"/get/climee");
+			return climingLogsService.getClimeeList(no);
+		}
+		
+		//방장이 나가라고함
+		@MessageMapping("/room/{no}/ban/{memberNo}")
+		@SendTo("/topic/room/{no}/ban/{memberNo}")
+		public int banClimee(int member_no) {
+			System.out.println("/room/{roomNo}/ban/{memberNo}");
+			return 1;
+		}
+		//나감~~
+		@MessageMapping("/room/{no}/baned/member/{memberNo}")
+		@SendTo("/topic/room/{no}/member/baned")
+		public String banedClimee(@DestinationVariable int no,String nickname, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/topic/room/{no}/member/baned");
+			climingLogsService.getOutCliming(no,accessor.getSessionId());
+			return nickname;
+		}
+		@MessageMapping("/room/{no}/{memberNo}/close")
+		public void getOutClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
+			System.out.println("/room/{no}/{memberNo}/close");
+			climingLogsService.getOutCliming(no,accessor.getSessionId());
+			
+		}
+		
+		
+		@MessageMapping("/room/{no}/put/sessionId")
+		public void sfasds(int no,SimpMessageHeaderAccessor accessor) {
+			System.out.println("방장이 처음 들어옴!");
+			
+			System.out.println("sessionId:"+accessor.getSessionId());
+			
+			ClimingList clim = new ClimingList(no,accessor.getSessionId());
+			
+			climingListsService.updateSessionId(clim);
+		}
+		
+		
+
 }
+

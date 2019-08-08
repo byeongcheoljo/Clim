@@ -14,12 +14,12 @@ body {
 	margin-left: -540px;
 	margin-top: -300px;
 }
-
+/* 
 .video-js .vjs-big-play-button {
-	/* Center it horizontally */
+	Center it horizontally
 	left: 50%;
 	margin-left: -2.1em;
-	/* Center it vertically */
+	Center it vertically
 	top: 50%;
 	margin-top: -1.4000000000000001em;
 	font-size: 3em;
@@ -32,20 +32,20 @@ body {
 	vertical-align: middle;
 	cursor: pointer;
 	opacity: 1;
-	/* Need a slightly gray bg so it can be seen on black backgrounds */
-	/* background-color-with-alpha */
+	Need a slightly gray bg so it can be seen on black backgrounds
+	background-color-with-alpha
 	background-color: #07141e;
 	background-color: rgba(7, 20, 30, 0.7);
 	border: 0.1em solid #3b4249;
-	/* border-radius */
+	border-radius
 	-webkit-border-radius: 0.8em;
 	-moz-border-radius: 0.8em;
 	border-radius: 0.8em;
-	/* box-shadow */
+	box-shadow
 	-webkit-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
 	-moz-box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
 	box-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
-	/* transition */
+	transition
 	-webkit-transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	-o-transition: all 0.4s;
@@ -56,7 +56,57 @@ body {
 .video-js.vjs-paused .vjs-has-started, .video-js vjs-user-active .vjs-has-started
 	{
 	display: block;
-}
+} */
+  #my-player {
+            width:100%;
+        }
+
+        .video-js .vjs-big-play-button {
+            top:50%;
+            left:50%;
+            margin:-22.5px 0 0 -43px;
+        }
+
+        .video-js .vjs-title-bar {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+
+            /*
+              By default, do not show the title bar.
+            */
+            display: none;
+            font-size: 2em;
+            padding: .5em;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .video-js.vjs-paused.vjs-has-started .vjs-title-bar,
+        .video-js.vjs-user-active.vjs-has-started .vjs-title-bar{
+            display: block;
+        }
+
+        .video-js.vjs-has-started .vjs-move-btn {
+            position: absolute;
+            right:20px;
+            bottom:50px;
+            width:100px;
+            height:40px;
+            background: #F9AC1A;
+            cursor: pointer;
+            font-size:20px;
+            opacity: 0;
+            transition:opacity .2s ease;
+        }
+
+        .video-js.vjs-user-active.vjs-has-started .vjs-move-btn{
+            opacity: 1;
+        }
+        .vjs-menu-content{
+            z-index: 999;
+        }
 
 #streamingDetailSlideBar {
 	background-color: #231F20;
@@ -112,6 +162,14 @@ body {
 	font-size: 22px;
 	line-height: 100px;
 	text-indent: 5px;
+}
+#streamingDetailStreamerName a{
+	text-decoration: none;
+	color: #231F20;
+}
+#streamingDetailStreamerName a:hover{
+
+	color: #F9AC1A;
 }
 
 .fa-crown {
