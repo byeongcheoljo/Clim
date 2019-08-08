@@ -488,7 +488,9 @@
 					<strong><@=movie.title@>(<@=moment(movie.opendate).format('YYYY')@>)</strong>
 				</div>
 				<ul id="movieInformationBox">
-				<button class="preview_btn book_mark">BookMark</button>
+				<@if(${loginMember!=null}){@>
+				<button data-no =<@=movie.no@> class="preview_btn book_mark <@if(movie.bookmarkCheck){@>on<@}@>" >BookMark</button>
+				<@}@>	
 					<li>평균 평점 <span><i class="fas fa-star"></i> <@=movie.score@></span> <span
 						id="age">${movie.movieRating }</span></li>
 					<li>상영시간 <span><@=movie.runtime@>분</span></li>
@@ -976,6 +978,11 @@
 					// console.log($(this).children('.top_border'));
 					movieNo = this.dataset.movieno;
 					timer = setTimeout(function() {
+						$(document).ready(function(ev){
+							$("#previewWrap iframe")[6].src += "&autoplay=1";
+							ev.preventDefault();
+						});
+						
 						$trailerBg.fadeIn(100);
 						trailer();
 					}, 2000);
@@ -1030,17 +1037,33 @@
 					alert("에러");
 				},//error end
 				success : function(json) {
-					$previewSection.append($trailerTmp({"movie" : json.movie,"directors" : json.directors,"actors" : json.actors}));
+					$previewSection.empty().append($trailerTmp({"movie" : json.movie,"directors" : json.directors,"actors" : json.actors}));
 				}//success end
 			});// ajax end
 		}
 		
-		
-		
 		$(".trailer_bg").on("click",".book_mark",function(){
-			console.log("ㅇㅇ");
+			let no = this.dataset.no;
+			let type = "POST";
+			let $bookmarkBtn = $(this);
+			if($(this).hasClass("on")){
+				type = "DELETE";
+			}
+			$.ajax({
+				url:"/ajax/movie/"+no+"/bookmark/${loginMember.no}",
+				type:type,
+				dataType:"json",
+				data:{
+					type:"B"
+				},
+				error:function(){
+					alert("bookmark add 에러");
+				},
+				success:function(json){
+					$bookmarkBtn.toggleClass("on");
+				}
+			})
 		});//click end
-
 		
 	</script>
 </body>

@@ -1,5 +1,7 @@
 package com.playus.clim.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class ClimingListsServiceImpl implements ClimingListsService{
 		System.out.println("z3");
 		climingListsDAO.insert(climingList);
 	}
-	
-
+	@Override
+	public List<ClimingList> subscribesClimingList() {
+		return climingListsDAO.subscribesClimingList();
+	}
 }

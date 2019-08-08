@@ -1,5 +1,7 @@
 package com.playus.clim.service;
 
+import java.util.List;
+
 import com.playus.clim.vo.ClimingList;
 
 public interface ClimingListsService {
@@ -8,4 +10,6 @@ public interface ClimingListsService {
 	
 	public ClimingList getOne(int no);
 
+	public List<ClimingList> subscribesClimingList();
+	
 }

@@ -16,5 +16,5 @@ public interface MoviesService {
 	//index에서 추천작
 	public Map<String, Object> getRecommandationList();
 /*김근경 끝*/
-	public Map<String, Object> getMovieTrailer(int no);
+	public Map<String, Object> getMovieTrailer(int no,int memberNo);
 }

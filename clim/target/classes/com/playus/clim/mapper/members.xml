@@ -34,19 +34,13 @@
 
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
-		select no, email,
-		(select count(*) from subscribes where
-		follower = #{memberNo})
-		followerCnt,
-		(select count(*) from c_logs c
-		where member_no = #{memberNo} AND
-		open_time is not null) climgCnt,
-		nickname,
-		regdate
-		from
-		members
-		where no =
-		#{memberNo}
+		select no, email,(select count(*) from subscribes where
+		follower = #{memberNo}) followerCnt, (select count(*)
+		from c_logs log,c_lists list
+		where log.clim_no = list.no AND list.member_no = #{memberNo} AND log.open_time is not
+		null) climgCnt,nickname, regdate
+		from members
+		where no =#{memberNo}
 	</select>
 
 	<select id="selectLogin" parameterType="Member"
@@ -162,16 +156,22 @@
 		WHERE r BETWEEN 1 AND 7
 	</select>
 
-	<select id="myPageMovieForStriming" resultType="Member" parameterType="int">
+	<select id="myPageMovieForStriming" resultType="Member"
+		parameterType="int">
 		SELECT name,no
 		FROM(SELECT name, no, rownum r
-		FROM(SELECT g.genre name, count(g.no) no
-		FROM movies m, c_lists list, c_plays play, genres g, m_genres genre
-		WHERE m.no = play.movie_no AND m.no = genre.movie_no AND genre.genre_no =
-		g.no AND list.no = play.clim_no AND list.member_no = #{no}
+		FROM(SELECT
+		g.genre name, count(g.no) no
+		FROM movies m, c_lists list, c_plays play,
+		genres g, m_genres genre
+		WHERE m.no = play.movie_no AND m.no =
+		genre.movie_no AND genre.genre_no =
+		g.no AND list.no = play.clim_no AND
+		list.member_no = #{no}
 		GROUP BY g.genre
 		ORDER BY 2 DESC))
-		WHERE r BETWEEN 1 AND 6
+		WHERE r BETWEEN
+		1 AND 6
 	</select>
 
 </mapper>

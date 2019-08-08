@@ -29,4 +29,9 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 		return session.selectOne("climingLists.subscribesLiveCheck",memberNo);
 	}
 	
+	@Override
+	public List<ClimingList> subscribesClimingList() {
+		return session.selectList("climingLists.subscribesClimingList");
+	}
+	
 }

@@ -88,10 +88,10 @@
 		<c:otherwise>
 			<!-- 로그인했을시 정보버튼 확인-->
 			<div id="headerLoginInfo">
-				<span><img id="headerStreamingImg" src="/img/camera.png" /></span> <span
-					class="header_userInfo_nav"><i class="fas fa-user-alt"></i></span>
+				<span><img id="headerStreamingImg" src="/img/camera.png" /></span>
+				<span class="header_userInfo_nav"><i class="fas fa-user-alt"></i></span>
 				<ul id="headerUserInfoBox">
-					<li><a href="">${loginMember.nickname }</a></li>
+					<li><a href="/user/${loginMember.no }">${loginMember.nickname }</a></li>
 					<li><a href="">찜</a></li>
 					<li><a href="">내정보</a></li>
 					<li><a href="">고객센터</a></li>
@@ -647,7 +647,7 @@
 
 
 	//스트리밍 방송 하기 클릭
-	
+	const list =[];
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -658,11 +658,10 @@
 	 alert("에러");
 	 },
 	 success:function (json) {
-	 console.log(json);
-	 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
-	 }
-	 });
-	 }
+		 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
+	 }//success end
+	 });//ajax end
+	 }//getSubscribeList end
 
 	//webSocket stomp client
 	let stompClient = null;
@@ -758,20 +757,15 @@
 	
 	$(".streaming_start_btn").on("click",function(e) {
 		e.stopPropagation();
-		
 		let title = $("#climTitle").val();
-
 		alert(title);
-		
 		//넘길 데이터(파라미터)
-
 		/*
 		$.ajax({ 
 			url: ①
 			data:②
 			success:③
 		})
-		
 		stompClient.send(①,{},②);
 		 */
 		//객체를 String으로 
@@ -780,11 +774,17 @@
 			"memberNo" : ${loginMember.no},
 			"title" : title
 		});
-
 		//방만들기
 		stompClient.send("/app/clim/make", {}, data);
-
 	});
-
+		
+// 	connect(function(){
+// 		stompClient.subscribe("/topic/clim/list",function(protocol){
+// 			list = JSON.parse(protocol.body);
+// 			stompClient.send("/app/clim/list", {});
+// 		});//subscribe end
+	 		
+// 	});//connect() end
+	
 </c:if>
 </script>

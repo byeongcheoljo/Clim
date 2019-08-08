@@ -47,7 +47,21 @@ public class BookmarksDAOImpl implements BookmarksDAO{
 	@Override
 	public int deletMybookmarkMovie(int no) {
 		// TODO Auto-generated method stub
-		return session.delete("deleteMybookmarkMovie",no);
+		return session.delete("bookmarks.deleteMybookmarkMovie",no);
+	}
+	
+	@Override
+	public int bookmarkCheck(Bookmark bookmark) {
+		return session.selectOne("bookmarks.bookmarkCheck",bookmark);
 	}
 
+	@Override
+	public int boomarkForMovieInsert(Bookmark bookmark) {
+		return session.insert("bookmarks.boomarkForMovieInsert",bookmark);
+	}
+	
+	@Override
+	public int boomarkForMovieDelete(Bookmark bookmark) {
+		return session.insert("bookmarks.boomarkForMovieDelete",bookmark);
+	}
 }

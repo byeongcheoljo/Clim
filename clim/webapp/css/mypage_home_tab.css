@@ -19,7 +19,7 @@ body{
             background: lemonchiffon;
             width: 1080px;
             height: 110px;
-            top:50px;
+            top:35px;
         }
 
         /*지은*/
@@ -332,6 +332,7 @@ body{
             height: 275px;
             overflow: hidden;
             background: #231F20;
+            position: relative;
         }
 
         #chartSection #latestPlayList .latest_playlist_box {

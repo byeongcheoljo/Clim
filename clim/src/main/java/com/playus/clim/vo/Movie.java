@@ -11,9 +11,18 @@ public class Movie {
 	private char movieRating;
 	private Timestamp regdate;
 	private double score;
+	private boolean bookmarkCheck;
 
 	public Movie() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public boolean isBookmarkCheck() {
+		return bookmarkCheck;
+	}
+
+	public void setBookmarkCheck(boolean bookmarkCheck) {
+		this.bookmarkCheck = bookmarkCheck;
 	}
 
 	public double getScore() {

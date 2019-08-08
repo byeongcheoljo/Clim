@@ -20,7 +20,6 @@ import com.playus.clim.vo.Subscribe;
 import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.vo.ClimingList;
 
-
 @Controller
 public class StreamingController {
 	@Autowired
@@ -52,11 +51,7 @@ public class StreamingController {
 		// 고유한 값
 		String sessionId = accessor.getSessionId();
 		
-		//System.out.println(sessionId);
 		System.out.println("/app/clim/make");
-		//System.out.println("userNo : "+clim.getUserNo());
-		//System.out.println("title : "+clim.getTitle());
-		//System.out.println("sessionId : "+clim.getSessionId());
 		//clim 생성
 		climingList.setSessionId(sessionId);
 		try {
@@ -66,18 +61,19 @@ public class StreamingController {
 		}//try~catch end
 		// 방번호를 알 수 있음
 		System.out.println("no : "+climingList.getNo());
-		
 		// 방번호를 리턴
 		return climingList.getNo();
-		
 	}
-	
 	@MessageMapping("/room/{no}/chat")
 	@SendTo("/topic/room/{no}/chat")
 	public String asapqkfkeo(String msg, SimpMessageHeaderAccessor accessor) {
-		
 		System.out.println(msg);
-		
 		return msg;
+	}
+	
+	@MessageMapping("/clim/list")
+	@SendTo("/topic/clim/list")
+	public List<ClimingList> subscribeList(SimpMessageHeaderAccessor accessor) {
+		return climingListsService.subscribesClimingList();
 	}
 }

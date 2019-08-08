@@ -27,5 +27,10 @@
 			WHERE close_time is NULL AND member_no = #{userNo}
 		</select>
 		
+		<select id="subscribesClimingList" resultType="ClimingList" >
+			SELECT no,member_no memberNo,title,regdate,session_id sessionId
+			FROM c_lists
+			WHERE close_time IS NULL
+		</select>
 		
 </mapper>
