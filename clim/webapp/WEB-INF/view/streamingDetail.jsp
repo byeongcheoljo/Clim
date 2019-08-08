@@ -704,12 +704,8 @@
         		
         	});
     		};
-            
-            
-           
-           
-            	
-            
+    		//connect선언에 이것만 두고
+
  							//const video = $("video").get(0); 	
  			            	connect(function() {
  			            		
