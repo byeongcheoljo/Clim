@@ -216,6 +216,8 @@
 						전송하기</button>
 				</form>
 			</div>
+			
+			
 			<!--//headerSigninPopupContentWrap-->
 		</div>
 		<!--/headerSigninPopup-->
@@ -298,6 +300,7 @@
     <ul>
         <@ _.each(subscribes, function(subscribe){@>
         <li class="subscribe_list" >
+			<input type="hidden" value="<@=subscribe.follower@>" class="subscribe_no"/>
             <a href="/user/<@=subscribe.follower@>"><@=subscribe.nickname@></a>
 			<@if(subscribe.liveCheck){@>
             <a href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
@@ -309,6 +312,7 @@
 </script>
 <script src="/js/sockjs.min.js"></script>
 <script src="/js/stomp.min.js"></script>
+
 <script>
 	_.templateSettings = {
 		interpolate : /\<\@\=(.+?)\@\>/gim,
@@ -324,7 +328,7 @@
 	//구독자 리스트 템플릿
 	let subscribeListTmp = _.template($("#subscribeListTmp").html());
 	/* 0802 로그인 유저의 끌리밍 리스트 불러오기 */
-
+	let list = [];
 	//스트리밍 준비 무비 리스트
 	function getStreamingMovieList() {
 		$.ajax({
@@ -452,6 +456,7 @@
 	$("#headerStreamingImg").click(function() {
 		$(".streaming_popupBg").fadeIn();
 		getStreamingMovieList();
+		
 	});
 	$(".streaming_popupBg").click(function() {
 		$(".movie_search").empty();
@@ -500,7 +505,6 @@
 	$(".look_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "block");
 		$("#headerSubscribeList").css("display", "none");
-		getSubscribeList();
 	});
 	$(".header_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "none");
@@ -645,8 +649,10 @@
 		
 
 
-	//스트리밍 방송 하기 클릭
-	const list =[];
+	 //스트리밍 방송 하기 클릭
+	 <c:if test="${loginMember!=null}">
+	 getSubscribeList();
+	 </c:if>
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -659,10 +665,13 @@
 	 success:function (json) {
 	 console.log(json);
 	 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
+		 list = json;
+		 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
+		 console.log(list);
 	 }//success end
 	 });//ajax end
 	 }//getSubscribeList end
-
+	 
 	//webSocket stomp client
 	let stompClient = null;
 
@@ -675,27 +684,18 @@
 		stompClient.connect({}, function() {
 			console.log("2) 연결");
 			//방번호 얻어오기
-			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
-				//넘어오는 데이터는 body에
-				console.log(protocol.body);
-
-				//방을 만들었기 때문에 유저에게 목록을 다시
-				stompClient.send("/app/clim/list", {});
-
-				//해당 번호 방으로 이동
-				location.href = "/room/"+ protocol.body;
-				
-			});
+		
 
 			//인자로 받은 함수를 여기서 호출
 			if (callback) callback();
 			console.log("1) 연결");
 		});
 	}
+
 	console.log("before");
 	connect(function(){
-
 		//방번호 얻어오기
+		
 		stompClient.subscribe("/user/queue/clim/make", function(protocol) {
 			//넘어오는 데이터는 body에
 			console.log(protocol.body);
@@ -707,6 +707,24 @@
 			location.href = "/room/"+ protocol.body;
 
 		});
+	});
+			stompClient.send("/app/clim/${loginMember.no}/live", {});
+			//해당 번호 방으로 이동
+			location.href = "/room/"+ protocol.body;
+		});
+		$.each(list,function(){
+		stompClient.subscribe("/topic/clim/"+this.follower+"/live",function(protocol){
+			const memberNo = protocol.body;
+			let subscribe =  $(".subscribe_list .subscribe_no").val();
+			console.log("subscribe:"+subscribe);
+			console.log("memberNo:"+memberNo);
+			if(subscribe==memberNo){
+				$(".subscribe_list a").eq(2).show();
+			}else{	
+				$(".subscribe_list a").eq(2).hide();
+			}
+		})
+		})
 	});
 	console.log("after");
 

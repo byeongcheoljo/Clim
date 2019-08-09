@@ -501,13 +501,13 @@ body.on #headerTotalSearchText {
 	margin-left: 5px;
 }
 
-.subscribe_list a:first-child {
+.subscribe_list a:nth-child(2) {
 	position: absolute;
 	left: 10px;
 	/*border: 1px solid #00CF35;*/
 	/*background-color: #1E88E5;*/
 }
-.subscribe_list a:nth-child(2){
+.subscribe_list a:nth-child(3){
 	position: absolute;
 	left: 90px;
 }
