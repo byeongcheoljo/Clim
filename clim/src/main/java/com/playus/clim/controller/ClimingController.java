@@ -40,7 +40,6 @@ public class ClimingController {
 	@SendTo("/topic/climing/get/feature")
 	public List<Movie> retrunClimFeature() {
 	
-
 		return null;
 	};// returnClimFeature()
 	
