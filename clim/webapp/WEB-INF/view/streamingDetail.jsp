@@ -293,6 +293,7 @@
             //    myPlayer.requestFullScreen();
             /*videojs("my-player").ready(function() {
                 myPlayer.src({
+                	
                     type: "video/mp4",
                     src: "/video/loop.mp4"
                 });
@@ -778,6 +779,7 @@
 
  								<c:choose>
  			            		<c:when test="${leader.no!= loginMember.no}">
+ 			            		
  			            			stompClient.subscribe("/topic/room/${roomNo}/close",function(protocol) {
  			        				console.log(protocol.body);
  			        				stompClient.send("/app/room/${roomNo}/${loginMember.no}/close",{});
@@ -817,6 +819,8 @@
  			                    </c:when>
  			                    <c:otherwise>
  			                   ////방장
+ 			                   
+ 			                   
  			                   
  			                   $("#streamingDetailClimList").on("click",".climListDelete",function(){
  			                	  
@@ -983,9 +987,29 @@
  					        				//방에 있지 않은 다른 유저들에게도 리스트 갱신
  					        				stompClient.send("/app/clim/list",{});
  					        			});
+ 					        			
+ 					        			
+ 					        			//0809 손영준(사실은 김필구) 구독 추가
+ 					        			stompClient.subscribe("/topic/climing/set/feature",function(protocol) {
+ 					        				
+ 					        				console.log("/topic/climing/set/feature");
+ 					        				
+ 					        				//방장이 현재 보고 있는 시간을 다른 유저들에게 보냄
+ 					        				let src = $("video source").attr('src');
+ 					        				console.log(src);
+ 					        				const title = $('.vjs-title-bar').text();
+ 					        				const data = JSON.stringify({src:src,runtime:player.currentTime(),no:${no}});
+ 					        				
+ 					        				stompClient.send("/app/climing/info",{},data);
+ 					        				
+ 					        				//영화번호, 현재 시간, 현재 방번호를 서버로 
+ 					        				
+ 					        				
+ 					        				
+ 					        			});
+ 					        			
  			                    </c:otherwise>
  			                    </c:choose>
- 			                    
  			                  
  			           	});
             //##########################웹소켓################################

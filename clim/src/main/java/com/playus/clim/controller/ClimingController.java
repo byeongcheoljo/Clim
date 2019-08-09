@@ -24,30 +24,27 @@ public class ClimingController {
 		return "climingList";
 	};// pageView end
 
-	/* web socket */
-	// 시청자로부터 방 번호를 받아 방장들에게 브로드캐스팅
-	@MessageMapping("/climing/{climNo}/request/feature")
-	@SendTo("/climing/get/feature") // 이 주소를 가진 방장에게 broadCast
-	public int subscribingForCliming(@DestinationVariable int climNo) {
+	@MessageMapping("climing/request/feature")
+	@SendTo("/topic/climing/set/feature")
+	public int subscribingForCliming() {
 
-		System.out.println("current climNo : " + climNo);
-		// List<ClimingList> climingList =
-		// climingListService.getClimRealtimeFeature(climNo);
-		return climNo;
+		
+		return 1;
 	};// subscribingForCliming()
-
 	
 	
 	/*
-	 * 방장들로부터 현재 영화 시점, 영화 번호를 받아 처리하여 시청자들에게 스틸컷, 장르, 포스터를 브로드캐스팅
-	 */
-	@MessageMapping("/climing/respond/feature/currentTime/{currentTime}/movie/{movieNo}")
-	@SendTo("/topic/climing/set/feature")
-	public List<Movie> retrunClimFeature(@DestinationVariable int currentTime, @DestinationVariable int movieNo) {
-		// mapper미작성 : 질문할 것
-		List<Movie> movies = climingListService.getClimRealtimeFeature();
+	 * 방장들로부터 현재 영화 시점, 영화 번호, 방번호를 받아 
+	*/
+	@MessageMapping("/climing/info")
+	@SendTo("/topic/climing/get/feature")
+	public List<Movie> retrunClimFeature() {
+	
 
-		return movies;
+		return null;
 	};// returnClimFeature()
+	
+	
+
 
 }// ClimingController class end

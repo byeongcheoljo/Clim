@@ -310,8 +310,6 @@
         <@})@>
     </ul>
 </script>
-<script src="/js/sockjs.min.js"></script>
-<script src="/js/stomp.min.js"></script>
 
 <script>
 	_.templateSettings = {
@@ -646,8 +644,6 @@
 		}// if() end 글자 다 지웠을 때는 ajax작동 안함
 	});
 
-		
-
 
 	 //스트리밍 방송 하기 클릭
 	 <c:if test="${loginMember!=null}">
@@ -684,50 +680,48 @@
 		stompClient.connect({}, function() {
 			console.log("2) 연결");
 			//방번호 얻어오기
-		
 
 			//인자로 받은 함수를 여기서 호출
 			if (callback) callback();
 			console.log("1) 연결");
-		});
-	}
+			
 
-	console.log("before");
-	connect(function(){
-		//방번호 얻어오기
+			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
+				//넘어오는 데이터는 body에
+				console.log(protocol.body);
+
+				//방을 만들었기 때문에 유저에게 목록을 다시
+				stompClient.send("/app/clim/list", {});
+				stompClient.send("/app/clim/${loginMember.no}/live", {});
+				//해당 번호 방으로 이동
+				location.href = "/room/"+ protocol.body;
+			});//subscribe end
+			
+			/*
+			$.each(list,function(){
+				
+				stompClient.subscribe("/topic/clim/"+this.follower+"/live",function(protocol){
+					const memberNo = protocol.body;
+					let subscribe =  $(".subscribe_list .subscribe_no").val();
+					console.log("subscribe:"+subscribe);
+					console.log("memberNo:"+memberNo);
+					
+					if(subscribe==memberNo){
+						$(".subscribe_list a").eq(2).show();
+					}else{	
+						$(".subscribe_list a").eq(2).hide();
+					}//if~else end
+					
+				});//subscribe end
+			})//each() end
+			*/
+			
+		});//stompClient.connect() end
 		
-		stompClient.subscribe("/user/queue/clim/make", function(protocol) {
-			//넘어오는 데이터는 body에
-			console.log(protocol.body);
-
-			//방을 만들었기 때문에 유저에게 목록을 다시
-			stompClient.send("/app/clim/list", {});
-
-			//해당 번호 방으로 이동
-			location.href = "/room/"+ protocol.body;
-
-		});
-	});
-			stompClient.send("/app/clim/${loginMember.no}/live", {});
-			//해당 번호 방으로 이동
-			location.href = "/room/"+ protocol.body;
-		});
-		$.each(list,function(){
-		stompClient.subscribe("/topic/clim/"+this.follower+"/live",function(protocol){
-			const memberNo = protocol.body;
-			let subscribe =  $(".subscribe_list .subscribe_no").val();
-			console.log("subscribe:"+subscribe);
-			console.log("memberNo:"+memberNo);
-			if(subscribe==memberNo){
-				$(".subscribe_list a").eq(2).show();
-			}else{	
-				$(".subscribe_list a").eq(2).hide();
-			}
-		})
-		})
-	});
+	}//connect() end
+	
 	console.log("after");
-
+	
 	$(".streaming_title").on("submit", function(e) {
 		e.preventDefault();
 	})
