@@ -3,6 +3,7 @@ package com.playus.clim.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -76,4 +77,12 @@ public class StreamingController {
 	public List<ClimingList> subscribeList(SimpMessageHeaderAccessor accessor) {
 		return climingListsService.subscribesClimingList();
 	}
+	@MessageMapping("/app/clim/{memberNo}/live")
+	@SendTo("/topic/clim/{memberNo}/live")
+	public int climLive(@DestinationVariable int memberNo) {
+		return memberNo;
+	}
+	
+	
+	
 }
