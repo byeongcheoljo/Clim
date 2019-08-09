@@ -12,16 +12,14 @@
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
 	<main id="content">
-	<div id="contentWrap"></div>
-	<div id="hotSection" class="index_section">
-
-		<ul id="userStreamBox">
-
-
-		</ul>
-		<!-- //userStreamBox end -->
-	</div>
-	<!-- //hotSection end --> <!-- contentWrap --> </main>
+		<div id="contentWrap">
+			<div id="hotSection" class="index_section">
+	
+				<ul id="userStreamBox">
+				</ul><!-- //userStreamBox end -->
+			</div><!-- //hotSection end --> 
+		</div><!-- contentWrap -->
+	</main>
 	<c:import url="/WEB-INF/template/footer.jsp" />
 	<script type="text/tempate" id="climingListTmp">
 <@_.each(clims,function(clim){@>
@@ -61,8 +59,8 @@
 		function connect(callback) {
 			let socket = new SockJS('/clim');
 			stompClient = Stomp.over(socket);
-			//console.log(socket);
-			//console.log(stompClient);
+			console.log(socket);
+			console.log(stompClient);
 
 			stompClient.connect({}, function() {
 
