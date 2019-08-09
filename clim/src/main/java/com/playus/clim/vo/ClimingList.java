@@ -27,7 +27,8 @@ public class ClimingList {
 	public ClimingList(int no, String sessionId) {
 		// TODO Auto-generated constructor stub
 		this.no= no;
-	
+		this.sessionId = sessionId;
+	}
 	public String getSessionId() {
 		return sessionId;
 	}

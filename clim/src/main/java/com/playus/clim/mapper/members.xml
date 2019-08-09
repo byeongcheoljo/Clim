@@ -94,6 +94,7 @@
 			select count(*)
 			from members
 			where nickname = #{nickname}
+			</select>
 	<select id="selectOneByNo" parameterType="int"
 		resultType="Member">
 		SELECT no, email, nickname,gender, birth_date birthDate,
@@ -240,7 +241,6 @@
 		WHERE r BETWEEN 1 AND 7
 	</select>
 
-		</update>
 	<select id="myPageMovieForStriming" resultType="Member"
 		parameterType="int">
 		SELECT name,no 

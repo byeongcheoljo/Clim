@@ -15,13 +15,11 @@
 		WHERE following =
 		#{following} AND follower = #{follower}
 	</select>
-	
 
 	<insert id="insert" parameterType="Subscribe">
 		INSERT INTO subscribes(no, following, follower, regdate)
 		VALUES(subscribes_seq.nextval, #{following}, #{follower}, systimestamp)
-	</insert>
-
+</insert>
 	<delete id="delete" parameterType="Subscribe">
 		DELETE subscribes
 		WHERE following= #{following} AND follower = #{follower}

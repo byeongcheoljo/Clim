@@ -43,7 +43,7 @@ public class BookmarksServiceImpl implements BookmarksService {
 	}
 
 	@Override
-	public void addClimingList(int roomNo, int movieNo) {
+	public String addClimingList(int roomNo, int movieNo) {
 		Bookmark bookmark = new Bookmark();
 		bookmark.setMovieNo(movieNo);
 		bookmark.setMemberNo(roomNo);
@@ -75,7 +75,7 @@ public class BookmarksServiceImpl implements BookmarksService {
 		bookmark.setMovieNo(movieNo);
 		bookmark.setMemberNo(roomNo);
 		bookmarksDAO.deleteClimingList(bookmark);
-		
+	}
 	@Override
 	public int bookmarkForMovie(int movieNo, int memberNo) {
 		

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="members">
+
 		<select id="selectOneByNo" parameterType="int"
 			resultType="Member">
 			SELECT no, email, nickname,gender, birth_date birthDate,
@@ -9,30 +10,56 @@
 			FROM members
 			WHERE no = #{no}
 		</select>
-		<select id="selectClimingLeader" resultType="Leader" parameterType="int">
-			select members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
-			from members, (select no,member_no,title from c_lists)clists, (select count(*) currCount from c_logs
-			where clim_no=#{no} and close_time is null)currentPeople,
-			(select count(*) accCount from c_logs where clim_no in(select no
-			from c_lists where member_no=(select member_no from c_lists where no=#{no})) and close_time is not null)accPeople
-			where clists.member_no=members.no and clists.no=#{no}
-		</select>
+		
+		
+		
+		
+	<select id="selectClimingLeader" resultType="Leader"
+		parameterType="int">
+		select
+		members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
+		from members,
+		(select no,member_no,title
+		from c_lists)clists,
+		(select count(*) currCount
+		from c_logs
+		where clim_no=#{no} and close_time is null)currentPeople,
+		(select count(*) accCount
+		from c_logs
+		where clim_no in(select no
+		from c_lists
+		where member_no=(select member_no
+		from c_lists
+		where no=#{no}))
+		and close_time is not null)accPeople
+		where clists.member_no=members.no and clists.no=#{no}
+	</select>
 
-		<select id="myPageMemberSelectOne" parameterType="int"
+	<select id="myPageMemberSelectOne" parameterType="int"
 			resultType="Member">
-			select no, email, (select count(*) from subscribes where follower = #{memberNo}) followerCnt,
-			(select count(*) from c_logs c where member_no = #{memberNo} AND open_time is not null) climgCnt,
-			nickname, regdate
-			from members
-			where no = #{memberNo}
+			select no, email,
+			(select count(*) from subscribes where
+			follower = #{memberNo})
+			followerCnt,
+			(select count(*) from c_logs c
+			where member_no = #{memberNo} AND
+			open_time is not null) climgCnt,
+			nickname,
+			regdate
+			from
+			members
+			where no =
+			#{memberNo}
 		</select>
 
-		<select id="selectLogin" parameterType="Member" resultType="Member">
-			SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
-			FROM members
-			WHERE email = #{email}
-			AND pwd = #{pwd}
-		</select>
+	<select id="selectLogin" parameterType="Member" resultType="Member">
+		SELECT no, email, nickname, gender, birth_date birthDate, pwd, uuid
+		FROM members
+		WHERE email = #{email}
+		AND pwd = #{pwd}
+	</select>
+	
+
 
 		<update id="UUIDUpdate" parameterType="Member">
 			<selectKey keyProperty="no" order="BEFORE" resultType="int">
@@ -67,21 +94,35 @@
 			select count(*)
 			from members
 			where nickname = #{nickname}
-		</select>
-		<select id="selectOneByNo" parameterType="int" resultType="Member">
-			SELECT no, email, nickname,gender, birth_date birthDate,
-			regdate
-			FROM members
-			WHERE no = #{no}
-		</select>
-		<select id="selectClimingLeader" resultType="Leader" parameterType="int">
-			select members.no no,members.nickname nickname,currentPeople.currCount currcount,accPeople.accCount acccount,title
-			from members, (select no,member_no,title from c_lists)clists, (select count(*) currCount
-			from c_logs where clim_no=#{no} and close_time is null)currentPeople,(select count(*) accCount
-			from c_logs
-			where clim_no=#{no} and close_time is not null)accPeople
-			where clists.member_no=members.no and clists.no=#{no}
-		</select>
+			</select>
+	<select id="selectOneByNo" parameterType="int"
+		resultType="Member">
+		SELECT no, email, nickname,gender, birth_date birthDate,
+		regdate
+		FROM members
+		WHERE no = #{no}
+	</select>
+	<select id="selectClimingLeader" resultType="Leader"
+		parameterType="int">
+		select
+		members.no no,members.nickname
+		nickname,currentPeople.currCount currcount,accPeople.accCount
+		acccount,title
+		from members,
+		(select no,member_no,title
+		from
+		c_lists)clists,
+		(select count(*) currCount
+		from c_logs
+		where
+		clim_no=#{no} and close_time is null)currentPeople,
+		(select count(*)
+		accCount
+		from c_logs
+		where clim_no=#{no} and close_time is not
+		null)accPeople
+		where clists.member_no=members.no and clists.no=#{no}
+	</select>
 
 	<select id="myPageMemberSelectOne" parameterType="int"
 		resultType="Member">
@@ -143,6 +184,7 @@
 		regdate)
 		values(#{no},#{email}, #{nickname}, #{gender}, #{birthDate},
 		#{pwd}, systimestamp)
+
 	</insert>
 
 	<update id="updateInfo" parameterType="Member">
@@ -190,32 +232,24 @@
 
 	<select id="myPageMovieForGenres" resultType="Member"
 		parameterType="int">
-		SELECT name,no
-		FROM(SELECT name,no, rownum r
-		FROM(SELECT
-		g.genre name, count(g.no) no
-		FROM movies m,
-		m_continues con, m_genres
-		genre, genres g
-		WHERE m.no = con.movie_no AND
-		m.no = genre.movie_no AND
-		g.no =
+		SELECT name,no FROM(SELECT name,no, rownum r FROM(SELECT g.genre name, count(g.no) no
+		FROM movies m, m_continues con, m_genres genre, genres g
+		WHERE m.no = con.movie_no AND m.no = genre.movie_no AND g.no =
 		genre.genre_no AND con.member_no = #{no}
 		GROUP BY g.genre ORDER
 		BY 2 DESC , 1))
 		WHERE r BETWEEN 1 AND 7
 	</select>
 
-		</update>
-		<select id="myPageMovieForStriming" resultType="Member"
+	<select id="myPageMovieForStriming" resultType="Member"
 		parameterType="int">
-		SELECT name,no FROM(SELECT name, no, rownum r 
-		FROM(SELECT g.genre name, count(g.no) no 
+		SELECT name,no 
+		FROM(SELECT name, no, rownum r FROM(SELECT g.genre name, count(g.no) no
 		FROM movies m, c_lists list, c_plays play, genres g, m_genres genre
-		WHERE m.no = play.movie_no AND m.no = genre.movie_no AND genre.genre_no = g.no AND list.no = play.clim_no AND
-		list.member_no = #{no}
-		GROUP BY g.genre ORDER BY 2 DESC))
+		WHERE m.no = play.movie_no AND m.no = genre.movie_no AND genre.genre_no =
+		g.no AND list.no = play.clim_no AND list.member_no = #{no}
+		GROUP BY g.genre
+		ORDER BY 2 DESC))
 		WHERE r BETWEEN 1 AND 6
-		</select>
-
+	</select>
 </mapper>
