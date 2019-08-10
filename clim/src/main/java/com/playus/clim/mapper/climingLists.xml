@@ -18,12 +18,12 @@
 		WHERE c.no = m.clim_no(+)
 	</select>
 
-	<select id="selectFeatures" resultType="Movie"
-		parameterType="int">
-		select rep_genre repGenre, poster
-		from movies
-		where no =
-		#{movieNo}
+	<select id="selectFeatures" resultType="Clim"
+		parameterType="string">
+	
+		SELECT no, rep_genre genre, poster, title
+		FROM movies
+		WHERE src =	#{src}
 	</select>
 
 
@@ -41,8 +41,7 @@
 
 	<select id="selectOne" resultType="ClimingList"
 		parameterType="int">
-		SELECT no, member_no memberNo, title, regdate,
-		session_id sessionId
+		SELECT no, member_no memberNo, title, regdate, session_id sessionId
 		FROM c_lists
 		WHERE no = #{no}
 	</select>

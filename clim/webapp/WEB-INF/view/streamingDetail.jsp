@@ -288,6 +288,7 @@
             let climListTmp = _.template($("#climListTmp").html());
             let SearchListTmp = _.template($("#SearchListTmp").html());
 
+            let climeesCnt = 0;
 
             
             //    myPlayer.requestFullScreen();
@@ -301,7 +302,7 @@
             });*/
 
             let onPlay = function() {
-                console.info("on Play");
+//                 console.info("on Play");
                 $(".vjs-big-play-button").hide();
 
             };
@@ -385,8 +386,8 @@
 
             function playMovie(src,time,title){
             	
-            	console.log("1) test");
-            	console.log(title)
+//             	console.log("1) test");
+//             	console.log(title)
             	
             	player.src({type: 'video/mp4', src: src});
             	$(".vjs-title-bar").text(title);
@@ -436,7 +437,7 @@
 
             $("#streamingDetailTitleSearch").on("keyup", function() {
                 let searchTitle = $streamingDetailTitleSearch.val().trim();
-                console.log(searchTitle);
+//                 console.log(searchTitle);
 
                 if (searchTitle.length == 0) {
                     $("#streamingDetailTitleList").hide();
@@ -452,8 +453,8 @@
                         alert("movieList 서버 점검.")
                     },
                     success: function(json) {
-                        console.log(json);
-                        console.log(json[0].title);
+//                         console.log(json);
+//                         console.log(json[0].title);
                         
                        $("#streamingDetailTitleList ul").empty();
 
@@ -495,7 +496,7 @@
             	},
             	success:function(json){
             		
-            		console.log(json);
+//             		console.log(json);
             		if(json.result){
             			$streamingDetailMovieList.append(movieAddPlayListTmp({
                             "title": title,
@@ -698,7 +699,7 @@
         	// SockJS와 stomp client를 통해 연결을 시도.
         	stompClient.connect({},function() {
         		
-        		console.log("2) 연결!");
+//         		console.log("2) 연결!");
         	
         		//인자로 받은 함수를 여기서 호출
         		if(callback) callback();
@@ -738,16 +739,16 @@
  			            		//클리미들 구독해서 리스트 가져오기!
  			            		stompClient.subscribe("/topic/room/${roomNo}/get/climee",function(protocol) {
 			            				
-			            				
-			            				
 			            				const json = JSON.parse(protocol.body);
 			            				console.log("/topic/room/${roomNo}/get/climee");
 			            				$("#streamingDetailClimList ul").html(climListTmp({
 			                                json: json.climees
 			                            }))
 			            				
-			            				const climeesCnt = json.climeesCnt;
+			            				climeesCnt = json.climeesCnt;
 			            				const climeedCnt = json.climeedCnt;
+			            				
+			            				//console.log(json);
 			            				
 			            				$("#streamingDetailCumulativeIndex").text("누적 끌림 지수 :"+climeedCnt+"명");
 			            				$("#streamingDetailCurrentIndex").text("현재 끌림 지수 : "+climeesCnt+"명");
@@ -756,7 +757,7 @@
  			            		//방장이 나가라고 받았음
  			            		stompClient.subscribe("/topic/room/${roomNo}/ban/${loginMember.no}",function(protocol) {
 
-		            				console.log("/topic/room/${roomNo}/ban/${loginMember.no}");
+		            				//console.log("/topic/room/${roomNo}/ban/${loginMember.no}");
 		            				stompClient.send("/app/room/${roomNo}/baned/member/${loginMember.no}",{},"${loginMember.nickname}");
 	 			            		
 		            				alert("강퇴당하셨습니다.");
@@ -781,7 +782,7 @@
  			            		<c:when test="${leader.no!= loginMember.no}">
  			            		
  			            			stompClient.subscribe("/topic/room/${roomNo}/close",function(protocol) {
- 			        				console.log(protocol.body);
+ 			        				//console.log(protocol.body);
  			        				stompClient.send("/app/room/${roomNo}/${loginMember.no}/close",{});
 			        				
  			        				alert("방장이 방을 종료했습니다!");
@@ -793,7 +794,7 @@
  			            				
  			            				
  			            				const json = JSON.parse(protocol.body);
- 			            				console.log("/topic/room/${roomNo}/set/time");
+ 			            				//console.log("/topic/room/${roomNo}/set/time");
  			            				const time = json.audiAcc;
  			            				const src = json.src;
  			            				const title = json.title
@@ -830,6 +831,7 @@
  			                	  stompClient.send("/app/room/${roomNo}/ban/"+member_no,{},member_no);
  			                	   
  			                   });
+ 			                   
  			                     $(".streamingDetail_movie .fa-trash-alt").click(function() {
 					            	const movie_no=$(this).parent().find('input').val();
 					            	
@@ -872,15 +874,15 @@
 							                // alert("down button");
 							                let lastIndex = $streamingDetailMovieList[0].childElementCount - 1;
 							                let temp = $(this).parents("li");
-							                console.log(temp);
+							                //console.log(temp);
 							                let index = $(this).parents("li").index();
-							                console.log(index);
+							                //console.log(index);
 							                if (index == lastIndex) {
 							                    return false;
 							                }
 							                $(this).parents("li").remove();
 							                $streamingDetailMovieList.children("li").eq(index).after(temp);
-							                console.log($(this).parents("li").index());
+							                //console.log($(this).parents("li").index());
 							            });
 							
 							            // 영화 목록에서 윗 버튼을 클릭하면 스왑
@@ -896,21 +898,21 @@
 							
 							                $(this).parents("li").remove();
 							                $streamingDetailMovieList.children("li").eq(index - 1).before(temp);
-							                console.log($(this).parents("li").index());
+// 							                console.log($(this).parents("li").index());
 							
 							            });
 							            // 관리자가 스트리밍 무비 리스트를 클릭하면 
 							            // 클릭 된 영화 재생
 							            $("#streamingDetailMovieList").on("click"," .streamingDetail_movie div",function(){
 							             	const src = $(this).find("source").attr('src');
-							             	console.log(src);
-							     			console.log();
+// 							             	console.log(src);
+// 							     			console.log();
 							     			
 							     			//player.currentTime(10);
 							     			
 							     			const time = player.currentTime();
 							     			
-							     			console.log("time:" + time);
+// 							     			console.log("time:" + time);
 							     			const title = $(this).find("span").text();
 							     			
 							     			const data = JSON.stringify({"src":src,"audiAcc":0,"title":title});
@@ -968,13 +970,13 @@
  					        			//방장의 경우 다른 유저들이 들어왔을때 현재 영화의 currentTime을
  					        			//넘겨줘야 하는 주소를 구독해놔야 함
  					        			stompClient.subscribe("/topic/room/${roomNo}/get/time",function(protocol) {
- 					        				console.log("/user/queue/room/${roomNo}/time");
+//  					        				console.log("/user/queue/room/${roomNo}/time");
  					        								
  					        				//alert(video.currentTime);
  					        				
  					        				//방장이 현재 보고 있는 시간을 다른 유저들에게 보냄
  					        				let src = $("video source").attr('src');
- 					        				console.log(src);
+//  					        				console.log(src);
  					        				const title = $('.vjs-title-bar').text();
  					        				const data = JSON.stringify({src:src,audiAcc:player.currentTime(),title:title});
  					        				stompClient.send("/app/room/${roomNo}/set/time",{},data);
@@ -989,17 +991,23 @@
  					        			});
  					        			
  					        			
- 					        			//0809 손영준(사실은 김필구) 구독 추가
+ 					        			//0809 손영준 구독 추가
  					        			stompClient.subscribe("/topic/climing/set/feature",function(protocol) {
  					        				
  					        				console.log("/topic/climing/set/feature");
  					        				
  					        				//방장이 현재 보고 있는 시간을 다른 유저들에게 보냄
  					        				let src = $("video source").attr('src');
- 					        				console.log(src);
- 					        				const title = $('.vjs-title-bar').text();
- 					        				const data = JSON.stringify({src:src,runtime:player.currentTime(),no:${no}});
  					        				
+ 					        				const title = $('.vjs-title-bar').text();
+ 					        				const data = JSON.stringify({
+ 					        					src :src,
+ 					        					currentTime :player.currentTime(),
+ 					        					no:${no },
+ 					        					viewerCount:climeesCnt
+ 					        				});
+ 					        				console.log("데이터입니다!")
+ 					        				console.log(data);
  					        				stompClient.send("/app/climing/info",{},data);
  					        				
  					        				//영화번호, 현재 시간, 현재 방번호를 서버로 

@@ -21,12 +21,11 @@
 		</div><!-- contentWrap -->
 	</main>
 	<c:import url="/WEB-INF/template/footer.jsp" />
-	<script type="text/tempate" id="climingListTmp">
-<@_.each(clims,function(clim){@>
+	<script type="text/template" id="climingListTmp">
  <li class="user_streaming_card">
 	<a>
             <div class="streaming_img">
-                <img class="streaming_poster" src="<@=clim.poster@>"/>
+                <img class="streaming_poster" src="/posters<@=clim.poster@>"/>
                 <img class="streaming_thumbnail" src="<@=clim.stealcut@>"/>
             </div>
             <div class="streaming_info">
@@ -36,7 +35,6 @@
             </div>
 	</a>
         </li>
-        <@});@>
     </script>
 
 	<script src="/js/moment-with-locales.js"></script>
@@ -58,16 +56,23 @@
 		connect(function(){
 			
 			console.log("커넥션 끝나고 난 후");
-			
-			getList();
+		
+			stompClient.send("/app/climing/request/feature", {});
 			
 			//SockJS와 stompclient를 통해 연결을 시도(구독)
-			stompClient.subscribe("/topic/climing/get/feature", function(protocol) {
-
+			stompClient.subscribe("/topic/climing/get/feature", function(p) {
+				
+				
+				console.log(p.body);
+				
+				const json = JSON.parse(p.body);
+				
+				$userStreamBox.html($climingListTmp({"clim" : json	}));
+				
 			}); //subscribe fn end
 			
 		});//connect function end
-
+/*
 		function getList() {
 
 			$.ajax({
@@ -81,13 +86,13 @@
 					
 					console.log("/app/climing/request/feature");
 					
-					stompClient.send("/app/climing/request/feature", {});
+					
 
 					$userStreamBox.html($climingListTmp({"clims" : json	}));
 				}//success end
 			});
 		}//fn getList end
-
+*/
 	</script>
 </body>
 </html>

@@ -44,7 +44,7 @@ public class StreamingController {
 	
 	@RequestMapping(value="/room/{no}", method=RequestMethod.GET)
 	public String getModelPage(Model model, @PathVariable int no, HttpSession session) {
-		System.out.println(no);
+		//System.out.println(no);
 		model.addAllAttributes(streamingDetailService.getDetailByRoomNo(no, session));
 		
 		return "streamingDetail";
@@ -66,7 +66,7 @@ public class StreamingController {
 		// 고유한 값
 		String sessionId = accessor.getSessionId();
 		
-		System.out.println("/app/clim/make");
+		//System.out.println("/app/clim/make");
 		//clim 생성
 		climingList.setSessionId(sessionId);
 		try {
@@ -75,7 +75,7 @@ public class StreamingController {
 			e.printStackTrace();
 		}//try~catch end
 		// 방번호를 알 수 있음
-		System.out.println("no : "+climingList.getNo());
+		//System.out.println("no : "+climingList.getNo());
 		// 방번호를 리턴
 		return climingList.getNo();
 	}
@@ -92,9 +92,9 @@ public class StreamingController {
 	public int asdfas( @DestinationVariable int no,
 			SimpMessageHeaderAccessor accessor) {
 		
-		System.out.println(accessor.getSessionId());
+		//System.out.println(accessor.getSessionId());
 		
-		System.out.println("방장이 문을 닫았음");
+		//System.out.println("방장이 문을 닫았음");
 		
 		climingLogsService.climClose(no);
 		//climListService.close(accessor.getSessionId());
@@ -105,8 +105,8 @@ public class StreamingController {
 		@MessageMapping("/room/{no}/get/time")
 		@SendTo("/topic/room/{no}/get/time")
 		public int afdasdf(@DestinationVariable int no, int memberNo , SimpMessageHeaderAccessor accessor) {
-			System.out.println("/room/{no}/get/time");
-			System.out.println(memberNo);
+			//System.out.println("/room/{no}/get/time");
+			//System.out.println(memberNo);
 			
 			
 			ClimingLog log = new ClimingLog();
@@ -123,7 +123,7 @@ public class StreamingController {
 		@MessageMapping("/room/{no}/set/time")
 		@SendTo("/topic/room/{no}/set/time")
 		public Movie afdasdf(Movie movie, SimpMessageHeaderAccessor accessor) {
-			System.out.println("/room/{no}/set/time");
+//			System.out.println("/room/{no}/set/time");
 			
 			return movie;
 		}
@@ -131,7 +131,7 @@ public class StreamingController {
 		@MessageMapping("/room/{no}/get/climee")
 		@SendTo("/topic/room/{no}/get/climee")
 		public Map<String, Object> getClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
-			System.out.println("/room/"+no+"/get/climee");
+//			System.out.println("/room/"+no+"/get/climee");
 			return climingLogsService.getClimeeList(no);
 		}
 		
@@ -139,20 +139,20 @@ public class StreamingController {
 		@MessageMapping("/room/{no}/ban/{memberNo}")
 		@SendTo("/topic/room/{no}/ban/{memberNo}")
 		public int banClimee(int member_no) {
-			System.out.println("/room/{roomNo}/ban/{memberNo}");
+//			System.out.println("/room/{roomNo}/ban/{memberNo}");
 			return 1;
 		}
 		//나감~~
 		@MessageMapping("/room/{no}/baned/member/{memberNo}")
 		@SendTo("/topic/room/{no}/member/baned")
 		public String banedClimee(@DestinationVariable int no,String nickname, SimpMessageHeaderAccessor accessor) {
-			System.out.println("/topic/room/{no}/member/baned");
+//			System.out.println("/topic/room/{no}/member/baned");
 			climingLogsService.getOutCliming(no,accessor.getSessionId());
 			return nickname;
 		}
 		@MessageMapping("/room/{no}/{memberNo}/close")
 		public void getOutClimee(@DestinationVariable int no, SimpMessageHeaderAccessor accessor) {
-			System.out.println("/room/{no}/{memberNo}/close");
+//			System.out.println("/room/{no}/{memberNo}/close");
 			climingLogsService.getOutCliming(no,accessor.getSessionId());
 			
 		}
@@ -160,9 +160,9 @@ public class StreamingController {
 		
 		@MessageMapping("/room/{no}/put/sessionId")
 		public void sfasds(int no,SimpMessageHeaderAccessor accessor) {
-			System.out.println("방장이 처음 들어옴!");
+//			System.out.println("방장이 처음 들어옴!");
 			
-			System.out.println("sessionId:"+accessor.getSessionId());
+//			System.out.println("sessionId:"+accessor.getSessionId());
 			
 			ClimingList clim = new ClimingList(no,accessor.getSessionId());
 			
