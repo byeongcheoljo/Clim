@@ -113,7 +113,7 @@ public class MypageController {
 	@ResponseBody
 	public String subscribes(@PathVariable int loginMember, @PathVariable int memberNo) {
 		int count = subscribesService.subscribes(loginMember, memberNo);
-		return "{\"count\":" + (count == 0) + "}";
+		return "{\"count\":" + (count == 1) + "}";
 	}
 
 	@RequestMapping(value = "/ajax/user/{memberNo}/events", method = RequestMethod.GET)

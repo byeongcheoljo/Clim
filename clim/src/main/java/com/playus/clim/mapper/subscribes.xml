@@ -7,6 +7,7 @@
 		SELECT s.no no, following, follower, nickname
 		FROM members m, subscribes s
 		WHERE s.follower = m.no  AND following =#{no}
+		ORDER BY 1
 	</select>
 
 	<select id="subscribesCheck" parameterType="Subscribe" resultType="int">
