@@ -501,7 +501,6 @@
 	$(".look_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "block");
 		$("#headerSubscribeList").css("display", "none");
-// 		getSubscribeList();
 	});
 	$(".header_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "none");
@@ -682,10 +681,8 @@
 			
 			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
 				//넘어오는 데이터는 body에
-				console.log(protocol.body);
-
 				//방을 만들었기 때문에 유저에게 목록을 다시
-				stompClient.send("/app/clim/list", {});
+				stompClient.send("/app/clim/list", {});	
 				
 				//해당 번호 방으로 이동
 				location.href = "/room/"+ protocol.body;
@@ -711,17 +708,9 @@
 				}
 				})//each end
 			});//subscribe end
-			
-			
 			if (callback) callback();
 		});//stompClient.connect() end
-		
-		
-		
-	}//connect() end
-	
-	connect();
-	
+	}//connect() end	
 	console.log("after");
 	
 	$(".streaming_title").on("submit", function(e) {
