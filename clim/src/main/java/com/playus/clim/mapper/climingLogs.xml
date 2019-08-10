@@ -4,7 +4,7 @@
 <mapper namespace="climingLogs">
 
 	<insert id="insertLog" parameterType="ClimingLog">
-	insert into c_logs
+	insert into c_logs(no, clim_NO, member_no, regdate, session_id, open_time, close_time)
 	values(c_logs_seq.nextval,#{climingNo},#{memberNo},systimestamp,#{sessionId},systimestamp,null)
 	</insert>
 	<select id="selectClimees" parameterType="int" resultType="Member">

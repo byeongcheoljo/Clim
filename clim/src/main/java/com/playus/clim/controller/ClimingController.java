@@ -53,7 +53,8 @@ public class ClimingController {
 	public Clim retrunClimFeature(Clim clim) throws Exception {
 		
 //		int roomNo = clim.getNo();
-//		System.out.println("방번호 : "+roomNo);
+	System.out.println("방번호 : "+clim.getNo());
+		
 //		System.out.println("영화경로 : "+clim.getSrc());
 //		System.out.println("현재 시점 : "+clim.getCurrentTime());
 		//방번호로 영화번호를 가져와야 함
@@ -64,14 +65,17 @@ public class ClimingController {
 		System.out.println(src);
 		
 		Clim movieFeature = climingListService.getClimRealtimeFeature(src);
+		movieFeature.setNo(clim.getNo());
 //		System.out.println(movieFeature);
 //		System.out.println("/climing/info");
 //		System.out.println("no:"+movieFeature.getNo());
 		System.out.println("Poster:"+movieFeature.getPoster());
 		System.out.println("genre:"+movieFeature.getGenre());
-		System.out.println("title:"+movieFeature.getTitle());
+		System.out.println("title:"+clim.getTitle());
+		movieFeature.setTitle(clim.getTitle());
 		System.out.println("viewerCount :" +clim.getViewerCount());
 		movieFeature.setViewerCount(clim.getViewerCount());
+		
 		//movieFeature.setCurrentTime(clim.getCurrentTime());
 		
 		
@@ -81,7 +85,7 @@ public class ClimingController {
 				//스냅샷 찍을 폴더 경로
 				String snapshotPath = servletContext.getRealPath("snapshot");
 		
-		String inputFilename = moviePath+File.separator +src;
+		String inputFilename = moviePath+File.separator+src;
 		
 		System.out.println(inputFilename);
 		
@@ -96,7 +100,6 @@ public class ClimingController {
 		snapshotCreateUtil.makeSnapshots(inputFilename, timestamp, outputDir, snapshotPrefix, maxWidth, maxHeight);
 		
 		movieFeature.setStealcut(snapshotPrefix+timestamp+".jpg");
-		
 		
 		return movieFeature;
 	};// returnClimFeature()

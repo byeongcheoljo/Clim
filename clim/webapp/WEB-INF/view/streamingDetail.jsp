@@ -990,7 +990,6 @@
  					        				stompClient.send("/app/clim/list",{});
  					        			});
  					        			
- 					        			
  					        			//0809 손영준 구독 추가
  					        			stompClient.subscribe("/topic/climing/set/feature",function(protocol) {
  					        				
@@ -999,15 +998,17 @@
  					        				//방장이 현재 보고 있는 시간을 다른 유저들에게 보냄
  					        				let src = $("video source").attr('src');
  					        				
- 					        				const title = $('.vjs-title-bar').text();
+ 					        				const title = $('#streamingDetailRoomTitle').text();
+ 					        				console.log("타이틀입니다!!@#!@#")
+ 					        				console.log(title);
  					        				const data = JSON.stringify({
  					        					src :src,
  					        					currentTime :player.currentTime(),
  					        					no:${no },
- 					        					viewerCount:climeesCnt
+ 					        					viewerCount:climeesCnt,
+ 					        					title : title
  					        				});
- 					        				console.log("데이터입니다!")
- 					        				console.log(data);
+ 					        				
  					        				stompClient.send("/app/climing/info",{},data);
  					        				
  					        				//영화번호, 현재 시간, 현재 방번호를 서버로 

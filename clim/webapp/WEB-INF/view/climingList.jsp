@@ -22,19 +22,19 @@
 	</main>
 	<c:import url="/WEB-INF/template/footer.jsp" />
 	<script type="text/template" id="climingListTmp">
- <li class="user_streaming_card">
-	<a>
+ 	<li class="user_streaming_card">
+		<a>
             <div class="streaming_img">
                 <img class="streaming_poster" src="/posters<@=clim.poster@>"/>
-                <img class="streaming_thumbnail" src="<@=clim.stealcut@>"/>
+                <img class="streaming_thumbnail" src="/snapshot/<@=clim.stealcut@>"/>
             </div>
             <div class="streaming_info">
                 <div class="streaming_tit">[<@=clim.genre@>]<@=clim.title@></div>
                 <div class="streaming_user"><@=clim.nickname@></div>
                 <div class="streaming_cnt"><i class="fas fa-user-friends"></i><@=clim.viewerCount@></div>
             </div>
-	</a>
-        </li>
+		</a>
+    </li>
     </script>
 
 	<script src="/js/moment-with-locales.js"></script>
@@ -62,37 +62,24 @@
 			//SockJS와 stompclient를 통해 연결을 시도(구독)
 			stompClient.subscribe("/topic/climing/get/feature", function(p) {
 				
-				
 				console.log(p.body);
 				
 				const json = JSON.parse(p.body);
 				
-				$userStreamBox.html($climingListTmp({"clim" : json	}));
+				$userStreamBox.append($climingListTmp({"clim" : json	}));
+				
+				$userStreamBox.on("click", $(".streaming_img"), function(){
+					//alert("test");
+					location.href = "/room/"+json.no; //클릭시 방으로 이동
+					
+				});// img click fn() end
 				
 			}); //subscribe fn end
 			
 		});//connect function end
-/*
-		function getList() {
 
-			$.ajax({
-				url : "/ajax/climing",
-				dataType : "json",
-				type : "get",
-				error : function() {
-					alert("서버 점검중");
-				},//error end
-				success : function(json) {
-					
-					console.log("/app/climing/request/feature");
-					
-					
-
-					$userStreamBox.html($climingListTmp({"clims" : json	}));
-				}//success end
-			});
-		}//fn getList end
-*/
-	</script>
+		
+		
+		</script>
 </body>
 </html>

@@ -43,6 +43,7 @@
 	<mvc:resources location="/stealCut/"
 		mapping="/stealCut/**" />
 	<mvc:resources location="/video/" mapping="/video/**" />
+	<mvc:resources location="/snapshot/" mapping="/snapshot/**" />
 	<mvc:resources location="/vtt/" mapping="/vtt/**" />
 
 	<websocket:message-broker
