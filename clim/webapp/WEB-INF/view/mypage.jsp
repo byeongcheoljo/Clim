@@ -989,6 +989,10 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 
 });//성별에 따른 시청자비율 바	
 	stompClient.connect({},function(){
+		<c:if test="${loginMember!=null}">
+		 getSubscribeList();
+		 </c:if>
+		
 		stompClient.send("/app/clim/living",{});
 		
 		stompClient.subscribe("/topic/clim/live", function(protocol) {
@@ -1005,7 +1009,7 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 					$(".my_page_live_check").attr("href","/room/"+rooms.no);
 				}
 			});//subscribe end
-
+		
 			stompClient.subscribe("/topic/clim/live/close",function(protocol){
 			console.log("mypage");
 			let rooms = JSON.parse(protocol.body);
