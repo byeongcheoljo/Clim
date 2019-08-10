@@ -1,6 +1,6 @@
 package com.playus.clim.vo;
 
-import java.sql.Date; 
+import java.sql.Date;  
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -36,10 +36,12 @@ public class Event {
 	}
 
 	@JsonProperty("end")
+	public String getEndFormatDate() {
+		SimpleDateFormat dt = new SimpleDateFormat("YYYY-MM-dd 00:00:01");
+		return dt.format(endDate);
+	}
+
 	public Date getEndDate() {
-		 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd 09:00:00");
-		String date= sdf.format(endDate);
-		endDate = Date.valueOf(date);
 		return endDate;
 	}
 
