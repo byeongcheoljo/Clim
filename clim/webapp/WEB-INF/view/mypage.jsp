@@ -36,10 +36,11 @@
 	</div>
 	<div class="userInfo_inner">누적 시청자 수 : ${member.climgCnt }명</div>
 	<c:if test="${member.no!=loginMember.no }">
+		<a href="/user/${member.no }" class="my_page_live_check"><span><i class="fas fa-broadcast-tower"></i></span> LIVE</a>
 		<button data-no="${member.no}" id="subscribeBtn"
 			class="userInfo_inner small_card ${member.subscribeCheck?'selected_btn':' '}">
-			<span>${member.subscribeCheck?"구독중":"구독" }</span> <i
-				class="${member.subscribeCheck?"fas":"far" } fa-bell"></i>
+			<span>${member.subscribeCheck?"구독중":"구독" }</span> 
+			<i class="${member.subscribeCheck?"fas":"far" } fa-bell"></i>
 		</button>
 	</c:if>
 </div>
@@ -120,7 +121,9 @@
 			<div class="notice_card title_card">제목(실제 일정 이름 입력될 것!)</div>
 			<div class="notice_card content_card">내용이 들어갑니다</div>
 			<button id="backBtn" class="notice_btn">돌아가기</button>
+			<c:if test="${member.no==loginMember.no }">
 			<button id="planCancelBtn" class="notice_btn">일정 삭제하기</button>
+			</c:if>
 		</div>
 		<!--//detail_inner-->
 	</div>
@@ -390,14 +393,13 @@ $("#backBtn").on("click", function() {
 	$(".detail_form").fadeIn(500);
 });//돌아가기 버튼
 let $subscribeBtn = $("#subscribeBtn span");
-let subscribeFlag = 0;
+
 
 $("#subscribeBtn")
 		.on(
 				"click",
 				function() {
 					let name = $(this).text().trim();
-					console.log(name);
 					let no = this.dataset.no;
 					const $i = $(this).find("i");
 
@@ -406,8 +408,8 @@ $("#subscribeBtn")
 						type = "DELETE";
 					}
 					console.log(type);
-					$
-							.ajax({
+					console.log(name);
+					$.ajax({
 								url : "/ajax/user/following/${loginMember.no}/follower/${member.no}",
 								type : type,
 								dataType : "json",
@@ -416,21 +418,18 @@ $("#subscribeBtn")
 								},
 
 								success : function(json) {
-									if (subscribeFlag == 0) {
+									if (name=="구독") {
 										$i.removeClass("far");
 										$i.addClass("fas");
 										$subscribeBtn.text("구독중");
-										$("#subscribeBtn").addClass(
-												'selected_btn');
-										subscribeFlag = 1;
-									} else if (subscribeFlag == 1) {
+										$("#subscribeBtn").addClass('selected_btn');
+									} else{
 										$i.removeClass("fas");
 										$i.addClass("far");
 										$subscribeBtn.text("구독");
-										$("#subscribeBtn").removeClass(
-												'selected_btn');
-										subscribeFlag = 0;
+										$("#subscribeBtn").removeClass('selected_btn');
 									}
+									getSubscribeList();
 								}//success end
 							});//ajax end		
 				});//구독버튼 클릭하기
@@ -988,7 +987,34 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 	// 차트 나타날 때 애니메이션
 	},//options
 
-});//성별에 따른 시청자비율 바
+});//성별에 따른 시청자비율 바	
+	stompClient.connect({},function(){
+		stompClient.send("/app/clim/living",{});
+		
+		stompClient.subscribe("/topic/clim/live", function(protocol) {
+			//넘어오는 데이터는 body에
+			console.log("mypage");
+			console.log(protocol.body);
+			
+			let rooms = JSON.parse(protocol.body);
+			
+			console.log(rooms.memberNo);
+			console.log(rooms.no);
+				if(${member.no }==rooms.memberNo){
+					$(".my_page_live_check").show();
+					$(".my_page_live_check").attr("href","/room/"+rooms.no);
+				}
+			});//subscribe end
+
+			stompClient.subscribe("/topic/clim/live/close",function(protocol){
+			console.log("mypage");
+			let rooms = JSON.parse(protocol.body);
+			console.log(rooms.memberNo);
+			if(${member.no }==rooms.memberNo){
+				$(".my_page_live_check").hide();
+			}
+		});//subscribe end
+	});//connect end	
 </script>
 </body>
 </html>

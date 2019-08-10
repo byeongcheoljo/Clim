@@ -1,388 +1,404 @@
 @charset "UTF-8";
 
-body{
-	background:#231f20;
+body {
+	background: #231f20;
 }
+
 #content {
-        	position: relative;
-            width: 1080px;
-            min-height: 500px;
-            /*background: greenyellow;*/
-            user-select: none;
-			top:50px;
-			margin:auto;
-        }
+	position: relative;
+	width: 1080px;
+	min-height: 500px;
+	/*background: greenyellow;*/
+	user-select: none;
+	top: 50px;
+	margin: auto;
+}
 
-        /*탭*/
-        #tabSectionUserPage {
-            position: relative;
-            background: lemonchiffon;
-            width: 1080px;
-            height: 110px;
-            top:35px;
-        }
+/*탭*/
+#tabSectionUserPage {
+	position: relative;
+	background: lemonchiffon;
+	width: 1080px;
+	height: 110px;
+	top: 35px;
+}
 
-        /*지은*/
-        li {
-            list-style: none;
-        }
+/*지은*/
+li {
+	list-style: none;
+}
 
-        #headerNavMypage {
-            overflow: hidden;
-            height: 40px;
-            background-color: #231F20;
-            padding: 20px;
+#headerNavMypage {
+	overflow: hidden;
+	height: 40px;
+	background-color: #231F20;
+	padding: 20px;
+}
 
-        }
+#headerNavMypage li {
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	color: #f9f9f9;
+	float: left;
+	margin-left: 50px;
+	cursor: pointer;
+	padding: 5px;
+}
 
-        #headerNavMypage li {
-            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            color: #f9f9f9;
-            float: left;
-            margin-left: 50px;
-            cursor: pointer;
-            padding: 5px;
+#headerNavMypage #nicknameHeaderMypage {
+	cursor: default;
+	pointer-events: none;
+}
 
-        }
+#headerNavMypage .header_myPage_tabbed {
+	border-bottom: 4px solid #F9AC1A;
+	color: #F9AC1A;
+}
 
-        #headerNavMypage #nicknameHeaderMypage {
-            cursor: default;
-            pointer-events: none;
+/*유저 정보*/
+.home_section_userpage {
+	position: relative;
+	background: #231F20;
+	width: 990px;
+	min-height: 40px;
+	padding: 20px 45px 20px 45px;
+	margin-bottom: 1px;
+	border-bottom: 2px solid #f9f9f9;
+}
 
-        }
+.bottom_section {
+	border: none;
+}
 
-        #headerNavMypage .header_myPage_tabbed {
-            border-bottom: 4px solid #F9AC1A;
-            color: #F9AC1A;
-        }
+#userInfoWrap {
+	position: relative;
+	/*background-color:darkcyan;*/
+	width: 950px;
+	height: 40px;
+	padding: 0 20px 0 20px;
+}
 
-        /*유저 정보*/
-        .home_section_userpage {
-            position: relative;
-            background: #231F20;
-            width: 990px;
-            min-height: 40px;
-            padding: 20px 45px 20px 45px;
-            margin-bottom: 1px;
-            border-bottom: 2px solid #f9f9f9;
-        }
+.userInfo_inner {
+	float: left;
+	width: 280px;
+	height: 40px;
+	/*background-color:#FFC107;*/
+	color: #f9f9f9;
+	font-size: 18px;
+	text-align: center;
+	line-height: 38px;
+}
 
-        .bottom_section {
-            border: none;
-        }
+.right_margin {
+	margin-right: 15px;
+}
 
-        #userInfoWrap {
-            position: relative;
-            /*background-color:darkcyan;*/
-            width: 950px;
-            height: 40px;
-            padding: 0 20px 0 20px;
-        }
+.small_card {
+	width: 180px;
+}
 
-        .userInfo_inner {
-            float: left;
-            width: 280px;
-            height: 40px;
-            /*background-color:#FFC107;*/
-            color: #f9f9f9;
-            font-size: 18px;
-            text-align: center;
-            line-height: 38px;
-        }
+#subscribeBtn.small_card:hover {
+	background: #F98F04;
+	color: #f9f9f9;
+}
 
-        .right_margin {
-            margin-right: 15px;
-        }
+#subscribeBtn {
+	border: none;
+	user-select: none;
+	outline: none;
+	background: #FFCA28;
+	border-radius: 10px;
+	position: absolute;
+	right: 50px;
+	color: #231F20;
+	width: 100px;
+	cursor: pointer;
+}
 
-        .small_card {
-            width: 180px;
-        }
+#subscribeBtn.selected_btn {
+	background: #9e9e9e;
+	color: rgb(250, 250, 250);
+	box-shadow: 0 0 10px #000 inset;
+}
 
-        #subscribeBtn.small_card:hover {
-            background: #F98F04;
-            color: #f9f9f9;
-        }
+#subscribeBtn.selected_btn:hover {
+	background: #424242;
+	color: #f9f9f9;
+}
 
-        #subscribeBtn {
-            border: none;
-            user-select: none;
-            outline: none;
-            background: #FFCA28;
-            border-radius: 10px;
-            position: absolute;
-            right: 50px;
-            color: #231F20;
-            width: 100px;
-            cursor: pointer;
-        }
+/*공지사항*/
+#content h4 {
+	/*background-color:#2196F3;*/
+	width: 150px;
+	height: 50px;
+	line-height: 40px;
+	font-size: 25px;
+	text-align: center;
+	color: #f9f9f9;
+}
 
-        #subscribeBtn.selected_btn {
-            background: #9e9e9e;
-            color: rgb(250, 250, 250);
-            box-shadow: 0 0 10px #000 inset;
+.white_title_card {
+	text-shadow: 1px 1px 5px #efefef;
+}
 
-        }
+.notice_card.title_card {
+	color: #F9AC1A;
+	font-weight: bold;
+}
 
-        #subscribeBtn.selected_btn:hover {
-            background: #424242;
-            color: #f9f9f9;
-        }
+.notice_box {
+	/*background-color:#FFCA28;*/
+	width: 990px;
+	min-height: 40px;
+	overflow: hidden;
+}
 
-        /*공지사항*/
+/*달력*/
+.calender_inner {
+	width: 500px;
+	height: 500px;
+	background-color: #f9f9f9;
+	float: left;
+	position: relative;
+}
 
-        #content h4 {
-            /*background-color:#2196F3;*/
-            width: 150px;
-            height: 50px;
-            line-height: 40px;
-            font-size: 25px;
-            text-align: center;
-            color: #f9f9f9;
-        }
+#calendarInner {
+	max-width: 450px;
+	margin: 0 auto;
+}
 
-        .white_title_card {
-            text-shadow: 1px 1px 5px #efefef;
-        }
+/*달력 설정*/
+#calendarInner h2 {
+	font-size: 25px;
+	margin-top: 25px;
+	margin-bottom: 5px;
+}
 
-        .notice_card.title_card {
-            color: #F9AC1A;
-            font-weight: bold;
-        }
+.fc-scroller {
+	height: 385px !important;
+	overflow: auto !important;
+}
 
-        .notice_box {
-            /*background-color:#FFCA28;*/
-            width: 990px;
-            min-height: 40px;
-            overflow: hidden;
-        }
+.fc-day-header {
+	height: 25px;
+	line-height: 25px;
+	background-color: #F9AC1A;
+	color: #231F20;
+}
 
-        /*달력*/
-        .calender_inner {
-            width: 500px;
-            height: 500px;
-            background-color: #f9f9f9;
-            float: left;
-            position: relative;
-        }
+.fc-right {
+	position: absolute;
+	right: 25px;
+	top: 40px;
+}
 
-        #calendarInner {
-            max-width: 450px;
-            margin: 0 auto;
-        }
+.fc-button {
+	height: 30px !important;
+	line-height: 20px !important;
+	padding: 2px 10px 10px 10px !important;
+}
 
-        /*달력 설정*/
-        #calendarInner h2 {
-            font-size: 25px;
-            margin-top: 25px;
-            margin-bottom: 5px;
-        }
+/*#calendarInner .fc-button{*/
+/*    position: absolute;*/
+/*    left: 350px;*/
+/*    top: 100px;*/
+/*}*/
+/*달력클릭시 세부사항 내용*/
+.detail_inner {
+	margin: 0 45px;
+	background-color: #f9f9f9;
+	width: 400px;
+	height: 460px;
+	float: left;
+	padding: 20px 0;
+	box-shadow: 1px 1px 5px #898989;
+}
 
-        .fc-scroller {
-            height: 385px !important;
-            overflow: auto !important;
-        }
+.notice_card {
+	/*background-color:lemonchiffon;*/
+	width: 310px;
+	min-height: 22px;
+	margin: 20px auto 15px auto;
+	padding: 4px 10px;
+	color: #231F20;
+	font-size: 18px;
+}
 
-        .fc-day-header {
-            height: 25px;
-            line-height: 25px;
-            background-color: #F9AC1A;
-            color: #231F20;
-        }
+.validation_text {
+	position: relative;
+	width: 230px;
+	height: 15px;
+	/*background:#FFCA28;*/
+	margin: 5px 0 0 50px;
+	text-align: center;
+	font-size: 15px;
+	color: red;
+}
 
-        .fc-right {
-            position: absolute;
-            right: 25px;
-            top: 40px;
-        }
+#noticeTitleConfirm, #noticeContentConfirm {
+	display: none;
+}
 
-        .fc-button {
-            height: 30px !important;
-            line-height: 20px !important;
-            padding: 2px 10px 10px 10px !important;
-        }
+#titleBlur, #contentBlur {
+	height: 15px;
+	margin: 5px 0 0 50px;
+}
 
-        /*#calendarInner .fc-button{*/
-        /*    position: absolute;*/
-        /*    left: 350px;*/
-        /*    top: 100px;*/
-        /*}*/
-        /*달력클릭시 세부사항 내용*/
-        .detail_inner {
-            margin: 0 45px;
-            background-color: #f9f9f9;
-            width: 400px;
-            height: 460px;
-            float: left;
-            padding: 20px 0;
-            box-shadow: 1px 1px 5px #898989;
-        }
+.notice_card * {
+	vertical-align: middle;
+}
 
-        .notice_card {
-            /*background-color:lemonchiffon;*/
-            width: 310px;
-            min-height: 22px;
-            margin: 20px auto 15px auto;
-            padding: 4px 10px;
+.notice_card .verticalAlign_top_label {
+	vertical-align: top;
+}
 
-            color: #231F20;
-            font-size: 18px;
-        }
+.notice_card input {
+	width: 230px;
+	height: 20px;
+}
 
-        .validation_text {
-            position: relative;
-            width: 230px;
-            height: 15px;
-            /*background:#FFCA28;*/
-            margin: 5px 0 0 50px;
+.margin_lbl {
+	margin-right: 10px;
+}
 
-            text-align: center;
-            font-size: 15px;
-            color: red;
-        }
+/*textarea*/
+#noticeContent {
+	width: 228px;
+	height: 90px;
+	resize: none;
+}
 
-        #noticeTitleConfirm, #noticeContentConfirm {
-            display: none;
-        }
+.notice_btn {
+	border: none;
+	padding: 10px 10px 12px 10px;
+	background-color: #F9AC1A;
+	border-radius: 7px;
+	display: block;
+	float: right;
+	margin-right: 30px;
+	margin-top: 10px;
+	outline: none;
+	font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
+	color: #231F20;
+	line-height: 15px;
+	font-size: 17px;
+}
 
-        #titleBlur, #contentBlur {
-            height: 15px;
-            margin: 5px 0 0 50px;
-        }
+.notice_btn:hover {
+	background-color: #f98f04;
+	color: #f9f9f9;
+}
 
+.content_card {
+	height: 250px;
+	background: #efefef;
+	overflow-y: auto;
+}
 
-        .notice_card * {
-            vertical-align: middle;
-        }
+/* 차트 영역 */
+#chartSection {
+	background: #231F20;
+	position: relative;
+	/*width: 1060px;*/
+	min-height: 40px;
+	padding: 10px 10px 10px 10px;
+	overflow: hidden;
+}
 
-        .notice_card .verticalAlign_top_label {
-            vertical-align: top;
-        }
+#chartSection li {
+	background: #faffeb;
+	position: relative;
+	width: 520px;
+	height: 450px;
+	margin: 20px 5px 20px 5px;
+	float: left;
+}
 
-        .notice_card input {
-            width: 230px;
-            height: 20px;
-        }
+/*최근 시청 목록*/
+#chartSection #latestPlayList {
+	width: 1080px;
+	margin-left: -10px;
+	height: 275px;
+	overflow: hidden;
+	background: #231F20;
+	position: relative;
+}
 
-        .margin_lbl {
-            margin-right: 10px;
-        }
+#chartSection #latestPlayList .latest_playlist_box {
+	position: relative;
+	width: 0;
+	left: 0;
+	transition: .3s ease;
+	height: 275px;
+	background: #231F20;
+	overflow: hidden;
+}
 
-        /*textarea*/
-        #noticeContent {
-            width: 228px;
-            height: 90px;
-            resize: none;
-        }
+#chartSection #latestPlayList .latest_playlist_card {
+	width: 156px;
+	margin-left: 48px;
+	height: 234px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+}
 
-        .notice_btn {
-            border: none;
-            padding: 10px 10px 12px 10px;
-            background-color: #F9AC1A;
-            border-radius: 7px;
-            display: block;
-            float: right;
-            margin-right: 30px;
-            margin-top: 10px;
-            outline: none;
+#chartSection #latestPlayList .latest_playlist_card img {
+	width: 156px;
+	height: 234px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
 
-            font-family: 'Noto Sans KR', sans-serif, 'Roboto', sans-serif;
-            color: #231F20;
-            line-height: 15px;
-            font-size: 17px;
-        }
+#chartSection #latestPlayList .latest_playlist_move_prev {
+	left: 10px;
+	color: #9e9e9e;
+}
 
-        .notice_btn:hover {
-            background-color: #f98f04;
-            color: #f9f9f9;
-        }
+#chartSection #latestPlayList .latest_playlist_move_next {
+	right: 10px;
+}
 
-        .content_card {
-            height: 250px;
-            background: #efefef;
-            overflow-y: auto;
-        }
+.move_btn {
+	color: white;
+	position: absolute;
+	font-size: 50px;
+	top: 115px;
+	cursor: pointer;
+}
 
+#chartSection .move_btn:hover {
+	color: #F9AC1A !important;
+}
 
-        /* 차트 영역 */
-        #chartSection {
-            background: #231F20;
-            position: relative;
-            /*width: 1060px;*/
-            min-height: 40px;
-            padding: 10px 10px 10px 10px;
-            overflow: hidden;
-        }
+.resize_canvas {
+	/*width: 520px !important;*/
+	/*height: 400px !important;*/
+	
+}
 
-        #chartSection li {
-            background: #faffeb;
-            position: relative;
-            width: 520px;
-            height: 450px;
-            margin: 20px 5px 20px 5px;
-            float: left;
-        }
+.my_page_live_check {
+	display:none;
+	border: none;
+	user-select: none;
+	outline: none;
+	background: #FFCA28;
+	border-radius: 10px;
+	color: #fafafa;
+	width: 100px;
+	height: 40px;
+	cursor: pointer;
+	position: absolute;
+	right: 170px;
+	top: 0;
+	box-shadow: 2px 2px 2px #424242;
+	text-decoration: none;
+	text-align: center;
+	line-height: 38px;
+}
 
-
-        /*최근 시청 목록*/
-        #chartSection #latestPlayList {
-            width: 1080px;
-            margin-left: -10px;
-            height: 275px;
-            overflow: hidden;
-            background: #231F20;
-            position: relative;
-        }
-
-        #chartSection #latestPlayList .latest_playlist_box {
-            position: relative;
-            width:0;
-            left: 0;
-            transition: .3s ease;
-            height: 275px;
-            background: #231F20;
-            overflow: hidden;
-        }
-
-        #chartSection #latestPlayList .latest_playlist_card {
-            width: 156px;
-            margin-left: 48px;
-            height: 234px;
-            position: relative;
-            float: left;
-            cursor: pointer;
-        }
-
-        #chartSection #latestPlayList .latest_playlist_card img {
-            width: 156px;
-            height: 234px;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-        }
-
-        #chartSection #latestPlayList .latest_playlist_move_prev {
-            left: 10px;
-            color: #9e9e9e;
-        }
-
-        #chartSection #latestPlayList .latest_playlist_move_next {
-            right: 10px;
-        }
-
-        .move_btn {
-            color: white;
-            position: absolute;
-            font-size: 50px;
-            top: 115px;
-            cursor: pointer;
-        }
-
-        #chartSection .move_btn:hover {
-            color: #F9AC1A !important;
-        }
-
-        .resize_canvas {
-            /*width: 520px !important;*/
-            /*height: 400px !important;*/
-        }
+.my_page_live_check span {
+	color: red;
+	margin-left: 5px;
+}

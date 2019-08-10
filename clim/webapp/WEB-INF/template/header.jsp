@@ -692,15 +692,9 @@
 			});//subscribe end
 			//인자로 받은 함수를 여기서 호출
 			
-			
 			stompClient.subscribe("/topic/clim/live", function(protocol) {
 				//넘어오는 데이터는 body에
-				console.log("/topic/clim/live");
-				console.log(protocol.body);
-				
 				let rooms = JSON.parse(protocol.body);
-				console.log(rooms.memberNo);
-				console.log(rooms.no);
 				$.each(list,function(index){
 					if(this.follower==rooms.memberNo){
 						$(".broadcast_check").eq(index).show();
@@ -710,13 +704,10 @@
 			});//subscribe end
 			
 			stompClient.subscribe("/topic/clim/live/close",function(protocol){
-				console.log("/topic/clim/live/close");
 				let rooms = JSON.parse(protocol.body);
-				console.log(rooms.memberNo);
 				$.each(list,function(index){
 				if(this.follower==rooms.memberNo){
 					$(".broadcast_check").eq(index).hide();
-					$(".broadcast_check").eq(index).attr("/");
 				}
 				})//each end
 			});//subscribe end
