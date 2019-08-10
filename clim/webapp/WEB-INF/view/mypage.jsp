@@ -223,14 +223,13 @@ let $contentCard = $(".content_card");
 let $plan_card = $(".plan_card");
 let eventObject;
 /*calendar 객체 선언*/
-
+let calendar;
 /*calendar 실행*/
 events();
 /* events ajax */
 
 function events() {
-	$
-			.ajax({
+	$.ajax({
 				url : "/ajax/user/${member.no}/events",
 				dataType : "json",
 				type : "GET",
@@ -239,7 +238,7 @@ function events() {
 				},
 				success : function(json) {
 					console.log(json);
-					let calendar = new FullCalendar.Calendar(
+					calendar = new FullCalendar.Calendar(
 							calendarEl,
 							{
 								locale : 'ko',
