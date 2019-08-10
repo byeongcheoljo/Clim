@@ -174,11 +174,27 @@ public class StreamingController {
 	public List<ClimingList> subscribeList(SimpMessageHeaderAccessor accessor) {
 		return climingListsService.subscribesClimingList();
 	}
-	@MessageMapping("/app/clim/{memberNo}/live")
-	@SendTo("/topic/clim/{memberNo}/live")
-	public int climLive(@DestinationVariable int memberNo) {
+	
+	
+	@MessageMapping("/clim/live")
+	@SendTo("/topic/clim/live")
+	public ClimingList climLive(ClimingList clim) {
+		
+		return clim;
+	}
+	
+	@MessageMapping("/clim/live/close")
+	@SendTo("/topic/clim/live/close")
+	public String climLiveClose(String memberNo) {
 		return memberNo;
 	}
+	
+	@MessageMapping("/clim/living")
+	@SendTo("/topic/clim/living")
+	public int climingListLiveCheck() {
+		return 1;
+	}
+	
 	
 	
 	

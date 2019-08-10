@@ -302,9 +302,7 @@
         <li class="subscribe_list" >
 			<input type="hidden" value="<@=subscribe.follower@>" class="subscribe_no"/>
             <a href="/user/<@=subscribe.follower@>"><@=subscribe.nickname@></a>
-			<@if(subscribe.liveCheck){@>
-            <a href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
-            <@}@>
+            <a class="broadcast_check" href="/"><span><i class="fas fa-broadcast-tower"></i></span>LIVE</a>
                 <button class="unsubscribe_list" data-no="<@=subscribe.follower@>">구독취소</button>
         </li>
         <@})@>
@@ -503,6 +501,7 @@
 	$(".look_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "block");
 		$("#headerSubscribeList").css("display", "none");
+// 		getSubscribeList();
 	});
 	$(".header_subscribe_btn").click(function() {
 		$("#headerSubscribeSlideWrap").css("display", "none");
@@ -643,12 +642,10 @@
 			}) //ajax end
 		}// if() end 글자 다 지웠을 때는 ajax작동 안함
 	});
-
+	let stompClient = null;
 
 	 //스트리밍 방송 하기 클릭
-	 <c:if test="${loginMember!=null}">
-	 getSubscribeList();
-	 </c:if>
+	
 	 //구독중인 리스트 불러오기
 	 function getSubscribeList(){
 	 $.ajax({
@@ -660,19 +657,17 @@
 	 },
 	 success:function (json) {
 	 console.log(json);
-	 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
 		 list = json;
-		 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
-		 console.log(list);
+	 $("#headerSubscribeWrap").html(subscribeListTmp({"subscribes":json}));
+	 stompClient.send("/app/clim/living",{});
 	 }//success end
 	 });//ajax end
 	 }//getSubscribeList end
 	 
 	//webSocket stomp client
-	let stompClient = null;
+	
 
 	function connect(callback) {
-
 		let socket = new SockJS('/clim');
 		stompClient = Stomp.over(socket);
 
@@ -680,45 +675,61 @@
 		stompClient.connect({}, function() {
 			console.log("2) 연결");
 			//방번호 얻어오기
-
-			//인자로 받은 함수를 여기서 호출
-			if (callback) callback();
-			console.log("1) 연결");
 			
-
+			 <c:if test="${loginMember!=null}">
+			 getSubscribeList();
+			 </c:if>
+			
 			stompClient.subscribe("/user/queue/clim/make", function(protocol) {
 				//넘어오는 데이터는 body에
 				console.log(protocol.body);
 
 				//방을 만들었기 때문에 유저에게 목록을 다시
 				stompClient.send("/app/clim/list", {});
-				stompClient.send("/app/clim/${loginMember.no}/live", {});
+				
 				//해당 번호 방으로 이동
 				location.href = "/room/"+ protocol.body;
 			});//subscribe end
+			//인자로 받은 함수를 여기서 호출
 			
-			/*
-			$.each(list,function(){
+			
+			stompClient.subscribe("/topic/clim/live", function(protocol) {
+				//넘어오는 데이터는 body에
+				console.log("/topic/clim/live");
+				console.log(protocol.body);
 				
-				stompClient.subscribe("/topic/clim/"+this.follower+"/live",function(protocol){
-					const memberNo = protocol.body;
-					let subscribe =  $(".subscribe_list .subscribe_no").val();
-					console.log("subscribe:"+subscribe);
-					console.log("memberNo:"+memberNo);
-					
-					if(subscribe==memberNo){
-						$(".subscribe_list a").eq(2).show();
-					}else{	
-						$(".subscribe_list a").eq(2).hide();
-					}//if~else end
-					
-				});//subscribe end
-			})//each() end
-			*/
+				let rooms = JSON.parse(protocol.body);
+				console.log(rooms.memberNo);
+				console.log(rooms.no);
+				$.each(list,function(index){
+					if(this.follower==rooms.memberNo){
+						$(".broadcast_check").eq(index).show();
+						$(".broadcast_check").eq(index).attr("href","/room/"+rooms.no);
+					}
+				})//each end
+			});//subscribe end
 			
+			stompClient.subscribe("/topic/clim/live/close",function(protocol){
+				console.log("/topic/clim/live/close");
+				let rooms = JSON.parse(protocol.body);
+				console.log(rooms.memberNo);
+				$.each(list,function(index){
+				if(this.follower==rooms.memberNo){
+					$(".broadcast_check").eq(index).hide();
+					$(".broadcast_check").eq(index).attr("/");
+				}
+				})//each end
+			});//subscribe end
+			
+			
+			if (callback) callback();
 		});//stompClient.connect() end
 		
+		
+		
 	}//connect() end
+	
+	connect();
 	
 	console.log("after");
 	
@@ -794,9 +805,7 @@
 		 */
 		//객체를 String으로 
 		//userNo는 ${loginUser.no} 변경필요
-		const data = JSON.stringify({
-			"memberNo" : ${loginMember.no} ,
-			"title" : title
+		const data = JSON.stringify({"memberNo" : ${loginMember.no} ,"title" : title
 		});
 		//방만들기
 		stompClient.send("/app/clim/make", {}, data);

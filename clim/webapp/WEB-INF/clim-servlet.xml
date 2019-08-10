@@ -40,8 +40,8 @@
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/posters/" mapping="/posters/**" />
-	<mvc:resources location="/stealCut/"
-		mapping="/stealCut/**" />
+	<mvc:resources location="/poster/" mapping="/poster/**" />
+	<mvc:resources location="/stealCut/" mapping="/stealCut/**" />
 	<mvc:resources location="/video/" mapping="/video/**" />
 	<mvc:resources location="/vtt/" mapping="/vtt/**" />
 
@@ -53,7 +53,6 @@
 		<websocket:simple-broker
 			prefix="/topic,/queue" />
 	</websocket:message-broker>
-
 
 	<!-- handshake, disconnect를 감지하는 리스너 -->
 	<bean class="com.playus.clim.listener.StompListener" />
