@@ -340,10 +340,12 @@ $notice_box.on("submit", ".detail_inner", function(e) {
 
 			console.log("insert: " + json);
 			calendar.addEvent(json);
+			events();
+			$("#noticeTitle").val("");
+			$("#noticeContent").val("");
 		}
-
 	});//ajax end
-	events();
+	
 });//이벤트 등록
 
 /*공지 클릭시 해당 공지 상세 보여줌*/
@@ -374,6 +376,7 @@ $notice_box.on("click", "#planCancelBtn", function() {
 			});
 			eventObject.remove();
 			$(".detail_form").fadeIn(500);
+			events();
 		}
 
 	})
