@@ -789,9 +789,6 @@
  			        			});
  			            			//방장이 시간을 보내는 주소를 구독해야 함
  			            			stompClient.subscribe("/topic/room/${roomNo}/set/time",function(protocol) {
- 			            				
- 			            				
- 			            				
  			            				const json = JSON.parse(protocol.body);
  			            				console.log("/topic/room/${roomNo}/set/time");
  			            				const time = json.audiAcc;
@@ -952,18 +949,29 @@
 			 						     			
 			 						     			playMovie(src,0,title);
 		 	 			                		  }
-		 	 			                		  
-		 	 			                		  
 		 	 			                	  });
 
 		 	 			                	 });
-							            
-            
-            
-
-			                       
  					                 // 방장의 경우 들어왔을때 현재 세션으로 갱신해야 함
+ 					                 	
+ 					                 
+ 					                 	//Live check 함수
+ 					                 	function liveCheck() {
+ 					                 		const data = JSON.stringify({no:${roomNo},memberNo:${loginMember.no}});
+ 	 					        			stompClient.send("/app/clim/live", {},data);
+										}
+ 					                 
  					        			stompClient.send("/app/room/${roomNo}/put/sessionId",{},${roomNo});
+ 					        			
+ 					        			// Live check 함수 호출
+ 					        			liveCheck();
+ 					        			
+ 					        			//ajax 실행될때 마다 Live check 함수 호출
+ 					                	stompClient.subscribe("/topic/clim/living",function(protocol){
+ 					                	liveCheck();
+ 					                 	});//subscribe end
+ 					                 
+ 					        			
  					        			
  					        			//방장의 경우 다른 유저들이 들어왔을때 현재 영화의 currentTime을
  					        			//넘겨줘야 하는 주소를 구독해놔야 함
@@ -986,6 +994,10 @@
  					        				stompClient.send("/app/room/${roomNo}/close",{});
  					        				//방에 있지 않은 다른 유저들에게도 리스트 갱신
  					        				stompClient.send("/app/clim/list",{});
+ 					        				
+ 					        				const data = JSON.stringify({memberNo:${loginMember.no}});
+ 					        				
+ 					        				stompClient.send("/app/clim/live/close", {},data);
  					        			});
  					        			
  					        			
@@ -1003,11 +1015,7 @@
  					        				stompClient.send("/app/climing/info",{},data);
  					        				
  					        				//영화번호, 현재 시간, 현재 방번호를 서버로 
- 					        				
- 					        				
- 					        				
  					        			});
- 					        			
  			                    </c:otherwise>
  			                    </c:choose>
  			                  
