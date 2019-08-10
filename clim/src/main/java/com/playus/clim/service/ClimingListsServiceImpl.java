@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.ClimingListsDAO;
+import com.playus.clim.vo.Clim;
 import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Movie;
 
@@ -21,8 +22,9 @@ public class ClimingListsServiceImpl implements ClimingListsService {
 	}
 
 	@Override
-	public List<Movie> getClimRealtimeFeature() {
-		return climingListsDAO.selectFeature();
+	public Clim getClimRealtimeFeature(String src) {
+	
+		return climingListsDAO.selectFeature(src);
 	}
 
 	@Override
@@ -36,11 +38,13 @@ public class ClimingListsServiceImpl implements ClimingListsService {
 		System.out.println("z3");
 		climingListsDAO.insert(climingList);
 	}
+
 	@Override
 	public void updateSessionId(ClimingList clim) {
 		// TODO Auto-generated method stub
 		climingListsDAO.updateSessionId(clim);
 	}
+
 	@Override
 	public List<ClimingList> subscribesClimingList() {
 		return climingListsDAO.subscribesClimingList();

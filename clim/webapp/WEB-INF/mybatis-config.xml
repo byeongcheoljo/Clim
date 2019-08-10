@@ -46,6 +46,7 @@
 		<typeAlias alias="Trailer" type="com.playus.clim.vo.Trailer" />
 		<typeAlias alias="Feature" type="com.playus.clim.vo.Feature" />
 		<typeAlias alias="Leader" type="com.playus.clim.vo.Leader" />
+		<typeAlias alias="Clim" type="com.playus.clim.vo.Clim" />
 	</typeAliases>
 
 	<!-- mapper파일의 경로 -->

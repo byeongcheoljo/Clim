@@ -74,8 +74,9 @@ public class AjaxController {
 	@Autowired
 	private SurveysService surveysService;
 	
-
+	@Autowired
 	private ClimingMovieListsService climingMovieListsService;
+	
 	@Autowired
 	private SubscribesService subscribesService;
 
