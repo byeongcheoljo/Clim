@@ -565,6 +565,9 @@
 		};
 
 		let flag = true;
+		
+		
+		connect();
 
 		const $heroContentSectionUl = $("#heroContentSection Ul");
 		const $heroContentNum = $(".hero_content_num");

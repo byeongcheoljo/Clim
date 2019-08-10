@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.playus.clim.vo.Clim;
 import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Movie;
@@ -26,10 +27,8 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 	}
 	
 	@Override
-	public List<Movie> selectFeature() {
-		
-		//return session.selectList("climingLists.selectFeatures");
-		return null;
+	public Clim selectFeature(String src) {
+		return session.selectOne("climingLists.selectFeatures", src);
 	}
 	
 	@Override

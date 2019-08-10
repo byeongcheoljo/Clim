@@ -2,6 +2,7 @@ package com.playus.clim.dao;
 
 import java.util.List;
 
+import com.playus.clim.vo.Clim;
 import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Movie;
 
@@ -11,7 +12,7 @@ public interface ClimingListsDAO {
 	public List<ClimingList> selectList();
 
 	// websocket으로 가져올 끌리밍 포스터/스틸컷/장르
-	public List<Movie> selectFeature();
+	public Clim selectFeature(String src);
 
 	public ClimingList selectOne(int no);
 
