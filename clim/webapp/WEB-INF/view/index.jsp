@@ -296,7 +296,7 @@
 		<ul class="recommend_box">
 			<c:forEach items="${recOne}" var="one">
 				<li class="recommend_card" data-movieNo="${one.no }"><img
-					src="/poster${one.poster }" />
+					src="/posters${one.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -318,7 +318,7 @@
 			<c:forEach items="${recTwo}" var="two">
 
 				<li class="recommend_card" data-movieNo="${two.no }"><img
-					src="/poster${two.poster }" />
+					src="/posters${two.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -339,7 +339,7 @@
 			<c:forEach items="${recThree}" var="three">
 
 				<li class="recommend_card" data-movieNo="${three.no }"><img
-					src="/poster${three.poster }" />
+					src="/posters${three.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -416,7 +416,7 @@
 			<c:forEach items="${recOne}" var="one">
 
 				<li class="recommend_card" data-movieNo="${one.no }"><img
-					src="/poster${one.poster }" />
+					src="/posters${one.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -438,7 +438,7 @@
 			<c:forEach items="${recTwo}" var="two">
 
 				<li class="recommend_card" data-movieNo="${two.no }"><img
-					src="/poster${two.poster }" />
+					src="/posters${two.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -459,7 +459,7 @@
 			<c:forEach items="${recThree}" var="three">
 
 				<li class="recommend_card" data-movieNo="${three.no }"><img
-					src="/poster${three.poster }" />
+					src="/posters${three.poster }" />
 					<div class="top_border border_box"></div>
 					<div class="right_border border_box"></div>
 					<div class="bottom_border border_box"></div>
@@ -522,7 +522,7 @@
     <@_.each(streams,function(stream){@>
     <li class="user_streaming_card">
         <div class="streaming_img">
-            <img class="streaming_poster" src="/poster/<@=stream.poster@>"/>
+            <img class="streaming_poster" src="/posters/<@=stream.poster@>"/>
             <img class="streaming_thumbnail" src="/img/<@=stream.thumbnail@>"/>
         </div>
         <div class="streaming_info">
@@ -548,7 +548,7 @@
         let realGage = gage * 1.4;
     @>
     <li class="continue_card">
-        <img src="/poster/<@=movie.poster@>"/>
+        <img src="/posters/<@=movie.poster@>"/>
         <div class="movie_gage">
             <div class="movie_gage_total"></div>
             <div class="movie_gage_now" style="width:<@=realGage@>px"></div>

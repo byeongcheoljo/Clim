@@ -196,7 +196,7 @@
 <script type="text/template" id="climingListTmp">
 	<@_.each(movies,function(movie){@>
 	<li class="latest_playlist_card"><a href="/movie/<@=movie.no@>">
-	<img src="/poster<@=movie.poster@>"/></a>
+	<img src="/posters<@=movie.poster@>"/></a>
 	</li>
 	<@});@>
 	</script>
@@ -261,12 +261,7 @@ function events() {
 											.format("YYYY.MM.DD");
 									contentText = info.event._def.extendedProps.contentText;
 									title = info.event.title;
-									let $detail_info_inner = $(".detail_info_inner");
-									let $input = $("<input>").attr({
-										"type" : "hidden",
-										"name" : "no"
-									}).val(info.event.id);
-									$detail_info_inner.append($input);
+									$(".notice_btn").attr("data-no",info.event.id);
 								}
 							});
 					calendar.render();
@@ -363,7 +358,7 @@ $notice_box.on("click", ".fc-content", function(e) {
 });
 
 $notice_box.on("click", "#planCancelBtn", function() {
-	let no = $(this).parents(".detail_info_inner").find("input").val();
+	let no = this.dataset.no;
 	console.log(no);
 	$.ajax({
 		url : "/ajax/user/" + no + "/events",
@@ -393,8 +388,6 @@ $("#backBtn").on("click", function() {
 	$(".detail_form").fadeIn(500);
 });//돌아가기 버튼
 let $subscribeBtn = $("#subscribeBtn span");
-
-
 $("#subscribeBtn")
 		.on(
 				"click",
@@ -988,14 +981,13 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 	},//options
 
 });//성별에 따른 시청자비율 바	
-	stompClient.connect({},function(){
-		<c:if test="${loginMember!=null}">
-		 getSubscribeList();
-		 </c:if>
-		
+	connect(function() {
 		stompClient.send("/app/clim/living",{});
-		
-		stompClient.subscribe("/topic/clim/live", function(protocol) {
+//		 <c:if test="${loginMember!=null}">
+//		 getSubscribeList();
+//		 </c:if>
+		 		
+		 stompClient.subscribe("/topic/clim/live", function(protocol) {
 			//넘어오는 데이터는 body에
 			console.log("mypage");
 			console.log(protocol.body);
@@ -1008,6 +1000,13 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 					$(".my_page_live_check").show();
 					$(".my_page_live_check").attr("href","/room/"+rooms.no);
 				}
+				
+				$.each(list,function(index){
+					if(this.follower==rooms.memberNo){
+						$(".broadcast_check").eq(index).show();
+						$(".broadcast_check").eq(index).attr("href","/room/"+rooms.no);
+					}
+				})//each end
 			});//subscribe end
 		
 			stompClient.subscribe("/topic/clim/live/close",function(protocol){
@@ -1017,8 +1016,14 @@ let writeViewersNumberPerTimeChart = new Chart($viewersNumberPerTime, {
 			if(${member.no }==rooms.memberNo){
 				$(".my_page_live_check").hide();
 			}
+			$.each(list,function(index){
+				if(this.follower==rooms.memberNo){
+					$(".broadcast_check").eq(index).hide();
+				}
+				})//each end
 		});//subscribe end
-	});//connect end	
+	})
+		 
 </script>
 </body>
 </html>
