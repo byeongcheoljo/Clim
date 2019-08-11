@@ -2,15 +2,24 @@ package com.playus.clim.service;
 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
+
 import com.playus.clim.dao.MembersDAO;
 import com.playus.clim.vo.Member;
+
+import org.springframework.beans.factory.annotation.Autowired; 
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+
 import javax.servlet.http.HttpSession;
+
+import com.playus.clim.dao.MembersDAO;
 import com.playus.clim.dao.SubscribesDAO;
+import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Subscribe;
 
 @Service
@@ -28,15 +37,17 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.selectOneByNo(no);
 	}
 	
-	//로그인입니당
+	//로그인
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) { 
 		Member loginMember = membersDAO.selectLogin(member);
+
 		session.setAttribute("loginMember", loginMember);
+
 		System.out.println("서비스" + loginMember);
-		//System.out.println("서비스" + loginMember);
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
-		if (loginMember != null && loginMember.getUuid() == null) {
+
+		if (loginMember != null && loginMember.getUuid()==null) {
 			System.out.println(map);
 			map.put("loginMember", loginMember);
 		} else {

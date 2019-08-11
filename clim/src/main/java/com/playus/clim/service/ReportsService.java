@@ -7,7 +7,5 @@ public interface ReportsService {
 	void reportClimer(int roomNo, int userNo,String content);
 
 	public int reportFaq(Report report);
-	
-	public int boardReportInsert(Report report);
 
 }

@@ -17,9 +17,4 @@
 	
 	</insert>
 	
-
-	<insert id="insertBoardReport" parameterType="Report">
-	insert into reports(no, type, reporter_no, reportered_no, post_no, contents, regdate)
-	values(reports_seq.nextval, 'B', #{no}, #{reporteredNo}, #{boardNo}, #{contents}, systimestamp)
-	</insert>
 </mapper>

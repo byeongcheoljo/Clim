@@ -2,12 +2,13 @@ package com.playus.clim.vo;
 
 import java.sql.Timestamp;
 
-public class BoardTag {
+public class Tag {
 
-	private int no, boardNo, tagNo;
+	private int no;
+	private String tagName;
 	private Timestamp regdate;
 	
-	public BoardTag() {
+	public Tag() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,20 +20,12 @@ public class BoardTag {
 		this.no = no;
 	}
 
-	public int getBoardNo() {
-		return boardNo;
+	public String getTagName() {
+		return tagName;
 	}
 
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
-	}
-
-	public int getTagNo() {
-		return tagNo;
-	}
-
-	public void setTagNo(int tagNo) {
-		this.tagNo = tagNo;
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 	public Timestamp getRegdate() {
@@ -42,7 +35,6 @@ public class BoardTag {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	
 	
 	
 }

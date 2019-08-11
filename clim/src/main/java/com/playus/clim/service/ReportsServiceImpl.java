@@ -8,7 +8,6 @@ import com.playus.clim.vo.Report;
 
 @Service
 public class ReportsServiceImpl implements ReportsService{
-
 	@Autowired
 	private ReportsDAO reportsdao;
 	
@@ -29,14 +28,5 @@ public class ReportsServiceImpl implements ReportsService{
 	public int reportFaq(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.insertFAQ(report);
-
-
-	@Autowired
-	private ReportsDAO reportsDAO;
-	
-	@Override
-	public int boardReportInsert(Report report) {
-		// TODO Auto-generated method stub
-		return reportsDAO.insertBoardReport(report);
 	}
 }

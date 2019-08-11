@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -792,3 +791,4 @@
 		stompClient.send("/app/clim/make", {}, data);
 	});
 </c:if>
+</script>
