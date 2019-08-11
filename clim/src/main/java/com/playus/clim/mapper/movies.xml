@@ -25,7 +25,7 @@
 
 	<select id="getClimingMovieList" parameterType="int"
 		resultType="Movie">
-		select no,title,runtime,src,poster,movie_rating movieRating
+		select no,title,runtime,src,poster
 		from movies
 		where no
 		in(select movie_no
@@ -76,4 +76,10 @@
 
 
 	<!-- 김근경 끝 -->
+	
+	<select id="selectMovie" resultType="Movie" parameterType="int">
+		SELECT no, title, opendate, runtime, contents, src, cookieTime, movie_rating movieRating, regdate, title_eng titleEng, poster, rep_genre genre, ending_credit_time endingCreditTime, climed
+		FROM MOVIES
+		WHERE NO = #{movieNo}
+	</select>
 </mapper>

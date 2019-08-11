@@ -28,5 +28,13 @@ public class ReportsServiceImpl implements ReportsService{
 	public int reportFaq(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.insertFAQ(report);
+
+	}
+	
+	@Override
+	public int boardReportInsert(Report report) {
+		// TODO Auto-generated method stub
+		return reportsDAO.insertBoardReport(report);
+
 	}
 }

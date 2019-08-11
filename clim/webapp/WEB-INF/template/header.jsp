@@ -9,7 +9,7 @@
 		<!--상단메뉴 목록 -->
 		<div class="header_menu_nav header_category_wrap">카테고리</div>
 		<div class="header_menu_nav">
-			<a class="header_text_link" href="123">끌리밍</a>
+			<a class="header_text_link" href="/climing">끌리밍</a>
 		</div>
 		<div class="header_menu_nav">
 			<a class="header_text_link" href="456">커뮤니티</a>
@@ -791,4 +791,6 @@
 		stompClient.send("/app/clim/make", {}, data);
 	});
 </c:if>
+
 </script>
+

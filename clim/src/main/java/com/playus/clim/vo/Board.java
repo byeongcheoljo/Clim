@@ -13,6 +13,61 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public boolean isLikeCheck() {
+		return likeCheck;
+	}
+
+	public void setLikeCheck(boolean likeCheck) {
+		this.likeCheck = likeCheck;
+	}
+
+	public List<BoardTag> getBoardTags() {
+		return boardTags;
+	}
+
+	public void setBoardTags(List<BoardTag> boardTags) {
+		this.boardTags = boardTags;
+	}
+
+	public Board(int no) {
+		// TODO Auto-generated constructor stub
+		this.no = no;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public int getBoardCount() {
+		return boardCount;
+	}
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+
 	public int getNo() {
 		return no;
 	}
