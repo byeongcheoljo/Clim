@@ -57,4 +57,9 @@ public class ClimingListsDAOImpl implements ClimingListsDAO{
 		return session.selectList("climingLists.subscribesClimingList");
 	}
 	
+	@Override
+	public List<ClimingList> selectUserList(int no) {
+		return session.selectList("climingLists.selectUserList", no);
+	}
+	
 }

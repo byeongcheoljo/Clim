@@ -18,7 +18,6 @@ public class MoviesDAOImpl implements MoviesDAO{
 	public List<Movie> searchMovieListForCliming(String title) {
 		return session.selectList("movies.searchMovieListForCliming", "%"+title+"%");
 	}
-
 /*김근경 시작*/
 	
 	//index에서 끌림작 1위~30위
@@ -43,6 +42,33 @@ public class MoviesDAOImpl implements MoviesDAO{
 	@Override
 	public List<Movie> indexRecommandationListThree() {
 		return session.selectList("movies.indexRecommandationListThree");
+	}
+	
+	//index에서 추천4
+	@Override
+	public List<Movie> indexRecommandationListFour() {
+		return session.selectList("movies.indexRecommandationListFour");
+	}
+	
+	//index에서 장르1(드라마)
+	@Override
+	public List<Movie> indexGenreListOne() {
+		return session.selectList("movies.indexGenreListOne");
+	}
+	//index에서 장르2(액션)
+	@Override
+	public List<Movie> indexGenreListTwo() {
+		return session.selectList("movies.indexGenreListTwo");
+	}
+	//index에서 장르3(모험)
+	@Override
+	public List<Movie> indexGenreListThree() {
+		return session.selectList("movies.indexGenreListThree");
+	}
+	
+	@Override
+	public String selectPoster(String src) {
+		return session.selectOne("movies.selectPoster",src);
 	}
 	
 /*김근경 끝*/

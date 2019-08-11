@@ -23,6 +23,21 @@ public interface MoviesDAO {
 	//index에서 추천3
 	public List<Movie> indexRecommandationListThree(); 
 	
+	//index에서 추천4
+	public List<Movie> indexRecommandationListFour();
+	
+	//index에서 장르1(드라마)
+	public List<Movie> indexGenreListOne();
+	
+	//index에서 장르2(액션)
+	public List<Movie> indexGenreListTwo();
+	
+	//index에서 장르3(모험)
+	public List<Movie> indexGenreListThree();
+	
+	public String selectPoster(String src);
+	
+	
 /*김근경 끝*/
 	
 	public Movie selectMovieTrailer(int no);

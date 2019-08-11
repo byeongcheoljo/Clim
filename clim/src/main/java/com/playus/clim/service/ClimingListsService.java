@@ -20,4 +20,6 @@ public interface ClimingListsService {
 
 	public List<ClimingList> subscribesClimingList();
 	
+	public List<ClimingList> getUserClimingList(int memberNo);
+	
 }

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.service.ClimingLogsService;
+import com.playus.clim.service.MoviesService;
 import com.playus.clim.service.StreamingDetailService;
 import com.playus.clim.service.SubscribesService;
 import com.playus.clim.vo.Subscribe;
@@ -40,7 +41,8 @@ public class StreamingController {
 	private ClimingListsService climingListsService;
 		@Autowired
 	private SubscribesService subscribesService;
-	
+	@Autowired
+	private MoviesService moviesService;
 	
 	@RequestMapping(value="/room/{no}", method=RequestMethod.GET)
 	public String getModelPage(Model model, @PathVariable int no, HttpSession session) {
@@ -125,6 +127,8 @@ public class StreamingController {
 		public Movie afdasdf(Movie movie, SimpMessageHeaderAccessor accessor) {
 //			System.out.println("/room/{no}/set/time");
 			
+			movie.setPoster(moviesService.getPoster(movie.getSrc().substring(7)));
+			
 			return movie;
 		}
 		
@@ -169,11 +173,14 @@ public class StreamingController {
 			climingListsService.updateSessionId(clim);
 		}
 		
-	@MessageMapping("/clim/list")
-	@SendTo("/topic/clim/list")
-	public List<ClimingList> subscribeList(SimpMessageHeaderAccessor accessor) {
-		return climingListsService.subscribesClimingList();
-	}
+//	@MessageMapping("/clim/list")
+//	@SendTo("/topic/clim/list")
+//	public List<ClimingList> subscribeList(SimpMessageHeaderAccessor accessor) {
+//		
+//		climingListsService.getClimingList();
+//		
+//		return climingListsService.subscribesClimingList();
+//	}
 	
 	
 	@MessageMapping("/clim/live")
@@ -195,7 +202,35 @@ public class StreamingController {
 		return 1;
 	}
 	
+	/*근경 시작*/		
 	
+	//클리밍 리스트 불러오기
+	@MessageMapping("/clim/list")
+	@SendTo("/topic/clim/list")
+	public List<ClimingList> asdfggagsadf(){
+		return climingListsService.getClimingList();
+	}	
+	
+	@MessageMapping("/room/{no}/clim/time")
+	@SendTo("/topic/room/{no}/get/time")
+	public int afdasdf() {
+		System.out.println("/room/{no}/clim/time");
+		
+		//아무값이나 리턴하지 않으면 응답이 가지 않음
+		return 1;
+	}
+	
+	//클리밍 리스트 불러오기
+	@MessageMapping("/clim/userList")
+	@SendTo("/topic/clim/userList")
+	public List<ClimingList> userClimList(int memberNo){
+		System.out.println(memberNo);
+		System.out.println("유저클림");
+		return climingListsService.getUserClimingList(memberNo);
+	}	
+	
+	
+/*근경 끝*/		
 	
 	
 }
