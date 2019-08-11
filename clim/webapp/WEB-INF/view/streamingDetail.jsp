@@ -17,6 +17,9 @@
 	.subscribe_on{
 		color:red;
 	}
+	body{
+	background-color: #424242;
+	}
 
 </style>
 </head>
@@ -810,8 +813,7 @@
 					        			$(window).bind("beforeunload",function(e) {
 					        				//내가 나갈때 로그찍어줘
 					        				stompClient.send("/app/room/${roomNo}/${loginMember.no}/close",{});
-					        				
-					        				
+					        				stompClient.send("/app/room/${roomNo}/get/climee",{});
 					        			});
  			            			
  			                    </c:when>
