@@ -17,4 +17,6 @@ public interface MoviesService {
 	public Map<String, Object> getRecommandationList();
 /*김근경 끝*/
 	public Map<String, Object> getMovieTrailer(int no,int memberNo);
+	
+	public Movie getMovie(int movieNo);
 }

@@ -92,4 +92,8 @@ public class MoviesServiceImpl implements MoviesService{
 		return map;
 	}
 
+	@Override
+	public Movie getMovie(int movieNo) {
+		return moviesDAO.selectMovie(movieNo);
+	}
 }

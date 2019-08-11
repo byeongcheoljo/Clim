@@ -22,6 +22,7 @@
 		#{memberNo}
 	</select>
 
+	
 	<select id="boardCommentList" parameterType="PageVO" resultType="Comment">
 	select 	no, memberNo, nickname, contents, regdate, boardNo, commentLikeCount, r
 	from(select no, memberNo, nickname, contents, regdate, boardNo, commentLikeCount, rownum r

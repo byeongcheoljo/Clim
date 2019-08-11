@@ -69,14 +69,6 @@ public class Board {
 		this.commentCount = commentCount;
 	}
 
-	public String getContents() {
-		return contents;
-	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
 	public int getNo() {
 		return no;
 	}

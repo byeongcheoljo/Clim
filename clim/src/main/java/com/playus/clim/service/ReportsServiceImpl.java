@@ -29,7 +29,7 @@ public class ReportsServiceImpl implements ReportsService{
 	public int reportFaq(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.insertFAQ(report);
-
+	}
 
 	@Autowired
 	private ReportsDAO reportsDAO;

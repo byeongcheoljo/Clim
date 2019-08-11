@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.playus.clim.service.BookmarksService;
 import com.playus.clim.service.MoviesService;
 import com.playus.clim.vo.Member;
+import com.playus.clim.vo.Movie;
 
 @Controller
 public class MovieController {
@@ -42,5 +44,18 @@ public class MovieController {
 	public String bookmarkCheck(@PathVariable int movieNo,@PathVariable int memberNo) {
 		int count = bookmarksService.bookmarkForMovie(movieNo,memberNo);
 		return "{\"count\":"+(count == 1)+"}";
+	}
+	
+	@RequestMapping(value = "/player/movie/{movieNo}" , method =RequestMethod.GET )
+	public String playMovie(@PathVariable int movieNo, Model model) {
+		
+		Movie movie = moviesService.getMovie(movieNo);
+		System.out.println(movie.getNo());
+		System.out.println(movie.getTitle());
+		System.out.println(movie.getSrc());
+		
+		model.addAttribute(movie);
+		
+		return "player";
 	}
 }

@@ -86,17 +86,6 @@
 	<!-- 비즈니스 로직이 전혀 없는 페이지는 그냥 view-controller 설정 가능(memberController로 이동하였음) 
 		<mvc:view-controller path="/index.html"/> -->
 
-	<!-- 0627 Rest의 경우 모든 요청을 DispatcherServlet에서 받기 때문에 css/js/font 등 폴더에 접근할수 
-		있도록 설정해야함 -->
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/fonts/" mapping="/fonts/**" />
-	<mvc:resources location="/js/" mapping="/js/**" />
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/posters/" mapping="/posters/**" />
-	<mvc:resources location="/stealCut/" mapping="/stealCut/**" />
-	<mvc:resources location="/video/" mapping="/video/**" />
-	<mvc:resources location="/snapshot/" mapping="/snapshot/**" />
-	<mvc:resources location="/vtt/" mapping="/vtt/**" />
 
 	<websocket:message-broker
 		application-destination-prefix="/app">

@@ -26,4 +26,6 @@ public interface MoviesDAO {
 /*김근경 끝*/
 	
 	public Movie selectMovieTrailer(int no);
+	
+	public Movie selectMovie(int movieNo);
 }
