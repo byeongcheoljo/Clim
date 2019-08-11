@@ -48,7 +48,7 @@
   <mvc:resources location="/js/" mapping="/js/**"/>
   <mvc:resources location="/img/" mapping="/img/**"/>
   <mvc:resources location="/poster/" mapping="/poster/**"/>
-  <mvc:resources location="/stealCut/" mapping="/stealCut/**"/>
+  <mvc:resources location="/steelCut/" mapping="/steelCut/**"/>
   <mvc:resources location="/video/" mapping="/video/**"/>
   <mvc:resources location="/vtt/" mapping="/vtt/**"/>
 

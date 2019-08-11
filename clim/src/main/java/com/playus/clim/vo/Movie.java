@@ -5,11 +5,13 @@ import java.sql.Timestamp;
 
 public class Movie {
 	
-	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed;
-	private String title, contents, src, titleEng, poster, repGenre;
+	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed, cnt;
+	private String title, contents, src, titleEng, poster, repGenre, movieRating;
 	private Date opendate;
-	private char movieRating;
 	private Timestamp regdate;
+	private boolean checkBookmark, checkSpoilerReport;
+	private double score;
+	
 	
 	public Movie() {
 		// TODO Auto-generated constructor stub
@@ -119,19 +121,56 @@ public class Movie {
 		this.opendate = opendate;
 	}
 
-	public char getMovieRating() {
-		return movieRating;
-	}
-
-	public void setMovieRating(char movieRating) {
-		this.movieRating = movieRating;
-	}
 	public Timestamp getRegdate() {
 		return regdate;
 	}
 
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getMovieRating() {
+		return movieRating;
+	}
+
+	public void setMovieRating(String movieRating) {
+		this.movieRating = movieRating;
+	}
+
+	public boolean isCheckBookmark(boolean b) {
+		return checkBookmark;
+	}
+
+	public void setCheckBookmark(boolean checkBookmark) {
+		this.checkBookmark = checkBookmark;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public boolean isCheckSpoilerReport() {
+		return checkSpoilerReport;
+	}
+
+	public void setCheckSpoilerReport(boolean checkSpoilerReport) {
+		this.checkSpoilerReport = checkSpoilerReport;
+	}
+
+	public boolean isCheckBookmark() {
+		return checkBookmark;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 
 	

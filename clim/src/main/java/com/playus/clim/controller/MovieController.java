@@ -1,5 +1,7 @@
 package com.playus.clim.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,15 @@ public class MovieController {
 	private MoviesService moviesService;
 
 	@RequestMapping(value="/movie/{no}", method=RequestMethod.GET)
-	public String movieDetail(@PathVariable int no, Model model) {
+	public String movieDetail(@PathVariable int no, Model model, HttpSession session) {
 		
-		model.addAllAttributes(moviesService.getMovieDetail(no));
+		//Member loginMember = (Member) session.getAttribute("loginMember");
+		
+		int loginMember = 1;
+		
+		model.addAllAttributes(moviesService.getMovieDetail(no, loginMember));
 		
 		return "movieDetail";
 	}
 	// 재현
-	
 }

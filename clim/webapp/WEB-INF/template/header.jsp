@@ -500,7 +500,7 @@
             dataType:"json",
             type:"get",
             error:function () {
-                alert("에러");
+                //alert("에러");
             },
             success:function (movie) {
                 $(".streaming_movie_wrap").html(streamingMovieListTmp({movies:movie}));
@@ -599,7 +599,7 @@
             dataType:"json",
             type:"get",
             error:function () {
-                alert("에러");
+                //alert("에러");
             },
             success:function (subscribe) {
                 $("#headerSubscribeWrap").html(subscribeListTmp({subscribes:subscribe}));

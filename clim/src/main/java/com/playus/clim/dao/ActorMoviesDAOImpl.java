@@ -11,5 +11,4 @@ public class ActorMoviesDAOImpl implements ActorMoviesDAO{
 	private SqlSession session;
 	
 	
-	
 }

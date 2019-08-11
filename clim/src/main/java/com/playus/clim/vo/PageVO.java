@@ -3,6 +3,7 @@ package com.playus.clim.vo;
 public class PageVO {
 	
 	private int start, end, no;
+	private int movieNo;
 	
 	public PageVO() {
 		// TODO Auto-generated constructor stub
@@ -41,5 +42,12 @@ public class PageVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
+	public int getMovieNo() {
+		return movieNo;
+	}
+	public void setMovieNo(int movieNo) {
+		this.movieNo = movieNo;
+	}
+	
 
 }

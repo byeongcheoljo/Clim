@@ -24,5 +24,34 @@ public class ReviewsDAOImpl implements ReviewsDAO{
 	public int myWriteReviewsTotal(int memberNo) {
 		return session.selectOne("reviews.myWriteReviewsTotal", memberNo);
 	}
+	
+	@Override
+	public List<Review> getReviewList(PageVO pageVO) {
+		// TODO Auto-generated method stub
+		return session.selectList("reviews.reviewSelectList", pageVO);
+	}
+	
+	@Override
+	public int getReviewTotalList(int movieNo) {
+		// TODO Auto-generated method stub
+		//System.out.println("ReviewsDAOImpl movieNo:"+movieNo);
+		return session.selectOne("reviews.reviewSelectTotalList", movieNo);
+	}
+	@Override
+	public int registerReview(Review review) {
+		// TODO Auto-generated method stub
+		return session.insert("reviews.registerReview", review);
+	}
+	@Override
+	public int deleteMyReview(int no) {
+		// TODO Auto-generated method stub
+		return session.delete("reviews.deleteMyReview", no);
+	}
 
+	@Override
+	public int selectMovieDetailScore(int movieNo) {
+		// TODO Auto-generated method stub
+		System.out.println("여기오냐고");
+		return session.selectOne("reviews.selectMovieDetailScore", movieNo);
+	}
 }

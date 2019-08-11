@@ -2,5 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="steelCuts">
+
+	<select id="steelCutSelectList" parameterType="int" resultType="StealCut">
+		SELECT m.no, s.src
+		FROM movies m, steal_cuts s
+		WHERE m.no = #{no}
+		AND m.no = s.movie_no
+	</select>
 	
 </mapper>
