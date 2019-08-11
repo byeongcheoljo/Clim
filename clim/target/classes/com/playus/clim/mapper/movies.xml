@@ -25,7 +25,7 @@
 
 	<select id="getClimingMovieList" parameterType="int"
 		resultType="Movie">
-		select no,title,runtime,src,poster
+		select no,title,runtime,src,poster,movie_rating movieRating
 		from movies
 		where no
 		in(select movie_no

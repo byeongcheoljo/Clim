@@ -2,6 +2,7 @@ package com.playus.clim.vo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 public class Member {
 
@@ -16,6 +17,8 @@ public class Member {
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	public String getName() {
 		return name;
