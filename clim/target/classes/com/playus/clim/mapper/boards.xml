@@ -19,7 +19,6 @@
 		FROM boards
 		WHERE member_no = #{memberNo}
 	</select>
-
 	
 	<select id="boardList" resultType="Board" parameterType="PageVO">
 		SELECT no, contents, nickname ,memberNo, views, regdate, commentCount, likeCount, r
@@ -105,6 +104,5 @@
 	set views = #{views}
 	where no = #{no}
 	</update>
-	
-	
+
 </mapper>

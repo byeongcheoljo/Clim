@@ -2,19 +2,17 @@ package com.playus.clim.vo;
 
 import java.sql.Clob;
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Board {
 
-	private int no, memberNo, views, likeCount, commentCount, boardCount;
-	private String contents, nickname;
+	private int no, memberNo, views;
+	private String contents;
 	private Timestamp regdate;
-	private List<BoardTag> boardTags;
-	private boolean likeCheck;
-
+	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public boolean isLikeCheck() {
 		return likeCheck;
@@ -69,6 +67,7 @@ public class Board {
 		this.commentCount = commentCount;
 	}
 
+
 	public int getNo() {
 		return no;
 	}
@@ -93,7 +92,6 @@ public class Board {
 		this.views = views;
 	}
 
-
 	public String getContents() {
 		return contents;
 	}
@@ -109,5 +107,7 @@ public class Board {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-
+	
+	
+	
 }
