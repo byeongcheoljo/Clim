@@ -51,4 +51,11 @@ public class MoviesDAOImpl implements MoviesDAO{
 	public Movie selectMovieTrailer(int no) {
 		return session.selectOne("movies.selectMovieTrailer",no);
 	}
+	
+	@Override
+	public Movie movieSelectOne(int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("movies.movieSelectOne", no);
+	}
+	
 }

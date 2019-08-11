@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reports">
 
-	
+
 	<insert id="climer" parameterType="Report">
 	insert into reports
 	values(reports_seq.nextval,'C', #{reporterNo},(select member_no from c_lists where no= #{postNo}), #{postNo}, #{contents},systimestamp,null)
@@ -22,4 +22,18 @@
 	insert into reports(no, type, reporter_no, reportered_no, post_no, contents, regdate)
 	values(reports_seq.nextval, 'B', #{no}, #{reporteredNo}, #{boardNo}, #{contents}, systimestamp)
 	</insert>
+
+	<insert id="reportSpoiler" parameterType="Report">
+		INSERT INTO reports(no, type, reporter_no, post_no, regdate)
+		VALUES(reports_seq.nextval, #{type}, #{reporterNo}, #{postNo}, systimestamp)
+	</insert>
+	
+	<select id="checkSpoiler" parameterType="Report" resultType="int">
+		SELECT COUNT(*)
+		FROM reports
+		WHERE post_no = #{postNo}
+		AND reporter_no = #{reporterNo}
+	</select>
+	
+
 </mapper>

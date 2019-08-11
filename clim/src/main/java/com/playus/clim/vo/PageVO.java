@@ -1,12 +1,17 @@
 package com.playus.clim.vo;
 
 public class PageVO {
+
 	/* 0803 홍성표 memberNo 추가 */
-	private int start, end, no, memberNo;
+	private int start, end, no, memberNo,movieNo;
+	private int start, end, no;
+
+
 	
 	public PageVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public PageVO(int page, int numPage) {
 		//page : 페이지번호
 		//numPage : 한페이지당 보여지는 게시물수
@@ -47,5 +52,12 @@ public class PageVO {
 	public void setEnd(int end) {
 		this.end = end;
 	}
+	public int getMovieNo() {
+		return movieNo;
+	}
+	public void setMovieNo(int movieNo) {
+		this.movieNo = movieNo;
+	}
+	
 
 }

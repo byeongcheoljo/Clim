@@ -1,7 +1,8 @@
+
 package com.playus.clim.controller;
 
 import java.util.Map; 
-
+import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,20 @@ public class MovieController {
 	private MoviesService moviesService;
 	@Autowired
 	private BookmarksService bookmarksService;
+	
+	
+	
+	@RequestMapping(value="/movie/{no}", method=RequestMethod.GET)
+	public String movieDetail(@PathVariable int no, Model model, HttpSession session) {
+		
+		//Member loginMember = (Member) session.getAttribute("loginMember");
+		
+		int loginMember = 1;
+		
+		model.addAllAttributes(moviesService.getMovieDetail(no, loginMember));
+		
+		return "movieDetail";
+	}
 	
 	
 	@RequestMapping(value = "/ajax/movie/{movieNo}/trailer",method = RequestMethod.GET )
@@ -44,3 +59,4 @@ public class MovieController {
 		return "{\"count\":"+(count == 1)+"}";
 	}
 }
+

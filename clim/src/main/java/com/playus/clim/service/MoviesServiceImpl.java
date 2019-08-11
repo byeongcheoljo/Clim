@@ -2,9 +2,13 @@ package com.playus.clim.service;
 import java.io.ObjectOutputStream.PutField;  
 import java.util.List;
 import java.util.Map;
+
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +16,30 @@ import org.springframework.stereotype.Service;
 import com.playus.clim.dao.ActorsDAO;
 import com.playus.clim.dao.BookmarksDAO;
 import com.playus.clim.dao.DirectorsDAO;
+
 import com.playus.clim.dao.MoviesDAO;
 import com.playus.clim.dao.SteelCutsDAO;
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Movie;
 import com.playus.clim.vo.StealCut;
+
+import com.playus.clim.dao.GenresDAO;
+
+import com.playus.clim.dao.ReviewsDAO;
+
+import com.playus.clim.dao.SurveysDAO;
+import com.playus.clim.dao.TrailersDAO;
+import com.playus.clim.vo.Actor;
+
+import com.playus.clim.vo.Director;
+import com.playus.clim.vo.Genre;
+import com.playus.clim.vo.Member;
+
+import com.playus.clim.vo.Review;
+
+import com.playus.clim.vo.Survey;
+import com.playus.clim.vo.Trailer;
+
 
 @Service
 public class MoviesServiceImpl implements MoviesService{
@@ -31,13 +54,27 @@ public class MoviesServiceImpl implements MoviesService{
 	private DirectorsDAO directorsDAO;
 	@Autowired
 	private BookmarksDAO bookmarksDAO;
-	
+	@Autowired
+	private DirectorsDAO directorsDAO;
+	@Autowired
+	private ActorsDAO actorsDAO;
+	@Autowired
+	private GenresDAO genresDAO;
+	@Autowired
+	private TrailersDAO trailersDAO;
+
+	@Autowired
+	private ReviewsDAO reviewsDAO;
+	@Autowired
+	private SurveysDAO surveysDAO;
+
 	
 	@Override
 	public List<Movie> getSearchResultForcliming(String title) {
 		return moviesDAO.searchMovieListForCliming(title);
 	}
 	
+
 /*김근경 시작*/
 	//index에서 끌림작 1위~30위
 	@Override
@@ -89,6 +126,48 @@ public class MoviesServiceImpl implements MoviesService{
 		map.put("movie",movies);
 		map.put("directors",directorsDAO.selectDirectorForMovie(movieNo));
 		map.put("actors",actorsDAO.selectListForMovie(movieNo));
+	}
+	
+	@Override
+	public Map<String, Object> getMovieDetail(int no, int loginMemberNo) {
+		
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+		
+		Movie movie = moviesDAO.movieSelectOne(no);
+		List<Director> directors = directorsDAO.directorSelectList(no);
+		List<Actor> actors = actorsDAO.actorSelectList(no);
+		List<Genre> genres = genresDAO.genreSelectList(no);
+		Trailer trailer = trailersDAO.trailerSelectOne(no);
+		List<StealCut> steelCuts = steelCutsDAO.steelCutSelectList(no);
+		
+		Survey survey = new Survey();
+		survey.setMovieNo(no);
+		survey.setMemberNo(loginMemberNo);
+		
+		int scoreCount = surveysDAO.scoreCount(survey);
+		
+		Bookmark bookmark = new Bookmark();
+		bookmark.setMovieNo(no);
+		bookmark.setMemberNo(loginMemberNo);
+		bookmark.setType('B');
+		
+		Bookmark climBookmark = new Bookmark();
+		climBookmark.setMovieNo(no);
+		climBookmark.setMemberNo(loginMemberNo);
+		climBookmark.setType('S');
+		
+		map.put("movie", movie);
+		map.put("directors", directors);
+		map.put("actors", actors);
+		map.put("genres", genres);
+		map.put("trailer", trailer);
+		map.put("steelCuts", steelCuts);
+		map.put("bookMarkCheck", bookmarksDAO.bookmarkChecWithType(bookmark));
+		map.put("climBookMarkCheck", bookmarksDAO.bookmarkChecWithType(climBookmark));
+		map.put("scoreCount", scoreCount);
+		map.put("movieScore", reviewsDAO.selectMovieDetailScore(no));
+		
+
 		return map;
 	}
 

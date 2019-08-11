@@ -557,182 +557,184 @@
     <@})@>
 </script>
 
-	<script>
-		_.templateSettings = {
-			interpolate : /\<\@\=(.+?)\@\>/gim,
-			evaluate : /\<\@([\s\S]+?)\@\>/gim,
-			escape : /\<\@\-(.+?)\@\>/gim
-		};
 
-		let flag = true;
-		
-		
-		connect();
+<script>
+    _.templateSettings = {
+        interpolate : /\<\@\=(.+?)\@\>/gim,
+        evaluate : /\<\@([\s\S]+?)\@\>/gim,
+        escape : /\<\@\-(.+?)\@\>/gim
+    };
 
-		const $heroContentSectionUl = $("#heroContentSection Ul");
-		const $heroContentNum = $(".hero_content_num");
-		let heroMove = 0;
+    let flag = true;
 
-		const $streamMovePrev = $(".stream_move_prev");
-		const $streamMoveNext = $(".stream_move_next");
-		const $streamBox = $("#streamBox");
-		let hotMove = 0;
+	connect();
+	
+    const $heroContentSectionUl = $("#heroContentSection Ul");
+    const $heroContentNum = $(".hero_content_num");
+    let heroMove = 0;
 
-		const continueTmp = _.template($("#continueTmp").html());
+    const $streamMovePrev = $(".stream_move_prev");
+    const $streamMoveNext = $(".stream_move_next");
+    const $streamBox = $("#streamBox");
+    let hotMove = 0;
 
-		const $continueBox = $("#continueBox");
-		const $continueMovePrev = $(".continue_move_prev");
-		const $continueMoveNext = $(".continue_move_next");
-		let continueMove = 0;
+    const continueTmp = _.template($("#continueTmp").html());
 
-		const $climBox = $("#climBox");
-		const $climCard = $(".clim_card");
-		const $climMovePrev = $(".clim_move_prev");
-		const $climMoveNext = $(".clim_move_next");
-		let climMove = 0;
-		const $trailerBg = $(".trailer_bg");
-		const $bgCloseBtn = $(".bg_close_btn");
+    const $continueBox = $("#continueBox");
+    const $continueMovePrev = $(".continue_move_prev");
+    const $continueMoveNext = $(".continue_move_next");
+    let continueMove = 0;
 
-		const $recommendBox = $(".recommend_box")
-		const $recommendCard = $(".recommend_card");
-		const $recommendMovePrev = $(".recommend_move_prev");
-		const $recommendMoveNext = $(".recommend_move_next");
-		let recommendMove = 0;
+    const $climBox = $("#climBox");
+    const $climCard = $(".clim_card");
+    const $climMovePrev = $(".clim_move_prev");
+    const $climMoveNext = $(".clim_move_next");
+    let climMove = 0;
+    const $trailerBg = $(".trailer_bg");
+    const $bgCloseBtn = $(".bg_close_btn");
 
-		const $userStreamTmp = _.template($("#userStreamTmp").html());
-		const $userStreamBox = $("#userStreamBox");
-		const $userstreamMovePrev = $(".userstream_move_prev");
-		const $userstreamMoveNext = $(".userstream_move_next");
-		let userStreamMove = 0;
-		const $previewSection = $("#previewSection");
-		const $trailerTmp = _.template($("#trailerTmp").html());
+    const $recommendBox = $(".recommend_box")
+    const $recommendCard = $(".recommend_card");
+    const $recommendMovePrev = $(".recommend_move_prev");
+    const $recommendMoveNext = $(".recommend_move_next");
+    let recommendMove = 0;
 
-		/* heroScript */
-		$heroContentNum.on("click", function() {
-			$heroContentNum.removeClass("hero_on");
-			$(this).addClass("hero_on");
-			let pageNum = this.dataset.page;
-			if (flag) {
-				flag = false;
-				heroMove = (-(pageNum - 1) * 1100);
-				$heroContentSectionUl.css("left", heroMove);
-				flag = true;
-			}
-		})// $heroContentNum click() end
+    const $userStreamTmp = _.template($("#userStreamTmp").html());
+    const $userStreamBox = $("#userStreamBox");
+    const $userstreamMovePrev = $(".userstream_move_prev");
+    const $userstreamMoveNext = $(".userstream_move_next");
+    let userStreamMove = 0;
+	
+	const $previewSection = $("#previewSection");
+	const $trailerTmp = _.template($("#trailerTmp").html());
 
-		setInterval(function() {
-			let cnt = $("#heroContentSection li").length;
+    /* heroScript */
+    $heroContentNum.on("click", function(){
+        $heroContentNum.removeClass("hero_on");
+        $(this).addClass("hero_on");
+        let pageNum = this.dataset.page;
+        if(flag) {
+            flag = false;
+            heroMove = (-(pageNum - 1) * 1100);
+            $heroContentSectionUl.css("left", heroMove);
+            flag = true;
+        }
 
-			let nowPosition = $heroContentSectionUl.css("left");
-			let testStr = nowPosition.split("px");
-			let realPosition = parseFloat(testStr);
-			//console.log(realPosition);
-			let test = Math.abs(parseFloat(testStr) / 1100) + 1;
+    })// $heroContentNum click() end
 
-			// let absPosition = Math.abs(parseFloat(testStr));
+    setInterval(function(){
+        let cnt = $("#heroContentSection li").length;
 
-			if (flag) {
-				flag = false;
-				if (realPosition <= (-1100 * (cnt - 1))) {
-					heroMove = 0;
-					$heroContentNum.removeClass("hero_on");
-					$heroContentNum.eq(0).addClass("hero_on");
-				} else {
-					heroMove -= 1100;
-					$heroContentNum.removeClass("hero_on");
-					$heroContentNum.eq(test).addClass("hero_on");
-				}
-				$heroContentSectionUl.css("left", heroMove);
-				flag = true;
-			}
+        let nowPosition = $heroContentSectionUl.css("left");
+        console.log(nowPosition);
+        let testStr = nowPosition.split("px");
+        let realPosition = parseFloat(testStr);
+        //console.log(realPosition);
+        let test = Math.abs(parseFloat(testStr)/1100)+1;
 
-		}, 10000); // 10초마다 hero 변경
+        // let absPosition = Math.abs(parseFloat(testStr));
 
-		/* hotScript */
-		$streamMovePrev.on("click", function() {
-			if (flag) {
-				flag = false;
-				if (hotMove == 0) {
-					hotMove = -2450;
-				} else {
-					hotMove += 350;
-				}
-				$streamBox.css("left", hotMove);
-				flag = true
-			}
-		})
-		$streamMoveNext.on("click", function() {
-			if (flag) {
-				flag = false;
-				if (hotMove == -2450) {
-					hotMove = 0;
-				} else {
-					hotMove -= 350;
-				}
-				$streamBox.css("left", hotMove);
-				flag = true
-			}
-		})
+        // console.log(absPosition);
+        if(flag) {
+            flag = false;
+            if (realPosition <= (-1100 * (cnt - 1))) {
+                heroMove = 0;
+                $heroContentNum.removeClass("hero_on");
+                $heroContentNum.eq(0).addClass("hero_on");
+            } else  {
+                heroMove -= 1100;
+                $heroContentNum.removeClass("hero_on");
+                $heroContentNum.eq(test).addClass("hero_on");
+            }
+            $heroContentSectionUl.css("left",heroMove);
+            flag = true;
+        }
 
-		/* userStreamScript
-		function userStream() {
-			$.ajax({
-				url : "ajax/userClim.json",
-				error : function() {
-					//alert("에러!");
-				},
-				success : function(json) {
-					$userStreamBox.css("width", json.length * 550);
-					$userStreamBox.html($userStreamTmp({
-						"streams" : json
-					}));
-				}//success() end
-			});//$.ajax() end
-		}// userStream() end 로그인 유저의 이어보기목록 얻어와 userStreamBox width재설정
-		userStream();
+    }, 10000); // 10초마다 hero 변경
 
-		$userstreamMovePrev.on("click", function() {
+    /* hotScript */
+    $streamMovePrev.on("click",function () {
+        if(flag){
+            flag = false;
+            if( hotMove == 0){
+                hotMove = -2450;
+            }else{
+                hotMove += 350;
+            }
+            $streamBox.css("left",hotMove);
+            flag = true
+        }
+    })
+    $streamMoveNext.on("click",function () {
+        if(flag){
+            flag = false;
+            if( hotMove == -2450){
+                hotMove = 0;
+            }else{
+                hotMove -= 350;
+            }
+            $streamBox.css("left",hotMove);
+            flag = true
+        }
+    })
 
-			let cardCntStr = $userStreamBox.css("width");
+    /* userStreamScript*/
+    function userStream(){
+        $.ajax({
+            url:"ajax/userClim.json",
+            error:function(){
+                alert("에러!");
+            },
+            success:function(json){
+                $userStreamBox.css("width",json.length*550);
+                $userStreamBox.html($userStreamTmp({"streams":json}));
+            }//success() end
+        });//$.ajax() end
+    }// userStream() end 로그인 유저의 이어보기목록 얻어와 userStreamBox width재설정
+    userStream();
 
-			let cardCntStr2 = cardCntStr.split("px");
+    $userstreamMovePrev.on("click",function () {
 
-			let cardPosition = parseFloat(cardCntStr2);
+        let cardCntStr = $userStreamBox.css("width");
 
-			if (flag) {
-				flag = false;
-				if (userStreamMove == 0) {
-					userStreamMove = -cardPosition + 1100;
-				} else {
-					userStreamMove += 550;
-				}
-				$userStreamBox.css("left", userStreamMove);
-				flag = true;
-			}
+        let cardCntStr2 = cardCntStr.split("px");
 
-		})
-		$userstreamMoveNext.on("click", function() {
-			let cardCntStr = $userStreamBox.css("width");
+        let cardPosition = parseFloat(cardCntStr2);
 
-			let cardCntStr2 = cardCntStr.split("px");
+        if(flag) {
+            flag = false;
+            if( userStreamMove == 0){
+                userStreamMove = -cardPosition+1100;
+                // console.log(continueMove);
+            }else{
+                userStreamMove += 550;
+            }
+            $userStreamBox.css("left", userStreamMove);
+            flag = true;
+        }
 
-			let cardPosition = parseFloat(cardCntStr2);
+    })
+    $userstreamMoveNext.on("click",function () {
+        let cardCntStr = $userStreamBox.css("width");
 
-			if (flag) {
-				flag = false;
-				if (-cardPosition + 1100 == userStreamMove) {
-					userStreamMove = 0;
-				} else {
-					userStreamMove -= 550;
-				}
-				$userStreamBox.css("left", userStreamMove);
-				flag = true;
-			}
-		})
+        let cardCntStr2 = cardCntStr.split("px");
 
-		/* continueScript */
+        let cardPosition = parseFloat(cardCntStr2);
 
-		function mainContinue() {
+        if(flag) {
+            flag = false;
+            if( -cardPosition+1100 == userStreamMove){
+                userStreamMove = 0;
+            }else{
+                userStreamMove -= 550;
+            }
+            $userStreamBox.css("left", userStreamMove);
+            flag = true;
+        }
+    })
+
+    /* continueScript */
+   function mainContinue() {
 			$.ajax({
 				url : "/ajax/member/${loginMember.no}/continue",
 				dataType : "json",
@@ -749,88 +751,89 @@
 		}// mainContinue() end 로그인 유저의 이어보기목록 얻어와 continueBox width재설정
 		mainContinue();
 
-		$continueMovePrev.on("click", function() {
+    $continueMovePrev.on("click",function () {
 
-			let cardCntStr = $continueBox.css("width");
+        let cardCntStr = $continueBox.css("width");
 
-			let cardCntStr2 = cardCntStr.split("px");
+        let cardCntStr2 = cardCntStr.split("px");
 
-			let cardPosition = parseFloat(cardCntStr2);
+        let cardPosition = parseFloat(cardCntStr2);
 
-			if (flag) {
-				flag = false;
-				if (continueMove == 0) {
-					continueMove = -cardPosition + 1050;
-					// console.log(continueMove);
-				} else {
-					continueMove += 210;
-				}
-				$continueBox.css("left", continueMove);
-				flag = true;
-			}
-		})
-		$continueMoveNext.on("click", function() {
+        if(flag) {
+            flag = false;
+            if( continueMove == 0){
+                continueMove = -cardPosition+1050;
+                // console.log(continueMove);
+            }else{
+                continueMove += 210;
+            }
+            $continueBox.css("left", continueMove);
+            flag = true;
+        }
+    })
+    $continueMoveNext.on("click",function () {
 
-			let cardCntStr = $continueBox.css("width");
+        let cardCntStr = $continueBox.css("width");
 
-			let cardCntStr2 = cardCntStr.split("px");
+        let cardCntStr2 = cardCntStr.split("px");
 
-			let cardPosition = parseFloat(cardCntStr2);
+        let cardPosition = parseFloat(cardCntStr2);
 
-			if (flag) {
-				flag = false;
-				if (-cardPosition + 1050 == continueMove) {
-					continueMove = 0;
-				} else {
-					continueMove -= 210;
-				}
-				$continueBox.css("left", continueMove);
-				flag = true;
-			}
-		})
+        if(flag) {
+            flag = false;
+            if( -cardPosition+1050 == continueMove){
+                continueMove = 0;
+            }else{
+                continueMove -= 210;
+            }
+            $continueBox.css("left", continueMove);
+            flag = true;
+        }
+    })
 
-		/* climContentScript */
+    /* climContentScript */
 
-		$climMovePrev.on("click", function() {
-			if (flag) {
-				flag = false;
-				if (climMove == 0) {
-					climMove = -4400;
-				} else {
-					climMove += 1100;
-				}
-				$climBox.css("left", climMove);
-				flag = true;
-			}
-		})
-		$climMoveNext.on("click", function() {
-			if (flag) {
-				flag = false;
-				if (climMove == -4400) {
-					climMove = 0;
-				} else {
-					climMove -= 1100;
-				}
-				$climBox.css("left", climMove);
-				flag = true;
-			}
-		})
-		
-		/* 1초이상 호버해야 bg나옴 1초전에 마우스 떠나면 실행안함 */
-		let timer;
-		let timer2;
-		let timer3;
-		let timer4;
-		let timer5;
-		let movieNo;
-		$climCard.on("mouseenter", function() {
-			$this = $(this);
-			movieNo = this.dataset.movieno;
-			timer = setTimeout(function() {
-				$trailerBg.fadeIn(100);
-				trailer();
-			}, 2000);
+    $climMovePrev.on("click",function () {
+        if(flag) {
+            flag = false;
+            if( climMove == 0 ){
+                climMove = -4400;
+            }else{
+                climMove += 1100;
+            }
+            $climBox.css("left", climMove);
+            flag = true;
+        }
+    })
+    $climMoveNext.on("click",function () {
+        if(flag) {
+            flag = false;
+            if( climMove == -4400 ){
+                climMove = 0;
+            }else{
+                climMove -= 1100;
+            }
+            $climBox.css("left", climMove);
+            flag = true;
+        }
+    })
 
+    /* 1초이상 호버해야 bg나옴 1초전에 마우스 떠나면 실행안함 */
+    let timer;
+    let timer2;
+    let timer3;
+    let timer4;
+    let timer5;
+	let movieNo;
+    $climCard.on("mouseenter",function(){
+        // $(this).css("border","3px solid yellow");
+        $this = $(this);
+        // console.log($(this).children('.top_border'));
+		movieNo = this.dataset.movieno;
+        timer = setTimeout(function() {
+            $trailerBg.fadeIn(100);
+			trailer();
+        }, 2000);
 			timer2 = setTimeout(function() {
 				// console.log($(this).children('.top_border'));
 				$this.children('.top_border').css({
@@ -871,57 +874,58 @@
 
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
 
-		$bgCloseBtn.on("click", function() {
-			$(this).parent().fadeOut(100);
-		})
+    $bgCloseBtn.on("click",function(){
+        $(this).parent().fadeOut(100);
+    })
 
-		/* recommendScript */
 
-		$recommendMovePrev.on("click", function() {
-			let nowLeft = $(this).prev().css("left");
 
-			let res = nowLeft.split("px");
+    /* recommendScript */
 
-			if (res[0] == 0) {
-				recommendMove = 0;
-			}
+    $recommendMovePrev.on("click",function () {
+        let nowLeft = $(this).prev().css("left");
 
-			recommendMove = res[0];
+        let res = nowLeft.split("px");
 
-			recommendMove = Number(recommendMove);
+        if (res[0] == 0) {
+            recommendMove = 0;
+        }
 
-			if (flag) {
-				flag = false;
-				recommendMove += 210;
+        recommendMove = res[0];
 
-				$(this).prev().css("left", recommendMove);
-				flag = true;
-			}
-		}); // $recommendMovePrev click() end
+        recommendMove = Number(recommendMove);
 
-		$recommendMoveNext.on("click", function() {
-			let nowLeft = $(this).prev().prev().css("left");
+        if(flag) {
+            flag = false;
+            recommendMove += 210;
 
-			let res = nowLeft.split("px");
+            $(this).prev().css("left", recommendMove);
+            flag = true;
+        }
+    }); // $recommendMovePrev click() end
 
-			if (res[0] == 0) {
-				recommendMove = 0;
-			}
+    $recommendMoveNext.on("click",function () {
+        let nowLeft = $(this).prev().prev().css("left");
 
-			recommendMove = res[0];
+        let res = nowLeft.split("px");
 
-			recommendMove = Number(recommendMove);
-			if (flag) {
-				flag = false;
-				recommendMove -= 210;
+        if (res[0] == 0) {
+            recommendMove = 0;
+        }
 
-				$(this).prev().prev().css("left", recommendMove);
-				flag = true;
-			}
-		}); // $recommendMoveNext click() end
+        recommendMove = res[0];
 
-		
-		$recommendBox.on("mouseenter", ".recommend_card", function() {
+        recommendMove = Number(recommendMove);
+        if(flag) {
+            flag = false;
+            recommendMove -= 210;
+
+            $(this).prev().prev().css("left", recommendMove);
+            flag = true;
+        }
+    }); // $recommendMoveNext click() end
+
+    $recommendBox.on("mouseenter", ".recommend_card", function() {
 			$this = $(this);
 
 			movieNo = this.dataset.movieno;
@@ -971,7 +975,7 @@
 
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
 
-		$(".recommend_special_box").on("mouseenter", ".recommend_special_card",
+   $(".recommend_special_box").on("mouseenter", ".recommend_special_card",
 				function() {
 					// $(this).css("border","3px solid yellow");
 					$this = $(this);
@@ -1029,7 +1033,7 @@
 			});
 
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
-
+		
 		function trailer() {
 			$("#headerSubscribeSlideWrap").css("display", "none");
 			$("#headerSubscribeList").css("display", "block");
@@ -1067,6 +1071,7 @@
 			})
 		});//click end
 		
-	</script>
+</script>
+
 </body>
 </html>

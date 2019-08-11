@@ -4,6 +4,7 @@
 <mapper namespace="steelCuts">
 
 
+
 	<!-- 김근경 시작 -->
 
 	<!-- movieNo에 대한 스틸컷(src)을 랜덤하게 1개 불러오기 -->
@@ -25,5 +26,14 @@
 	</select>
 	<!-- 김근경 끝 -->
 
+
+
+	<select id="steelCutSelectList" parameterType="int" resultType="StealCut">
+		SELECT m.no, s.src
+		FROM movies m, steal_cuts s
+		WHERE m.no = #{no}
+		AND m.no = s.movie_no
+	</select>
+	
 
 </mapper>

@@ -10,6 +10,7 @@
 		WHERE title LIKE #{title}
 	</select>
 
+
 	<select id="selectMovieTrailer" resultType="Movie"
 		parameterType="int">
 		SELECT m.no no, title,opendate,
@@ -76,4 +77,17 @@
 
 
 	<!-- 김근경 끝 -->
+
+	
+	<select id="movieSelectOne" parameterType="int" resultType="Movie">
+		SELECT no, title, openDate, runtime, contents, src, 
+			cookieTime, movie_rating movieRating, regdate, title_eng titleEng, 
+			poster, rep_genre repGenre, ending_credit_time endingCreditTime, climed, (SELECT COUNT(*)
+																						FROM reviews
+																						WHERE movie_no = #{no})
+		FROM movies 
+		WHERE no = #{no}
+	</select>
+	
+
 </mapper>

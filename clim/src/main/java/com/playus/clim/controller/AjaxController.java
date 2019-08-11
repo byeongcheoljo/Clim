@@ -3,11 +3,15 @@ package com.playus.clim.controller;
 
 import java.util.List;  
 import java.util.Map;
+
 import java.io.File;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.util.concurrent.ConcurrentHashMap;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.playus.clim.service.BoardsService;
+
 import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.service.BookmarksService;
 
@@ -53,6 +58,7 @@ import com.playus.clim.vo.Like;
 import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Movie;
 import com.playus.clim.vo.Report;
+import com.playus.clim.vo.Review;
 
 
 @RestController
@@ -68,6 +74,8 @@ public class AjaxController {
 	
 	@Autowired
 	private MoviesService moviesService;
+
+
 	@Autowired
 	private ReportsService reportsService;
 	@Autowired
@@ -86,8 +94,8 @@ public class AjaxController {
 	private BookmarksService bookmarkService;
 	@Autowired
 	private EventsService eventsService;
+	
 	@Autowired
-
 	private ContinueMoviesService continueMoviesService;
 	@Autowired
 	private MembersService membersService;
@@ -124,6 +132,53 @@ public class AjaxController {
 		return moviesService.getSearchResultForcliming(title);
 	}
 
+	//재현
+	@RequestMapping(value="/movie/{movieNo}/review/page/{page}", method=RequestMethod.GET)
+	public Map<String, Object> getReviewList(@PathVariable int movieNo, @PathVariable int page, Report report, Like like) {
+		
+		return reviewsService.getReviewList(movieNo, page, report, like);
+	}
+	
+	
+	@RequestMapping(value="/movie/{movieNo}/review", method=RequestMethod.POST)
+	public Map<String, Object> registerReview(Review review) {
+		
+		return reviewsService.registerReview(review);
+	}
+	
+	@RequestMapping(value="/movie/{movieNo}/bookmark", method=RequestMethod.POST)
+	public Map<String, Object> addMovie(@RequestBody Bookmark bookmark) {
+		return bookmarksService.addMovie(bookmark);
+	}
+	
+	@RequestMapping(value="/movie/{movieNo}/bookmark", method=RequestMethod.DELETE)
+	public int deleteMovie(@RequestBody Bookmark bookmark) {
+		return bookmarksService.deleteMovie(bookmark);
+	}
+	
+	@RequestMapping(value="/movie/{movieNo}/spoiler", method=RequestMethod.POST)
+	public int reportSpoiler(Report report) {
+		return reportsService.reportSpoiler(report);
+	}
+	
+	@RequestMapping(value="/movie/{movieNo}/spoiler", method=RequestMethod.GET)
+	public int deleteMyReview (int no) {
+		return reviewsService.deleteMyReview(no);
+	}
+	
+	
+	@RequestMapping(value = "/movie/{movieNo}/like", method = RequestMethod.POST)
+	public int insertLike(Like like) {
+		return likesService.insertLike(like);
+	}
+	
+	
+	@RequestMapping(value = "/movie/{movieNo}/like", method = RequestMethod.GET)
+	public int deleteLike(Like like) {
+		return likesService.deleteLike(like);
+	}
+	
+	
 /* -------------------------------------------Sohn-------------------------------------------*/
 	@RequestMapping(value="/climing", method=RequestMethod.GET)
 	public List<ClimingList> getClimingList(){
@@ -148,6 +203,7 @@ public class AjaxController {
 		}
 		
 	}
+	
 	@RequestMapping(value="/bookmarkForCliming/{bookNo}", method=RequestMethod.DELETE)
 	public String removeBookmarkOfCliming(@PathVariable int bookNo) {
 		int result = bookmarksService.removeBookmarkOfCliming(bookNo);
@@ -158,6 +214,7 @@ public class AjaxController {
 			return "{\"result\":\""+ "실패" +"\"}";
 		}
 	}
+	
 
 	@RequestMapping(value="/getCheckId/email", method=RequestMethod.GET)
 	public int getCheckId(String email) {
@@ -171,17 +228,23 @@ public class AjaxController {
 		
 		return membersService.getCheckNickname(nickname);
 	}
+	
+	
 	@RequestMapping(value = "/report/climer", method = RequestMethod.GET)
 	public void reportClimer(int roomNo,int userNo,String content){
 		
 		reportService.reportClimer(roomNo,userNo,content);
 	}
+	
+	
 	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
 	public String addClimingList(int roomNo,int movieNo){
 		
 		return bookmarkService.addClimingList(roomNo, movieNo);
 
 	}
+	
+	
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
 	public List<Event> eventsList(int memberNo) {
 		return eventsService.getList(memberNo);
@@ -346,7 +409,6 @@ public class AjaxController {
 	public Map<String, Object> boardSearch(String contents) {
 		return boardsService.selectBoardSearch(contents);
 	}
-	
 	
 
 }

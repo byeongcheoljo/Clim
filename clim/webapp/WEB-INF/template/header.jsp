@@ -792,3 +792,7 @@
 		stompClient.send("/app/clim/make", {}, data);
 	});
 </c:if>
+
+
+</script>
+

@@ -63,7 +63,7 @@
 		INSERT INTO bookmarks(no, member_no, movie_no, regdate, type)
 		VALUES(bookmarks_seq.nextval, #{memberNo}, #{movieNo}, SYSTIMESTAMP, 'B')
 	</insert>
-	
+
 	<delete id="deleteClimingList" parameterType="Bookmark">
 	delete from bookmarks
 	where member_no=(select member_no from c_lists where no= #{memberNo}) and movie_no= #{movieNo} and type='C'
@@ -80,4 +80,25 @@
 		delete bookmarks
 		WHERE member_no = #{memberNo} AND type ='B' AND movie_no = #{movieNo}
 	</delete>
+
+	<insert id="addMovie" parameterType="Bookmark">
+		INSERT INTO bookmarks(no, member_no, movie_no, regdate, type)
+		VALUES (bookmarks_seq.nextval, #{memberNo}, #{movieNo}, systimestamp, #{type})
+	</insert>
+	
+	<delete id="deleteMovie" parameterType="Bookmark">
+		DELETE bookmarks
+		WHERE movie_no = #{movieNo}
+		AND member_no = #{memberNo}
+		AND type = #{type}
+	</delete>
+	
+	<select id="bookmarkCheck" parameterType="Bookmark" resultType="int">
+		SELECT COUNT(*) 
+		FROM bookmarks
+		WHERE movie_no = #{movieNo}
+		AND member_no = #{memberNo}
+		AND type = #{type}
+	</select>
+
 </mapper>

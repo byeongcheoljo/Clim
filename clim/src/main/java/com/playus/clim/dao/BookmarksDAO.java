@@ -9,6 +9,7 @@ public interface BookmarksDAO {
 
 	public List<Bookmark> mybookmarkListForCliming(int memberNo);
 
+
 	public int bookmarkInsertForCliming(Bookmark bookmark);
 
 	public int bookmarkDeleteForCliming(int no);
@@ -27,8 +28,17 @@ public interface BookmarksDAO {
 	public Bookmark checkClimingList(Bookmark bookmark);
 
 	public int bookmarkCheck(Bookmark bookmark);
-
+	
+	public int bookmarkChecWithType(Bookmark bookmark);
+	
 	public int boomarkForMovieInsert(Bookmark bookmark);
 
 	public int boomarkForMovieDelete(Bookmark bookmark);
+
+	public int addMovie(Bookmark bookmark);
+
+	public int deleteMovie(Bookmark bookmark);
+
+
+
 }

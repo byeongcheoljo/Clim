@@ -11,7 +11,7 @@ public class ReportsServiceImpl implements ReportsService{
 
 	@Autowired
 	private ReportsDAO reportsdao;
-	
+
 	
 	@Override
 	public void reportClimer(int roomNo, int userNo,String content) {
@@ -29,14 +29,21 @@ public class ReportsServiceImpl implements ReportsService{
 	public int reportFaq(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.insertFAQ(report);
+	}
 
 
-	@Autowired
-	private ReportsDAO reportsDAO;
 	
 	@Override
 	public int boardReportInsert(Report report) {
 		// TODO Auto-generated method stub
 		return reportsDAO.insertBoardReport(report);
+	}
+
+	
+	@Override
+	public int reportSpoiler(Report report) {
+		// TODO Auto-generated method stub
+		return reportsDAO.reportSpoiler(report);
+
 	}
 }
