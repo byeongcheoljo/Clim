@@ -3,18 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="actors">
 
-
 	<select id="selectListForMovie" parameterType="int" resultType="Actor">
 		SELECT m.no no, act.name name
 		FROM movies m, m_actors a, actors act
 		WHERE m.no = a.movie_no AND a.actor_no = act.no AND m.no = #{no}
-	</select>
-	<select id="actorsSelectList" parameterType="int" resultType="Actor">
-		SELECT m.no, a.name
-		FROM movies m, m_actors act, actors a
-		WHERE m.no = #{no}
-		AND m.no = act.movie_no 
-		AND act.actor_no = a.no 
-
 	</select>
 </mapper>

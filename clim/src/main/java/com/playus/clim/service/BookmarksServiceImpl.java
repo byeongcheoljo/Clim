@@ -1,20 +1,14 @@
 package com.playus.clim.service;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.BookmarksDAO;
 import com.playus.clim.vo.Bookmark;
-
 import com.playus.clim.vo.Member;
 
 @Service
@@ -31,24 +25,6 @@ public class BookmarksServiceImpl implements BookmarksService {
 
 		return bookmarksDAO.mybookmarkListForCliming(memberNo);
 	}
-	
-	@Override
-	public int deleteMovie(Bookmark bookmark) {
-		// TODO Auto-generated method stub
-		return bookmarksDAO.deleteMovie(bookmark);
-
-	}
-	
-	@Override
-	public Map<String, Object> addMovie(Bookmark bookmark) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
-		
-		map.put("bookmark", bookmarksDAO.addMovie(bookmark));
-		
-		return map;
-	}
-	
 
 	@Override
 	public int addBookmarkOfCliming(Bookmark bookmark) {
@@ -65,7 +41,6 @@ public class BookmarksServiceImpl implements BookmarksService {
 	public int removeBookmarkOfCliming(int no) {
 		return bookmarksDAO.bookmarkDeleteForCliming(no);
 	}
-	
 
 	@Override
 	public String addClimingList(int roomNo, int movieNo) {
@@ -93,7 +68,6 @@ public class BookmarksServiceImpl implements BookmarksService {
 	public int deletMybookmarkMovie(int no) {
 		return bookmarksDAO.deletMybookmarkMovie(no);
 	}
-	
 	@Override
 	public void deleteClimingList(int roomNo, int movieNo) {
 		// TODO Auto-generated method stub
@@ -102,7 +76,6 @@ public class BookmarksServiceImpl implements BookmarksService {
 		bookmark.setMemberNo(roomNo);
 		bookmarksDAO.deleteClimingList(bookmark);
 	}
-	
 	@Override
 	public int bookmarkForMovie(int movieNo, int memberNo) {
 		
@@ -121,9 +94,6 @@ public class BookmarksServiceImpl implements BookmarksService {
 		}
 		
 		return count;
-
 	}
-	
-	
-	
+
 }

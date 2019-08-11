@@ -13,13 +13,6 @@ public class DirectorsDAOImpl implements DirectorsDAO{
 	
 	@Autowired
 	private SqlSession session;
-	
-	// 재현
-	@Override
-	public List<Director> directorSelectList(int no) {
-		return session.selectList("directors.directorSelectList",no);
-	}
-	// 재현
 
 	@Override
 	public List<Director> selectDirectorForMovie(int no) {

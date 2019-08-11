@@ -17,15 +17,4 @@ public interface LikesDAO {
 	public int boardCommentLikeTotal(int postNo);
 	
 	
-
-	public int checkLike(Like like);
-
-	public int insertLike(Like like);
-
-	public int countLike(Like like);
-
-	public int countDisLike(Like like);
-
-	public int deleteLike(Like like);
-
 }

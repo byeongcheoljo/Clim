@@ -14,19 +14,9 @@ public class ActorsDAOImpl implements ActorsDAO{
 	@Autowired
 	private SqlSession session;
 	
-
 	@Override
 	public List<Actor> selectListForMovie(int no) {
 		return session.selectList("actors.selectListForMovie",no);
 	}
 	
-
-	// 재현
-	@Override
-	public List<Actor> actorSelectList(int no) {
-		// TODO Auto-generated method stub
-		return session.selectList("actors.actorsSelectList", no);
-	}
-
-
 }
