@@ -511,8 +511,8 @@
 					<li>줄거리
 						<p id="trailerContents"><@=movie.contents@></p>
 					</li>
-					<button class="preview_btn play">Play</button>
-					<button class="preview_btn detail">Detail</button>
+					<a href="/player/movie/<@=movie.no@>" class="preview_btn play">Play</a>
+					<a href="/movie/<@=movie.no@>" class="preview_btn detail">Detail</a>
 				</ul>
 			</div>
 			<div id="previewWrap"><@=movie.src@></div>
