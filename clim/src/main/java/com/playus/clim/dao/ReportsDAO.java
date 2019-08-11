@@ -9,4 +9,6 @@ public interface ReportsDAO {
 	
 	public int insertFAQ(Report report);
 
+	int insertBoardReport(Report report);
+
 }

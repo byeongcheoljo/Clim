@@ -2,11 +2,13 @@ package com.playus.clim.vo;
 
 import java.sql.Clob;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Board {
-
-	private int no, memberNo, views;
-	private String contents;
+	private boolean likeCheck;
+	private List<BoardTag> boardTags;
+	private int no, memberNo, views , boardCount, likeCount, commentCount;
+	private String contents, nickname;
 	private Timestamp regdate;
 	
 	public Board() {
