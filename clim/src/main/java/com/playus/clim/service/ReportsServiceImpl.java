@@ -12,6 +12,7 @@ public class ReportsServiceImpl implements ReportsService{
 	private ReportsDAO reportsdao;
 	
 	
+	
 	@Override
 	public void reportClimer(int roomNo, int userNo,String content) {
 		// TODO Auto-generated method stub
@@ -34,7 +35,7 @@ public class ReportsServiceImpl implements ReportsService{
 	@Override
 	public int boardReportInsert(Report report) {
 		// TODO Auto-generated method stub
-		return reportsDAO.insertBoardReport(report);
+		return reportsdao.insertBoardReport(report);
 
 	}
 }
