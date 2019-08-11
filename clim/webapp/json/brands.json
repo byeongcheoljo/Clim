@@ -1,0 +1,44 @@
+[
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "에뛰드하우스",
+    "brandNameEng": "Etude House",
+    "productNum": "150개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "이니스프리",
+    "brandNameEng": "Innisfree",
+    "productNum": "500개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "아리따움",
+    "brandNameEng": "Aritaum",
+    "productNum": "200개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "미샤",
+    "brandNameEng": "Missha",
+    "productNum": "1000개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "맥",
+    "brandNameEng": "MAC",
+    "productNum": "2000개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "에스쁘아",
+    "brandNameEng": "Espoir",
+    "productNum": "60개"
+  },
+  {
+    "brandImg": "image/etudeHouse.PNG",
+    "brandName": "에스티로더",
+    "brandNameEng": "Estee Lauder",
+    "productNum": "756개"
+  }
+]

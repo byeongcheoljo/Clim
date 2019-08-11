@@ -10,6 +10,59 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+		
+<!-- 꼭 설정해야 함 -->
+<mvc:annotation-driven/>
+
+<context:component-scan
+	base-package="com.playus.clim.*"/>
+
+<!-- Spring web MVC의 설정 ajax관련/또는 table을 기준으로 하나씩 두면 된다. -->
+
+<!-- 0627 인터셉터 설정
+<mvc:interceptors>
+	<mvc:interceptor>
+		<mvc:mapping path="/*"/>
+		<mvc:exclude-mapping path="/index.html"/>
+		<mvc:exclude-mapping path="/log.html"/>
+		<bean class="interceptor.TestInterceptor"></bean>
+	</mvc:interceptor>
+</mvc:interceptors>
+ -->
+ 
+
+ 
+ 
+<!-- /WEB-INF/view 와 .jsp 중복을 처리하기 위한 코드 -->
+<mvc:view-resolvers>
+	<mvc:jsp suffix=".jsp" prefix="/WEB-INF/view/"/>
+</mvc:view-resolvers>
+
+
+<!-- 비즈니스 로직이 전혀 없는 페이지는 그냥 view-controller 설정 가능(memberController로 이동하였음)
+<mvc:view-controller path="/index.html"/>
+ -->
+
+  <!--  0627 Rest의 경우 모든 요청을 DispatcherServlet에서 받기 때문에
+  css/js/font 등 폴더에 접근할수 있도록 설정해야함 --> 
+  <mvc:resources location="/css/" mapping="/css/**"/>
+  <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+  <mvc:resources location="/js/" mapping="/js/**"/>
+  <mvc:resources location="/img/" mapping="/img/**"/>
+  <mvc:resources location="/poster/" mapping="/poster/**"/>
+  <mvc:resources location="/stealCut/" mapping="/stealCut/**"/>
+  <mvc:resources location="/video/" mapping="/video/**"/>
+  <mvc:resources location="/vtt/" mapping="/vtt/**"/>
+  <mvc:resources location="/upload/" mapping="/upload/**"/>
+
+		 
+	 	<!-- MultipartResovler -->
+	<bean id="multipartResolver" 
+		p:defaultEncoding="UTF-8"
+		p:maxUploadSize="104857600"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+
 
 	<!-- 꼭 설정해야 함 -->
 	<mvc:annotation-driven />

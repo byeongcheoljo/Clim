@@ -3,4 +3,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardTags">
 
+	
+	<insert id="boardTag" parameterType="BoardTag">
+	insert into board_tags(no, board_no, regdate, tagName)
+	values(board_tags_seq.nextval, #{boardNo}, systimestamp, #{tagName})
+	</insert>
+	
+	<select id="boardTagList" parameterType="int" resultType="BoardTag">
+	select no, board_no boardNo, regdate, tagname
+	from board_tags
+	where board_no = #{boardNo}
+	</select>
+
+
 </mapper>

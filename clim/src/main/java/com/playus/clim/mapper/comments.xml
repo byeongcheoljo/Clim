@@ -22,4 +22,36 @@
 		#{memberNo}
 	</select>
 
+	
+	<select id="boardCommentList" parameterType="PageVO" resultType="Comment">
+	select 	no, memberNo, nickname, contents, regdate, boardNo, commentLikeCount, r
+	from(select no, memberNo, nickname, contents, regdate, boardNo, commentLikeCount, rownum r
+	from(select c.no, c.member_no memberNo, nickname, contents,c.board_no boardNo, c.regdate regdate, NVL(l.commentLikeCount,0) commentLikeCount
+	from comments c, members m,
+	(select post_no, count(post_no) commentLikeCount
+	from likes
+	where type = 'C'
+	group by post_no) l
+	where m.no =c.member_no and l.post_no(+) = c.no and c.board_no = #{no}  order by regdate desc))
+	where r between #{start} and #{end}
+	</select>
+	
+	
+	<insert id="insertComment" parameterType="Comment">
+	insert into comments(no, member_no, contents, regdate, board_no)
+	values(comments_seq.nextval, #{memberNo}, #{contents}, systimestamp, #{boardNo})
+	</insert>
+	
+	<select id="boardCommentTotal" resultType="int" parameterType="int">
+	select count(*) boardCommentTotal
+	from comments
+	where board_no = #{no}
+	</select>
+	
+	<delete id="deleteComment" parameterType="int">
+	delete
+	from comments
+	where board_no = #{boardNo} 
+	</delete>
+
 </mapper>

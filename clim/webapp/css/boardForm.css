@@ -18,6 +18,8 @@ body {
 	height: 100%;
 	position: fixed;
 	background-color: rgba(35, 31, 32, .9);
+	display:none;
+	z-index: 8000;
 }
 
 #boardForm {
@@ -29,8 +31,10 @@ body {
 	left: 50%;
 	margin-left: -450px;
 	margin-top: -350px;
-	position: relative;
+	position: fixed;
 	padding-top: 5px;
+	display:none;
+	z-index: 8000;
 }
 #boardForm h2 {
 	text-align: center;

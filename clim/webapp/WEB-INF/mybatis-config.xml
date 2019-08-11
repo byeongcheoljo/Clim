@@ -42,7 +42,6 @@
 		<typeAlias alias="StealCut" type="com.playus.clim.vo.StealCut" />
 		<typeAlias alias="Subscribe" type="com.playus.clim.vo.Subscribe" />
 		<typeAlias alias="Survey" type="com.playus.clim.vo.Survey" />
-		<typeAlias alias="Tag" type="com.playus.clim.vo.Tag" />
 		<typeAlias alias="Trailer" type="com.playus.clim.vo.Trailer" />
 		<typeAlias alias="Feature" type="com.playus.clim.vo.Feature" />
 		<typeAlias alias="Leader" type="com.playus.clim.vo.Leader" />
@@ -78,7 +77,6 @@
 		<mapper resource="com/playus/clim/mapper/steelCuts.xml" />
 		<mapper resource="com/playus/clim/mapper/subscribes.xml" />
 		<mapper resource="com/playus/clim/mapper/surveys.xml" />
-		<mapper resource="com/playus/clim/mapper/tags.xml" />
 		<mapper resource="com/playus/clim/mapper/trailers.xml" />
 	</mappers>
 

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Report {
 
-	private int no, reporterNo, reportedNo, postNo;
+	private int no, reporterNo, reportedNo, postNo, reporteredNo, boardNo, memberNo;
 	private char type;
 	private String contents, title;
 	private Timestamp regdate;
@@ -13,6 +13,39 @@ public class Report {
 	public Report() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public int getReporteredNo() {
+		return reporteredNo;
+	}
+
+	public void setReporteredNo(int reporteredNo) {
+		this.reporteredNo = reporteredNo;
+	}
+
+
+
+	public int getBoardNo() {
+		return boardNo;
+	}
+
+
+
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+
+
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
 
 
 	public int getNo() {

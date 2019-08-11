@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.playus.clim.dao.CommentsDAO;
 import com.playus.clim.util.PaginateUtil;
+import com.playus.clim.vo.Comment;
 import com.playus.clim.vo.PageVO;
 
 @Service
@@ -30,6 +31,12 @@ public class CommentsServiceImpl implements CommentsService{
 		map.put("paginate", paginateUtil.getPaginate(page, total, 10, 5, "/ajax/member"+memberNo+"comments"));
 		
 		return map;
+	}
+	
+	@Override
+	public int insertComment(Comment comment) {
+		// TODO Auto-generated method stub
+		return commentsDAO.insertComment(comment);
 	}
 
 }
