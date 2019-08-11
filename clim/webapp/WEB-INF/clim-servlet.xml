@@ -51,6 +51,14 @@
   <mvc:resources location="/stealCut/" mapping="/stealCut/**"/>
   <mvc:resources location="/video/" mapping="/video/**"/>
   <mvc:resources location="/vtt/" mapping="/vtt/**"/>
+  <mvc:resources location="/upload/" mapping="/upload/**"/>
+
+		 
+	 	<!-- MultipartResovler -->
+	<bean id="multipartResolver" 
+		p:defaultEncoding="UTF-8"
+		p:maxUploadSize="104857600"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 
 

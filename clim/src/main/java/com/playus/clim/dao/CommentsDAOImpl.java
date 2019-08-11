@@ -26,9 +26,9 @@ public class CommentsDAOImpl implements CommentsDAO{
 	}
 	
 	@Override
-	public List<Comment> selectCommentList(int no) {
+	public List<Comment> selectCommentList(PageVO pageVO) {
 		// TODO Auto-generated method stub
-		return session.selectList("comments.boardCommentList", no);
+		return session.selectList("comments.boardCommentList", pageVO);
 	}
 	
 	@Override
@@ -36,5 +36,20 @@ public class CommentsDAOImpl implements CommentsDAO{
 		// TODO Auto-generated method stub
 		return session.insert("comments.insertComment", comment);
 	}
+	
+	@Override
+	public int boardCommentTotal(int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("comments.boardCommentTotal", no);
+	}
+	
+	//댓글삭제
+	@Override
+	public int deleteComment(int boardNo) {
+		// TODO Auto-generated method stub
+		return session.delete("comments.deleteComment", boardNo);
+	}
+	
 
+	
 }

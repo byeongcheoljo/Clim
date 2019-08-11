@@ -461,7 +461,7 @@
 				console.log(xhr.responseText);
 			}, // error end
             success : function(json) {
-				if (json.loginMember == null && json.loginMember.uuid !=null) {
+				if (json.loginMember == 0) {
 					 $("#signupMsg").css("display","block");
 					 e.preventDefault();
 				}
@@ -470,11 +470,14 @@
 				}
             }
         });
+		 e.preventDefault();
     });
     
 
-    //비밀번호 찾기findId    //이건 서버떄 쏘스 드림
+    //비밀번호 찾기findId    
     let $emailPwd = $("#emailPwd");
+    //이메일정규표현식
+    //let $emailExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     $("#findCertificationBtn").click(function () {
         $.ajax({
             url:"/ajax/findPwd",
@@ -495,14 +498,13 @@
     });
 
     //스트리밍 준비 무비 리스트
-    getStreamingMovieList();
     function getStreamingMovieList(){
         $.ajax({
             url:"",
             dataType:"json",
             type:"get",
             error:function () {
-                alert("에러");
+                alert("에러1");
             },
             success:function (movie) {
                 $(".streaming_movie_wrap").html(streamingMovieListTmp({movies:movie}));
@@ -594,14 +596,13 @@
     });
 
     //구독중인 리스트 불러오기
-    getSubscribeList();
     function getSubscribeList(){
         $.ajax({
             url:"",
             dataType:"json",
             type:"get",
             error:function () {
-                alert("에러");
+                alert("에러2");
             },
             success:function (subscribe) {
                 $("#headerSubscribeWrap").html(subscribeListTmp({subscribes:subscribe}));

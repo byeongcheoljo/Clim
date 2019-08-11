@@ -18,18 +18,18 @@ public class MembersServiceImpl implements MembersService{
 	@Autowired
 	private MembersDAO membersDAO;
 	
-	//로그인
+	//로그인입니당
 	@Override
 	public Map<String, Object> login(Member member, HttpSession session) {
 		Member loginMember = membersDAO.selectLogin(member);
 
 		session.setAttribute("loginMember", loginMember);
 
-		System.out.println("서비스" + loginMember);
+		//System.out.println("서비스" + loginMember);
 
 		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
 
-		if (loginMember != null && loginMember.getUuid()==null) {
+		if (loginMember != null && loginMember.getUuid() == null) {
 			System.out.println(map);
 			map.put("loginMember", loginMember);
 		} else {

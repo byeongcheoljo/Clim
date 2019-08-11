@@ -44,11 +44,42 @@ public class BoardsDAOImpl implements BoardsDAO{
 	}
 	
 	@Override
-	public int deleteBoard(int no) {
+	public Board selectBoardLikeCheck(int no) {
 		// TODO Auto-generated method stub
-		return session.delete("boards.deleteBoard", no);
+		return session.selectOne("boards.boardLikeCheck", no);
 	}
 	
+	@Override
+	public int deleteBoard(Board board) {
+		// TODO Auto-generated method stub
+		return session.delete("boards.deleteBoard", board);
+	}
+	
+	//게시글 작성
+	@Override
+	public int boardWrite(Board board) {
+		// TODO Auto-generated method stub
+		return session.insert("boards.writeBoard", board);
+	}
+	
+	//게시판검색
+	@Override
+	public List<Board> selectBoardSearch(String contents) {
+		// TODO Auto-generated method stub
+		return session.selectList("boards.searchBoard", contents);
+	}
+	
+	@Override
+	public int boardUpdate(Board board) {
+		// TODO Auto-generated method stub
+		return session.update("boards.boardUpdate", board);
+	}
+	
+	@Override
+	public int boardViewUpdate(Board board) {
+		// TODO Auto-generated method stub
+		return session.update("boards.boardViewUpdate", board);
+	}
 	
 
 }
