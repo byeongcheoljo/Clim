@@ -10,7 +10,13 @@
 .fontsize_common{
     font-size: 12px;
     user-select: none;
+    position: relative;
 }
+.like_btn{
+	color : red;
+}
+
+
 /* >> --------//board 에서 사용한 공통 css end ---------<< */
 
 body{
@@ -33,7 +39,7 @@ body{
     top:0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 1500px;
     background: #eef0f3;
 }
 
@@ -44,6 +50,7 @@ body{
     background: #eef0f3;
     margin: auto;
     position: relative;
+    top:55px;
 }
 
 /*search를 감싸는 wrap*/
@@ -171,6 +178,7 @@ body{
     background: #fafafa;
     position: relative;
     padding: 0 60px 0 60px;
+    
 }
 /*게시글 박스의 태그(li)*/
 .post_view_tag{
@@ -178,6 +186,7 @@ body{
     margin:5px;
     font-size: 14px;
     float: left;
+    color:#003569;
 }
 /*게시글 박스의 태그(#단어) */
 .post_view_tag a{
@@ -240,14 +249,26 @@ body{
     width: 660px;
     min-height: 340px;
     background: #b9c1c7;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     margin-left: -330px;
     margin-top:-380px;
     box-shadow: 0 6px 6px -6px #424242;
     display: none;
+    overflow-y: auto;
 }
+
+.post_view_contents img{
+	width:200px; height: 200px;
+}
+.post_popup_contents img{
+	width:200px; height:200px;
+}
+.ql-editor img{
+	width:200px; height:200px;
+}
+
 .post_popup_top{
     width: 660px;
     height: 85px;
@@ -287,7 +308,7 @@ body{
     font-size: 12px;
 }
 .post_popup_click{
-    left: 140px;
+    left: 180px;
     position: absolute;
     top: 50px;
     font-size: 12px;
@@ -327,6 +348,7 @@ body{
     font-size: 14px;
     line-height: 1.5em;
     padding: 5px 40px 0 40px;
+
 }
 
 .post_popup_bottom{
@@ -528,7 +550,7 @@ body{
 
 
 /*Paginate 공간*/
-.comment_paginate_box{
+.comment_paginate_box span{
     height: 30px;
     line-height: 30px;
     font-size: 12px;
@@ -553,7 +575,7 @@ body{
     box-shadow: 0 6px 6px -6px #424242;
     border: 2px solid #424242;
     display: none;
-
+    z-index:9000;
 }
 /*신고하기 팝업 상단 부분*/
 .report_popup_top{
@@ -671,4 +693,8 @@ body{
     margin-top:5px;
     margin-bottom: 5px;
     box-shadow: 0 6px 4px -9px #424242;
+}
+
+.screen_out{
+	display:none;
 }

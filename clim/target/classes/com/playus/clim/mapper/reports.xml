@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reports">
 
-
 	
 	<insert id="climer" parameterType="Report">
 	insert into reports
@@ -18,10 +17,9 @@
 	
 	</insert>
 	
-
 	<insert id="insertBoardReport" parameterType="Report">
-	insert into reports(no, type, reporter_no, reportered_no, post_no, contents, regdate)
-	values(reports_seq.nextval, 'B', #{no}, #{reporteredNo}, #{boardNo}, #{contents}, systimestamp)
+		insert into reports(no, type, reporter_no, reportered_no, post_no, contents, regdate)
+		values(reports_seq.nextval, 'B', #{no}, #{reporteredNo}, #{boardNo}, #{contents}, systimestamp)
 	</insert>
-
+	
 </mapper>

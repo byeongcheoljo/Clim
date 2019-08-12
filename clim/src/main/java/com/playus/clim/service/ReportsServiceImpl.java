@@ -34,7 +34,7 @@ public class ReportsServiceImpl implements ReportsService{
 	@Override
 	public int boardReportInsert(Report report) {
 		// TODO Auto-generated method stub
-		return reportsDAO.insertBoardReport(report);
-
+		return reportsdao.insertBoardReport(report);
 	}
+	
 }

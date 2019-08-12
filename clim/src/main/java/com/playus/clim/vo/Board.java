@@ -2,12 +2,15 @@ package com.playus.clim.vo;
 
 import java.sql.Clob;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Board {
 
-	private int no, memberNo, views;
-	private String contents;
+	private int no, memberNo, views, likeCount, commentCount, boardCount;;
+	private String contents, nickname;
 	private Timestamp regdate;
+	private List<BoardTag> boardTags;
+	private boolean likeCheck;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub

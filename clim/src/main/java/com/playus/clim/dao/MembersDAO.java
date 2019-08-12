@@ -32,4 +32,6 @@ public interface MembersDAO {
 	public List<Member> myPageMovieForGenres(int no);
 	
 	public List<Member> myPageMovieForStriming(int no);
+	
+	
 }

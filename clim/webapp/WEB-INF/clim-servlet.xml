@@ -45,7 +45,21 @@
 
 	<!-- handshake, disconnect를 감지하는 리스너 -->
 	<bean class="com.playus.clim.listener.StompListener" />
+	
+	  <!--  0627 Rest의 경우 모든 요청을 DispatcherServlet에서 받기 때문에
+  css/js/font 등 폴더에 접근할수 있도록 설정해야함 --> 
+  <mvc:resources location="/css/" mapping="/css/**"/>
+  <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+  <mvc:resources location="/js/" mapping="/js/**"/>
+  <mvc:resources location="/img/" mapping="/img/**"/>
+  <mvc:resources location="/poster/" mapping="/poster/**"/>
+  <mvc:resources location="/stealCut/" mapping="/stealCut/**"/>
+  <mvc:resources location="/video/" mapping="/video/**"/>
+  <mvc:resources location="/vtt/" mapping="/vtt/**"/>
+  <mvc:resources location="/upload/" mapping="/upload/**"/>
 
+ 	<!-- MultipartResovler -->
+	<bean id="multipartResolver" p:defaultEncoding="UTF-8" p:maxUploadSize="104857600" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 </beans>
 
 

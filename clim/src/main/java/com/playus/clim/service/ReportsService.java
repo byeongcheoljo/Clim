@@ -8,4 +8,6 @@ public interface ReportsService {
 
 	public int reportFaq(Report report);
 
+	public int boardReportInsert(Report report);
+
 }
