@@ -114,7 +114,7 @@
             <div class="scene_list_box">
                 <ul class="preview_list photo">
                 	<c:forEach var="steelCut" items="${steelCuts}">
-                		<li><img src="/steelCut${steelCut.src}"></li>
+                		<li><img src="/stealCut${steelCut.src}"></li>
                 	</c:forEach>
                 </ul>
             </div>
