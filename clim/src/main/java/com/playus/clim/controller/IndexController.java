@@ -20,6 +20,8 @@ public class IndexController {
 		
 		model.addAttribute("climedList",moviesService.getClimedList());//끌림작
 		model.addAllAttributes(moviesService.getRecommandationList());//추천작1~3
+		model.addAttribute("recFourList",moviesService.getRecommandationListFour());//추천작4
+		model.addAllAttributes(moviesService.getGenreList());//장르1~3
 		
 		return "index";
 	}

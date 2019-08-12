@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.playus.clim.service.ClimingListsService;
 import com.playus.clim.util.SnapshotCreateUtil;
 import com.playus.clim.vo.Clim;
+import com.playus.clim.vo.ClimingList;
 import com.playus.clim.vo.Movie;
 
 @Controller
@@ -103,6 +104,19 @@ public class ClimingController {
 		
 		return movieFeature;
 	};// returnClimFeature()
+	
+	/*근경*/
+	
+	@MessageMapping("/clim/climeesCnt")
+	@SendTo("/topic/clim/climeesCnt")
+	public ClimingList ddddd(ClimingList clim) {
+		System.out.println("no: "+clim.getNo());
+		System.out.println("viewerCount: "+clim.getViewerCount());
+		return clim;
+	};// returnClimFeature()
+	
+	
+	/*근경 끝 */
 	
 	
 

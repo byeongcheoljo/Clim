@@ -38,9 +38,9 @@
 	</select>
 
 
-	<!-- 김근경 시작 -->
-	<!-- *끌림작은 끌림지수(climed)가 높은순 *index는 no 1~10/11~20/21~30 -->
 
+	<!-- 김근경 시작 -->
+	<!-- - 끌림작은 끌림지수(climed)가 높은순 - index는 no 1~10/11~20/21~30 -->
 
 	<!-- //끌림작 1위~30위 -->
 	<select id="indexClimedList" resultType="Movie">
@@ -50,6 +50,12 @@
 		WHERE climed BETWEEN 1 AND 30
 		ORDER
 		BY climed desc
+	</select>
+	<!-- //index 추천작4(no 31~37) -->
+	<select id="indexRecommandationListFour" resultType="Movie">
+		SELECT no,title,opendate
+		FROM movies
+		WHERE no BETWEEN 31 AND 35
 	</select>
 
 	<!-- //index 추천작1(no 1~10) -->
@@ -73,6 +79,52 @@
 		FROM movies
 		WHERE no BETWEEN 21 AND 30
 	</select>
+
+
+
+	<!-- //index에서 장르1(드라마) -->
+	<select id="indexGenreListOne" resultType="Movie">
+		SELECT no,title,
+		repGenre,poster, r
+		FROM(SELECT no,title,rep_genre
+		repGenre,poster,rownum r
+		FROM movies
+		WHERE rep_genre='드라마')
+		WHERE r
+		BETWEEN 1 AND 8
+
+	</select>
+
+	<!-- //index에서 장르2(액션) -->
+	<select id="indexGenreListTwo" resultType="Movie">
+		SELECT no,title,
+		repGenre,poster, r
+		FROM(SELECT no,title,rep_genre
+		repGenre,poster,rownum r
+		FROM movies
+		WHERE rep_genre='액션')
+		WHERE r
+		BETWEEN 1 AND 8
+	</select>
+
+	<!-- //index에서 장르3(모험) -->
+	<select id="indexGenreListThree" resultType="Movie">
+		SELECT no,title,
+		repGenre,poster, r
+		FROM(SELECT no,title,rep_genre
+		repGenre,poster,rownum r
+		FROM movies
+		WHERE rep_genre='모험')
+		WHERE r
+		BETWEEN 1 AND 8
+	</select>
+	
+	<select id="selectPoster" parameterType="String" resultType="String">
+		SELECT poster
+		FROM movies
+		WHERE src = #{src}
+	</select>
+
 
 	<!-- 김근경 끝 -->
 

@@ -66,5 +66,22 @@
 		FROM c_lists
 		WHERE close_time IS NULL
 	</select>
+	
+	<select id="selectUserList" resultType="ClimingList" parameterType="int">
+		SELECT c.no, title, nickname, clim_no climNo, viewCount viewerCount,follower
+		FROM(SELECT cl.no no, cl.title, mb.nickname, cl.member_no memberNo
+				FROM c_Lists cl, members mb
+				WHERE cl.member_no = mb.no
+				AND close_time IS NULL ) c,
+			(SELECT clim_no, COUNT(*) viewCount
+				FROM c_logs
+			WHERE close_time IS NULL
+			GROUP BY clim_no) m,
+		(SELECT no, following, follower
+			 FROM subscribes
+			 WHERE following = #{no}) s
+		WHERE c.no = m.clim_no(+)
+		AND s.follower = c.memberNo
+	</select>
 
 </mapper>
