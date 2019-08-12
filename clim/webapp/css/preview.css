@@ -214,13 +214,22 @@
             left: 0;
             bottom: 0;
             background-color: #F9AC1A;
+            text-align: center;
+            line-height: 40px;
+            text-decoration: none;
+            font-size: 15px;
         }
 
         .detail {
             right: 20px;
             bottom: 0;
             background-color: rgb(220, 20, 60);
+            text-align: center;
+            line-height: 40px;
+            text-decoration: none;
+            font-size: 15px;
         }
+       
         
         .book_mark{
         	right: -20px;

@@ -37,8 +37,8 @@ public class MoviesServiceImpl implements MoviesService{
 	public List<Movie> getSearchResultForcliming(String title) {
 		return moviesDAO.searchMovieListForCliming(title);
 	}
-	
-/*김근경 시작*/
+
+	/*김근경 시작*/
 	//index에서 끌림작 1위~30위
 	@Override
 	public List<Movie> getClimedList() {
@@ -57,9 +57,9 @@ public class MoviesServiceImpl implements MoviesService{
 			
 			movie.setRecSteal(steelcutsDAO.selectOneForClimed(stealCut));
 		}
+		System.out.println(movies);
 		return movies;
 	}
-	
 	
 	//index에서 추천작1~3
 	@Override
@@ -68,10 +68,54 @@ public class MoviesServiceImpl implements MoviesService{
 		
 		map.put("recOne",moviesDAO.indexRecommandationListOne());//추천작1
 		map.put("recTwo",moviesDAO.indexRecommandationListTwo());//추천작2
-		map.put("recThree",moviesDAO.indexRecommandationListThree());//추천작3
-		
+		map.put("recThree",moviesDAO.indexRecommandationListThree());//추천작3		
 		return map;
 	}
+	
+	//index에서 추천작4
+	@Override
+	public List<Movie> getRecommandationListFour() {
+		List<Movie> movies = moviesDAO.indexRecommandationListFour();
+		
+		for(Movie movie:movies) {
+			
+			int movieNo = movie.getNo();
+			
+			System.out.println("getNo: "+movie.getNo());
+			int srcNumber = steelcutsDAO.selectTotalForMovieId(movieNo);
+			
+			int randomR = (int)(Math.random()*srcNumber)+1;
+			
+			System.out.println("random : " + randomR);
+			
+			StealCut stealCut = new StealCut();
+			stealCut.setRandomR(randomR);
+			stealCut.setMovieNo(movieNo);
+			
+			movie.setRecSteal(steelcutsDAO.selectOneForClimed(stealCut));
+
+			
+		}
+		return movies;
+	}
+	
+	
+	//index에서 장르1~3
+	@Override
+	public Map<String, Object> getGenreList() {
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+		
+		map.put("genreOne",moviesDAO.indexGenreListOne());//장르1 드라마
+		map.put("genreTwo",moviesDAO.indexGenreListTwo());//장르2 액션
+		map.put("genreThree",moviesDAO.indexGenreListThree());//장르3 모험
+		return map;
+	}
+	
+	@Override
+	public String getPoster(String src) {
+		return moviesDAO.selectPoster(src);
+	}
+	
 /*김근경 끝*/
 	
 	@Override

@@ -10,6 +10,12 @@
 <c:import url="/WEB-INF/template/link.jsp" />
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/preview.css">
+<style>
+	.user_poster{
+		width:145px;
+		height:190px;
+	}
+</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/template/header.jsp" />
@@ -34,9 +40,13 @@
 		<!-- //heroContentPaging -->
 	</div>
 	<!-- //heroContentSection -->
+	
+	<!-- HOT 클리머 구역 -->
 	<div id="hotSection" class="index_section">
 		<span>HOT 클리머</span>
 		<ul id="streamBox">
+
+		<!--
 			<li class="hot_streaming_card"><img class="streaming_thumbnail"
 				src="/img/bumbleb.jpg" />
 				<div class="streaming_info">
@@ -47,6 +57,7 @@
 					</div>
 				</div>
 				<div class="streaming_icon">LIVE</div></li>
+				
 			<li class="hot_streaming_card"><img class="streaming_thumbnail"
 				src="/img/bumbleb.jpg" />
 				<div class="streaming_info">
@@ -57,86 +68,7 @@
 					</div>
 				</div>
 				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
-			<li class="hot_streaming_card"><img class="streaming_thumbnail"
-				src="/img/bumbleb.jpg" />
-				<div class="streaming_info">
-					<div class="streaming_tit">[SF]범블비 함께 봐요!</div>
-					<div class="streaming_user">woodykim</div>
-					<div class="streaming_cnt">
-						<i class="fas fa-user-friends"></i> 100
-					</div>
-				</div>
-				<div class="streaming_icon">LIVE</div></li>
+
 		</ul>
 		<!-- //streamBox end -->
 		<div class="move_btn stream_move_prev">
@@ -146,7 +78,10 @@
 			<i class="fas fa-angle-right"></i>
 		</div>
 	</div>
-	<!-- //hotSection end --> <c:if test="${loginMember!=null }">
+	<!-- //hotSection end -->
+	<!-- HOT 클리머 구역 끝 -->
+	
+	 <c:if test="${loginMember!=null }">
 		<!-- 구독중인 끌리머의 스트리밍 -->
 		<div id="userStreamSection" class="index_section">
 			<span>${loginMember.nickname}님의 클리머</span>
@@ -182,6 +117,7 @@
 	<div id="heroImg">
 		<img src="/img/hero3.jpg" />
 	</div>-->
+
 	<div id="climContentSection" class="index_section">
 		<span>끌림작</span>
 		<ul id="climBox">
@@ -191,9 +127,10 @@
 					<c:forEach items="${climedList}" var="climed" begin="0" end="5">
 						<li class="clim_card" data-movieNo="${climed.no }"><img
 							src="/stealCut${climed.recSteal }" />
-							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
-									value="${climed.opendate}" pattern="YYYY" />
-								)
+							<div class="recommend_special_name">${climed.title}&nbsp;<h3
+									class="open_data_index">
+									(<fmt:formatDate value="${climed.opendate}" pattern="YYYY" />)
+								</h3>
 							</div>
 							<div class="top_border border_box"></div>
 							<div class="right_border border_box"></div>
@@ -229,9 +166,7 @@
 					<c:forEach items="${climedList }" var="climed" begin="12" end="17">
 						<li class="clim_card" data-movieNo="${climed.no }"><img
 							src="/stealCut${climed.recSteal }" />
-							<div class="recommend_special_name">${climed.title}(<fmt:formatDate
-									value="${climed.opendate}" pattern="YYYY" />
-								)
+							<div class="recommend_special_name">${climed.title}(<fmt:formatDate value="${climed.opendate}" pattern="YYYY" />)
 							</div>
 							<div class="top_border border_box"></div>
 							<div class="right_border border_box"></div>
@@ -358,62 +293,97 @@
 	<div class="recommend_special_section index_section">
 		<span>추천작4</span>
 		<ul class="recommend_special_box">
-			<li class="recommend_special_card recommend_card_rank1"><img
-				src="/stealCut/lioonking.jpg" />
-				<div class="recommend_special_name">Lionking(2019)</div>
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
+			<c:forEach items="${recFourList }" var="recFour" begin="0" end="0">
+				<li class="recommend_special_card recommend_card_rank1" data-movieNo="${recFour.no }"><img
+					src="/stealCut${recFour.recSteal }" />
+					<div class="recommend_special_name_one">${recFour.title}&nbsp;<h3
+							class="open_data_one">
+							(<fmt:formatDate value="${recFour.opendate}" pattern="YYYY" />)
+						</h3>
+					</div>
+					<div class="top_border border_box"></div>
+					<div class="right_border border_box"></div>
+					<div class="bottom_border border_box"></div>
+					<div class="left_border border_box"></div></li>
+			</c:forEach>
+
+			<!--  
 			<li class="recommend_special_card recommend_card_rank2"><img
-				src="/stealCut/alaaladin.jpg" />
-				<div class="recommend_special_name">Aladin(2019)</div>
+				src="/stealCut${recFour.recSteal }" />
+				<div class="recommend_special_name">${recFour.title }(2019)</div>
 				<div class="top_border border_box"></div>
 				<div class="right_border border_box"></div>
 				<div class="bottom_border border_box"></div>
 				<div class="left_border border_box"></div></li>
-			<li class="recommend_special_card recommend_card_rank3"><img
-				src="/stealCut/realSteel.jpg" />
-				<div class="recommend_special_name">RealSteel(2019)</div>
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_special_card recommend_card_rank4"><img
-				src="/stealCut/spidermanReal.jpg" />
-				<div class="recommend_special_name">Spiderman(2019)</div>
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
+			-->
+
+			<c:forEach items="${recFourList }" var="recFour" begin="1" end="1">
+				<li class="recommend_special_card recommend_card_rank3" data-movieNo="${recFour.no }"><img
+					src="/stealCut${recFour.recSteal }" />
+					<div class="recommend_special_name">${recFour.title }&nbsp;<h4
+							class="open_data_index">
+							(<fmt:formatDate value="${recFour.opendate}" pattern="YYYY" />)
+						</h4>
+					</div>
+					<div class="top_border border_box"></div>
+					<div class="right_border border_box"></div>
+					<div class="bottom_border border_box"></div>
+					<div class="left_border border_box"></div></li>
+			</c:forEach>
+
+
+			<c:forEach items="${recFourList }" var="recFour" begin="2" end="2">
+				<li class="recommend_special_card recommend_card_rank4" data-movieNo="${recFour.no }"><img
+					src="/stealCut${recFour.recSteal }" />
+					<div class="recommend_special_name">${recFour.title }&nbsp;<h4
+							class="open_data_index">(<fmt:formatDate value="${recFour.opendate}" pattern="YYYY"/>)</h4>
+					</div>
+					<div class="top_border border_box"></div>
+					<div class="right_border border_box"></div>
+					<div class="bottom_border border_box"></div>
+					<div class="left_border border_box"></div></li>
+			</c:forEach>
+
+			<!-- 
 			<li class="recommend_special_card recommend_card_rank5"><img
-				src="/stealCut/toystory.jpg" />
-				<div class="recommend_special_name">Toystory(2019)</div>
+				src="/stealCut${recFour.recSteal }" />
+				<div class="recommend_special_name">${recFour.title }(2019)</div>
 				<div class="top_border border_box"></div>
 				<div class="right_border border_box"></div>
 				<div class="bottom_border border_box"></div>
 				<div class="left_border border_box"></div></li>
-			<li class="recommend_special_card recommend_card_rank6"><img
-				src="/stealCut/reallion.jpg" />
-				<div class="recommend_special_name">Lionking(2019)</div>
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
-			<li class="recommend_special_card recommend_card_rank7"><img
-				src="/stealCut/aenabelll.jpg" />
-				<div class="recommend_special_name">Aenabel(2019)</div>
-				<div class="top_border border_box"></div>
-				<div class="right_border border_box"></div>
-				<div class="bottom_border border_box"></div>
-				<div class="left_border border_box"></div></li>
+			 -->
+
+			<c:forEach items="${recFourList }" var="recFour" begin="3" end="3">
+				<li class="recommend_special_card recommend_card_rank6" data-movieNo="${recFour.no }"><img
+					src="/stealCut${recFour.recSteal }" />
+					<div class="recommend_special_name">${recFour.title }&nbsp;<h4
+							class="open_data_index">(<fmt:formatDate value="${recFour.opendate}" pattern="YYYY"/>)</h4>
+					</div>
+					<div class="top_border border_box"></div>
+					<div class="right_border border_box"></div>
+					<div class="bottom_border border_box"></div>
+					<div class="left_border border_box"></div></li>
+			</c:forEach>
+
+			<c:forEach items="${recFourList }" var="recFour" begin="4" end="4">
+				<li class="recommend_special_card recommend_card_rank7" data-movieNo="${recFour.no }"><img
+					src="/stealCut${recFour.recSteal }" />
+					<div class="recommend_special_name">${recFour.title }&nbsp;<h4
+							class="open_data_index">(<fmt:formatDate value="${recFour.opendate}" pattern="YYYY"/>)</h4>
+					</div>
+					<div class="top_border border_box"></div>
+					<div class="right_border border_box"></div>
+					<div class="bottom_border border_box"></div>
+					<div class="left_border border_box"></div></li>
+			</c:forEach>
 		</ul>
 	</div>
 	<!-- //추천작4 구역 끝 --> <!-- 장르 1 -->
 	<div class="recommend_section index_section">
-		<span>장르1</span>
+		<span>드라마</span>
 		<ul class="recommend_box">
-			<c:forEach items="${recOne}" var="one">
+			<c:forEach items="${genreOne}" var="one">
 
 				<li class="recommend_card" data-movieNo="${one.no }"><img
 					src="/posters${one.poster }" />
@@ -433,9 +403,9 @@
 	</div>
 	<!-- //recommend_section end --> <!-- 장르 1 끝 --> <!-- 장르 2 -->
 	<div class="recommend_section index_section">
-		<span>장르2</span>
+		<span>액션</span>
 		<ul class="recommend_box">
-			<c:forEach items="${recTwo}" var="two">
+			<c:forEach items="${genreTwo}" var="two">
 
 				<li class="recommend_card" data-movieNo="${two.no }"><img
 					src="/posters${two.poster }" />
@@ -454,9 +424,9 @@
 	</div>
 	<!-- 장르 2 끝--> <!-- 장르 3 -->
 	<div class="recommend_section index_section">
-		<span>장르3</span>
+		<span>모험</span>
 		<ul class="recommend_box">
-			<c:forEach items="${recThree}" var="three">
+			<c:forEach items="${genreThree}" var="three">
 
 				<li class="recommend_card" data-movieNo="${three.no }"><img
 					src="/posters${three.poster }" />
@@ -481,7 +451,6 @@
 		<div id="previewSection"></div>
 	</div>
 	<c:import url="/WEB-INF/template/footer.jsp" />
-	<script src="/js/moment-with-locales.js"></script>
 	<script type="text/template" id="trailerTmp">
 		<div id="movieInformationWrap">
 				<div id="movieTitle">
@@ -511,30 +480,49 @@
 					<li>줄거리
 						<p id="trailerContents"><@=movie.contents@></p>
 					</li>
-					<button class="preview_btn play">Play</button>
-					<button class="preview_btn detail">Detail</button>
+					<a href="/player/movie/<@=movie.no@>" class="preview_btn play">Play</a>
+					<a href="/movie/<@=movie.no@>" class="preview_btn detail">Detail</a>
 				</ul>
 			</div>
 			<div id="previewWrap"><@=movie.src@></div>
 	</script>
+	
+	
+<!-- HOT 클리머 -->
+<script type="text/template" id="hotStreamTmp">
+	<@ _.each(hotList,function(clim){ @>
+	<li class="hot_streaming_card" data-no="<@=clim.no@>"><a href="/room/<@=clim.no@>">
+	<video class="hot_video" src="/video/" width="300" height="190" muted>
+	</video>
+				<div class="streaming_info">
+					<div class="streaming_tit"><@=clim.title@></div>
+					<div class="streaming_user"><@=clim.nickname@></div>
+					<div class="streaming_cnt">
+						<i class="fas fa-user-friends"></i><h3 class="streaming_viewer"><@=clim.viewerCount@></h3>
+					</div>
+				</div>
+	<div class="streaming_icon">LIVE</div></a></li>
+
+<@})@>
+</script>
 
 	<script type="text/template" id="userStreamTmp">
-    <@_.each(streams,function(stream){@>
-    <li class="user_streaming_card">
-        <div class="streaming_img">
-            <img class="streaming_poster" src="/posters/<@=stream.poster@>"/>
-            <img class="streaming_thumbnail" src="/img/<@=stream.thumbnail@>"/>
-        </div>
-        <div class="streaming_info">
-            <div class="streaming_tit">[<@=stream.genre@>]<@=stream.tit@></div>
-            <div class="streaming_user"><@=stream.nickname@></div>
-            <div class="streaming_cnt"><i class="fas fa-user-friends"></i> <@=stream.cnt@></div>
-        </div>
-        <div class="streaming_icon">LIVE</div>
+    <@_.each(userList,function(userStream){@>
+    <li class="user_streaming_card"><a href="/room/<@=userStream.no@>">
+		<img class="user_poster" src="/posters/<@=userStream.poster@>"/>
+        <video class="user_video" src="/video/" width="300" height="190" muted>
+	</video>
+				<div class="streaming_info">
+					<div class="streaming_tit"><@=userStream.title@></div>
+					<div class="streaming_user"><@=userStream.nickname@></div>
+					<div class="streaming_cnt">
+						<i class="fas fa-user-friends"></i><h3 class="streaming_viewer"><@=userStream.viewerCount@></h3>
+					</div>
+				</div>
+	<div class="streaming_icon">LIVE</div></a>
     </li>
     <@})@>
 </script>
-
 	<!--이어보기 -->
 	<!-- 140px 이기 때문에  -->
 	<script type="text/template" id="continueTmp">
@@ -556,7 +544,7 @@
     </li>
     <@})@>
 </script>
-
+<script src="/js/moment-with-locales.js"></script>
 	<script>
 		_.templateSettings = {
 			interpolate : /\<\@\=(.+?)\@\>/gim,
@@ -565,9 +553,6 @@
 		};
 
 		let flag = true;
-		
-		
-		connect();
 
 		const $heroContentSectionUl = $("#heroContentSection Ul");
 		const $heroContentNum = $(".hero_content_num");
@@ -606,6 +591,23 @@
 		let userStreamMove = 0;
 		const $previewSection = $("#previewSection");
 		const $trailerTmp = _.template($("#trailerTmp").html());
+		function trailer() {
+			$.ajax({
+				url : "/ajax/movie/${movie.no}/trailer",
+				dataType : "json",
+				type : "GET",
+				error : function() {
+					alert("에러");
+				},//error end
+				success : function(json) {
+					$previewSection.append($trailerTmp({
+						"movie" : json.movie,
+						"directors" : json.directors,
+						"actors" : json.actors
+					}));
+				}//success end
+			});// ajax end
+		}
 
 		/* heroScript */
 		$heroContentNum.on("click", function() {
@@ -618,6 +620,7 @@
 				$heroContentSectionUl.css("left", heroMove);
 				flag = true;
 			}
+
 		})// $heroContentNum click() end
 
 		setInterval(function() {
@@ -674,7 +677,7 @@
 			}
 		})
 
-		/* userStreamScript
+		/* userStreamScript*/
 		function userStream() {
 			$.ajax({
 				url : "ajax/userClim.json",
@@ -815,7 +818,7 @@
 				flag = true;
 			}
 		})
-		
+
 		/* 1초이상 호버해야 bg나옴 1초전에 마우스 떠나면 실행안함 */
 		let timer;
 		let timer2;
@@ -824,8 +827,11 @@
 		let timer5;
 		let movieNo;
 		$climCard.on("mouseenter", function() {
+			// $(this).css("border","3px solid yellow");
 			$this = $(this);
 			movieNo = this.dataset.movieno;
+			// console.log($(this).children('.top_border'));
+
 			timer = setTimeout(function() {
 				$trailerBg.fadeIn(100);
 				trailer();
@@ -878,21 +884,26 @@
 		/* recommendScript */
 
 		$recommendMovePrev.on("click", function() {
-			let nowLeft = $(this).prev().css("left");
-
-			let res = nowLeft.split("px");
-
-			if (res[0] == 0) {
-				recommendMove = 0;
-			}
-
-			recommendMove = res[0];
-
-			recommendMove = Number(recommendMove);
-
+			console.log(flag);
 			if (flag) {
 				flag = false;
-				recommendMove += 210;
+				let nowLeft = $(this).prev().css("left");
+
+				let res = nowLeft.split("px");
+
+				if (res[0] == 0) {
+					recommendMove = 0;
+				}
+
+				recommendMove = res[0];
+
+				recommendMove = Number(recommendMove);
+
+				if (recommendMove == 0) {
+					recommendMove = -630;
+				} else {
+					recommendMove += 210;
+				}
 
 				$(this).prev().css("left", recommendMove);
 				flag = true;
@@ -900,30 +911,43 @@
 		}); // $recommendMovePrev click() end
 
 		$recommendMoveNext.on("click", function() {
-			let nowLeft = $(this).prev().prev().css("left");
-
-			let res = nowLeft.split("px");
-
-			if (res[0] == 0) {
-				recommendMove = 0;
-			}
-
-			recommendMove = res[0];
-
-			recommendMove = Number(recommendMove);
+			console.log(flag);
 			if (flag) {
 				flag = false;
-				recommendMove -= 210;
+				let nowLeft = $(this).prev().prev().css("left");
+
+				let res = nowLeft.split("px");
+
+				if (res[0] == 0) {
+					recommendMove = 0;
+				}
+
+				recommendMove = res[0];
+
+				recommendMove = Number(recommendMove);
+
+				console.log(flag);
+
+				if (recommendMove == -630) {
+					recommendMove = 0;
+				} else {
+					recommendMove -= 210;
+				}
 
 				$(this).prev().prev().css("left", recommendMove);
-				flag = true;
+
 			}
+			setTimeout(function() {
+				flag = true;
+				console.log(flag);
+			}, 600)
+			console.log(flag);
 		}); // $recommendMoveNext click() end
 
-		
 		$recommendBox.on("mouseenter", ".recommend_card", function() {
+			// $(this).css("border","3px solid yellow");
 			$this = $(this);
-
+			// console.log($(this).children('.top_border'));
 			movieNo = this.dataset.movieno;
 			timer = setTimeout(function() {
 				$trailerBg.fadeIn(100);
@@ -954,7 +978,6 @@
 					height : "234px",
 					border : "1.5px solid #F9AC1A"
 				});
-
 			}, 1500);
 		}).on("mouseleave", ".recommend_card", function() {
 			clearTimeout(timer);
@@ -968,18 +991,19 @@
 				height : "0",
 				border : "transparent"
 			});
-
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
 
 		$(".recommend_special_box").on("mouseenter", ".recommend_special_card",
 				function() {
 					// $(this).css("border","3px solid yellow");
 					$this = $(this);
+
 					let cardWidth = $this.css("width");
 					let cardHeight = $this.css("height");
+					
+					movieNo = this.dataset.movieno;
 
 					// console.log($(this).children('.top_border'));
-					movieNo = this.dataset.movieno;
 					timer = setTimeout(function() {
 						$(document).ready(function(ev){
 							$("#previewWrap iframe")[6].src += "&autoplay=1";
@@ -987,7 +1011,7 @@
 						});
 						
 						$trailerBg.fadeIn(100);
-						trailer();
+						trailer()
 					}, 2000);
 
 					timer2 = setTimeout(function() {
@@ -1027,9 +1051,8 @@
 				height : "0",
 				border : "transparent"
 			});
-
 		}); // 2초 시간 체크 하기 mouseenter, mouseleave감지
-
+		
 		function trailer() {
 			$("#headerSubscribeSlideWrap").css("display", "none");
 			$("#headerSubscribeList").css("display", "block");
@@ -1067,6 +1090,163 @@
 			})
 		});//click end
 		
+		
+	/*근경 웹소켓 */
+		const hotStreamTmp= _.template($("#hotStreamTmp").html());
+		const userStreamTmp = _.template($("#userStreamTmp").html());
+		//const $streamBox = $("#streamBox"); 이미 위에 선언
+		//connect();인자로 함수로 넣음
+		
+		connect(function() {
+			//방목록 얻어오는 주소 구독
+			stompClient.subscribe("/topic/clim/list", function(protocol) {
+				//방목록
+				const hotList = JSON.parse(protocol.body);
+				console.log(hotList);
+				console.log("메인클림호출");
+				
+				$streamBox.empty().append(hotStreamTmp({
+					"hotList" : hotList
+				}));
+				
+				
+			   _.each(hotList,function(hotClim,index){
+				   
+					//방장이 시간을 보내는 주소를 구독해야 함
+	     			stompClient.subscribe("/topic/room/"+hotClim.no+"/set/time",function(protocol) {
+	     				
+	     				
+	     				
+	     				const json = JSON.parse(protocol.body);
+	     				console.log("/topic/room/${roomNo}/set/time");
+	     				const time = json.audiAcc;
+	     				const src = json.src;
+	     				const title = json.title
+	     				
+	     				//0810 index에 src 출력
+	     				const video = $(".hot_video").eq(index).get(0);
+	     				
+	     				video.currentTime = time;
+	     				
+	     				video.src=src;
+	     				
+	     				video.load();
+	     				
+	     				video.play();
+	     				
+	     				//방장이 현재 보는 시간으로 동기화
+	     				//$(".hot_video").eq(index).attr("src",src);
+	     				//$(".hot_video").eq(index).attr("")
+	     			
+	     				
+	     				
+	     			});
+					
+	     			stompClient.send("/app/room/"+hotClim.no+"/clim/time",{});
+				   
+			   })
+			});
+			
+			//실시간 시청자수 주소 구독
+			stompClient.subscribe("/topic/clim/climeesCnt", function(protocol) {
+				const climList = JSON.parse(protocol.body);
+				console.log(climList);
+				//viewCount, no(roomNo)
+				//Hot 클리머 방을 each 로 돌려서 방 no와 no가 맞으면 viewerCount 넣어줌
+				$(".hot_streaming_card").each(function(){
+					//console.log(this.dataset.no);
+					//console.log(climList.no);
+					//console.log(this.dataset.no==climList.no);
+					if(this.dataset.no==climList.no){
+						$(this).find(".streaming_viewer").text(climList.viewerCount); 
+					}
+				})
+			});
+			
+			//처음 들어왔기 때문에 방목록을 얻기
+			stompClient.send("/app/clim/list", {});
+			console.log("index 연결 완료")
+			/* 홍 : 로그인후 구독한 유저의 클리밍 얻어옴 */
+			//방목록 얻어오는 주소 구독
+			stompClient.subscribe("/topic/clim/userList", function(protocol) {
+				//방목록
+				const userList = JSON.parse(protocol.body);
+				console.log(userList);
+			
+				$userStreamBox.empty().append(userStreamTmp({
+					"userList" : userList
+				}));
+				
+				
+			   _.each(userList,function(userClim,index){
+				   
+				   console.log("유저클림엔오"+ userClim.no);
+					//방장이 시간을 보내는 주소를 구독해야 함
+	     			stompClient.subscribe("/topic/room/"+userClim.no+"/set/time",function(protocol) {
+	     				const json = JSON.parse(protocol.body);
+	     				console.log("/topic/room/${roomNo}/set/time");
+	     				console.log("포스터는?"+json.poster);
+	     				
+	     				
+	     				const time = json.audiAcc;
+	     				const src = json.src;
+	     				const title = json.title
+	     				console.log(title);
+	     				
+	     				$(".user_poster").eq(index).attr("src","/posters"+json.poster);
+	     				
+	     				//0810 index에 src 출력
+	     				const video = $(".user_video").eq(index).get(0);
+	     				
+	     				video.currentTime = time;
+	     				
+	     				video.src=src;
+	     				
+	     				video.load();
+	     				
+	     				video.play();
+	     				
+	     				//방장이 현재 보는 시간으로 동기화
+	     				//$(".hot_video").eq(index).attr("src",src);
+	     				//$(".hot_video").eq(index).attr("")
+	     				
+	     			});
+					
+	     			stompClient.send("/app/room/"+userClim.no+"/clim/time",{});
+				   
+			   })
+			});
+			
+// 			//실시간 시청자수 주소 구독
+// 			stompClient.subscribe("/topic/clim/climeesCnt", function(protocol) {
+// 				const climList = JSON.parse(protocol.body);
+// 				console.log(climList);
+// 				//viewCount, no(roomNo)
+// 				//Hot 클리머 방을 each 로 돌려서 방 no와 no가 맞으면 viewerCount 넣어줌
+// 				$(".hot_streaming_card").each(function(){
+// 					//console.log(this.dataset.no);
+// 					//console.log(climList.no);
+// 					//console.log(this.dataset.no==climList.no);
+// 					if(this.dataset.no==climList.no){
+// 						$(this).find(".streaming_viewer").text(climList.viewerCount); 
+// 					}
+// 				})
+// 			});
+			stompClient.send("/app/clim/userList", {},${loginMember.no});
+			/* 홍 : 로그인후 구독한 유저의 클리밍 얻어옴 */	
+
+		});
+		
+		
+		
+		
+		
+/*근경 웹소켓 끝*/
+		
+		
+		
 	</script>
+	
+
 </body>
 </html>

@@ -23,4 +23,6 @@ public interface ClimingListsDAO {
 	public void updateSessionId(ClimingList clim);
 	
 	public List<ClimingList> subscribesClimingList();
+	
+	public List<ClimingList> selectUserList(int no);
 }
