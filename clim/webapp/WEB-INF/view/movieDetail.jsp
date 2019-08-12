@@ -179,7 +179,7 @@
         		<div class="review_top_box">
            			<span class="nickname"><a href=""><@=review.nickname@></a></span>
 					
-					<@if(review.memberNo==2) {@>
+					<@if(review.memberNo==${loginMember.no}) {@>
           			<span class="review_spoiler <@if(review.checkSpoiler) {@>on<@}@>" data-name="<@=review.memberNo@>" data-no="<@=review.no@>" title="스포일러 신고">
 						<i class="far fa-dizzy"></i>
 					</span>
@@ -346,7 +346,7 @@
             		movieNo: ${movie.no},
             		contents: content,
             		score: checkedStar,
-            		memberNo: 2 //${loginMember.no}
+            		memberNo: ${loginMember.no} //${loginMember.no}
             	},
             	type: "POST",
             	error: function () {
@@ -377,7 +377,7 @@
         //console.log(reviewMemberNo);
         
     	let type="";
-        if(1 != reviewMemberNo) {
+        if(${loginMember.no} != reviewMemberNo) {
         	
         	type = "post";
         	$.ajax({
@@ -386,7 +386,7 @@
             	type: type,
             	data:{
           			type: 'S',
-               		reporterNo: 2, //loginMember
+               		reporterNo: ${loginMember.no}, //loginMember
                		postNo: no
             	},
             	error: function () {
@@ -452,7 +452,7 @@
               	type: type,
               	dataType: "json",
               	data:JSON.stringify({
-              		memberNo: 2, //${loginMember.no}
+              		memberNo: ${loginMember.no}, //${loginMember.no}
               		movieNo: ${movie.no},
               		type: bookmarkType	
               	}),
@@ -493,7 +493,7 @@
            	dataType: "json",
            	type: type,
            	data:JSON.stringify({
-           		memberNo: 2, //${loginMember.no}
+           		memberNo: ${loginMember.no}, //${loginMember.no}
            		movieNo: ${movie.no},
            		type: climType
            	}),
