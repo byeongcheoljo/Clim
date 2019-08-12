@@ -2,5 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="likes">
-
+<select id="checkLike" resultType="int" parameterType="Like">
+		SELECT COUNT(*)
+		FROM likes
+		WHERE post_no = #{postNo}
+		AND member_no = #{memberNo}
+		AND emotion = #{emotion}
+		AND type = #{type}
+	</select>
+	
+	<insert id="insertLike" parameterType="Like">
+		INSERT INTO likes(no, post_no, member_no, emotion, type, regdate)
+		VALUES (likes_seq.nextval, #{postNo}, #{memberNo}, #{emotion}, #{type}, systimestamp)
+	</insert>
+	
+	<delete id="deleteLike" parameterType="Like">
+		DELETE
+		FROM likes
+		WHERE post_no = #{postNo}
+		AND member_no = #{memberNo}
+		AND type= #{type}
+	</delete>
+	
+	<select id="countLike" parameterType="Like" resultType="int">
+		SELECT COUNT(no)
+		FROM likes
+		WHERE post_no = #{postNo}
+		AND member_no = #{memberNo}
+		AND emotion = #{emotion}
+		AND type= #{type}
+	</select>
 </mapper>

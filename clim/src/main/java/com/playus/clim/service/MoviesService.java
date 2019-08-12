@@ -19,4 +19,8 @@ public interface MoviesService {
 	public Map<String, Object> getMovieTrailer(int no,int memberNo);
 	
 	public Movie getMovie(int movieNo);
+	
+	// 재현
+		public Map<String, Object> getMovieDetail(int no, int loginMemberNo);
+
 }

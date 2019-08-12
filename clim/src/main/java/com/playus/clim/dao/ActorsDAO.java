@@ -6,5 +6,5 @@ import com.playus.clim.vo.Actor;
 
 public interface ActorsDAO {
 	public List<Actor> selectListForMovie(int no);
-	
+	List<Actor> actorSelectList(int no);
 }

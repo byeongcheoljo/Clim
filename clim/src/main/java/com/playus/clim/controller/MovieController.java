@@ -58,4 +58,19 @@ public class MovieController {
 		
 		return "player";
 	}
+	
+	
+	@RequestMapping(value="/movie/{no}", method=RequestMethod.GET)
+	public String movieDetail(@PathVariable int no, Model model, HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("loginMember");
+		int loginMember = member.getNo();
+		
+		System.out.println("MovieController loginMember:"+loginMember);
+		
+		model.addAllAttributes(moviesService.getMovieDetail(no, loginMember));
+		
+		return "movieDetail";
+	}
+	// 재현
 }

@@ -1,6 +1,8 @@
 package com.playus.clim.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -94,6 +96,20 @@ public class BookmarksServiceImpl implements BookmarksService {
 		}
 		
 		return count;
+	}
+	@Override
+	public Map<String, Object> addMovie(Bookmark bookmark) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+		
+		map.put("bookmark", bookmarksDAO.addMovie(bookmark));
+		
+		return map;
+	}
+	@Override
+	public int deleteMovie(Bookmark bookmark) {
+		// TODO Auto-generated method stub
+		return bookmarksDAO.deleteMovie(bookmark);
 	}
 
 }

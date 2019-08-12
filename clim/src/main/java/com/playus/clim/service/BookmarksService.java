@@ -1,6 +1,8 @@
 package com.playus.clim.service;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import com.playus.clim.vo.Bookmark;
@@ -27,4 +29,7 @@ public interface BookmarksService {
 	
 	public int bookmarkForMovie(int movieNo, int memberNo);
 
+	//wogus
+	public Map<String, Object> addMovie(Bookmark bookmark);
+	public int deleteMovie(Bookmark bookmark);
 }
