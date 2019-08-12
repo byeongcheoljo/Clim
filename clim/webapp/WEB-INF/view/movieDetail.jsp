@@ -15,7 +15,7 @@
 <main id="content">
     <div class="movie_info_section">
         <div class="movie_poster_wrap">
-            <img id="moviePoster" class="movie_poster" src="/poster/${movie.poster}" alt="포스터">
+            <img id="moviePoster" class="movie_poster" src="/posters${movie.poster}" alt="포스터">
             <span>
            		<c:choose>
       				<c:when test="${movie.movieRating=='전체관람가'}">

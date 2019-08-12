@@ -103,7 +103,7 @@
 							
 								<li class="streamingDetail_movie<c:if test='${status.first}'> nowplay</c:if>">
 									<div>
-										<img src="/poster${climing_movie.poster}"> <span>${climing_movie.title}</span>
+										<img src="/posters${climing_movie.poster}"> <span>${climing_movie.title}</span>
 										<source type="video/mp4" src="/video/${climing_movie.src}" />
 										<c:if test="${leader.no == loginMember.no}">
 											<div class="garbage">
@@ -211,7 +211,7 @@
 
      
 							<li class="streamingDetail_movie">
-                                <div><img src="/poster<@=img@>">
+                                <div><img src="/posters<@=img@>">
                                     <span><@=title@></span>
                                     <source type="video/mp4" src="/video/loop.mp4" />
     								<c:if test="${leader.no == loginMember.no}">
