@@ -125,11 +125,23 @@
 		WHERE src = #{src}
 	</select>
 
+
 	<!-- 김근경 끝 -->
+
 	
 	<select id="selectMovie" resultType="Movie" parameterType="int">
 		SELECT no, title, opendate, runtime, contents, src, cookieTime, movie_rating movieRating, regdate, title_eng titleEng, poster, rep_genre genre, ending_credit_time endingCreditTime, climed
 		FROM MOVIES
 		WHERE NO = #{movieNo}
+	</select>
+		<!-- 김재현 끝 -->
+	<select id="movieSelectOne" parameterType="int" resultType="Movie">
+		SELECT no, title, openDate, runtime, contents, src, 
+			cookieTime, movie_rating movieRating, regdate, title_eng titleEng, 
+			poster, rep_genre repGenre, ending_credit_time endingCreditTime, climed, (SELECT COUNT(*)
+																						FROM reviews
+																						WHERE movie_no = #{no}) cnt
+		FROM movies 
+		WHERE no = #{no}
 	</select>
 </mapper>

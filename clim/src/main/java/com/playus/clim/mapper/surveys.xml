@@ -26,4 +26,16 @@
 		where movie_No = #{movieNo} and member_No = #{memberNo}
 	</update>
 
+	<select id="scoreCount" resultType="int" parameterType="Survey">
+		SELECT score
+		FROM surveys
+		WHERE movie_no = #{movieNo}
+		AND member_no = #{memberNo}
+	</select>
+	
+	<delete id="deleteSurvey" parameterType="Review">
+		DELETE surveys
+		WHERE member_no =#{memberNo}
+		AND movie_no = #{movieNo}
+	</delete>
 </mapper>

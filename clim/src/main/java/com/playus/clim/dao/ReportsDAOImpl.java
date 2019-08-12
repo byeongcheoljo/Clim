@@ -33,4 +33,16 @@ public class ReportsDAOImpl implements ReportsDAO {
 		
 		return session.insert("reports.boardInsert", report);
 	}
+	@Override
+	public int reportSpoiler(Report report) {
+		// TODO Auto-generated method stub
+		return session.insert("reports.reportSpoiler", report);
+	}
+	
+	@Override
+	public int checkSpoiler(Report report) {
+		// TODO Auto-generated method stub
+		return session.selectOne("reports.checkSpoiler", report);
+		
+	}
 }

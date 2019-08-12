@@ -5,12 +5,13 @@ import java.sql.Timestamp;
 
 public class Movie {
 
-	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed;
-	private String title, contents, src, titleEng, poster, repGenre, recSteal;
+	private int no, runtime, audiAcc, cookieTime, endingCreditTime, climed, cnt;
+	private String title, contents, src, titleEng, poster, repGenre, recSteal, movieRating;
 	private Date opendate;
-	private char movieRating;
+
 	private Timestamp regdate;
 	private double score;
+	private boolean checkBookmark, checkSpoilerReport;
 	private boolean bookmarkCheck;
 
 	public Movie() {
@@ -145,14 +146,7 @@ public class Movie {
 		this.opendate = opendate;
 	}
 
-	public char getMovieRating() {
-		return movieRating;
-	}
-
-	public void setMovieRating(char movieRating) {
-		this.movieRating = movieRating;
-	}
-
+	
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -160,5 +154,39 @@ public class Movie {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getMovieRating() {
+		return movieRating;
+	}
+
+	public void setMovieRating(String movieRating) {
+		this.movieRating = movieRating;
+	}
+
+	public boolean isCheckBookmark() {
+		return checkBookmark;
+	}
+
+	public void setCheckBookmark(boolean checkBookmark) {
+		this.checkBookmark = checkBookmark;
+	}
+
+	public boolean isCheckSpoilerReport() {
+		return checkSpoilerReport;
+	}
+
+	public void setCheckSpoilerReport(boolean checkSpoilerReport) {
+		this.checkSpoilerReport = checkSpoilerReport;
+	}
+	
+	
 
 }

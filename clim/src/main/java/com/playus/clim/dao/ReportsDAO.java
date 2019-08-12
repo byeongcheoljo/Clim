@@ -11,4 +11,7 @@ public interface ReportsDAO {
 
 	int insertBoardReport(Report report);
 
+	public int reportSpoiler(Report report);
+
+	public int checkSpoiler(Report report);
 }

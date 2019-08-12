@@ -18,4 +18,11 @@ public class DirectorsDAOImpl implements DirectorsDAO{
 	public List<Director> selectDirectorForMovie(int no) {
 		return session.selectList("directors.selectDirectorForMovie",no);
 	}
+	
+	// 재현
+	@Override
+	public List<Director> directorSelectList(int no) {
+		return session.selectList("directors.directorSelectList",no);
+	}
+	// 재현
 }
