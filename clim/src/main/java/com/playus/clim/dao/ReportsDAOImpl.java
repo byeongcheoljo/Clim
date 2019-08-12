@@ -18,7 +18,6 @@ public class ReportsDAOImpl implements ReportsDAO {
 		System.out.println(report.getPostNo());
 		System.out.println(report.getReporterNo());
 		System.out.println(report.getContents());
-
 		session.insert("reports.climer", report);
 	}
 
@@ -28,11 +27,6 @@ public class ReportsDAOImpl implements ReportsDAO {
 		return session.insert("reports.faq", report);
 	}
 
-	@Override
-	public int insertBoardReport(Report report) {
-		
-		return session.insert("reports.boardInsert", report);
-	}
 	@Override
 	public int reportSpoiler(Report report) {
 		// TODO Auto-generated method stub
@@ -45,4 +39,16 @@ public class ReportsDAOImpl implements ReportsDAO {
 		return session.selectOne("reports.checkSpoiler", report);
 		
 	}
+
+
+		session.insert("reports.climer", report);
+	}
+
+
+	@Override
+	public int insertBoardReport(Report report) {
+		// TODO Auto-generated method stub
+		return session.insert("reports.insertBoardReport", report);
+	}
+	
 }

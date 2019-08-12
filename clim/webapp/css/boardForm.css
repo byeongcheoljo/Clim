@@ -29,7 +29,7 @@ body {
 	left: 50%;
 	margin-left: -450px;
 	margin-top: -350px;
-	position: relative;
+	display:none;
 	padding-top: 5px;
 }
 #boardForm h2 {

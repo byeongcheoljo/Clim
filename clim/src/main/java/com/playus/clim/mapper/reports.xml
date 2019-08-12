@@ -17,6 +17,7 @@
 	
 	</insert>
 	
+
 	<insert id="reportSpoiler" parameterType="Report">
 		INSERT INTO reports(no, type, reporter_no, post_no, regdate)
 		VALUES(reports_seq.nextval, #{type}, #{reporterNo}, #{postNo}, systimestamp)
@@ -29,4 +30,10 @@
 		AND reporter_no = #{reporterNo}
 	</select>
 	
+
+	<insert id="insertBoardReport" parameterType="Report">
+		insert into reports(no, type, reporter_no, reportered_no, post_no, contents, regdate)
+		values(reports_seq.nextval, 'B', #{no}, #{reporteredNo}, #{boardNo}, #{contents}, systimestamp)
+	</insert>
+
 </mapper>

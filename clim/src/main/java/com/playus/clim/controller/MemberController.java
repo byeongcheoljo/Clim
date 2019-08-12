@@ -89,6 +89,7 @@ public class MemberController {
 		
 		return "redirect:index";
 	}
+	
 	//로그인
 	@ResponseBody
 	@RequestMapping(value="/ajax/session", method=RequestMethod.POST)
@@ -123,9 +124,9 @@ public class MemberController {
 		//System.out.println("야! 하선아"+member2.getNo());
 		String ip = InetAddress.getLocalHost().getHostAddress();
 		String host = "smtp.naver.com"; 
-		final String username = "rbqja1798";
+		final String username = "zan1515";
 		//네이버 아이디를 입력해주세요. @naver.com은 입력하지 마시구요. 
-		final String password = "1q2w3e4r1!"; //네이버 이메일 비밀번호를 입력해주세요
+		final String password = "1q2w3e4r4!"; //네이버 이메일 비밀번호를 입력해주세요
 		int port=465; //포트번호 // 메일 내용 
 		String recipient = member2.getEmail(); //받는 사람의 메일주소를 입력해주세요.
 		String subject = "끌리밍 비밀번호 찾기"; //메일 제목 입력해주세요. 
@@ -151,7 +152,7 @@ public class MemberController {
 		session.setDebug(true); //for debug 
 		Message mimeMessage = new MimeMessage(session); //MimeMessage 생성
 		try {
-			mimeMessage.setFrom(new InternetAddress("rbqja1798@naver.com"));
+			mimeMessage.setFrom(new InternetAddress("zan1515@naver.com"));
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); //수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
 			mimeMessage.setSubject(subject); //제목셋팅 
 			//mimeMessage.setText(body); //내용셋팅
@@ -176,9 +177,8 @@ public class MemberController {
 	@RequestMapping(value="/pwdUpdate/reset", method=RequestMethod.POST)
 	public String passwordUpdate(Member member, RedirectAttributes ra) {
 		membersService.pwdUpdate(member);
-
-		
 		return "redirect:/index";
 	}
+
 }
 

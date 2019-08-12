@@ -1,15 +1,58 @@
 package com.playus.clim.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Comment {
 
-	private int no, memberNo, boardNo;
-	private String contents;
+	private int no, memberNo, boardNo, commentLikeCount, boardCommentTotal;
+	private String contents, nickname;
 	private Timestamp regdate;
+	private List<Comment> commentList;
+	private boolean likeCommentCheck;
 
 	public Comment() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getCommentLikeCount() {
+		return commentLikeCount;
+	}
+
+	public void setCommentLikeCount(int commentLikeCount) {
+		this.commentLikeCount = commentLikeCount;
+	}
+
+	public int getBoardCommentTotal() {
+		return boardCommentTotal;
+	}
+
+	public void setBoardCommentTotal(int boardCommentTotal) {
+		this.boardCommentTotal = boardCommentTotal;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
+	public boolean isLikeCommentCheck() {
+		return likeCommentCheck;
+	}
+
+	public void setLikeCommentCheck(boolean likeCommentCheck) {
+		this.likeCommentCheck = likeCommentCheck;
 	}
 
 	public int getNo() {

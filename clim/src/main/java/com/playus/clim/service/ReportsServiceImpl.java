@@ -21,7 +21,6 @@ public class ReportsServiceImpl implements ReportsService{
 		report.setReporterNo(userNo);
 		report.setContents(content);
 		reportsdao.insertReportClimer(report);
-		
 	}
 	
 	
@@ -36,11 +35,14 @@ public class ReportsServiceImpl implements ReportsService{
 	public int boardReportInsert(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.insertBoardReport(report);
-
 	}
+	
 	@Override
 	public int reportSpoiler(Report report) {
 		// TODO Auto-generated method stub
 		return reportsdao.reportSpoiler(report);
 	}
+
+	
 }
+	

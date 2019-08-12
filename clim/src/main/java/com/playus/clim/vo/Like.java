@@ -1,17 +1,47 @@
 package com.playus.clim.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Like {
 
 	
-	private int no, postNo, memberNo;
+	private int no, postNo, memberNo, boardNo;
 	private char emotion, type;
 	private Timestamp regdate;
+	private List<List> boardLike;
 	
 	public Like() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Like(int memberNo, int boardNo, int postNo) {
+		super();
+		this.memberNo = memberNo;
+		this.boardNo = boardNo;
+		this.postNo = postNo;
+	}
+	
+
+	public int getBoardNo() {
+		return boardNo;
+	}
+
+
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+
+
+	public List<List> getBoardLike() {
+		return boardLike;
+	}
+
+
+	public void setBoardLike(List<List> boardLike) {
+		this.boardLike = boardLike;
+	}
+
 
 	public int getNo() {
 		return no;

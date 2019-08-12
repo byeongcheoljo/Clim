@@ -7,9 +7,11 @@ import java.util.List;
 public class Board {
 	private boolean likeCheck;
 	private List<BoardTag> boardTags;
-	private int no, memberNo, views , boardCount, likeCount, commentCount;
+	private int no, memberNo, views, likeCount, commentCount, boardCount;;
 	private String contents, nickname;
 	private Timestamp regdate;
+	private List<BoardTag> boardTags;
+	private boolean likeCheck;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub

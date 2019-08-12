@@ -9,9 +9,11 @@ public interface ReportsDAO {
 	
 	public int insertFAQ(Report report);
 
-	int insertBoardReport(Report report);
-
 	public int reportSpoiler(Report report);
 
 	public int checkSpoiler(Report report);
+
+	//자유게시판 신고하기
+	public int insertBoardReport(Report report);
+	
 }

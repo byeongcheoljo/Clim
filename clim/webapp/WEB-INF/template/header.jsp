@@ -23,37 +23,48 @@
 
 		<!--카테고리 세부내용-->
 		<div class="category_list_box">
-			<ul class="category_genre_tab">
+            <ul class="category_genre_tab">
 				<li>새로 올라온 영화</li>
+				<li>SF</li>
+				<li>모험</li>
+				<li>판타지</li>
+				<li>액션</li>
 				<li>로맨스</li>
+				<li>애니메이션</li>
+				<li>스릴러</li>
+				<li>범죄</li>
+				<li>가족</li>
+				<li>재난</li>
+				<li>로맨틱코미디</li>
+				<li>역사</li>
+				<li>사대극</li>
+				<li>스포츠</li>
+				<li>전쟁</li>
+				<li>음악</li>
+				<li>틴에이저</li>
 				<li>키즈</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>애니메이션</li>
-				<li>액션</li>
-				<li>액션</li>
+				<li>미스터리</li>
+				<li>시트콤</li>
+				<li>서부극</li>
+				<li>공포</li>
+				<li>코미디</li>
+				<li>예능</li>
 			</ul>
 
 			<ul class="category_country_tab">
 				<li>한국</li>
-				<li>북한</li>
 				<li>미국</li>
+				<li>대만</li>
+				<li>캐나다</li>
 				<li>스웨덴</li>
-				<li>스웨덴</li>
-				<li>덴마크</li>
-				<li>크로아티아</li>
-				<li>아르헨티나</li>
+				<li>독일</li>
+				<li>인도</li>
+				<li>홍콩</li>
+				<li>프랑스</li>
+				<li>영국</li>
+				<li>중국</li>
+				<li>일본</li>
+				<li>이탈리아</li>
 			</ul>
 
 			<ul class="category_characteristic_tab">
@@ -142,9 +153,7 @@
 					<!-- 스트리밍 할 영상 목록 -->
 					<div class="streaming_movie_wrap">
 						<ul class="streaming_movie_box">
-
 							<!--스트리밍할 영상 목록 템플릿-->
-
 						</ul>
 					</div>
 					<!--streaming_movie_wrap-->

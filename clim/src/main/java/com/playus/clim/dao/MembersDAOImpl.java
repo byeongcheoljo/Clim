@@ -82,4 +82,7 @@ public class MembersDAOImpl implements MembersDAO{
 	public List<Member> myPageMovieForStriming(int no) {
 		return session.selectList("members.myPageMovieForStriming",no);
 	}
+
+	
+	
 }
