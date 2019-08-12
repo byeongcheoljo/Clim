@@ -10,8 +10,6 @@ public class Board {
 	private int no, memberNo, views, likeCount, commentCount, boardCount;;
 	private String contents, nickname;
 	private Timestamp regdate;
-	private List<BoardTag> boardTags;
-	private boolean likeCheck;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub

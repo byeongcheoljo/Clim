@@ -41,10 +41,6 @@ public class ReportsDAOImpl implements ReportsDAO {
 	}
 
 
-		session.insert("reports.climer", report);
-	}
-
-
 	@Override
 	public int insertBoardReport(Report report) {
 		// TODO Auto-generated method stub

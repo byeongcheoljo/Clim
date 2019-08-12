@@ -84,5 +84,5 @@
 		where post_no = #{postNo} and type='C'
 	</select>
 
-
+	
 </mapper>

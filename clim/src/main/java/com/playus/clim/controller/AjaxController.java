@@ -41,6 +41,7 @@ import com.playus.clim.vo.Board;
 import com.playus.clim.vo.Bookmark;
 import com.playus.clim.vo.Event;
 import com.playus.clim.vo.Like;
+import com.playus.clim.vo.Member;
 import com.playus.clim.vo.Movie;
 import com.playus.clim.vo.Report;
 import com.playus.clim.vo.Review;
@@ -164,7 +165,7 @@ public class AjaxController {
 	@RequestMapping(value = "/addClimingList", method = RequestMethod.GET)
 	public String addClimingList(int roomNo,int movieNo){
 		
-		return bookmarkService.addClimingList(roomNo, movieNo);
+		return bookmarksService.addClimingList(roomNo, movieNo);
 
 	}
 	@RequestMapping(value="/user/{memberNo}",method=RequestMethod.GET)
@@ -177,13 +178,13 @@ public class AjaxController {
 	@RequestMapping(value="/user/{memberNo}/bookmark", method=RequestMethod.GET)
 	public List<Bookmark> getMovieBookmarkList(@PathVariable int memberNo){
 		
-		return  bookmarkService.getMyMovieList(memberNo);
+		return  bookmarksService.getMyMovieList(memberNo);
 		
 	}
 	
 	@RequestMapping(value="/user/{memberNo}/bookmark/{no}",method=RequestMethod.DELETE)
 	public String deleteList(@PathVariable int memberNo, @PathVariable int no) {
-		int result = bookmarkService.deletMybookmarkMovie(no);
+		int result = bookmarksService.deletMybookmarkMovie(no);
 		
 		return "{\"result:"+result+"\"}";
 		
@@ -232,7 +233,7 @@ public class AjaxController {
 	public void deleteClimingList(int roomNo,int movieNo){
 		
 		
-		bookmarkService.deleteClimingList(roomNo,movieNo);
+		bookmarksService.deleteClimingList(roomNo,movieNo);
 
 	}
 	@RequestMapping(value = "/room/{roomNo}/ClimingMovie/{movieNo}", method = RequestMethod.GET)

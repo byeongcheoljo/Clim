@@ -2,16 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boards">
-	<select id="myWriteBoardsList" resultType="Board" parameterType="PageVO">
+	<select id="myWriteBoardsList" resultType="Board"
+		parameterType="PageVO">
 		SELECT no, contents, memberNo, views, regdate, r
-		FROM(SELECT no, contents, memberNo, views, regdate, rownum r 
-			 FROM(SELECT no, contents, member_no memberNo, views, regdate
-				  FROM boards
-				  WHERE member_no = #{no}
-				  ORDER BY regdate DESC))
+		FROM(SELECT no, contents, memberNo, views, regdate, rownum r
+		FROM(SELECT no, contents, member_no memberNo, views, regdate
+		FROM boards
+		WHERE member_no = #{no}
+		ORDER BY regdate DESC))
 		WHERE r BETWEEN #{start} AND #{end}
 	</select>
-
+	
 	<select id="myWriteBoardsTotal" resultType="int"
 		parameterType="int">
 		SELECT count(*)
@@ -19,9 +20,9 @@
 		WHERE member_no = #{memberNo}
 	</select>
 
-
 	<select id="boardList" resultType="Board" parameterType="PageVO">
-		SELECT no, contents, nickname ,memberNo, views, regdate, commentCount,
+		SELECT
+		no, contents, nickname ,memberNo, views, regdate, commentCount,
 		likeCount, r
 		FROM(SELECT no, contents, nickname, member_no memberNo,
 		views, regdate, commentCount, likeCount, rownum r
@@ -117,6 +118,5 @@
 		set views = #{views}
 		where no = #{no}
 	</update>
-
 
 </mapper>

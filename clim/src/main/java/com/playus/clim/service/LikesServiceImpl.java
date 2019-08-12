@@ -26,6 +26,7 @@ public class LikesServiceImpl implements LikesService{
 	public int deleteLike(Like like) {
 		// TODO Auto-generated method stub
 		return likesDAO.deleteLike(like);
+	}
 
 		
 	public Map<String, Object> boardLike(int memberNo, int boardNo) {
