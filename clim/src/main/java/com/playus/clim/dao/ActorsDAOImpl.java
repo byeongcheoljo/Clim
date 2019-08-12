@@ -19,4 +19,10 @@ public class ActorsDAOImpl implements ActorsDAO{
 		return session.selectList("actors.selectListForMovie",no);
 	}
 	
+	@Override
+	public List<Actor> actorSelectList(int no) {
+		// TODO Auto-generated method stub
+		return session.selectList("actors.actorsSelectList", no);
+	}
+	// 재현
 }

@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="trailers">
-
+	<select id="trailerSelectOne" parameterType="int" resultType="Trailer">
+		SELECT m.no, t.src
+		FROM movies m, trailers t
+		WHERE m.no = #{no}
+		AND m.no = t.movie_no
+	</select>
 </mapper>

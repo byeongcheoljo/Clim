@@ -22,5 +22,44 @@
 		FROM reviews
 		WHERE member_no = #{memberNo}
 	</select>
-
+<!-- 재현 -->
+	<select id="reviewSelectList" resultType="Review" parameterType="PageVO">
+		SELECT no, memberNo, contents, score, regdate, nickname, r
+		FROM(SELECT no, memberNo, contents, score, regdate, nickname, rownum r
+			FROM(SELECT r.no, r.member_no memberNo, r.contents, r.score, r.regdate, u.nickname
+				FROM movies m, reviews r,members u
+				WHERE m.no = #{no}
+				AND m.no = r.movie_no
+				AND u.no = r.member_no))
+		WHERE r BETWEEN #{start} AND #{end}
+		ORDER BY regdate DESC
+	</select>
+	<select id="reviewSelectTotalList" resultType="int" parameterType="int">
+		SELECT count(*)
+		FROM reviews
+		WHERE movie_no = #{movieNo}
+	</select>
+	
+	<insert id="registerReview" parameterType="Review">
+		INSERT INTO reviews(no, movie_no, member_no, contents, score, regdate)
+		VALUES(reviews_seq.nextval, #{movieNo}, #{memberNo}, #{contents}, #{score}, systimestamp)
+	</insert>
+	
+	<delete id="deleteMyReview" parameterType="Review">
+		DELETE
+		FROM reviews
+		WHERE no = #{no}
+	</delete>
+	
+	<select id="selectMovieDetailScore" resultType="int" parameterType="int">
+		SELECT ROUND((r.score+s.score)/2) score
+		FROM (SELECT NVL(ROUND(AVG(r.score)),0) score
+			FROM movies m, reviews r
+			WHERE m.no = r.movie_no
+			AND m.no = #{movieNo}) r,
+			(SELECT NVL(ROUND(AVG(s.score)),0) score
+			FROM movies m, surveys s
+			WHERE m.no = s.movie_no
+			AND m.no = #{movieNo}) s
+	</select>
 </mapper>

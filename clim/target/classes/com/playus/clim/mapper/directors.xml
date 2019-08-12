@@ -8,4 +8,12 @@
 		FROM movies m, m_directors d, directors dir
 		WHERE m.no = d.movie_no AND d.dir_no = dir.no AND m.no = #{no}
 	</select>
+	
+	<select id="directorSelectList" parameterType="int" resultType="Director">
+		SELECT m.no, d.name
+		FROM movies m, m_directors dir, directors d
+		WHERE m.no = #{no}
+		AND m.no = dir.movie_no 
+		AND dir.dir_no = d.no 
+	</select>
 </mapper>

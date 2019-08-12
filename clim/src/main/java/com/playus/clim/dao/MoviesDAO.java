@@ -43,4 +43,6 @@ public interface MoviesDAO {
 	public Movie selectMovieTrailer(int no);
 	
 	public Movie selectMovie(int movieNo);
+	
+	public Movie movieSelectOne(int no);
 }

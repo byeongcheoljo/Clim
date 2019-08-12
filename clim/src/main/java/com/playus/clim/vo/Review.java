@@ -5,8 +5,10 @@ import java.sql.Timestamp;
 public class Review {
 	/* 0803 홍성표 title 추가 */
 	private int no, movieNo, memberNo, score;
-	private String contents, title;
+	private String contents, title, nickname;
 	private Timestamp regdate;
+	private boolean checkSpoiler, checkLike, checkDisLike;
+	private int like, dislike;
 	
 	public Review() {
 		// TODO Auto-generated constructor stub
@@ -79,6 +81,54 @@ public class Review {
 
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public boolean isCheckSpoiler() {
+		return checkSpoiler;
+	}
+
+	public void setCheckSpoiler(boolean checkSpoiler) {
+		this.checkSpoiler = checkSpoiler;
+	}
+
+	public boolean isCheckLike() {
+		return checkLike;
+	}
+
+	public void setCheckLike(boolean checkLike) {
+		this.checkLike = checkLike;
+	}
+
+	public boolean isCheckDisLike() {
+		return checkDisLike;
+	}
+
+	public void setCheckDisLike(boolean checkDisLike) {
+		this.checkDisLike = checkDisLike;
+	}
+
+	public int getLike() {
+		return like;
+	}
+
+	public void setLike(int like) {
+		this.like = like;
+	}
+
+	public int getDislike() {
+		return dislike;
+	}
+
+	public void setDislike(int dislike) {
+		this.dislike = dislike;
 	}
 	
 	

@@ -31,4 +31,10 @@ public interface BookmarksDAO {
 	public int boomarkForMovieInsert(Bookmark bookmark);
 
 	public int boomarkForMovieDelete(Bookmark bookmark);
+	
+	public int addMovie(Bookmark bookmark);
+
+	public int deleteMovie(Bookmark bookmark);
+
+	public int bookmarkChecWithType(Bookmark bookmark);
 }

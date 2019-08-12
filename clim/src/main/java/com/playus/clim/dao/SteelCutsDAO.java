@@ -1,5 +1,7 @@
 package com.playus.clim.dao;
 
+import java.util.List;
+
 import com.playus.clim.vo.StealCut;
 
 public interface SteelCutsDAO {
@@ -15,4 +17,7 @@ public interface SteelCutsDAO {
 	public int selectTotalForMovieId(int no);
 	
 /*김근경 끝*/	
+	
+	// 재현
+	public List<StealCut> steelCutSelectList(int no);
 }

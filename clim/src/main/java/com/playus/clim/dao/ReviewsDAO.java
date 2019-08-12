@@ -10,4 +10,11 @@ public interface ReviewsDAO {
 	public List<Review> myWriteReviewsList(PageVO pageVO);
 	public int myWriteReviewsTotal(int memberNo);
 
+	
+	//재현
+	public List<Review> getReviewList(PageVO pageVO);
+	public int getReviewTotalList(int movieNo);
+	public int registerReview(Review review);
+	public int deleteMyReview(int no);
+	public int selectMovieDetailScore(int movieNo);
 }
