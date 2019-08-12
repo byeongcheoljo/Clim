@@ -773,7 +773,6 @@
 	$(".streaming_start_btn").on("click",function(e) {
 		e.stopPropagation();
 		let title = $("#climTitle").val();
-		alert(title);
 		//넘길 데이터(파라미터)
 		/*
 		$.ajax({ 

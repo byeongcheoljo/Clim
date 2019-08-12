@@ -6,7 +6,7 @@ public class ClimingLog {
 
 	private int no, climingNo, memberNo;
 	private char type;
-	private String sessionId;
+	private String sessionId, msg, nickname;
 	private Timestamp openDate,closeDate;
 	
 	private Timestamp regdate;
@@ -15,6 +15,32 @@ public class ClimingLog {
 	public ClimingLog() {
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	public String getMsg() {
+		return msg;
+	}
+
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
 
 
 	public int getNo() {

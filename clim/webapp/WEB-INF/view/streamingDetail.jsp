@@ -228,12 +228,12 @@
 
 	<script type="text/template" id="streamingChatTmp">
 
-            <li class="mine">
-        <div class="card_user">
+    <li class="<@if(chat.nickname=="${loginMember.nickname}"){@>mine<@}@>">
+        <div class="card_user <@if(chat.nickname!="${loginMember.nickname}"){@>user_mine<@}@>">
+			<div><@=chat.nickname@></div>
         </div>
-
         <div class="box_chat">
-            <div class="comments mine"><@=chatMsg@></div>
+            <div class="comments mine"><@=chat.msg@></div>
         </div>
     </li>
 
@@ -720,17 +720,20 @@
  			            			
  			            			const msg = $("#msgInput").val();
  			            			
- 			            			stompClient.send("/app/room/${roomNo}/chat",{},msg);
+ 			            			const data = JSON.stringify({"msg":msg,"nickname":"${loginMember.nickname}"});
+ 			            			
+ 			            			stompClient.send("/app/room/${roomNo}/chat",{},data);
  			            			
  			            		});
  			            		
  			            		//채팅
  			            		stompClient.subscribe("/topic/room/${roomNo}/chat",function(protocol) {
  			            			
+ 			            			
  			                         
 
  			                         $("#streamingDetailChatList ul").append(streamingChatTmp({
- 			                             "chatMsg": protocol.body
+ 			                             "chat": JSON.parse(protocol.body)
  			                         }));
 
  			                         $("#msgInput").val(" ");

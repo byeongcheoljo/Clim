@@ -84,9 +84,8 @@ public class StreamingController {
 	
 	@MessageMapping("/room/{no}/chat")
 	@SendTo("/topic/room/{no}/chat")
-	public String asapqkfkeo(String msg, SimpMessageHeaderAccessor accessor) {
-		System.out.println(msg);
-		return msg;
+	public ClimingLog asapqkfkeo(ClimingLog climingLog , SimpMessageHeaderAccessor accessor) {
+		return climingLog;
 	}
 	
 	@MessageMapping("/room/{no}/close")

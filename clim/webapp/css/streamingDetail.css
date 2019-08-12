@@ -622,3 +622,15 @@ body {
 	color: #f9f9f9;
 	text-decoration: none;
 }
+
+.card_user{
+    position: relative;
+    text-align: right;
+    color:#fff;
+}
+
+.user_mine{
+    position: relative;
+    text-align: left;
+    color:#fff;
+}
